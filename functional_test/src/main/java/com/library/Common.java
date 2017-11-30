@@ -51,6 +51,7 @@ public class Common {
         dc.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.jncb.mobile");
         dc.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, ".MainActivity");
         dc.setCapability(AndroidMobileCapabilityType.UNICODE_KEYBOARD,"True");
+        
         driver = new AndroidDriver<AndroidElement>(new URL("http://localhost:4723/wd/hub"), dc);
     		}catch (IOException io) {
     		io.printStackTrace();
