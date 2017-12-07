@@ -274,7 +274,6 @@ public class Common {
        
     }
     
-    
     //Get the count of element
     public int getCount(String identifier,String locator)
     {
