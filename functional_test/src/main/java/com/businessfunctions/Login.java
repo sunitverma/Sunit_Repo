@@ -15,16 +15,18 @@ public class Login
     // S - Method - Login to NCB Mobile Application
     public void loginToapp(String username,String password) throws InterruptedException
     {
-        browser.waitUntilElementPresent("//*[@contentDescription='Username']");
-        browser.sendKeys("xpath","//*[@contentDescription='Username']",username);
-        //browser.sleepThread(1000);
+    	browser.waitUntilElementPresent("//*[@content-desc='logoImage']");
+        browser.click("xpath","//*[@content-desc='loginText']");
+    	
+    	browser.waitUntilElementPresent("//*[@content-desc='Username']");
+        browser.sendKeys("xpath","//*[@content-desc='Username']",username);
         browser.keyboardKeys(66);
         
-        browser.sendKeys("xpath","//*[@contentDescription='Password']", password);
+        browser.sendKeys("xpath","//*[@content-desc='Password']", password);
         browser.sleepThread(1000);
         browser.keyboardKeys(66);
         
-        browser.click("xpath","//*[@class='android.view.ViewGroup'][4]");
+        browser.click("xpath","//*[@content-desc='loginButtonText']");
                       				   
         browser.sleepThread(2000);
         browser.screenshot();
@@ -33,11 +35,13 @@ public class Login
     // M - Method - Expected - Verifying the Login button while login with Empty Credentials
     public void emptyLoginExpeceted() throws InterruptedException
     {
-    	boolean buttonValue = browser.isButtonEnabled("xpath","//*[@class='android.view.ViewGroup'][4]");
+    	boolean buttonValue = browser.isButtonEnabled("xpath","//*[@content-desc='loginButtonText']");
+    	
     	if(buttonValue == true)
 	 	{
 	 		System.out.println("Login button is disabled - Please enter the credentials");
-	 	}	
+	 	}
+    	
 	 	browser.sleepThread(2000);
 	 	browser.screenshot();
     }
@@ -64,19 +68,19 @@ public class Login
     	String msg2="You will be locked out after 1 more password attempt. To unlock your account, you will need to call Customer Care.";
     	String msg3="You have been locked out. To reactivate your account, please call Customer Care at 1-888-622-3478.";
     	
-    	browser.waitUntilElementPresent("//*[@contentDescription='Username']");
-    	browser.sendKeys("xpath","//*[@contentDescription='Username']",username);
+    	browser.waitUntilElementPresent("//*[@content-desc='Username']");
+    	browser.sendKeys("xpath","//*[@content-desc='Username']",username);
     	browser.sleepThread(1000);
     	browser.keyboardKeys(66);
     	
-    	browser.sendKeys("xpath","//*[@contentDescription='Password']", password);
+    	browser.sendKeys("xpath","//*[@content-desc='Password']", password);
     	browser.sleepThread(1000);
     	browser.keyboardKeys(66);
     	
     	//First error message
-    	browser.click("xpath","//*[@class='android.view.ViewGroup'][4]");
+    	browser.click("xpath","//*[@content-desc='loginButtonText']");
         browser.sleepThread(1000);
-        String errormsg1= browser.getText("xpath","//*[@class='android.view.ViewGroup'][5]");
+        String errormsg1= browser.getText("xpath","//*[@content-desc='alertMessage']");
         browser.screenshot();
         
         if (errormsg1 == msg1)
@@ -89,9 +93,9 @@ public class Login
         }
         
         //Second error message
-        browser.click("xpath","//*[@class='android.view.ViewGroup'][4]");
+    	browser.click("xpath","//*[@content-desc='loginButtonText']");
         browser.sleepThread(1000);
-        String errormsg2= browser.getText("xpath","//*[@class='android.view.ViewGroup'][5]");
+        String errormsg2= browser.getText("xpath","//*[@content-desc='alertMessage']");
         browser.screenshot();
         
         if (errormsg2==msg2)
@@ -104,9 +108,9 @@ public class Login
         }
         
         //Third error message
-        browser.click("xpath","//*[@class='android.view.ViewGroup'][4]");
+    	browser.click("xpath","//*[@content-desc='loginButtonText']");
         browser.sleepThread(1000);
-        String errormsg3= browser.getText("xpath","//*[@class='android.view.ViewGroup'][5]");
+        String errormsg3= browser.getText("xpath","//*[@content-desc='alertMessage']");
         browser.screenshot();
         
         if (errormsg3==msg3)

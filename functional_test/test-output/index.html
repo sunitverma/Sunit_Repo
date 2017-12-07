@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  <meta charset='utf-8'>
+  <title>TestNG reports</title>
+
+    <link type="text/css" href="testng-reports.css" rel="stylesheet" />
+    <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="testng-reports.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['table']});
+      google.setOnLoadCallback(drawTable);
+      var suiteTableInitFunctions = new Array();
+      var suiteTableData = new Array();
+    </script>
+    <!--
+      <script type="text/javascript" src="jquery-ui/js/jquery-ui-1.8.16.custom.min.js"></script>
+     -->
+  </head>
+
+  <body>
+    <div class="top-banner-root">
+      <span class="top-banner-title-font">Test results</span>
+      <br/>
+      <span class="top-banner-font-1">1 suite, 1 failed test</span>
+    </div> <!-- top-banner-root -->
+    <div class="navigator-root">
+      <div class="navigator-suite-header">
+        <span>All suites</span>
+        <a href="#" class="collapse-all-link" title="Collapse/expand all the suites">
+          <img class="collapse-all-icon" src="collapseall.gif">
+          </img> <!-- collapse-all-icon -->
+        </a> <!-- collapse-all-link -->
+      </div> <!-- navigator-suite-header -->
+      <div class="suite">
+        <div class="rounded-window">
+          <div class="suite-header light-rounded-window-top">
+            <a href="#" class="navigator-link" panel-name="suite-Automation">
+              <span class="suite-name border-failed">Automation</span>
+            </a> <!-- navigator-link -->
+          </div> <!-- suite-header light-rounded-window-top -->
+          <div class="navigator-suite-content">
+            <div class="suite-section-title">
+              <span>Info</span>
+            </div> <!-- suite-section-title -->
+            <div class="suite-section-content">
+              <ul>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="test-xml-Automation">
+                    <span>C:\Users\vermas\Sunit_Repo\functional_test\suite.xml</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="testlist-Automation">
+                    <span class="test-stats">1 test</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="group-Automation">
+                    <span>0 groups</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="times-Automation">
+                    <span>Times</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="reporter-Automation">
+                    <span>Reporter output</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="ignored-methods-Automation">
+                    <span>Ignored methods</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="chronological-Automation">
+                    <span>Chronological view</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+              </ul>
+            </div> <!-- suite-section-content -->
+            <div class="result-section">
+              <div class="suite-section-title">
+                <span>Results</span>
+              </div> <!-- suite-section-title -->
+              <div class="suite-section-content">
+                <ul>
+                  <li>
+                    <span class="method-stats">1 method, 1 failed,   </span>
+                  </li>
+                  <li>
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-Automation" class="hide-methods failed suite-Automation"> (hide)</a> <!-- hide-methods failed suite-Automation -->
+                      <a href="#" panel-name="suite-Automation" class="show-methods failed suite-Automation"> (show)</a> <!-- show-methods failed suite-Automation -->
+                    </span>
+                    <div class="method-list-content failed suite-Automation">
+                      <span>
+                        <img width="3%" src="failed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Automation" title="com.testscripts.Testcases" hash-for-method="savingsBalanceBreakdown">savingsBalanceBreakdown</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content failed suite-Automation -->
+                  </li>
+                </ul>
+              </div> <!-- suite-section-content -->
+            </div> <!-- result-section -->
+          </div> <!-- navigator-suite-content -->
+        </div> <!-- rounded-window -->
+      </div> <!-- suite -->
+    </div> <!-- navigator-root -->
+    <div class="wrapper">
+      <div class="main-panel-root">
+        <div panel-name="suite-Automation" class="panel Automation">
+          <div class="suite-Automation-class-failed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="failed.png"/>
+              <span class="class-name">com.testscripts.Testcases</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="savingsBalanceBreakdown">
+                  </a> <!-- savingsBalanceBreakdown -->
+                  <span class="method-name">savingsBalanceBreakdown</span>
+                  <div class="stack-trace">org.openqa.selenium.WebDriverException: unknown error (An unknown server-side error occurred. status=&apos;false&apos;. Failed to complete internal method: &apos;touchMoveCoordinate args: [51, 3281]&apos;, details: Failed to touch move to x: 51, y: 3281. The screen dimension doesn&apos;t contain the X, Y point)  (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+Build info: version: &apos;3.7.1&apos;, revision: &apos;8a0099a&apos;, time: &apos;2017-11-06T21:01:39.354Z&apos;
+System info: host: &apos;MGGG0HH2&apos;, ip: &apos;10.149.250.191&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_152&apos;
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {--session-override: true, appActivity: .MainActivity, appPackage: com.jncb.mobile, autoAcceptAlerts: false, autoDismissAlerts: false, autoWebview: false, desired: {--session-override: true, appActivity: .MainActivity, appPackage: com.jncb.mobile, platformName: Android, reportDirectory: reports, reportFormat: xml, testName: Untitled, udid: 320857778bba5171, unicodeKeyboard: True}, device.category: PHONE, device.majorVersion: 6.x, device.manufacture: samsung, device.model: SM-G900H, device.name: SM-G900H, device.os: Android, device.screenSize: 1080x1920, device.serialNumber: 320857778bba5171, device.version: 6.0.1, dontGoHomeOnQuit: false, dontStopAppOnReset: false, fullReset: false, instrumentApp: false, javascriptEnabled: true, keystorePath: ~/.android/debug.keystore, noReset: false, platform: ANDROID, platformName: ANDROID, projectName: , reportDirectory: reports, reportFormat: xml, reportUrl: C:\Users\vermas\appiumstudi..., reservationDuration: 240, testName: Untitled, udid: 320857778bba5171, unicodeKeyboard: True, useKeystore: false, waitForDeviceTimeout: 120000}
+Session ID: db0415d7-7947-41fd-af78-a8697d2e6fbd
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
+	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:89)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:600)
+	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:42)
+	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
+	at io.appium.java_client.android.AndroidDriver.execute(AndroidDriver.java:1)
+	at io.appium.java_client.PerformsTouchActions.performTouchAction(PerformsTouchActions.java:41)
+	at io.appium.java_client.TouchAction.perform(TouchAction.java:325)
+	at com.library.Common.scrollDown(Common.java:329)
+	at com.testscripts.Testcases.savingsBalanceBreakdown(Testcases.java:140)
+... Removed 29 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Automation-class-failed -->
+        </div> <!-- panel Automation -->
+        <div panel-name="test-xml-Automation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">C:\Users\vermas\Sunit_Repo\functional_test\suite.xml</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE suite SYSTEM &quot;http://testng.org/testng-1.0.dtd&quot;&gt;
+&lt;suite guice-stage=&quot;DEVELOPMENT&quot; name=&quot;Automation&quot;&gt;
+  &lt;test name=&quot;TestScripts&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;com.testscripts.Testcases&quot;&gt;
+        &lt;methods&gt;
+          &lt;include name=&quot;savingsBalanceBreakdown&quot;/&gt;
+          &lt;exclude name=&quot;LoginWithEmptyData&quot;/&gt;
+          &lt;exclude name=&quot;LoginWithValidTestdata&quot;/&gt;
+          &lt;exclude name=&quot;LoginWithInvalidUsername&quot;/&gt;
+          &lt;exclude name=&quot;LoginWithInvalidPassword&quot;/&gt;
+          &lt;exclude name=&quot;PasswordRetry&quot;/&gt;
+          &lt;exclude name=&quot;verifyHomepageAllAccounts&quot;/&gt;
+          &lt;exclude name=&quot;verifyHomepageOneAccount&quot;/&gt;
+          &lt;exclude name=&quot;verifyHomepageNoAccounts&quot;/&gt;
+        &lt;/methods&gt;
+      &lt;/class&gt; &lt;!-- com.testscripts.Testcases --&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- TestScripts --&gt;
+&lt;/suite&gt; &lt;!-- Automation --&gt;
+            </pre>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="testlist-Automation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Tests for Automation</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <ul>
+              <li>
+                <span class="test-name">TestScripts (1 class)</span>
+              </li>
+            </ul>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="group-Automation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Groups for Automation</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="times-Automation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Times for Automation</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="times-div">
+              <script type="text/javascript">
+suiteTableInitFunctions.push('tableData_Automation');
+function tableData_Automation() {
+var data = new google.visualization.DataTable();
+data.addColumn('number', 'Number');
+data.addColumn('string', 'Method');
+data.addColumn('string', 'Class');
+data.addColumn('number', 'Time (ms)');
+data.addRows(1);
+data.setCell(0, 0, 0)
+data.setCell(0, 1, 'savingsBalanceBreakdown')
+data.setCell(0, 2, 'com.testscripts.Testcases')
+data.setCell(0, 3, 119022);
+window.suiteTableData['Automation']= { tableData: data, tableDiv: 'times-div-Automation'}
+return data;
+}
+              </script>
+              <span class="suite-total-time">Total running time: 1 minutes</span>
+              <div id="times-div-Automation">
+              </div> <!-- times-div-Automation -->
+            </div> <!-- times-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="reporter-Automation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Reporter output for Automation</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="ignored-methods-Automation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">8 ignored methods</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.testscripts.Testcases</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">LoginWithValidTestdata</span>
+                <br/>
+                <span class="ignored-method-name">PasswordRetry</span>
+                <br/>
+                <span class="ignored-method-name">verifyHomepageOneAccount</span>
+                <br/>
+                <span class="ignored-method-name">verifyHomepageNoAccounts</span>
+                <br/>
+                <span class="ignored-method-name">verifyHomepageAllAccounts</span>
+                <br/>
+                <span class="ignored-method-name">LoginWithInvalidPassword</span>
+                <br/>
+                <span class="ignored-method-name">LoginWithEmptyData</span>
+                <br/>
+                <span class="ignored-method-name">LoginWithInvalidUsername</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="chronological-Automation" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Methods in chronological order</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.testscripts.Testcases</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">savingsBalanceBreakdown</span>
+                <span class="method-start">0 ms</span>
+              </div> <!-- test-method -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+      </div> <!-- main-panel-root -->
+    </div> <!-- wrapper -->
+  </body>
+</html>

@@ -4,37 +4,34 @@ import com.library.Common;
 import com.testscripts.RootTest;
 
 public class Homepage extends RootTest {
+	 
 	 static Login login=new Login(brow);
 	 Common browser;
-	    //constructor with one argument.
+	 
+	 //constructor with one argument.
 	    public void Home(Common br)
 	    {
 	        browser=br;
 	    }
 	   
-	/**
-	 * Need to check with chequeing 
-	 */
-	    
 	// K - Method - to verify the all accounts    
 	public void verifyHomepageAllAccounts()
 	
 	{
-		brow.waitUntilElementPresent("//*[@text='Savings']");
-    	brow.verifyElementPresent("xpath", "//*[@text='Savings']");
+		brow.waitUntilElementPresent("(//*[@content-desc='accountCardType'])[1]");
+    	brow.verifyElementPresent("xpath", "(//*[@content-desc='accountCardType'])[1]");
 		System.out.println("Saving account is available");
-    	brow.waitUntilElementPresent("//*[@text='Loan']");
-    	brow.verifyElementPresent("xpath", "//*[@text='Loan']");
-    	brow.screenshot();
+    	brow.waitUntilElementPresent("(//*[@content-desc='accountCardType'])[2]");
+    	brow.verifyElementPresent("xpath", "(//*[@content-desc='accountCardType'])[2]");
     	System.out.println("Loan account is available");
-		//System.out.println("Chequeing account is available");
+    	brow.screenshot();
 	}
 	
 	// K - Method - to verify one account
 	public void verifyHomepageOneAccounts()
 	{
-		brow.waitUntilElementPresent("//*[@class='android.view.ViewGroup' and ./*[@text='Savings']]");
-		brow.verifyElementPresent("xpath", "//*[@class='android.view.ViewGroup' and ./*[@text='Savings']]");
+		brow.waitUntilElementPresent("(//*[@content-desc='accountCardType'])[1]");
+		brow.verifyElementPresent("xpath", "(//*[@content-desc='accountCardType'])[1]");
 		brow.screenshot();
 		System.out.println("Loan account is available");
 	}
@@ -43,8 +40,8 @@ public class Homepage extends RootTest {
 	public void verifyHomepageNoAccounts() throws InterruptedException
 	{		
 		// Need to verify the Message
-		Thread.sleep(10000);
-		brow.verifyElementPresent("xpath", "//*[@text=\"Don't see all your accounts?\"]");
+		brow.sleepThread(2000);
+		brow.verifyText("xpath", "//*[@content-desc='disclaimerMessage']","Don't see all your accounts?");
 		brow.screenshot();
 		System.out.println("No accounts are available");
 	}

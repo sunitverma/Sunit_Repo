@@ -19,6 +19,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.List;
 import java.util.Properties;
 
 public class Common {
@@ -45,6 +46,7 @@ public class Common {
     	dc.setCapability("reportDirectory", reportDirectory);
         dc.setCapability("reportFormat", reportFormat);
         dc.setCapability("testName", testName);
+        dc.setCapability("--session-override", true);
         
         //update the UDID_number in DesiredCapabilites properties file as per your device
         dc.setCapability(MobileCapabilityType.UDID, Des.getProperty("UDID_number"));
@@ -90,6 +92,43 @@ public class Common {
             e=driver.findElement(By.xpath(locator));
                         break;
         default : 
+            System.out.println("Locator not found");
+                    e=null;
+        }
+        return e;
+    }
+    
+    public List<AndroidElement> webElementIds(String identifier,String locator)
+    {
+        
+       List<AndroidElement> e=null;
+        switch (identifier)
+        {
+        case "id" :
+            e=driver.findElements(By.id(locator));
+                        break;
+        case "className" :
+            e=driver.findElements(By.className(locator));
+                        break;
+        case "tagName" :
+            e=driver.findElements(By.tagName(locator));
+                        break;
+        case "name" :
+            e=driver.findElements(By.name(locator));
+                        break;      
+        case "linkText" :
+            e=driver.findElements(By.linkText(locator));
+                        break;      
+        case "partialLinkText" :
+            e=driver.findElements(By.partialLinkText(locator));
+                        break;          
+       case "cssSelector" :
+            e=driver.findElements(By.cssSelector(locator));
+                        break;
+        case "xpath" :
+            e=driver.findElements(By.xpath(locator));
+                        break;
+        default :
             System.out.println("Locator not found");
                     e=null;
         }
@@ -232,6 +271,15 @@ public class Common {
     {
         driver.closeApp();
         driver.quit();
+       
     }
-     
+    
+    
+    //Get the count of element
+    public int getCount(String identifier,String locator)
+    {
+        List<AndroidElement> e=webElementIds(identifier, locator);
+        int count=e.size();
+        return count;
+    }
 }

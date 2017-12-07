@@ -6,12 +6,13 @@
             <methods>
                 <exclude name="LoginWithEmptyData" />
                 <exclude name="LoginWithValidTestdata" />
-                <include name="LoginWithInvalidUsername" />
-                <include name="LoginWithInvalidPassword" />
-                <include name="PasswordRetry" />
-                <include name="verifyHomepageAllAccounts" />
-                <include name="verifyHomepageOneAccount" />
-                <include name="verifyHomepageNoAccounts" />
+                <exclude name="LoginWithInvalidUsername" />
+                <exclude name="LoginWithInvalidPassword" />
+                <exclude name="PasswordRetry" />
+                <exclude name="verifyHomepageAllAccounts" />
+                <exclude name="verifyHomepageOneAccount" />
+                <exclude name="verifyHomepageNoAccounts" />
+                <include name="savingsBalanceBreakdown" />
              </methods>
         </class>
     </classes>

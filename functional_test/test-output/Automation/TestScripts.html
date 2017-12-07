@@ -1,0 +1,158 @@
+<html>
+<head>
+<title>TestNG:  TestScripts</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>TestScripts</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
+</tr><tr>
+<td>Started on:</td><td>Wed Dec 06 18:28:47 COT 2017</td>
+</tr>
+<tr><td>Total time:</td><td>119 seconds (119051 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.testscripts.Testcases.savingsBalanceBreakdown()'><b>savingsBalanceBreakdown</b><br>Test class: com.testscripts.Testcases</td>
+<td><div><pre>org.openqa.selenium.WebDriverException: unknown error (An unknown server-side error occurred. status=&apos;false&apos;. Failed to complete internal method: &apos;touchMoveCoordinate args: [51, 3281]&apos;, details: Failed to touch move to x: 51, y: 3281. The screen dimension doesn&apos;t contain the X, Y point)  (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+Build info: version: &apos;3.7.1&apos;, revision: &apos;8a0099a&apos;, time: &apos;2017-11-06T21:01:39.354Z&apos;
+System info: host: &apos;MGGG0HH2&apos;, ip: &apos;10.149.250.191&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_152&apos;
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {--session-override: true, appActivity: .MainActivity, appPackage: com.jncb.mobile, autoAcceptAlerts: false, autoDismissAlerts: false, autoWebview: false, desired: {--session-override: true, appActivity: .MainActivity, appPackage: com.jncb.mobile, platformName: Android, reportDirectory: reports, reportFormat: xml, testName: Untitled, udid: 320857778bba5171, unicodeKeyboard: True}, device.category: PHONE, device.majorVersion: 6.x, device.manufacture: samsung, device.model: SM-G900H, device.name: SM-G900H, device.os: Android, device.screenSize: 1080x1920, device.serialNumber: 320857778bba5171, device.version: 6.0.1, dontGoHomeOnQuit: false, dontStopAppOnReset: false, fullReset: false, instrumentApp: false, javascriptEnabled: true, keystorePath: ~/.android/debug.keystore, noReset: false, platform: ANDROID, platformName: ANDROID, projectName: , reportDirectory: reports, reportFormat: xml, reportUrl: C:\Users\vermas\appiumstudi..., reservationDuration: 240, testName: Untitled, udid: 320857778bba5171, unicodeKeyboard: True, useKeystore: false, waitForDeviceTimeout: 120000}
+Session ID: db0415d7-7947-41fd-af78-a8697d2e6fbd
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
+	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:89)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:600)
+	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:42)
+	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
+	at io.appium.java_client.android.AndroidDriver.execute(AndroidDriver.java:1)
+	at io.appium.java_client.PerformsTouchActions.performTouchAction(PerformsTouchActions.java:41)
+	at io.appium.java_client.TouchAction.perform(TouchAction.java:325)
+	at com.library.Common.scrollDown(Common.java:329)
+	at com.testscripts.Testcases.savingsBalanceBreakdown(Testcases.java:140)
+... Removed 29 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace351417028", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace351417028'><pre>org.openqa.selenium.WebDriverException: unknown error (An unknown server-side error occurred. status=&apos;false&apos;. Failed to complete internal method: &apos;touchMoveCoordinate args: [51, 3281]&apos;, details: Failed to touch move to x: 51, y: 3281. The screen dimension doesn&apos;t contain the X, Y point)  (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+Build info: version: &apos;3.7.1&apos;, revision: &apos;8a0099a&apos;, time: &apos;2017-11-06T21:01:39.354Z&apos;
+System info: host: &apos;MGGG0HH2&apos;, ip: &apos;10.149.250.191&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_152&apos;
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {--session-override: true, appActivity: .MainActivity, appPackage: com.jncb.mobile, autoAcceptAlerts: false, autoDismissAlerts: false, autoWebview: false, desired: {--session-override: true, appActivity: .MainActivity, appPackage: com.jncb.mobile, platformName: Android, reportDirectory: reports, reportFormat: xml, testName: Untitled, udid: 320857778bba5171, unicodeKeyboard: True}, device.category: PHONE, device.majorVersion: 6.x, device.manufacture: samsung, device.model: SM-G900H, device.name: SM-G900H, device.os: Android, device.screenSize: 1080x1920, device.serialNumber: 320857778bba5171, device.version: 6.0.1, dontGoHomeOnQuit: false, dontStopAppOnReset: false, fullReset: false, instrumentApp: false, javascriptEnabled: true, keystorePath: ~/.android/debug.keystore, noReset: false, platform: ANDROID, platformName: ANDROID, projectName: , reportDirectory: reports, reportFormat: xml, reportUrl: C:\Users\vermas\appiumstudi..., reservationDuration: 240, testName: Untitled, udid: 320857778bba5171, unicodeKeyboard: True, useKeystore: false, waitForDeviceTimeout: 120000}
+Session ID: db0415d7-7947-41fd-af78-a8697d2e6fbd
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
+	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:89)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:600)
+	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:42)
+	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
+	at io.appium.java_client.android.AndroidDriver.execute(AndroidDriver.java:1)
+	at io.appium.java_client.PerformsTouchActions.performTouchAction(PerformsTouchActions.java:41)
+	at io.appium.java_client.TouchAction.perform(TouchAction.java:325)
+	at com.library.Common.scrollDown(Common.java:329)
+	at com.testscripts.Testcases.savingsBalanceBreakdown(Testcases.java:140)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:108)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:661)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:869)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1193)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:126)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:744)
+	at org.testng.TestRunner.run(TestRunner.java:602)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:380)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:375)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1226)
+	at org.testng.TestNG.runSuites(TestNG.java:1144)
+	at org.testng.TestNG.run(TestNG.java:1115)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>119</td>
+<td>com.testscripts.Testcases@60c6f5b</td></tr>
+</table><p>
+</body>
+</html>

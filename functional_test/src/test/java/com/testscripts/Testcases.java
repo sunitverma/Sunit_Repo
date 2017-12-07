@@ -1,7 +1,7 @@
 package com.testscripts;
 
-import com.businessfunctions.Homepage;
-import com.businessfunctions.Login;
+import com.businessfunctions.*;
+
 import java.net.MalformedURLException;
 import org.testng.annotations.Test;
 
@@ -9,6 +9,8 @@ public class Testcases extends RootTest
     {
     static Login login=new Login(brow);
     static Homepage homepage = new Homepage();
+    static ViewAccounts viewaccountspage = new ViewAccounts();
+    static ViewLoanDetails viewloandetails = new ViewLoanDetails();
     
     //===================================================
     // Created by Sunit Verma and Murali(Date: 13/11/2017)
@@ -87,7 +89,7 @@ public class Testcases extends RootTest
         System.out.println("Testcase 05 - Successfully Completed");
     }
     
- // Test case_06 Verify Home page after Login user having all the 3 Accounts
+    // Test case_06 Verify Home page after Login user having all the 3 Accounts
     @Test
     public static void verifyHomepageAllAccounts() throws MalformedURLException, InterruptedException 
     {
@@ -96,6 +98,7 @@ public class Testcases extends RootTest
     	login.loginToapp("RHONEGAN", "Password1##");
     	homepage.verifyHomepageAllAccounts();
     	brow.QuitObject();
+    	System.out.println("Testcase 06 - Successfully Completed");
     }
     
     
@@ -108,6 +111,7 @@ public class Testcases extends RootTest
     	login.loginToapp("DOUGLASCA", "Password1##");
     	homepage.verifyHomepageOneAccounts();
     	brow.QuitObject();
+    	System.out.println("Testcase 07 - Successfully Completed");
     }
     
     
@@ -120,8 +124,58 @@ public class Testcases extends RootTest
     	login.loginToapp("PINNIRAM", "Password1##");
     	homepage.verifyHomepageNoAccounts();
     	brow.QuitObject();
+    	System.out.println("Testcase 08 - Successfully Completed");
     }
     
-  // ======================= Sprint 2 End =============================
- 
+    // ======================= Sprint 2 End =============================
+    //================Sprint 3: 1 test cases ============
+    //================Sprint 3 Start=========================
+    
+    // Test case_01 to show top 10 transaction -- K
+        
+    @Test
+    public static void ShowTenTransaction() throws Exception
+    {
+        System.out.println("Running Testcase 09 - Show Ten Transaction");
+        brow.setUp();
+        login.loginToapp("douglasca","Password1##");
+        brow.waitUntilElementPresent("//*[@content-desc='welcomeName']");
+        brow.click("xpath", "//*[@content-desc='accountCard']");
+        viewaccountspage.viewAccount();
+        brow.QuitObject();
+        System.out.println("Testcase 09 - Successfully Completed");
+    }
+
+    //=============== Sprint 3 End ======================================
+    //================Sprint 4: 2 test cases ============================
+    //================Sprint 4 Start=====================================
+    
+    @Test
+    public static void withLoanBalanceDetails() throws Exception
+    {
+        System.out.println("Running Testcase 10 - View With Loan Balance Details of Customer");
+        brow.setUp();
+        login.loginToapp("YANDISUD","Password1##");
+        brow.waitUntilElementPresent("//*[@content-desc='welcomeName']");
+        brow.click("xpath", "(//*[@text='Loan'])[2]");
+        viewloandetails.viewLoanDetails();
+        brow.screenshot();
+        brow.QuitObject();
+        System.out.println("Testcase 10 - Successfully Completed");
+    }
+
+    @Test
+    public static void zeroLoanBalanceDetails() throws Exception
+    {
+        System.out.println("Running Testcase 11 - View Zero Loan Balance Details of Customer");
+        brow.setUp();
+        login.loginToapp("YANDISUD","Password1##");
+        brow.waitUntilElementPresent("//*[@content-desc='welcomeName']");
+        brow.click("xpath", "(//*[@text='Loan'])[1]");
+        viewloandetails.zeroLoanBalance();
+        brow.QuitObject();
+    }
+    //================Sprint 4 End=====================================
+    
+    
 }
