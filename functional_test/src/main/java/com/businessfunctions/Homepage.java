@@ -45,4 +45,11 @@ public class Homepage extends RootTest {
 		brow.screenshot();
 		System.out.println("No accounts are available");
 	}
+	
+	// S - Method - to verify feedback function
+	public void feedback()
+	{
+		
+		
+	}
 }

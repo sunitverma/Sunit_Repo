@@ -271,7 +271,7 @@ public class Common {
     {
         driver.closeApp();
         driver.quit();
-       
+      
     }
     
     //Get the count of element
