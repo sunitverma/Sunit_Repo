@@ -46,8 +46,7 @@ public class Common {
     	dc.setCapability("reportDirectory", reportDirectory);
         dc.setCapability("reportFormat", reportFormat);
         dc.setCapability("testName", testName);
-        dc.setCapability("--session-override", true);
-        
+               
         //update the UDID_number in DesiredCapabilites properties file as per your device
         dc.setCapability(MobileCapabilityType.UDID, Des.getProperty("UDID_number"));
         dc.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.jncb.mobile");
@@ -280,5 +279,12 @@ public class Common {
         List<AndroidElement> e=webElementIds(identifier, locator);
         int count=e.size();
         return count;
+    }
+    
+    //Scroll down the page
+    public void scrollDown() throws InterruptedException
+    {
+    	driver.executeScript("client:client.swipe(\"Down\", 200, 3500)");
+                    
     }
 }
