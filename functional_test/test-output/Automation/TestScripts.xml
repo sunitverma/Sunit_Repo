@@ -5,21 +5,24 @@
   <testcase name="LoginWithValidTestdata" time="0.0" classname="com.testscripts.Testcases">
     <ignored/>
   </testcase> <!-- LoginWithValidTestdata -->
+  <testcase name="ZeroLoanBalanceDetails" time="0.0" classname="com.testscripts.Testcases">
+    <ignored/>
+  </testcase> <!-- ZeroLoanBalanceDetails -->
   <testcase name="PasswordRetry" time="0.0" classname="com.testscripts.Testcases">
     <ignored/>
   </testcase> <!-- PasswordRetry -->
-  <testcase name="savingsBalanceBreakdown" time="0.0" classname="com.testscripts.Testcases">
+ <testcase name="savingsBalanceBreakdown" time="0.0" classname="com.testscripts.Testcases">
     <ignored/>
   </testcase> <!-- savingsBalanceBreakdown -->
   <testcase name="verifyHomepageOneAccount" time="0.0" classname="com.testscripts.Testcases">
     <ignored/>
-  </testcase> <!-- verifyHomepageOneAccount -->
-  <testcase name="verifyHomepageNoAccounts" time="0.0" classname="com.testscripts.Testcases">
+  </testcase> <!-- LogOutButton -->
+  <testcase name="VerifyHomepageNoAccounts" time="0.0" classname="com.testscripts.Testcases">
     <ignored/>
-  </testcase> <!-- verifyHomepageNoAccounts -->
-  <testcase name="verifyHomepageAllAccounts" time="0.0" classname="com.testscripts.Testcases">
+  </testcase> <!-- VerifyHomepageNoAccounts -->
+  <testcase name="VerifyHomepageOneAccount" time="0.0" classname="com.testscripts.Testcases">
     <ignored/>
-  </testcase> <!-- verifyHomepageAllAccounts -->
+  </testcase> <!-- VerifyHomepageOneAccount -->
   <testcase name="LoginWithInvalidPassword" time="0.0" classname="com.testscripts.Testcases">
     <ignored/>
   </testcase> <!-- LoginWithInvalidPassword -->

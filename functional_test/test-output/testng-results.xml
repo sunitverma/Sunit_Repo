@@ -11,7 +11,3 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- LogOutButton -->
-      </class> <!-- com.testscripts.Testcases -->
-    </test> <!-- TestScripts -->
-  </suite> <!-- Automation -->
-</testng-results>
