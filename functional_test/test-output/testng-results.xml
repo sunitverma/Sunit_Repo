@@ -2,16 +2,12 @@
 <testng-results skipped="0" failed="0" ignored="12" total="13" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Automation" duration-ms="61374" started-at="2017-12-11T19:03:30Z" finished-at="2017-12-11T19:04:32Z">
+  <suite name="Automation" duration-ms="163861" started-at="2017-12-11T22:32:26Z" finished-at="2017-12-11T22:35:10Z">
     <groups>
     </groups>
-    <test name="TestScripts" duration-ms="61374" started-at="2017-12-11T19:03:30Z" finished-at="2017-12-11T19:04:32Z">
+    <test name="TestScripts" duration-ms="163861" started-at="2017-12-11T22:32:26Z" finished-at="2017-12-11T22:35:10Z">
       <class name="com.testscripts.Testcases">
-        <test-method status="PASS" signature="FeedBack()[pri:0, instance:com.testscripts.Testcases@64bf3bbf]" name="FeedBack" duration-ms="61352" started-at="2017-12-11T14:03:30Z" finished-at="2017-12-11T14:04:32Z">
+        <test-method status="PASS" signature="LogOutButton()[pri:0, instance:com.testscripts.Testcases@64bf3bbf]" name="LogOutButton" duration-ms="163842" started-at="2017-12-11T17:32:26Z" finished-at="2017-12-11T17:35:10Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- FeedBack -->
-      </class> <!-- com.testscripts.Testcases -->
-    </test> <!-- TestScripts -->
-  </suite> <!-- Automation -->
-</testng-results>
+        </test-method> <!-- LogOutButton -->

@@ -12,10 +12,11 @@
                 <exclude name="verifyHomepageAllAccounts" />
                 <exclude name="verifyHomepageOneAccount" />
                 <exclude name="verifyHomepageNoAccounts" />
-				<exclude name="ShowTenTransaction" />
-				<include name="withLoanBalanceDetails" />
-                <include name="zeroLoanBalanceDetails" />
-				<include name="savingsBalanceBreakdown" />
+        				<exclude name="ShowTenTransaction" />
+          			<exclude name="withLoanBalanceDetails" />
+                <exclude name="zeroLoanBalanceDetails" />
+				        <exclude name="savingsBalanceBreakdown" />
+                <include name="LogOutButton" />				
              </methods>
         </class>
     </classes>

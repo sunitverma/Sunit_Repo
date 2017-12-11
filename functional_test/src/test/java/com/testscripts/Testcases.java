@@ -194,4 +194,27 @@ public class Testcases extends RootTest
     //================Sprint 5:  test cases =============================
     //================Sprint 5 Start=====================================
     
+    // Test case_13 Verify Log out button functionality -- S
+    @Test
+    public void LogOutButton() throws Exception
+    {
+    	System.out.println("Running Testcase 13 - Verify Log out button functionality");
+        brow.setUp();
+        brow.waitUntilElementPresent("//*[@content-desc='loginText']");
+        login.loginToapp("YANDISUD","Password1##");
+        brow.waitUntilElementPresent("//*[@content-desc='welcomeName']");
+        login.LogOutButtonFunction();
+        brow.QuitObject();
+        System.out.println("Testcase 13 - Successfully Completed");
+    }
+
+    // Test case_14 Verify Feed back button functionality -- S
+    @Test
+    public void FeedBackButton() throws Exception
+    {
+    	System.out.println("Running Testcase 14 - Verify Log out button functionality");
+        
+        brow.QuitObject();
+        System.out.println("Testcase 14 - Successfully Completed");
+    }    
 }

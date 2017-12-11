@@ -28,6 +28,5 @@ public class ViewSavingsDetails extends RootTest {
 			System.out.printf("Balance Type: %sBalance Amount: %s",balanceType, balanceAmount);
 			
 			brow.scrollDown();
-              
-       }
+   }
 }
