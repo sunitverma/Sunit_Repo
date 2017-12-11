@@ -24,7 +24,7 @@
     <div class="top-banner-root">
       <span class="top-banner-title-font">Test results</span>
       <br/>
-      <span class="top-banner-font-1">1 suite, 1 failed test</span>
+      <span class="top-banner-font-1">1 suite</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -38,7 +38,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" class="navigator-link" panel-name="suite-Automation">
-              <span class="suite-name border-failed">Automation</span>
+              <span class="suite-name border-passed">Automation</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -91,21 +91,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method, 1 failed,   </span>
+                    <span class="method-stats">1 method,   1 passed</span>
                   </li>
                   <li>
-                    <span class="method-list-title failed">Failed methods</span>
-                    <span class="show-or-hide-methods failed">
-                      <a href="#" panel-name="suite-Automation" class="hide-methods failed suite-Automation"> (hide)</a> <!-- hide-methods failed suite-Automation -->
-                      <a href="#" panel-name="suite-Automation" class="show-methods failed suite-Automation"> (show)</a> <!-- show-methods failed suite-Automation -->
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-Automation" class="hide-methods passed suite-Automation"> (hide)</a> <!-- hide-methods passed suite-Automation -->
+                      <a href="#" panel-name="suite-Automation" class="show-methods passed suite-Automation"> (show)</a> <!-- show-methods passed suite-Automation -->
                     </span>
-                    <div class="method-list-content failed suite-Automation">
+                    <div class="method-list-content passed suite-Automation">
                       <span>
-                        <img width="3%" src="failed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Automation" title="com.testscripts.Testcases" hash-for-method="savingsBalanceBreakdown">savingsBalanceBreakdown</a> <!-- method navigator-link -->
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Automation" title="com.testscripts.Testcases" hash-for-method="LogOutButton">LogOutButton</a> <!-- method navigator-link -->
                       </span>
                       <br/>
-                    </div> <!-- method-list-content failed suite-Automation -->
+                    </div> <!-- method-list-content passed suite-Automation -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -117,45 +117,21 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Automation" class="panel Automation">
-          <div class="suite-Automation-class-failed">
+          <div class="suite-Automation-class-passed">
             <div class="main-panel-header rounded-window-top">
-              <img src="failed.png"/>
+              <img src="passed.png"/>
               <span class="class-name">com.testscripts.Testcases</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="savingsBalanceBreakdown">
-                  </a> <!-- savingsBalanceBreakdown -->
-                  <span class="method-name">savingsBalanceBreakdown</span>
-                  <div class="stack-trace">org.openqa.selenium.WebDriverException: unknown error (An unknown server-side error occurred. status=&apos;false&apos;. Failed to complete internal method: &apos;touchMoveCoordinate args: [51, 3281]&apos;, details: Failed to touch move to x: 51, y: 3281. The screen dimension doesn&apos;t contain the X, Y point)  (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 0 milliseconds
-Build info: version: &apos;3.7.1&apos;, revision: &apos;8a0099a&apos;, time: &apos;2017-11-06T21:01:39.354Z&apos;
-System info: host: &apos;MGGG0HH2&apos;, ip: &apos;10.149.250.191&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_152&apos;
-Driver info: io.appium.java_client.android.AndroidDriver
-Capabilities {--session-override: true, appActivity: .MainActivity, appPackage: com.jncb.mobile, autoAcceptAlerts: false, autoDismissAlerts: false, autoWebview: false, desired: {--session-override: true, appActivity: .MainActivity, appPackage: com.jncb.mobile, platformName: Android, reportDirectory: reports, reportFormat: xml, testName: Untitled, udid: 320857778bba5171, unicodeKeyboard: True}, device.category: PHONE, device.majorVersion: 6.x, device.manufacture: samsung, device.model: SM-G900H, device.name: SM-G900H, device.os: Android, device.screenSize: 1080x1920, device.serialNumber: 320857778bba5171, device.version: 6.0.1, dontGoHomeOnQuit: false, dontStopAppOnReset: false, fullReset: false, instrumentApp: false, javascriptEnabled: true, keystorePath: ~/.android/debug.keystore, noReset: false, platform: ANDROID, platformName: ANDROID, projectName: , reportDirectory: reports, reportFormat: xml, reportUrl: C:\Users\vermas\appiumstudi..., reservationDuration: 240, testName: Untitled, udid: 320857778bba5171, unicodeKeyboard: True, useKeystore: false, waitForDeviceTimeout: 120000}
-Session ID: db0415d7-7947-41fd-af78-a8697d2e6fbd
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
-	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
-	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
-	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
-	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:89)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:600)
-	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:42)
-	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
-	at io.appium.java_client.android.AndroidDriver.execute(AndroidDriver.java:1)
-	at io.appium.java_client.PerformsTouchActions.performTouchAction(PerformsTouchActions.java:41)
-	at io.appium.java_client.TouchAction.perform(TouchAction.java:325)
-	at com.library.Common.scrollDown(Common.java:329)
-	at com.testscripts.Testcases.savingsBalanceBreakdown(Testcases.java:140)
-... Removed 29 stack frames
-</div> <!-- stack-trace -->
+                  <a name="LogOutButton">
+                  </a> <!-- LogOutButton -->
+                  <span class="method-name">LogOutButton</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Automation-class-failed -->
+          </div> <!-- suite-Automation-class-passed -->
         </div> <!-- panel Automation -->
         <div panel-name="test-xml-Automation" class="panel">
           <div class="main-panel-header rounded-window-top">
@@ -170,7 +146,7 @@ Session ID: db0415d7-7947-41fd-af78-a8697d2e6fbd
     &lt;classes&gt;
       &lt;class name=&quot;com.testscripts.Testcases&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;savingsBalanceBreakdown&quot;/&gt;
+          &lt;include name=&quot;LogOutButton&quot;/&gt;
           &lt;exclude name=&quot;LoginWithEmptyData&quot;/&gt;
           &lt;exclude name=&quot;LoginWithValidTestdata&quot;/&gt;
           &lt;exclude name=&quot;LoginWithInvalidUsername&quot;/&gt;
@@ -179,6 +155,7 @@ Session ID: db0415d7-7947-41fd-af78-a8697d2e6fbd
           &lt;exclude name=&quot;verifyHomepageAllAccounts&quot;/&gt;
           &lt;exclude name=&quot;verifyHomepageOneAccount&quot;/&gt;
           &lt;exclude name=&quot;verifyHomepageNoAccounts&quot;/&gt;
+          &lt;exclude name=&quot;savingsBalanceBreakdown&quot;/&gt;
         &lt;/methods&gt;
       &lt;/class&gt; &lt;!-- com.testscripts.Testcases --&gt;
     &lt;/classes&gt;
@@ -222,14 +199,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'savingsBalanceBreakdown')
+data.setCell(0, 1, 'LogOutButton')
 data.setCell(0, 2, 'com.testscripts.Testcases')
-data.setCell(0, 3, 119022);
+data.setCell(0, 3, 163842);
 window.suiteTableData['Automation']= { tableData: data, tableDiv: 'times-div-Automation'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 1 minutes</span>
+              <span class="suite-total-time">Total running time: 2 minutes</span>
               <div id="times-div-Automation">
               </div> <!-- times-div-Automation -->
             </div> <!-- times-div -->
@@ -244,7 +221,7 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Automation" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">8 ignored methods</span>
+            <span class="header-content">12 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
@@ -253,6 +230,8 @@ return data;
                 <span class="ignored-method-name">LoginWithValidTestdata</span>
                 <br/>
                 <span class="ignored-method-name">PasswordRetry</span>
+                <br/>
+                <span class="ignored-method-name">savingsBalanceBreakdown</span>
                 <br/>
                 <span class="ignored-method-name">verifyHomepageOneAccount</span>
                 <br/>
@@ -263,6 +242,12 @@ return data;
                 <span class="ignored-method-name">LoginWithInvalidPassword</span>
                 <br/>
                 <span class="ignored-method-name">LoginWithEmptyData</span>
+                <br/>
+                <span class="ignored-method-name">withLoanBalanceDetails</span>
+                <br/>
+                <span class="ignored-method-name">ShowTenTransaction</span>
+                <br/>
+                <span class="ignored-method-name">zeroLoanBalanceDetails</span>
                 <br/>
                 <span class="ignored-method-name">LoginWithInvalidUsername</span>
                 <br/>
@@ -278,9 +263,7 @@ return data;
             <div class="chronological-class">
               <div class="chronological-class-name">com.testscripts.Testcases</div> <!-- chronological-class-name -->
               <div class="test-method">
-                <img src="failed.png">
-                </img>
-                <span class="method-name">savingsBalanceBreakdown</span>
+                <span class="method-name">LogOutButton</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- test-method -->
           </div> <!-- main-panel-content rounded-window-bottom -->
