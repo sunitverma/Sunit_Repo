@@ -131,4 +131,32 @@ public class Login
         browser.comparetexts(message2,msg2);
         browser.comparetexts(message3,msg3);
     }
+
+    // S - Method - Expected - Login with invalid password
+    public void LogOutButtonFunction()
+    {
+    	browser.verifyElementPresent("xpath", "//*[@content-desc='logoutButton']");
+    	browser.verifyText("xpath", "//*[@content-desc='logoutButton']", "Log out");
+    	
+    	browser.click("xpath", "//*[@content-desc='logoutButton']");
+    	
+    	browser.verifyText("xpath", "//*[@content-desc='logoutModalFirstTextField']", "Leaving already?");
+    	browser.verifyText("xpath", "//*[@content-desc='logoutModalSecondTextField']", "Are you sure you want to log out?");
+    	
+    	browser.verifyElementPresent("xpath", "//*[@content-desc='logoutModalCancelButton']");
+    	browser.verifyElementPresent("xpath", "//*[@content-desc='logoutModalLogoutButton']");
+    	browser.screenshot();
+    	
+    	browser.click("xpath", "//*[@content-desc='logoutModalCancelButton']");
+    	browser.verifyText("xpath", "//*[@content-desc='welcomeName']", browser.getText("xpath", "//*[@text[starts-with(.,'Welcome')]]"));
+    	browser.screenshot();
+    	System.out.println("Cancel button working fine on Log out pop up");
+    	
+    	browser.click("xpath", "//*[@content-desc='logoutButton']");
+    	
+    	browser.click("xpath", "//*[@content-desc='logoutModalLogoutButton']");
+    	browser.verifyText("xpath", "//*[@content-desc='loginTitle']", "Log in");
+    	browser.screenshot();
+    	System.out.println("Log out button working fine on Log out pop up");
+    }
 }
