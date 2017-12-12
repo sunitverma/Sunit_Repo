@@ -7,7 +7,6 @@ public class ViewAccounts extends RootTest{
 	static Login login=new Login(brow);
 	public void viewAccount()
 	{
-        //brow.getCount();
         int count=brow.getCount("xpath","(//*[@contentDescription='accountText'])");
         if(count==10)
         {              

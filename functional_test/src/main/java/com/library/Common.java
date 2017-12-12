@@ -58,11 +58,9 @@ public class Common {
     		}
     }
         
-        
     //WebElement 
     public WebElement webElementId(String identifier,String locator)
     {
-    	
         WebElement e=null;
         switch (identifier)
         {
@@ -99,7 +97,6 @@ public class Common {
     
     public List<AndroidElement> webElementIds(String identifier,String locator)
     {
-        
        List<AndroidElement> e=null;
         switch (identifier)
         {
@@ -270,7 +267,6 @@ public class Common {
     {
         driver.closeApp();
         driver.quit();
-       
     }
     
     //Get the count of element
@@ -285,6 +281,5 @@ public class Common {
     public void scrollDown() throws InterruptedException
     {
     	driver.executeScript("client:client.swipe(\"Down\", 200, 3500)");
-                    
     }
 }
