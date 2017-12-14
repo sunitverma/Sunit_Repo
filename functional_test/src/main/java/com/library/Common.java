@@ -140,7 +140,7 @@ public class Common {
     }
     
     //Clear text  field method
-    public void ClearTextField(String identifier,String locator)
+    public void clearTextField(String identifier,String locator)
     {
         WebElement e=webElementId(identifier, locator);
         e.clear();      
@@ -263,7 +263,7 @@ public class Common {
      }
     
     //Close App and quit
-    public void QuitObject()
+    public void quitObject()
     {
         driver.closeApp();
         driver.quit();

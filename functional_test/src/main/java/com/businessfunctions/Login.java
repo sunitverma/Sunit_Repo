@@ -28,7 +28,7 @@ public class Login
         
         browser.click("xpath","//*[@content-desc='loginButtonText']");
                       				   
-        browser.sleepThread(2000);
+        browser.sleepThread(10000);
         browser.screenshot();
     }
     
@@ -47,21 +47,21 @@ public class Login
     }
   
     // M - Method - Expected - Login with invalid user name  
-    public void InvalidUserExpected()
+    public void invalidUserExpected()
     {
     	browser.verifyText("xpath", "//*[@class='android.widget.TextView'][4]", "Invalid username");
     	browser.screenshot();
     }
     
     // M - Method - Expected - Login with invalid password
-    public void InvalidPasswordExpected()
+    public void invalidPasswordExpected()
     {
     	browser.verifyText("xpath", "//*[@class='android.widget.TextView'][5]", "Incorrect password");
     	browser.screenshot();
     }
     
     // S - Method - Retry 3 times  
-    public void RetryPassword(String username, String password)
+    public void retryPassword(String username, String password)
     {
     	//update the expected error message
     	String msg1="You will be locked out after 2 more password attempts. To unlock your account, you will need to call Customer Care.";
@@ -133,7 +133,7 @@ public class Login
     }
 
     // S - Method - Expected - Login with invalid password
-    public void LogOutButtonFunction()
+    public void logOutButtonFunction()
     {
     	browser.verifyElementPresent("xpath", "//*[@content-desc='logoutButton']");
     	browser.verifyText("xpath", "//*[@content-desc='logoutButton']", "Log out");
@@ -158,5 +158,59 @@ public class Login
     	browser.verifyText("xpath", "//*[@content-desc='loginTitle']", "Log in");
     	browser.screenshot();
     	System.out.println("Log out button working fine on Log out pop up");
+    }
+    
+    //K - Method - Terms and Conditions
+    public void termsAndConditions() throws Exception
+    {
+    	browser.click("xpath", "(//*[@content-desc='scrollToEndButton'])");
+    	browser.verifyElementPresent("xpath", "(//*[@content-desc='declineButton'])");
+    	browser.click("xpath", "(//*[@content-desc='declineButton'])");
+    	if(browser.verifyElementPresent("xpath", "(//*[@content-desc='Username'])"))
+    	{
+    		browser.waitUntilElementPresent("//*[@content-desc='Username']");
+    	    browser.sendKeys("xpath","(//*[@content-desc='Username'])","DOUGLASCA");
+    	    browser.keyboardKeys(66);
+    	    browser.sendKeys("xpath","(//*[@content-desc='Password'])", "Password1##");
+    	    browser.sleepThread(1000);
+    	    browser.keyboardKeys(66);
+    	    browser.click("xpath","(//*[@content-desc='loginButtonText'])");
+    	    browser.sleepThread(10000);
+    	    browser.click("xpath", "(//*[@content-desc='scrollToEndButton'])");
+    	    browser.verifyElementPresent("xpath", "(//*[@content-desc='acceptButton'])");
+    	    browser.click("xpath", "(//*[@content-desc='acceptButton'])");
+    	}
+    		
+    }
+    
+    // S - Method - Verifying the Feed back button functionality
+    public void feedBackButtonFunction()
+    {
+    	browser.verifyElementPresent("xpath", "(//*[@class='android.view.View'])[7]");
+    	browser.click("xpath", "(//*[@class='android.view.View'])[7]");
+    	
+    	browser.verifyText("xpath", "(//*[@class='android.widget.TextView'])[1]", "Email us your Feedback");
+    	browser.verifyElementPresent("xpath", "(//*[@class='android.view.View'])[10]");
+    	
+    	browser.verifyText("xpath", "(//*[@class='android.widget.TextView'])[2]", "WhatsApp us your Feedback");
+    	browser.verifyElementPresent("xpath", "(//*[@class='android.view.View'])[13]");
+    	browser.screenshot();
+    	
+    	browser.click("xpath", "(//*[@class='android.view.View'])[10]");
+    	browser.verifyText("id", "from_account_name", "kratosbuild@gmail.com");
+    	
+    	browser.sendKeys("id", "body", "Feed back for NCB App");
+    	browser.click("id", "send");
+    	browser.screenshot();
+    	
+    	browser.verifyElementPresent("xpath", "(//*[@class='android.view.View'])[7]");
+    	browser.click("xpath", "(//*[@class='android.view.View'])[7]");
+    	
+    	browser.click("xpath", "(//*[@class='android.view.View'])[13]");
+    	browser.verifyElementPresent("id", "entry");
+    	
+    	browser.sendKeys("id", "entry", "Feed back for NCB App");
+    	browser.click("id", "send");
+    	browser.screenshot();
     }
 }

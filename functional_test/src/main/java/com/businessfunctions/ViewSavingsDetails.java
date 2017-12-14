@@ -5,7 +5,8 @@ import com.testscripts.RootTest;
 public class ViewSavingsDetails extends RootTest {
        
 	static Login login=new Login(brow);
-	public void savinsAccountBalanceBreakdown() throws InterruptedException
+	
+	public void savingAccountBalanceBreakdown() throws InterruptedException
 		{
 			String accountType= brow.getText("xpath", "(//*[@content-desc='accountType'])").toString();
 			String accountNumber= brow.getText("xpath", "(//*[@content-desc='accountNumber'])").toString();

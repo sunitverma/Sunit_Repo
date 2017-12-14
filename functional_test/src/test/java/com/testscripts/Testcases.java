@@ -28,7 +28,7 @@ public class Testcases extends RootTest
         brow.setUp();
         login.loginToapp("","");
         login.emptyLoginExpeceted();
-        brow.QuitObject();
+        brow.quitObject();
         System.out.println("Testcase 01 - Successfully Completed");
     }
     
@@ -42,7 +42,7 @@ public class Testcases extends RootTest
         brow.waitUntilElementPresent("//*[@class='android.widget.TextView'][1]");
         brow.verifyText("xpath","//*[@class='android.widget.TextView'][1]","Welcome, Janel");
         brow.screenshot();
-        brow.QuitObject();
+        brow.quitObject();
         System.out.println("Testcase 02 - Successfully Completed");
     }     
     
@@ -57,8 +57,8 @@ public class Testcases extends RootTest
     	System.out.println("Running Testcase 03 - Login with Invalid Username");
         brow.setUp();
         login.loginToapp("pollyannaa","Password1##");
-        login.InvalidUserExpected();
-        brow.QuitObject();
+        login.invalidUserExpected();
+        brow.quitObject();
         System.out.println("Testcase 03 - Successfully Completed");
     }
     
@@ -70,8 +70,8 @@ public class Testcases extends RootTest
     	brow.resetcount("pollyanna");
     	brow.setUp();
         login.loginToapp("pollyanna","Password1###");
-        login.InvalidPasswordExpected();
-        brow.QuitObject();
+        login.invalidPasswordExpected();
+        brow.quitObject();
         System.out.println("Testcase 04 - Successfully Completed");
     }
     
@@ -82,8 +82,8 @@ public class Testcases extends RootTest
     	System.out.println("Running Testcase 05 - Login with Invalid Password with retry 3 times");
     	brow.resetcount("TOMMYS");
     	brow.setUp();
-        login.RetryPassword("TOMMYS","Password1###");
-        brow.QuitObject();
+        login.retryPassword("TOMMYS","Password1###");
+        brow.quitObject();
         System.out.println("Testcase 05 - Successfully Completed");
     }
     
@@ -95,7 +95,7 @@ public class Testcases extends RootTest
     	brow.setUp();
     	login.loginToapp("RHONEGAN", "Password1##");
     	homepage.verifyHomepageAllAccounts();
-    	brow.QuitObject();
+    	brow.quitObject();
     	System.out.println("Testcase 06 - Successfully Completed");
     }
         
@@ -107,7 +107,7 @@ public class Testcases extends RootTest
     	brow.setUp();
     	login.loginToapp("DOUGLASCA", "Password1##");
     	homepage.verifyHomepageOneAccounts();
-    	brow.QuitObject();
+    	brow.quitObject();
     	System.out.println("Testcase 07 - Successfully Completed");
     }
         
@@ -119,7 +119,7 @@ public class Testcases extends RootTest
     	brow.setUp();
     	login.loginToapp("PINNIRAM", "Password1##");
     	homepage.verifyHomepageNoAccounts();
-    	brow.QuitObject();
+    	brow.quitObject();
     	System.out.println("Testcase 08 - Successfully Completed");
     }
     
@@ -137,7 +137,7 @@ public class Testcases extends RootTest
         brow.waitUntilElementPresent("//*[@content-desc='welcomeName']");
         brow.click("xpath", "//*[@content-desc='accountCard']");
         viewaccountspage.viewAccount();
-        brow.QuitObject();
+        brow.quitObject();
         System.out.println("Testcase 09 - Successfully Completed");
     }
 
@@ -156,7 +156,7 @@ public class Testcases extends RootTest
         brow.click("xpath", "(//*[@text='Loan'])[2]");
         viewloandetails.viewLoanDetails();
         brow.screenshot();
-        brow.QuitObject();
+        brow.quitObject();
         System.out.println("Testcase 10 - Successfully Completed");
     }
 
@@ -170,7 +170,7 @@ public class Testcases extends RootTest
         brow.waitUntilElementPresent("//*[@content-desc='welcomeName']");
         brow.click("xpath", "(//*[@text='Loan'])[1]");
         viewloandetails.zeroLoanBalance();
-        brow.QuitObject();
+        brow.quitObject();
         System.out.println("Testcase 11 - Successfully Completed");
     }
 
@@ -185,8 +185,8 @@ public class Testcases extends RootTest
         login.loginToapp("douglasca","Password1##");
         brow.waitUntilElementPresent("//*[@content-desc='welcomeName']");
         brow.click("xpath", "(//*[@content-desc='accountCard'])");
-        viewSavingsDetailspage.savinsAccountBalanceBreakdown();
-        brow.QuitObject();
+        viewSavingsDetailspage.savingAccountBalanceBreakdown();
+        brow.quitObject();
         System.out.println("Testcase 12 - Successfully Completed");
     }
 
@@ -203,8 +203,8 @@ public class Testcases extends RootTest
         brow.waitUntilElementPresent("//*[@content-desc='loginText']");
         login.loginToapp("YANDISUD","Password1##");
         brow.waitUntilElementPresent("//*[@content-desc='welcomeName']");
-        login.LogOutButtonFunction();
-        brow.QuitObject();
+        login.logOutButtonFunction();
+        brow.quitObject();
         System.out.println("Testcase 13 - Successfully Completed");
     }
 
@@ -212,9 +212,23 @@ public class Testcases extends RootTest
     @Test
     public void FeedBackButton() throws Exception
     {
-    	System.out.println("Running Testcase 14 - Verify Log out button functionality");
-        
-        brow.QuitObject();
+    	System.out.println("Running Testcase 14 - Verify Feed Back button functionality");
+    	brow.setUp();
+    	brow.waitUntilElementPresent("//*[@content-desc='loginText']");
+    	brow.click("xpath","//*[@content-desc='loginText']");
+    	login.feedBackButtonFunction();
+        brow.quitObject();
         System.out.println("Testcase 14 - Successfully Completed");
     }    
+    
+    // Test case_15 Verify the Terms and Conditions page -- K
+    @Test
+    public void termsAndConditions() throws Exception
+    {
+    	System.out.println("Running Testcase 15 - Verify Terms and Conditions functionality");
+        brow.setUp();
+        login.loginToapp("DOUGLASCA","Password1##");
+        login.termsAndConditions();
+        System.out.println("Testcase 15 - Successfully Completed");        
+    }
 }

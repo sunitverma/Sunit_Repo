@@ -26,7 +26,6 @@ public class ViewLoanDetails extends RootTest{
 		brow.verifyText("xpath","//*[@content-desc='Loan Period']","Loan Period");
 		brow.verifyText("xpath","(//*[@content-desc='loanPeriod'])[1]","60 months");
 		brow.verifyText("xpath","(//*[@content-desc='loanPeriod'])[2]","22/Jun/15 - 30/Jun/20");
-		
 	}
 	
 	//Verify the details on paid loan account Details page
