@@ -256,10 +256,10 @@ public class Common {
     }    
     
     //verify element present
-    public boolean comparetexts(String actual,String expected)
+    public void comparetexts(String actual,String expected)
     {
     	assertTrue(actual.equals(expected));
-    	return false;
+    	return;
      }
     
     //Close App and quit

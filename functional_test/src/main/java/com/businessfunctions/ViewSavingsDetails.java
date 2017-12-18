@@ -1,33 +1,38 @@
 package com.businessfunctions;
 
-import com.testscripts.RootTest;
+import com.library.Common;
 
-public class ViewSavingsDetails extends RootTest {
+public class ViewSavingsDetails {
        
-	static Login login=new Login(brow);
+	 Common browser;
+	 //constructor with one argument.
+	 public ViewSavingsDetails(Common br)
+	 {
+	    browser=br;
+	 }
 	
 	public void savingAccountBalanceBreakdown() throws InterruptedException
 		{
-			String accountType= brow.getText("xpath", "(//*[@content-desc='accountType'])").toString();
-			String accountNumber= brow.getText("xpath", "(//*[@content-desc='accountNumber'])").toString();
+			String accountType= browser.getText("xpath", "(//*[@content-desc='accountType'])").toString();
+			String accountNumber= browser.getText("xpath", "(//*[@content-desc='accountNumber'])").toString();
 			System.out.printf("Account Type: %s Account Number: %s\n",accountType, accountNumber);
 			
-			String availableBalance = brow.getText("xpath", "(//*[@content-desc='availableBalance'])");
-			String availableAmount = brow.getText("xpath", "(//*[@content-desc='availableBalanceBalanceAmount'])");
+			String availableBalance = browser.getText("xpath", "(//*[@content-desc='availableBalance'])");
+			String availableAmount = browser.getText("xpath", "(//*[@content-desc='availableBalanceBalanceAmount'])");
 			System.out.printf("Balance Type: %s Available Amount: %s\n",availableBalance, availableAmount);
 			
-			String lienBalance = brow.getText("xpath", "(//*[@content-desc='lienBalance'])");
-			String lienBalanceAmount = brow.getText("xpath", "(//*[@content-desc='lienBalanceBalanceAmount'])");
+			String lienBalance = browser.getText("xpath", "(//*[@content-desc='lienBalance'])");
+			String lienBalanceAmount = browser.getText("xpath", "(//*[@content-desc='lienBalanceBalanceAmount'])");
 			System.out.printf("Balance Type: %s Lien Balance Amount: %s\n",lienBalance, lienBalanceAmount);
 			
-			String unclearedBalance = brow.getText("xpath", "(//*[@content-desc='unclearBalance'])");
-			String unclearedBalanceAmount = brow.getText("xpath", "(//*[@content-desc='unclearBalanceBalanceAmount'])");
+			String unclearedBalance = browser.getText("xpath", "(//*[@content-desc='unclearBalance'])");
+			String unclearedBalanceAmount = browser.getText("xpath", "(//*[@content-desc='unclearBalanceBalanceAmount'])");
 			System.out.printf("Balance Type: %s Uncleared Balance Amount: %s\n",unclearedBalance, unclearedBalanceAmount);
 			
-			String balanceType = brow.getText("xpath", "(//*[@content-desc='balanceTypeTitle'])");
-			String balanceAmount = brow.getText("xpath", "(//*[@content-desc='balanceAmount'])");
+			String balanceType = browser.getText("xpath", "(//*[@content-desc='balanceTypeTitle'])");
+			String balanceAmount = browser.getText("xpath", "(//*[@content-desc='balanceAmount'])");
 			System.out.printf("Balance Type: %sBalance Amount: %s",balanceType, balanceAmount);
 			
-			brow.scrollDown();
+			browser.scrollDown();
        }
 }

@@ -16,8 +16,8 @@
 				<exclude name="withLoanBalanceDetails" />
                 <exclude name="zeroLoanBalanceDetails" />
 				<exclude name="savingsBalanceBreakdown" />
-                <include name="LogOutButton" />
-				<include name="FeedBackButton" />
+                <exclude name="LogOutButton" />
+				<exclude name="FeedBackButton" />
                 <include name="termsAndConditions" />				
              </methods>
         </class>

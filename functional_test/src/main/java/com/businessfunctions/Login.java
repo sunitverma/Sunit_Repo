@@ -2,8 +2,7 @@ package com.businessfunctions;
 
 import com.library.Common;
 
-public class Login
-{
+public class Login {
 	
     Common browser;
     //constructor with one argument.
@@ -130,6 +129,7 @@ public class Login
         browser.comparetexts(message1,msg1);
         browser.comparetexts(message2,msg2);
         browser.comparetexts(message3,msg3);
+        
     }
 
     // S - Method - Expected - Login with invalid password
@@ -180,7 +180,6 @@ public class Login
     	    browser.verifyElementPresent("xpath", "(//*[@content-desc='acceptButton'])");
     	    browser.click("xpath", "(//*[@content-desc='acceptButton'])");
     	}
-    		
     }
     
     // S - Method - Verifying the Feed back button functionality

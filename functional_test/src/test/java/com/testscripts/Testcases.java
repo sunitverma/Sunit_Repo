@@ -5,13 +5,13 @@ import com.businessfunctions.*;
 import java.net.MalformedURLException;
 import org.testng.annotations.Test;
 
-public class Testcases extends RootTest
-    {
+public class Testcases extends RootTest {
+	
     static Login login=new Login(brow);
-    static Homepage homepage = new Homepage();
-    static ViewAccounts viewaccountspage = new ViewAccounts();
-    static ViewLoanDetails viewloandetails = new ViewLoanDetails();
-    static ViewSavingsDetails viewSavingsDetailspage = new ViewSavingsDetails();
+    static Homepage homepage = new Homepage(brow);
+    static ViewAccounts viewaccountspage = new ViewAccounts(brow);
+    static ViewLoanDetails viewloandetails = new ViewLoanDetails(brow);
+    static ViewSavingsDetails viewSavingsDetailspage = new ViewSavingsDetails(brow);
     
     //===================================================
     // Created by Sunit Verma and Murali(Date: 13/11/2017)
@@ -229,6 +229,6 @@ public class Testcases extends RootTest
         brow.setUp();
         login.loginToapp("DOUGLASCA","Password1##");
         login.termsAndConditions();
-        System.out.println("Testcase 15 - Successfully Completed");        
+        System.out.println("Testcase 15 - Successfully Completed");
     }
 }

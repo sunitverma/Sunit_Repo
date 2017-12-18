@@ -1,13 +1,19 @@
 package com.businessfunctions;
 
-import com.testscripts.RootTest;
+import com.library.Common;
 
-public class ViewAccounts extends RootTest{
+public class ViewAccounts {
 	
-	static Login login=new Login(brow);
+	 Common browser;
+	 //constructor with one argument.
+	 public ViewAccounts(Common br)
+	 {
+	    browser=br;
+	 }
+	 
 	public void viewAccount()
 	{
-        int count=brow.getCount("xpath","(//*[@contentDescription='accountText'])");
+        int count=browser.getCount("xpath","(//*[@contentDescription='accountText'])");
         if(count==10)
         {              
         	System.out.println("Able to get the top 10 transactions");
