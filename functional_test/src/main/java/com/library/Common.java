@@ -250,10 +250,10 @@ public class Common {
     //reset the count for a user, use this when want to unlock the password
     public void resetcount(String username) throws Exception
     {
-    	Process p = Runtime.getRuntime().exec(new String[] {"explorer", "http://hillevi:7070/passwordreset/api/user/reset/"+username});
-    	sleepThread(1000);
-    	p.destroy();
-    }    
+        Process p = Runtime.getRuntime().exec(new String[] {"explorer", "http://hillevi:7070/passwordreset/api/user/reset/"+username});
+        sleepThread(500);
+        p.destroy();
+    }
     
     //verify element present
     public void comparetexts(String actual,String expected)
@@ -278,8 +278,22 @@ public class Common {
     }
     
     //Scroll down the page
-    public void scrollDown() throws InterruptedException
+    public void scrollDown(String Direction,int Start,int End) throws InterruptedException
     {
-    	driver.executeScript("client:client.swipe(\"Down\", 200, 3500)");
+        char a = '\"';
+        driver.executeScript("client:client.swipe("+ a + Direction + a + "," + Start + ","+ End +")");
+    }
+    
+    //Get the Size of element
+    public int getSize(String identifier,String locator)
+    {
+        List<AndroidElement> e=webElementIds(identifier, locator);
+        return e.size();
+    }
+    
+    //Reset the App
+    public void reset()
+    {
+        driver.resetApp();
     }
 }

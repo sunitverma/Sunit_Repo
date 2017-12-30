@@ -161,25 +161,32 @@ public class Login {
     }
     
     //K - Method - Terms and Conditions
-    public void termsAndConditions() throws Exception
+    public void termsAndConditionsExists(String Username,String Password)
     {
-    	browser.click("xpath", "(//*[@content-desc='scrollToEndButton'])");
-    	browser.verifyElementPresent("xpath", "(//*[@content-desc='declineButton'])");
-    	browser.click("xpath", "(//*[@content-desc='declineButton'])");
-    	if(browser.verifyElementPresent("xpath", "(//*[@content-desc='Username'])"))
-    	{
-    		browser.waitUntilElementPresent("//*[@content-desc='Username']");
-    	    browser.sendKeys("xpath","(//*[@content-desc='Username'])","DOUGLASCA");
-    	    browser.keyboardKeys(66);
-    	    browser.sendKeys("xpath","(//*[@content-desc='Password'])", "Password1##");
-    	    browser.sleepThread(1000);
-    	    browser.keyboardKeys(66);
-    	    browser.click("xpath","(//*[@content-desc='loginButtonText'])");
-    	    browser.sleepThread(10000);
-    	    browser.click("xpath", "(//*[@content-desc='scrollToEndButton'])");
-    	    browser.verifyElementPresent("xpath", "(//*[@content-desc='acceptButton'])");
-    	    browser.click("xpath", "(//*[@content-desc='acceptButton'])");
-    	}
+        if(browser.getSize("xpath", "//*[@content-desc='welcomeName']")!=0)
+        {
+            System.out.println("The user has already accepted Terms and Conditions");
+        }
+        else if(browser.getSize("xpath", "//*[@content-desc='scrollToEndButton']")!=0)
+        {
+            browser.click("xpath", "(//*[@content-desc='scrollToEndButton'])");
+            browser.verifyElementPresent("xpath", "(//*[@content-desc='declineButton'])");
+            browser.click("xpath", "(//*[@content-desc='declineButton'])");
+            if(browser.verifyElementPresent("xpath", "(//*[@content-desc='Username'])"))
+            {
+                browser.waitUntilElementPresent("//*[@content-desc='Username']");
+                browser.sendKeys("xpath","(//*[@content-desc='Username'])",Username);
+                browser.keyboardKeys(66);
+                browser.sendKeys("xpath","(//*[@content-desc='Password'])", Password);
+                browser.sleepThread(1000);
+                browser.keyboardKeys(66);
+                browser.click("xpath","(//*[@content-desc='loginButtonText'])");
+                browser.sleepThread(10000);
+                browser.click("xpath", "(//*[@content-desc='scrollToEndButton'])");
+                browser.verifyElementPresent("xpath", "(//*[@content-desc='acceptButton'])");
+                browser.click("xpath", "(//*[@content-desc='acceptButton'])");
+            }
+        }
     }
     
     // S - Method - Verifying the Feed back button functionality
@@ -212,4 +219,18 @@ public class Login {
     	browser.click("id", "send");
     	browser.screenshot();
     }
+    
+    //K - Method - Accept Terms and Conditions
+    public void acceptTermAndConditions()
+    {
+        if(browser.getSize("xpath", "//*[@content-desc='welcomeName']")!=0)
+        {
+            System.out.println("The user has already accepted Terms and Conditions");
+        }
+        else if(browser.getSize("xpath", "//*[@content-desc='scrollToEndButton']")!=0)
+        {
+            browser.click("xpath", "(//*[@content-desc='scrollToEndButton'])");
+            browser.click("xpath", "(//*[@content-desc='acceptButton'])");
+        }
+    }    
 }

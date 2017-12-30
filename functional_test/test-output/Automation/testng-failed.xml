@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Automation]">
+<suite thread-count="-1" guice-stage="DEVELOPMENT" name="Failed suite [Automation]">
   <test name="TestScripts(failed)">
     <classes>
       <class name="com.testscripts.Testcases">
         <methods>
-          <include name="termsAndConditions"/>
+          <include name="PasswordRetry"/>
+          <include name="savingsBalanceBreakdown"/>
+          <include name="CloseApp"/>
+          <include name="FeedBackButton"/>
+          <include name="verifyHomepageAllAccounts"/>
+          <include name="LogOutButton"/>
+          <include name="OpenApp"/>
+          <include name="withLoanBalanceDetails"/>
+          <include name="zeroLoanBalanceDetails"/>
+          <include name="animation"/>
         </methods>
       </class> <!-- com.testscripts.Testcases -->
     </classes>

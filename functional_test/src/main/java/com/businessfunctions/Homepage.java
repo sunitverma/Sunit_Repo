@@ -7,9 +7,9 @@ public class Homepage {
 	Common browser;
 	//constructor with one argument.
 	public Homepage(Common br)
-	    {
+	{
 	        browser=br;
-	    }
+	}
 	   
 	// K - Method - to verify the all accounts    
 	public void verifyHomepageAllAccounts()
@@ -32,13 +32,45 @@ public class Homepage {
 		System.out.println("Loan account is available");
 	}
 	
-	// K - Method - to verify no account
+	// S - Method - to verify no account
 	public void verifyHomepageNoAccounts() throws InterruptedException
 	{		
 		browser.sleepThread(2000);
 		browser.verifyText("xpath", "//*[@content-desc='disclaimerMessage']","Don't see all your accounts?");
 		browser.screenshot();
 		System.out.println("No accounts are available");
-		
+	}
+
+	// S - Method - to verify animation displayed on Landing page
+	public void animationOnLanding()
+	{
+
+	  try
+	  {
+	  if (browser.verifyElementPresent("xpath", "//*[@content-desc='spinnerText']")==true)
+	  {
+	    if (browser.getText("xpath", "//*[@content-desc='spinnerText']").equals("One moment please"))
+	    {
+	      browser.screenshot();
+	      System.out.println("Correct anitmation message displayed - One moment please");
+	    }
+	    else
+	    {
+	      browser.screenshot();
+	      System.out.println("Animation message on Landing page is not correct");
+	    }
+	    browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
+	    browser.verifyElementPresent("xpath", "//*[@text[starts-with(.,'Good')]]");
+	  }
+	  else
+	  {
+	    browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
+	    System.out.println("Animation not displayed on Landing page");
+	  }
+	}
+	  catch (Exception e)
+	  {
+	    System.out.println(e);  
+	  }
 	}
 }
