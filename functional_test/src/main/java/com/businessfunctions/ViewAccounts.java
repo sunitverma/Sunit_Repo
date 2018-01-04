@@ -24,32 +24,21 @@ public class ViewAccounts {
         	System.out.println("The given account have transactions less than 10");
         }
 	}
-
-	// S - Method - to verify animation displayed on Account details  page
-    public void animationOnAccountDetails()
+    
+	// S - Method - to verify animation displayed on Account Details page
+    public void animationOnAccountDetail()
     {
-      try
+      if (browser.getSize("xpath", "//*[@content-desc='spinnerText']")!=0)
       {
-      if (browser.verifyElementPresent("xpath", "//*[@content-desc='spinnerText']"))
-      {
-        if (browser.getText("xpath", "//*[@content-desc='spinnerText']").equals("One moment please"))
-        {
-          browser.screenshot();
-          System.out.println("Correct anitmation message displayed - One moment please");
-        }
-        else
-        {
-          browser.screenshot();
-          System.out.println("Animation message on Account page is not correct");
-        }
-        browser.waitUntilElementPresent("//*[@content-desc='backButton']");
-        browser.verifyElementPresent("xpath", "//*[@text='My Accounts']");
+        browser.screenShot();
+        System.out.println("Animation displayed on Account details page");
+        browser.waitUntilElementPresent("//*[@text='My Accounts']");
       }
-      }
-      catch (Exception e)
+      else
       {
-        browser.waitUntilElementPresent("//*[@content-desc='backButton']");
-        System.out.println("Animation not displayed on Account page");
+        browser.screenShot();
+        System.out.println("Animation not displayed on Landing page");
+        browser.waitUntilElementPresent("//*[@text='My Accounts']");
       }
     }
 }

@@ -20,7 +20,7 @@ public class Homepage {
 		browser.waitUntilElementPresent("(//*[@content-desc='accountCardType'])[2]");
 		browser.verifyElementPresent("xpath", "(//*[@content-desc='accountCardType'])[2]");
     	System.out.println("Loan account is available");
-    	browser.screenshot();
+    	browser.screenShot();
 	}
 	
 	// K - Method - to verify one account
@@ -28,7 +28,7 @@ public class Homepage {
 	{
 		browser.waitUntilElementPresent("(//*[@content-desc='accountCardType'])[1]");
 		browser.verifyElementPresent("xpath", "(//*[@content-desc='accountCardType'])[1]");
-		browser.screenshot();
+		browser.screenShot();
 		System.out.println("Loan account is available");
 	}
 	
@@ -37,40 +37,31 @@ public class Homepage {
 	{		
 		browser.sleepThread(2000);
 		browser.verifyText("xpath", "//*[@content-desc='disclaimerMessage']","Don't see all your accounts?");
-		browser.screenshot();
+		browser.screenShot();
 		System.out.println("No accounts are available");
 	}
 
 	// S - Method - to verify animation displayed on Landing page
 	public void animationOnLanding()
 	{
-
-	  try
-	  {
-	  if (browser.verifyElementPresent("xpath", "//*[@content-desc='spinnerText']")==true)
+	  if (browser.getSize("xpath", "//*[@content-desc='spinnerText']")!=0)
 	  {
 	    if (browser.getText("xpath", "//*[@content-desc='spinnerText']").equals("One moment please"))
 	    {
-	      browser.screenshot();
+	      browser.screenShot();
 	      System.out.println("Correct anitmation message displayed - One moment please");
 	    }
 	    else
 	    {
-	      browser.screenshot();
+	      browser.screenShot();
 	      System.out.println("Animation message on Landing page is not correct");
 	    }
-	    browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
-	    browser.verifyElementPresent("xpath", "//*[@text[starts-with(.,'Good')]]");
+	    browser.waitUntilElementPresent("//*[@content-desc='scrollToEndButton' or @content-desc='welcomeName']");
 	  }
 	  else
 	  {
-	    browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
+	    browser.waitUntilElementPresent("//*[@content-desc='scrollToEndButton' or @content-desc='welcomeName']");
 	    System.out.println("Animation not displayed on Landing page");
-	  }
-	}
-	  catch (Exception e)
-	  {
-	    System.out.println(e);  
 	  }
 	}
 }

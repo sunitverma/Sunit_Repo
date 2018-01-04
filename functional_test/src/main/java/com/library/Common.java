@@ -204,7 +204,7 @@ public class Common {
     }
            
     //capture screenshot
-    public void screenshot(){
+    public void screenShot(){
     // Take screenshot and store as a file format
     File src= ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
     try {
@@ -248,18 +248,18 @@ public class Common {
     }
     
     //reset the count for a user, use this when want to unlock the password
-    public void resetcount(String username) throws Exception
+    public void resetCount(String username) throws Exception
     {
         Process p = Runtime.getRuntime().exec(new String[] {"explorer", "http://hillevi:7070/passwordreset/api/user/reset/"+username});
-        sleepThread(500);
+        sleepThread(1000);
         p.destroy();
     }
     
     //verify element present
-    public void comparetexts(String actual,String expected)
+    public boolean compareTexts(String actual,String expected)
     {
     	assertTrue(actual.equals(expected));
-    	return;
+    	return false;
      }
     
     //Close App and quit

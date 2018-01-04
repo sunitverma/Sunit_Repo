@@ -5,16 +5,9 @@
     <classes>
       <class name="com.testscripts.Testcases">
         <methods>
-          <include name="PasswordRetry"/>
-          <include name="savingsBalanceBreakdown"/>
           <include name="CloseApp"/>
-          <include name="FeedBackButton"/>
-          <include name="verifyHomepageAllAccounts"/>
-          <include name="LogOutButton"/>
           <include name="OpenApp"/>
           <include name="withLoanBalanceDetails"/>
-          <include name="zeroLoanBalanceDetails"/>
-          <include name="animation"/>
         </methods>
       </class> <!-- com.testscripts.Testcases -->
     </classes>

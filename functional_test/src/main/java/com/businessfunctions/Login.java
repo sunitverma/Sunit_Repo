@@ -28,7 +28,7 @@ public class Login {
         browser.click("xpath","//*[@content-desc='loginButtonText']");
                       				   
         browser.sleepThread(10000);
-        browser.screenshot();
+        browser.screenShot();
     }
     
     // M - Method - Expected - Verifying the Login button while login with Empty Credentials
@@ -42,30 +42,30 @@ public class Login {
 	 	}
     	
 	 	browser.sleepThread(2000);
-	 	browser.screenshot();
+	 	browser.screenShot();
     }
   
     // M - Method - Expected - Login with invalid user name  
     public void invalidUserExpected()
     {
     	browser.verifyText("xpath", "//*[@class='android.widget.TextView'][4]", "Invalid username");
-    	browser.screenshot();
+    	browser.screenShot();
     }
     
     // M - Method - Expected - Login with invalid password
     public void invalidPasswordExpected()
     {
     	browser.verifyText("xpath", "//*[@class='android.widget.TextView'][5]", "Incorrect password");
-    	browser.screenshot();
+    	browser.screenShot();
     }
     
     // S - Method - Retry 3 times  
     public void retryPassword(String username, String password)
     {
     	//update the expected error message
-    	String msg1="You will be locked out after 2 more password attempts. To unlock your account, you will need to call Customer Care.";
-    	String msg2="You will be locked out after 1 more password attempt. To unlock your account, you will need to call Customer Care.";
-    	String msg3="You have been locked out. To reactivate your account, please call Customer Care at 1-888-622-3478.";
+    	String msg1="You will be locked out after 2 more password attempts. To unlock your account, you will need to call Customer Care at 1-888-622-3478.";
+    	String msg2="You will be locked out after 1 more password attempts. To unlock your account, you will need to call Customer Care at 1-888-622-3478.";
+    	String msg3="You have been locked out.To reactivate your account, please call Customer Care at 1-888-622-3478.";
     	
     	browser.waitUntilElementPresent("//*[@content-desc='Username']");
     	browser.sendKeys("xpath","//*[@content-desc='Username']",username);
@@ -80,7 +80,7 @@ public class Login {
     	browser.click("xpath","//*[@content-desc='loginButtonText']");
         browser.sleepThread(1000);
         String errormsg1= browser.getText("xpath","//*[@content-desc='alertMessage']");
-        browser.screenshot();
+        browser.screenShot();
         
         if (errormsg1 == msg1)
         {
@@ -95,7 +95,7 @@ public class Login {
     	browser.click("xpath","//*[@content-desc='loginButtonText']");
         browser.sleepThread(1000);
         String errormsg2= browser.getText("xpath","//*[@content-desc='alertMessage']");
-        browser.screenshot();
+        browser.screenShot();
         
         if (errormsg2==msg2)
         {
@@ -110,7 +110,7 @@ public class Login {
     	browser.click("xpath","//*[@content-desc='loginButtonText']");
         browser.sleepThread(1000);
         String errormsg3= browser.getText("xpath","//*[@content-desc='alertMessage']");
-        browser.screenshot();
+        browser.screenShot();
         
         if (errormsg3==msg3)
         {
@@ -121,14 +121,14 @@ public class Login {
         	System.out.println("Expected third message is wrong");
         }
         
-        String message1 = errormsg1;
-        String message2= errormsg2;
-        String message3= errormsg3;
+        //String message1 = errormsg1;
+        //String message2= errormsg2;
+        //String message3= errormsg3;
         
         //if message is wrong the test case will fail
-        browser.comparetexts(message1,msg1);
-        browser.comparetexts(message2,msg2);
-        browser.comparetexts(message3,msg3);
+        browser.compareTexts(errormsg1,msg1);
+        browser.compareTexts(errormsg2,msg2);
+        browser.compareTexts(errormsg3,msg3);
         
     }
 
@@ -145,18 +145,18 @@ public class Login {
     	
     	browser.verifyElementPresent("xpath", "//*[@content-desc='logoutModalCancelButton']");
     	browser.verifyElementPresent("xpath", "//*[@content-desc='logoutModalLogoutButton']");
-    	browser.screenshot();
+    	browser.screenShot();
     	
     	browser.click("xpath", "//*[@content-desc='logoutModalCancelButton']");
-    	browser.verifyText("xpath", "//*[@content-desc='welcomeName']", browser.getText("xpath", "//*[@text[starts-with(.,'Welcome')]]"));
-    	browser.screenshot();
+    	browser.verifyText("xpath", "//*[@content-desc='welcomeName']", browser.getText("xpath", "//*[@text[starts-with(.,'Good')]]"));
+    	browser.screenShot();
     	System.out.println("Cancel button working fine on Log out pop up");
     	
     	browser.click("xpath", "//*[@content-desc='logoutButton']");
     	
     	browser.click("xpath", "//*[@content-desc='logoutModalLogoutButton']");
     	browser.verifyText("xpath", "//*[@content-desc='loginTitle']", "Log in");
-    	browser.screenshot();
+    	browser.screenShot();
     	System.out.println("Log out button working fine on Log out pop up");
     }
     
@@ -200,14 +200,14 @@ public class Login {
     	
     	browser.verifyText("xpath", "(//*[@class='android.widget.TextView'])[2]", "WhatsApp us your Feedback");
     	browser.verifyElementPresent("xpath", "(//*[@class='android.view.View'])[13]");
-    	browser.screenshot();
+    	browser.screenShot();
     	
     	browser.click("xpath", "(//*[@class='android.view.View'])[10]");
     	browser.verifyText("id", "from_account_name", "kratosbuild@gmail.com");
     	
     	browser.sendKeys("id", "body", "Feed back for NCB App");
     	browser.click("id", "send");
-    	browser.screenshot();
+    	browser.screenShot();
     	
     	browser.verifyElementPresent("xpath", "(//*[@class='android.view.View'])[7]");
     	browser.click("xpath", "(//*[@class='android.view.View'])[7]");
@@ -217,7 +217,7 @@ public class Login {
     	
     	browser.sendKeys("id", "entry", "Feed back for NCB App");
     	browser.click("id", "send");
-    	browser.screenshot();
+    	browser.screenShot();
     }
     
     //K - Method - Accept Terms and Conditions
@@ -232,5 +232,14 @@ public class Login {
             browser.click("xpath", "(//*[@content-desc='scrollToEndButton'])");
             browser.click("xpath", "(//*[@content-desc='acceptButton'])");
         }
-    }    
+    }
+    
+    // S - Method - wait for animation page to hide
+    public void animationHide()
+    {
+      if (browser.getSize("xpath", "//*[@content-desc='spinnerText']")!=0)
+      {
+        browser.waitUntilElementPresent("//*[@content-desc='scrollToEndButton' or @content-desc='welcomeName' or @text='My Accounts']");
+      }
+    }
 }

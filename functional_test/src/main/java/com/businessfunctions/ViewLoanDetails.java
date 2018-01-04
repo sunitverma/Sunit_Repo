@@ -14,19 +14,19 @@ public class ViewLoanDetails {
 	//Verify the details on Loan Details page
 	public void viewLoanDetails()
 	{
-		browser.waitUntilElementPresent("(//*[@class='android.widget.TextView'])[71]");
-		browser.verifyText("xpath","(//*[@class='android.widget.TextView'])[71]" , "My Accounts");
+		browser.waitUntilElementPresent("(//*[@class='android.widget.TextView'])[58]");
+		browser.verifyText("xpath","(//*[@class='android.widget.TextView'])[58]" , "My Accounts");
 		
 		browser.verifyText("xpath", "//*[@content-desc='accountNumber']", " 351158298");
 		
-		browser.verifyText("xpath", "//*[@content-desc='accountCardBalanceTitle']", "Loan Balance");
-		browser.verifyText("xpath", "//*[@content-desc='balanceAmount']","421,945.82");
-		browser.verifyText("xpath","(//*[@class='android.widget.TextView'])[62]","JMD");
+		browser.verifyText("xpath", "//*[@content-desc='balanceTypeTitle']", "Loan Balance");
+		browser.verifyText("xpath", "//*[@content-desc='balanceAmount']","471,610.30");
+		browser.verifyText("xpath","(//*[@class='android.widget.TextView'])[49]","JMD");
 		
 		browser.verifyText("xpath","//*[@content-desc='Next Payment']", "Next Payment");
-		browser.verifyText("xpath","//*[@content-desc='nextPaymentDueDate']" ,"Oct 30, 2017");
+		browser.verifyText("xpath","//*[@content-desc='nextPaymentDueDate']" ,"Mar 30, 2017");
 		browser.verifyText("xpath","//*[@content-desc='installmentAmount']" ,"$15,788.26");
-		browser.verifyText("xpath","(//*[@class='android.widget.TextView'])[66]","JMD");
+		browser.verifyText("xpath","(//*[@class='android.widget.TextView'])[53]","JMD");
 		
 		browser.verifyText("xpath","//*[@content-desc='Loan Period']","Loan Period");
 		browser.verifyText("xpath","(//*[@content-desc='loanPeriod'])[1]","60 months");
@@ -36,8 +36,8 @@ public class ViewLoanDetails {
 	//Verify the details on paid loan account Details page
 	public void zeroLoanBalance()
 	{
-		browser.waitUntilElementPresent("(//*[@class='android.widget.TextView'])[71]");
-		browser.verifyText("xpath","(//*[@class='android.widget.TextView'])[71]" , "My Accounts");
+		browser.waitUntilElementPresent("(//*[@class='android.widget.TextView'])[53]");
+		browser.verifyText("xpath","(//*[@class='android.widget.TextView'])[53]" , "My Accounts");
 		
 		browser.verifyText("xpath", "//*[@content-desc='accountNumber']", " 021035270");
 		

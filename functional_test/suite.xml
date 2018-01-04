@@ -4,22 +4,22 @@
         <classes>
             <class name="com.testscripts.Testcases" >
             <methods>
-                <include name="LoginWithEmptyData" />
-                <include name="LoginWithValidTestdata" />
-                <include name="LoginWithInvalidUsername" />
-                <include name="LoginWithInvalidPassword" />
-                <include name="PasswordRetry" />
-                <include name="verifyHomepageAllAccounts" />
-                <include name="verifyHomepageOneAccount" />
-                <include name="verifyHomepageNoAccounts" />
-				<include name="ShowTenTransaction" />
+                <exclude name="loginWithEmptyData" />
+                <exclude name="loginWithValidTestdata" />
+                <exclude name="loginWithInvalidUsername" />
+                <exclude name="loginWithInvalidPassword" />
+                <exclude name="passwordRetry" />
+                <exclude name="verifyHomepageAllAccounts" />
+                <exclude name="verifyHomepageOneAccount" />
+                <exclude name="verifyHomepageNoAccounts" />
+				<exclude name="showTenTransaction" />
 				<include name="withLoanBalanceDetails" />
-                <include name="zeroLoanBalanceDetails" />
-				<include name="savingsBalanceBreakdown" />
-                <include name="LogOutButton" />
-				<include name="FeedBackButton" />
-                <include name="termsAndConditions" />
-                <include name="animation" />
+                <exclude name="zeroLoanBalanceDetails" />
+				<exclude name="savingsBalanceBreakdown" />
+                <exclude name="logOutButton" />
+				<exclude name="feedBackButton" />
+                <exclude name="termsAndConditions" />
+                <exclude name="animation" />
              </methods>
         </class>
     </classes>
