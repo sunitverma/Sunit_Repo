@@ -58,7 +58,7 @@ public class Common {
     		}
     }
         
-    //WebElement 
+    //WebElement
     public WebElement webElementId(String identifier,String locator)
     {
         WebElement e=null;
@@ -94,7 +94,8 @@ public class Common {
         }
         return e;
     }
-    
+
+    //WebElements    
     public List<AndroidElement> webElementIds(String identifier,String locator)
     {
        List<AndroidElement> e=null;
