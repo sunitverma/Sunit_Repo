@@ -95,7 +95,7 @@ public class Common {
         return e;
     }
 
-    //WebElements    
+    //WebElements
     public List<AndroidElement> webElementIds(String identifier,String locator)
     {
        List<AndroidElement> e=null;
@@ -183,12 +183,10 @@ public class Common {
         if (e.isDisplayed())
         {
             return true;
-        	//System.out.println("Element or Link present");
         }
         else
         {
-        	return false;
-            //System.out.println("Element or Link is not present");
+            return false;
         }
     }
     
@@ -225,12 +223,10 @@ public class Common {
         if (e.isEnabled())
         {
             return true;
-        	//System.out.println("Button is enabled");
         }
         else
         {
-        	return false;
-            //System.out.println("Button is disabled");
+            return false;
         }
     }
     

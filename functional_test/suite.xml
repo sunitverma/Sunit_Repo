@@ -13,13 +13,13 @@
                 <exclude name="verifyHomepageOneAccount" />
                 <exclude name="verifyHomepageNoAccounts" />
 				<exclude name="showTenTransaction" />
-				<include name="withLoanBalanceDetails" />
+				<exclude name="withLoanBalanceDetails" />
                 <exclude name="zeroLoanBalanceDetails" />
 				<exclude name="savingsBalanceBreakdown" />
                 <exclude name="logOutButton" />
 				<exclude name="feedBackButton" />
                 <exclude name="termsAndConditions" />
-                <exclude name="animation" />
+                <include name="animation" />
              </methods>
         </class>
     </classes>

@@ -129,7 +129,6 @@ public class Login {
         browser.compareTexts(errormsg1,msg1);
         browser.compareTexts(errormsg2,msg2);
         browser.compareTexts(errormsg3,msg3);
-        
     }
 
     // S - Method - Expected - Login with invalid password

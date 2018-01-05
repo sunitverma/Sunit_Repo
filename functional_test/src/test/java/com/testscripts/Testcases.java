@@ -33,7 +33,7 @@ public class Testcases extends RootTest {
     public static void closeApp() throws Exception
     {
         brow.quitObject();
-    }  
+    }
 
     //================Sprint 1: 2 test cases ============================
     //================Sprint 1 Start=====================================
@@ -164,7 +164,6 @@ public class Testcases extends RootTest {
     @Test
     public static void withLoanBalanceDetails() throws Exception
     {
-      
         System.out.println("Running Testcase 10 - View Loan Balance Details of Customer");
         brow.reset();
         login.loginToapp("YANDISUD","Password1##");
@@ -267,5 +266,8 @@ public class Testcases extends RootTest {
     
     //=============== Sprint 6 End ======================================
     //================Sprint 7:  test cases =============================
-    //================Sprint 7 Start=====================================    
+    //================Sprint 7 Start=====================================
+    
+    
+    
 }

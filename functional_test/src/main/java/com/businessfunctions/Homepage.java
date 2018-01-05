@@ -11,35 +11,51 @@ public class Homepage {
 	        browser=br;
 	}
 	   
-	// K - Method - to verify the all accounts    
-	public void verifyHomepageAllAccounts()
-	{
-		browser.waitUntilElementPresent("(//*[@content-desc='accountCardType'])[1]");
-    	browser.verifyElementPresent("xpath", "(//*[@content-desc='accountCardType'])[1]");
-		System.out.println("Saving account is available");
-		browser.waitUntilElementPresent("(//*[@content-desc='accountCardType'])[2]");
-		browser.verifyElementPresent("xpath", "(//*[@content-desc='accountCardType'])[2]");
-    	System.out.println("Loan account is available");
-    	browser.screenShot();
-	}
+    // K - Method - to verify the all accounts    
+    public void verifyHomepageAllAccounts()
+    {
+        if(browser.getSize("xpath", "//*[@class='android.view.ViewGroup' and *[@text='Savings']]")!=0)
+        {
+            System.out.println("Saving account is available");
+        }
+        if(browser.getSize("xpath", "//*[@class='android.view.ViewGroup' and *[@text='Loan']]")!=0)
+        {
+            System.out.println("Loan account is available");
+        }
+        else
+            {
+                System.out.println("Neither Savings nor Loan account is available");
+            }
+        browser.screenShot();
+    }
 	
 	// K - Method - to verify one account
-	public void verifyHomepageOneAccounts()
-	{
-		browser.waitUntilElementPresent("(//*[@content-desc='accountCardType'])[1]");
-		browser.verifyElementPresent("xpath", "(//*[@content-desc='accountCardType'])[1]");
-		browser.screenShot();
-		System.out.println("Loan account is available");
-	}
+    public void verifyHomepageOneAccounts()
+    {
+        if(browser.getSize("xpath", "//*[@class='android.view.ViewGroup' and *[@text='Savings']]")!=0)
+        {
+            System.out.println("Saving account is available");
+        }
+        else if(browser.getSize("xpath", "//*[@class='android.view.ViewGroup' and *[@text='Loan']]")!=0)
+        {
+            System.out.println("Loan account is available");
+        }
+        else {
+            System.out.println("Neither Savings nor Loan account is available");
+        }
+        browser.screenShot();
+    }
 	
 	// S - Method - to verify no account
-	public void verifyHomepageNoAccounts() throws InterruptedException
-	{		
-		browser.sleepThread(2000);
-		browser.verifyText("xpath", "//*[@content-desc='disclaimerMessage']","Don't see all your accounts?");
-		browser.screenShot();
-		System.out.println("No accounts are available");
-	}
+    public void verifyHomepageNoAccounts() throws InterruptedException
+    {       
+        browser.sleepThread(2000);
+        if(browser.getSize("xpath", "//*[@content-desc='alertMessage']")!=0)
+        {
+            System.out.println("No accounts are available");
+        }
+        browser.screenShot();
+    }
 
 	// S - Method - to verify animation displayed on Landing page
 	public void animationOnLanding()

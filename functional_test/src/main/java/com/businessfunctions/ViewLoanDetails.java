@@ -11,7 +11,7 @@ public class ViewLoanDetails {
 	    browser=br;
 	 }
 	
-	//Verify the details on Loan Details page
+	//Verify the details on Loan Details page -- S
 	public void viewLoanDetails()
 	{
 		browser.waitUntilElementPresent("(//*[@class='android.widget.TextView'])[58]");
@@ -33,7 +33,7 @@ public class ViewLoanDetails {
 		browser.verifyText("xpath","(//*[@content-desc='loanPeriod'])[2]","22/Jun/15 - 30/Jun/20");
 	}
 	
-	//Verify the details on paid loan account Details page
+	//Verify the details on paid loan account Details page -- S
 	public void zeroLoanBalance()
 	{
 		browser.waitUntilElementPresent("(//*[@class='android.widget.TextView'])[53]");
@@ -56,7 +56,7 @@ public class ViewLoanDetails {
 		
 		browser.click("xpath", "//*[@content-desc='backButton']");
 		
-		browser.verifyText("xpath","//*[@content-desc='welcomeName']", "Welcome, Yolando");
+        browser.verifyText("xpath", "//*[@content-desc='welcomeName']", browser.getText("xpath", "//*[@text[starts-with(.,'Good')]]"));
 		System.out.println("Account summary page displayed after click on back arrow on loan account details");
 	}
 }
