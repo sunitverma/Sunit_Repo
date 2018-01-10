@@ -41,4 +41,16 @@ public class ViewAccounts {
         browser.waitUntilElementPresent("//*[@text='My Accounts']");
       }
     }
+    
+    //S - Method - to verify transfer button working on saving and Chequing account details page
+    public void transferButtonOnAccountDetailsPage(String accounttype)
+    {
+      browser.click("xpath", "(//*[@content-desc='accountCard' and *[@text='"+ accounttype +"']])[1]");
+      browser.verifyElementPresent("xpath", "//*[@contentDescription='Transfer Button' and ./preceding-sibling::*[./*[@class='android.view.View']]]");
+      browser.click("xpath", "//*[@contentDescription='Transfer Button' and ./preceding-sibling::*[./*[@class='android.view.View']]]");
+      browser.verifyText("xpath", "//*[@content-desc='TransferHeader']", "Where would you like to transfer to ?");
+      browser.verifyElementPresent("xpath", "//*[@content-desc='backButton']");
+      browser.click("xpath", "//*[@content-desc='backButton']");
+      browser.verifyText("xpath", "//*[@content-desc='welcomeName']", browser.getText("xpath", "//*[@text[starts-with(.,'Good')]]"));
+    }
 }

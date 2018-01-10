@@ -80,4 +80,21 @@ public class Homepage {
 	    System.out.println("Animation not displayed on Landing page");
 	  }
 	}
+	
+	//S - Method - to verify transfer button working for saving and Chequing accounts on landing page
+    public void transferButtonOnLandingPage(String accounttype)
+    {
+      browser.click("xpath", "(//*[@content-desc='accountCard' and *[@text='"+ accounttype + "'] and *[@text>0]]//*[@content-desc='Transfer Button'])[1]");
+      browser.verifyText("xpath", "//*[@content-desc='TransferHeader']", "Where would you like to transfer to ?");
+      browser.verifyElementPresent("xpath", "//*[@content-desc='backButton']");
+      browser.click("xpath", "//*[@content-desc='backButton']");
+      browser.verifyText("xpath", "//*[@content-desc='welcomeName']", browser.getText("xpath", "//*[@text[starts-with(.,'Good')]]"));
+      if(browser.getSize("xpath", "//*[@content-desc='accountCard' and *[@text='Loan']]//*[@content-desc='Transfer Button']")!=0)
+      {
+          System.out.println("The Transfer button is there for Loan account");
+      }
+      {
+          System.out.println("The Transfer button is not there for Loan account and its as expected");
+      }
+    }
 }

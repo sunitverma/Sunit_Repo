@@ -5,9 +5,9 @@
     <classes>
       <class name="com.testscripts.Testcases">
         <methods>
-          <include name="CloseApp"/>
-          <include name="OpenApp"/>
-          <include name="withLoanBalanceDetails"/>
+          <include name="openApp"/>
+          <include name="transfers"/>
+          <include name="closeApp"/>
         </methods>
       </class> <!-- com.testscripts.Testcases -->
     </classes>

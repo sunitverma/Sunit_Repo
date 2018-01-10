@@ -12,9 +12,9 @@ public class Testcases extends RootTest {
     
     static Login login=new Login(brow);
     static Homepage homepage = new Homepage(brow);
-    static ViewAccounts viewaccountspage = new ViewAccounts(brow);
+    static ViewAccounts viewaccounts = new ViewAccounts(brow);
     static ViewLoanDetails viewloandetails = new ViewLoanDetails(brow);
-    static ViewSavingsDetails viewSavingsDetailspage = new ViewSavingsDetails(brow);
+    static ViewSavingsDetails viewSavingsDetail = new ViewSavingsDetails(brow);
     
     //===================================================
     // Created by Sunit Verma and Murali(Date: 13/11/2017)
@@ -152,7 +152,7 @@ public class Testcases extends RootTest {
         login.acceptTermAndConditions();
         brow.waitUntilElementPresent("//*[@content-desc='welcomeName']");
         brow.click("xpath", "//*[@content-desc='accountCard']");
-        viewaccountspage.viewAccount();
+        viewaccounts.viewAccount();
         System.out.println("Testcase 09 - Successfully Completed");
     }
 
@@ -200,7 +200,7 @@ public class Testcases extends RootTest {
         login.acceptTermAndConditions();
         brow.waitUntilElementPresent("//*[@content-desc='welcomeName']");
         brow.click("xpath", "(//*[@content-desc='accountCard'][3])");
-        viewSavingsDetailspage.savingAccountBalanceBreakdown();
+        viewSavingsDetail.savingAccountBalanceBreakdown();
         System.out.println("Testcase 12 - Successfully Completed");
     }
 
@@ -256,18 +256,32 @@ public class Testcases extends RootTest {
       System.out.println("Running Testcase 16 - Verify Anitmation on Loading and Account details page");
       brow.reset();
       login.loginToapp("POLLYANNA","Password1##");
-      homepage.animationOnLanding();
       login.acceptTermAndConditions();
       brow.waitUntilElementPresent("//*[@content-desc='welcomeName']");
       brow.click("xpath", "//*[@content-desc='accountCard'][1]");
-      viewaccountspage.animationOnAccountDetail();
+      viewaccounts.animationOnAccountDetail();
       System.out.println("Testcase 16 - Successfully Completed");
     }
     
     //=============== Sprint 6 End ======================================
     //================Sprint 7:  test cases =============================
     //================Sprint 7 Start=====================================
-    
+ 
+    // Test case_17 Verify the Navigation for Transfers on Card and Summary Page (FE) -- S
+    @Test
+    public void transfers() throws Exception
+    {
+      System.out.println("Running Testcase 17 - Verify Transfers button functionality");
+      brow.reset();
+      login.loginToapp("pollyanna","Password1##");
+      login.acceptTermAndConditions();
+      brow.waitUntilElementPresent("//*[@content-desc='welcomeName']");
+      homepage.transferButtonOnLandingPage("Savings");
+      homepage.transferButtonOnLandingPage("Chequing");
+      viewaccounts.transferButtonOnAccountDetailsPage("Savings");
+      viewaccounts.transferButtonOnAccountDetailsPage("Chequing");
+      System.out.println("Testcase 17 - Successfully Completed");
+    }
     
     
 }
