@@ -4,11 +4,11 @@
         <classes>
             <class name="com.testscripts.Testcases" >
             <methods>
-                <exclude name="loginWithEmptyData" />
-                <exclude name="loginWithValidTestdata" />
-                <exclude name="loginWithInvalidUsername" />
-                <exclude name="loginWithInvalidPassword" />
-                <exclude name="passwordRetry" />
+                <exclude name="LoginWithEmptyData" />
+                <exclude name="LoginWithValidTestdata" />
+                <exclude name="LoginWithInvalidUsername" />
+                <exclude name="LoginWithInvalidPassword" />
+                <exclude name="PasswordRetry" />
                 <exclude name="verifyHomepageAllAccounts" />
                 <exclude name="verifyHomepageOneAccount" />
                 <exclude name="verifyHomepageNoAccounts" />
@@ -21,6 +21,10 @@
                 <exclude name="termsAndConditions" />
                 <exclude name="animation" />
                 <include name="transfers" />
+                <include name="meToMeTransferfromSavingsListPage" />
+                <include name="meToMeTransferfromSavingsSummaryPage" />
+                <include name="meToMeTransferfromChequingsListPage" />
+                <include name="meToMeTransferfromChequingsSummaryPage" />
              </methods>
         </class>
     </classes>
