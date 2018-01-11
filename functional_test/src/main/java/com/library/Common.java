@@ -58,76 +58,76 @@ public class Common {
     		}
     }
         
-    //WebElement
+    //WebElement 
     public WebElement webElementId(String identifier,String locator)
     {
-        WebElement e=null;
+    	WebElement e=null;
         switch (identifier)
         {
         case "id" : 
             e=driver.findElement(By.id(locator));
-                        break;
+            	break;
         case "className" : 
             e=driver.findElement(By.className(locator));
-                        break;
+                break;
         case "tagName" : 
             e=driver.findElement(By.tagName(locator));
-                        break;
+            	break;
         case "name" : 
             e=driver.findElement(By.name(locator));
-                        break;       
+            	break;       
         case "linkText" : 
             e=driver.findElement(By.linkText(locator));
-                        break;       
+            	break;       
         case "partialLinkText" : 
             e=driver.findElement(By.partialLinkText(locator));
-                        break;          
+            	break;          
         case "cssSelector" : 
             e=driver.findElement(By.cssSelector(locator));
-                        break;
+            	break;
         case "xpath" :
             e=driver.findElement(By.xpath(locator));
-                        break;
+            	break;
         default : 
             System.out.println("Locator not found");
-                    e=null;
+            	e=null;
         }
         return e;
     }
-
+    
     //WebElements
     public List<AndroidElement> webElementIds(String identifier,String locator)
     {
-       List<AndroidElement> e=null;
+    	List<AndroidElement> e=null;
         switch (identifier)
         {
         case "id" :
-            e=driver.findElements(By.id(locator));
-                        break;
+        	e=driver.findElements(By.id(locator));
+        		break;
         case "className" :
             e=driver.findElements(By.className(locator));
-                        break;
+            	break;
         case "tagName" :
             e=driver.findElements(By.tagName(locator));
-                        break;
+            	break;
         case "name" :
             e=driver.findElements(By.name(locator));
-                        break;      
+            	break;      
         case "linkText" :
             e=driver.findElements(By.linkText(locator));
-                        break;      
+            	break;      
         case "partialLinkText" :
             e=driver.findElements(By.partialLinkText(locator));
-                        break;          
-       case "cssSelector" :
+            	break;          
+        case "cssSelector" :
             e=driver.findElements(By.cssSelector(locator));
-                        break;
+            	break;
         case "xpath" :
             e=driver.findElements(By.xpath(locator));
-                        break;
-        default :
+            	break;
+        default	:
             System.out.println("Locator not found");
-                    e=null;
+            	e=null;
         }
         return e;
     }
@@ -136,7 +136,7 @@ public class Common {
     public void sendKeys(String identifier,String locator,String content)
     {
         
-        WebElement e=webElementId(identifier, locator);
+    	WebElement e=webElementId(identifier, locator);
         e.sendKeys(content);        
     }
     
@@ -172,7 +172,7 @@ public class Common {
         }
         else
         {
-            System.out.println(text+" text did not displayed");
+        	System.out.println(text+" text did not displayed");
         }
     }
     
@@ -186,7 +186,7 @@ public class Common {
         }
         else
         {
-            return false;
+        	return false;
         }
     }
     
@@ -210,23 +210,23 @@ public class Common {
     
     // now copy the  screenshot under target folder
     FileUtils.copyFile(src, new File("target/surefire-reports/screenshots/"+System.currentTimeMillis()+".png"));
-        } catch (IOException e)
-           {
-           System.out.println(e.getMessage());
-           }
+    	} catch (IOException e)
+    		{
+    		System.out.println(e.getMessage());
+    		}
     }
   
     // M - Button Enabled
     public boolean isButtonEnabled(String identifier,String locator)
     {
-        WebElement e=webElementId(identifier, locator);
+    	WebElement e=webElementId(identifier, locator);
         if (e.isEnabled())
         {
             return true;
         }
         else
         {
-            return false;
+        	return false;
         }
     }
     
@@ -247,10 +247,10 @@ public class Common {
     //reset the count for a user, use this when want to unlock the password
     public void resetCount(String username) throws Exception
     {
-        Process p = Runtime.getRuntime().exec(new String[] {"explorer", "http://hillevi:7070/passwordreset/api/user/reset/"+username});
-        sleepThread(1000);
-        p.destroy();
-    }
+    	Process p = Runtime.getRuntime().exec(new String[] {"explorer", "http://hillevi:7070/passwordreset/api/user/reset/"+username});
+    	sleepThread(1000);
+    	p.destroy();
+    }    
     
     //verify element present
     public boolean compareTexts(String actual,String expected)
@@ -277,17 +277,17 @@ public class Common {
     //Scroll down the page
     public void scrollDown(String Direction,int Start,int End) throws InterruptedException
     {
-        char a = '\"';
+    	char a = '\"';
         driver.executeScript("client:client.swipe("+ a + Direction + a + "," + Start + ","+ End +")");
     }
     
     //Get the Size of element
     public int getSize(String identifier,String locator)
     {
-        List<AndroidElement> e=webElementIds(identifier, locator);
-        return e.size();
-    }
-    
+    	List<AndroidElement> e=webElementIds(identifier, locator);
+    	return e.size();
+      }
+
     //Reset the App
     public void reset()
     {

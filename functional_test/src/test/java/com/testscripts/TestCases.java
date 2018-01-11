@@ -8,18 +8,18 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-public class Testcases extends RootTest {
-    
+public class TestCases extends RootTest {
+	
     static Login login=new Login(brow);
-    static Homepage homepage = new Homepage(brow);
+    static HomePage homepage = new HomePage(brow);
     static ViewAccounts viewaccounts = new ViewAccounts(brow);
     static ViewLoanDetails viewloandetails = new ViewLoanDetails(brow);
-    static ViewSavingsDetails viewSavingsDetail = new ViewSavingsDetails(brow);
+    static ViewSavingsDetails viewsavingdetails = new ViewSavingsDetails(brow);
     
     //===================================================
     // Created by Sunit Verma and Murali(Date: 13/11/2017)
     //===================================================
-
+    
     // Open and Close App
     
     @BeforeSuite
@@ -34,10 +34,10 @@ public class Testcases extends RootTest {
     {
         brow.quitObject();
     }
-
+    
     //================Sprint 1: 2 test cases ============================
     //================Sprint 1 Start=====================================
-
+    
     // Test case_01 with Empty Login Credentials username -- M
     @Test
     public static void loginWithEmptyData() throws Exception
@@ -58,10 +58,10 @@ public class Testcases extends RootTest {
         login.loginToapp("pollyanna","Password1##");
         login.acceptTermAndConditions();
         brow.waitUntilElementPresent("//*[@class='android.widget.TextView'][1]");
-        brow.verifyText("xpath","//*[@class='android.widget.TextView'][1]","Log Out");
+        brow.verifyText("xpath", "//*[@class='android.widget.TextView'][1]","Log Out");
         brow.screenShot();
         System.out.println("Testcase 02 - Successfully Completed");
-    }
+    }     
     
     //=============== Sprint 1 End ======================================
     //================Sprint 2: 6 test cases ============================
@@ -78,9 +78,9 @@ public class Testcases extends RootTest {
         System.out.println("Testcase 03 - Successfully Completed");
     }
     
-    // Test case_04 Login with Invalid Password -- S
+    // Test case_04 Login with Invalid Password	-- S
     @Test
-    public static void loginWithInvalidPassword() throws Exception
+    public static void LoginWithInvalidPassword() throws Exception
     {
         System.out.println("Running Testcase 04 - Login with Invalid Password");
         brow.resetCount("pollyanna");
@@ -92,7 +92,7 @@ public class Testcases extends RootTest {
     
     // Test case_05 Login with 3 Password retry -- S
     @Test
-    public static void passwordRetry() throws Exception
+    public static void PasswordRetry() throws Exception
     {
         System.out.println("Running Testcase 05 - Login with Invalid Password with retry 3 times");
         brow.resetCount("TOMMYS");
@@ -101,7 +101,7 @@ public class Testcases extends RootTest {
         login.retryPassword("TOMMYS","Password1###");
         System.out.println("Testcase 05 - Successfully Completed");
     }
-    
+        
     // Test case_06 Verify Home page after Login user having all the 3 Accounts -- K
     @Test
     public static void verifyHomepageAllAccounts() throws MalformedURLException, InterruptedException 
@@ -118,7 +118,7 @@ public class Testcases extends RootTest {
     @Test
     public static void verifyHomepageOneAccount() throws MalformedURLException, InterruptedException 
     {
-        System.out.println("Running Testcase 07 - Verifying Login page - User having One Account");
+    	System.out.println("Running Testcase 07 - Verifying Login page - User having One Account");
         brow.reset();
         login.loginToapp("YANDISUD", "Password1##");
         login.acceptTermAndConditions();
@@ -130,7 +130,7 @@ public class Testcases extends RootTest {
     @Test
     public static void verifyHomepageNoAccounts() throws MalformedURLException, InterruptedException 
     {
-        System.out.println("Running Testcase 08 - Verifying Login page - User having No Accounts");
+    	System.out.println("Running Testcase 08 - Verifying Login page - User having No Accounts");
         brow.reset();
         login.loginToapp("PINNIRAM", "Password1##");
         login.acceptTermAndConditions();
@@ -144,11 +144,11 @@ public class Testcases extends RootTest {
     
     // Test case_09 Show top 10 transaction -- K
     @Test
-    public static void showTenTransaction() throws Exception
+    public static void ShowTenTransaction() throws Exception
     {
         System.out.println("Running Testcase 09 - Show Ten Transaction");
         brow.reset();
-        login.loginToapp("YANDISUD","Password1##");
+        login.loginToapp("douglasca","Password1##");
         login.acceptTermAndConditions();
         brow.waitUntilElementPresent("//*[@content-desc='welcomeName']");
         brow.click("xpath", "//*[@content-desc='accountCard']");
@@ -196,23 +196,23 @@ public class Testcases extends RootTest {
         System.out.println("Running Testcase 12 - Show Savings account balance breakdown");
         brow.reset();
         brow.waitUntilElementPresent("//*[@content-desc='loginText']");
-        login.loginToapp("yandisud","Password1##");
+        login.loginToapp("douglasca","Password1##");
         login.acceptTermAndConditions();
         brow.waitUntilElementPresent("//*[@content-desc='welcomeName']");
-        brow.click("xpath", "(//*[@content-desc='accountCard'][3])");
-        viewSavingsDetail.savingAccountBalanceBreakdown();
+        brow.click("xpath", "(//*[@content-desc='accountCard'])");
+        viewsavingdetails.savingAccountBalanceBreakdown();
         System.out.println("Testcase 12 - Successfully Completed");
     }
 
     //=============== Sprint 4 End ======================================
-    //================Sprint 5: 3 test cases ============================
+    //================Sprint 5: 3 test cases =============================
     //================Sprint 5 Start=====================================
     
     // Test case_13 Verify Log out button functionality -- S
     @Test
-    public void logOutButton() throws Exception
+    public void LogOutButton() throws Exception
     {
-        System.out.println("Running Testcase 13 - Verify Log out button functionality");
+    	System.out.println("Running Testcase 13 - Verify Log out button functionality");
         brow.reset();
         brow.waitUntilElementPresent("//*[@content-desc='loginText']");
         login.loginToapp("YANDISUD","Password1##");
@@ -224,13 +224,13 @@ public class Testcases extends RootTest {
 
     // Test case_14 Verify Feed back button functionality -- S
     @Test
-    public void feedBackButton() throws Exception
+    public void FeedBackButton() throws Exception
     {
-        System.out.println("Running Testcase 14 - Verify Feed Back button functionality");
-        brow.reset();
-        brow.waitUntilElementPresent("//*[@content-desc='loginText']");
-        brow.click("xpath","//*[@content-desc='loginText']");
-        login.feedBackButtonFunction();
+    	System.out.println("Running Testcase 14 - Verify Feed Back button functionality");
+    	brow.reset();
+    	brow.waitUntilElementPresent("//*[@content-desc='loginText']");
+    	brow.click("xpath", "//*[@content-desc='loginText']");
+    	login.feedBackButtonFunction();
         System.out.println("Testcase 14 - Successfully Completed");
     }    
     
@@ -238,11 +238,11 @@ public class Testcases extends RootTest {
     @Test
     public void termsAndConditions() throws Exception
     {
-        System.out.println("Running Testcase 15 - Verify Terms and Conditions functionality");
+    	System.out.println("Running Testcase 15 - Verify Terms and Conditions functionality");
         brow.reset();
-        login.loginToapp("YANDISUD","Password1##");
-        login.termsAndConditionsExists("YANDISUD", "Password1##");
-        System.out.println("Testcase 15 - Successfully Completed");
+        login.loginToapp("douglasca","Password1##");
+        login.termsAndConditionsExists("douglasca", "Password1##");
+        System.out.println("Testcase 15 - Successfully Completed");        
     }
 
     //=============== Sprint 5 End ======================================
@@ -253,14 +253,14 @@ public class Testcases extends RootTest {
     @Test
     public void animation() throws Exception
     {
-      System.out.println("Running Testcase 16 - Verify Anitmation on Loading and Account details page");
-      brow.reset();
-      login.loginToapp("POLLYANNA","Password1##");
-      login.acceptTermAndConditions();
-      brow.waitUntilElementPresent("//*[@content-desc='welcomeName']");
-      brow.click("xpath", "//*[@content-desc='accountCard'][1]");
-      viewaccounts.animationOnAccountDetail();
-      System.out.println("Testcase 16 - Successfully Completed");
+    	System.out.println("Running Testcase 16 - Verify Anitmation on Loading and Account details page");
+    	brow.reset();
+    	login.loginToapp("POLLYANNA","Password1##");
+    	login.acceptTermAndConditions();
+    	brow.waitUntilElementPresent("//*[@content-desc='welcomeName']");
+    	brow.click("xpath", "//*[@content-desc='accountCard'][1]");
+    	viewaccounts.animationOnAccountDetail();
+    	System.out.println("Testcase 16 - Successfully Completed");
     }
     
     //=============== Sprint 6 End ======================================
@@ -271,17 +271,15 @@ public class Testcases extends RootTest {
     @Test
     public void transfers() throws Exception
     {
-      System.out.println("Running Testcase 17 - Verify Transfers button functionality");
-      brow.reset();
-      login.loginToapp("pollyanna","Password1##");
-      login.acceptTermAndConditions();
-      brow.waitUntilElementPresent("//*[@content-desc='welcomeName']");
-      homepage.transferButtonOnLandingPage("Savings");
-      homepage.transferButtonOnLandingPage("Chequing");
-      viewaccounts.transferButtonOnAccountDetailsPage("Savings");
-      viewaccounts.transferButtonOnAccountDetailsPage("Chequing");
-      System.out.println("Testcase 17 - Successfully Completed");
+    	System.out.println("Running Testcase 17 - Verify Transfers button functionality");
+    	brow.reset();
+    	login.loginToapp("pollyanna","Password1##");
+    	login.acceptTermAndConditions();
+    	brow.waitUntilElementPresent("//*[@content-desc='welcomeName']");
+      	homepage.transferButtonOnLandingPage("Savings");
+      	homepage.transferButtonOnLandingPage("Chequing");
+      	viewaccounts.transferButtonOnAccountDetailsPage("Savings");
+      	viewaccounts.transferButtonOnAccountDetailsPage("Chequing");
+      	System.out.println("Testcase 17 - Successfully Completed");
     }
-    
-    
 }
