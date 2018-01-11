@@ -102,7 +102,7 @@
                     <div class="method-list-content failed suite-Automation">
                       <span>
                         <img width="3%" src="failed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Automation" title="com.testscripts.Testcases" hash-for-method="withLoanBalanceDetails">withLoanBalanceDetails</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-Automation" title="com.testscripts.Testcases" hash-for-method="transfers">transfers</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Automation -->
@@ -125,28 +125,47 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="withLoanBalanceDetails">
-                  </a> <!-- withLoanBalanceDetails -->
-                  <span class="method-name">withLoanBalanceDetails</span>
-                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of element located by: By.xpath: //*[@content-desc=&apos;welcomeName&apos;] (tried for 60 second(s) with 500 MILLISECONDS interval)
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:82)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
-	at com.library.Common.waitUntilElementPresent(Common.java:160)
-	at com.testscripts.Testcases.withLoanBalanceDetails(Testcases.java:172)
-Caused by: org.openqa.selenium.NoSuchElementException: Cannot locate an element using By.xpath: //*[@content-desc=&apos;welcomeName&apos;]
+                  <a name="transfers">
+                  </a> <!-- transfers -->
+                  <span class="method-name">transfers</span>
+                  <div class="stack-trace">org.openqa.selenium.NoSuchElementException: no such element (An element could not be located on the page using the given search parameters (XPATH=&apos;//*[@text[starts-with(.,&apos;Good&apos;)]]&apos;))  (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
 For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
 Build info: version: &apos;3.8.1&apos;, revision: &apos;6e95a6684b&apos;, time: &apos;2017-12-01T18:33:54.468Z&apos;
-System info: host: &apos;MGGG0HH2&apos;, ip: &apos;10.149.250.186&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_152&apos;
-Driver info: driver.version: unknown
-	at org.openqa.selenium.support.ui.ExpectedConditions.lambda$findElement$0(ExpectedConditions.java:882)
-	at java.util.Optional.orElseThrow(Optional.java:290)
-	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:881)
-	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:43)
-	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:182)
-	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:179)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:208)
-	... 27 more
-... Removed 25 stack frames
+System info: host: &apos;MGGG0HH2&apos;, ip: &apos;10.149.250.218&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_152&apos;
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {appActivity: .MainActivity, appPackage: com.jncb.mobile, autoAcceptAlerts: false, autoDismissAlerts: false, autoWebview: false, desired: {appActivity: .MainActivity, appPackage: com.jncb.mobile, platformName: Android, reportDirectory: reports, reportFormat: xml, testName: Untitled, udid: 0123456789ABCDEF, unicodeKeyboard: True}, device.category: PHONE, device.majorVersion: 5.x, device.manufacture: ZTE, device.model: DIGICEL DL910, device.name: DIGICEL DL910, device.os: Android, device.screenSize: 480x854, device.serialNumber: 0123456789ABCDEF, device.version: 5.0, dontGoHomeOnQuit: false, dontStopAppOnReset: false, fullReset: false, instrumentApp: false, javascriptEnabled: true, keystorePath: ~/.android/debug.keystore, noReset: false, platform: ANDROID, platformName: ANDROID, projectName: , reportDirectory: reports, reportFormat: xml, reportUrl: C:\Users\vermas\appiumstudi..., reservationDuration: 240, testName: Untitled, udid: 0123456789ABCDEF, unicodeKeyboard: True, useKeystore: false, waitForDeviceTimeout: 120000}
+Session ID: 76544219-dc9b-4309-894f-ef0f1737d46d
+*** Element info: {Using=xpath, value=//*[@text[starts-with(.,&apos;Good&apos;)]]}
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
+	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
+	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:89)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
+	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:42)
+	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
+	at io.appium.java_client.android.AndroidDriver.execute(AndroidDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:371)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:62)
+	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
+	at io.appium.java_client.android.AndroidDriver.findElement(AndroidDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:473)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElementByXPath(DefaultGenericMobileDriver.java:140)
+	at io.appium.java_client.AppiumDriver.findElementByXPath(AppiumDriver.java:1)
+	at io.appium.java_client.android.AndroidDriver.findElementByXPath(AndroidDriver.java:1)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
+	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:58)
+	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
+	at io.appium.java_client.android.AndroidDriver.findElement(AndroidDriver.java:1)
+	at com.library.Common.webElementId(Common.java:89)
+	at com.library.Common.getText(Common.java:236)
+	at com.businessfunctions.ViewAccounts.transferButtonOnAccountDetailsPage(ViewAccounts.java:54)
+	at com.testscripts.Testcases.transfers(Testcases.java:282)
+... Removed 29 stack frames
 </div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
@@ -166,20 +185,21 @@ Driver info: driver.version: unknown
     &lt;classes&gt;
       &lt;class name=&quot;com.testscripts.Testcases&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;withLoanBalanceDetails&quot;/&gt;
-          &lt;exclude name=&quot;LoginWithEmptyData&quot;/&gt;
-          &lt;exclude name=&quot;LoginWithValidTestdata&quot;/&gt;
-          &lt;exclude name=&quot;LoginWithInvalidUsername&quot;/&gt;
-          &lt;exclude name=&quot;LoginWithInvalidPassword&quot;/&gt;
-          &lt;exclude name=&quot;PasswordRetry&quot;/&gt;
+          &lt;include name=&quot;transfers&quot;/&gt;
+          &lt;exclude name=&quot;loginWithEmptyData&quot;/&gt;
+          &lt;exclude name=&quot;loginWithValidTestdata&quot;/&gt;
+          &lt;exclude name=&quot;loginWithInvalidUsername&quot;/&gt;
+          &lt;exclude name=&quot;loginWithInvalidPassword&quot;/&gt;
+          &lt;exclude name=&quot;passwordRetry&quot;/&gt;
           &lt;exclude name=&quot;verifyHomepageAllAccounts&quot;/&gt;
           &lt;exclude name=&quot;verifyHomepageOneAccount&quot;/&gt;
           &lt;exclude name=&quot;verifyHomepageNoAccounts&quot;/&gt;
-          &lt;exclude name=&quot;ShowTenTransaction&quot;/&gt;
+          &lt;exclude name=&quot;showTenTransaction&quot;/&gt;
+          &lt;exclude name=&quot;withLoanBalanceDetails&quot;/&gt;
           &lt;exclude name=&quot;zeroLoanBalanceDetails&quot;/&gt;
           &lt;exclude name=&quot;savingsBalanceBreakdown&quot;/&gt;
-          &lt;exclude name=&quot;LogOutButton&quot;/&gt;
-          &lt;exclude name=&quot;FeedBackButton&quot;/&gt;
+          &lt;exclude name=&quot;logOutButton&quot;/&gt;
+          &lt;exclude name=&quot;feedBackButton&quot;/&gt;
           &lt;exclude name=&quot;termsAndConditions&quot;/&gt;
           &lt;exclude name=&quot;animation&quot;/&gt;
         &lt;/methods&gt;
@@ -225,14 +245,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'withLoanBalanceDetails')
+data.setCell(0, 1, 'transfers')
 data.setCell(0, 2, 'com.testscripts.Testcases')
-data.setCell(0, 3, 117013);
+data.setCell(0, 3, 144637);
 window.suiteTableData['Automation']= { tableData: data, tableDiv: 'times-div-Automation'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 1 minutes</span>
+              <span class="suite-total-time">Total running time: 2 minutes</span>
               <div id="times-div-Automation">
               </div> <!-- times-div-Automation -->
             </div> <!-- times-div -->
@@ -247,41 +267,43 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Automation" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">15 ignored methods</span>
+            <span class="header-content">16 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
               <span class="ignored-class-name">com.testscripts.Testcases</span>
               <div class="ignored-methods-div">
-                <span class="ignored-method-name">LoginWithValidTestdata</span>
+                <span class="ignored-method-name">logOutButton</span>
                 <br/>
                 <span class="ignored-method-name">verifyHomepageNoAccounts</span>
                 <br/>
-                <span class="ignored-method-name">LoginWithEmptyData</span>
+                <span class="ignored-method-name">loginWithEmptyData</span>
                 <br/>
-                <span class="ignored-method-name">ShowTenTransaction</span>
+                <span class="ignored-method-name">loginWithValidTestdata</span>
                 <br/>
                 <span class="ignored-method-name">zeroLoanBalanceDetails</span>
                 <br/>
-                <span class="ignored-method-name">PasswordRetry</span>
+                <span class="ignored-method-name">loginWithInvalidUsername</span>
+                <br/>
+                <span class="ignored-method-name">loginWithInvalidPassword</span>
+                <br/>
+                <span class="ignored-method-name">feedBackButton</span>
+                <br/>
+                <span class="ignored-method-name">showTenTransaction</span>
+                <br/>
+                <span class="ignored-method-name">passwordRetry</span>
                 <br/>
                 <span class="ignored-method-name">savingsBalanceBreakdown</span>
                 <br/>
                 <span class="ignored-method-name">verifyHomepageOneAccount</span>
                 <br/>
-                <span class="ignored-method-name">FeedBackButton</span>
-                <br/>
                 <span class="ignored-method-name">verifyHomepageAllAccounts</span>
                 <br/>
-                <span class="ignored-method-name">LogOutButton</span>
-                <br/>
-                <span class="ignored-method-name">LoginWithInvalidPassword</span>
-                <br/>
-                <span class="ignored-method-name">animation</span>
-                <br/>
-                <span class="ignored-method-name">LoginWithInvalidUsername</span>
+                <span class="ignored-method-name">withLoanBalanceDetails</span>
                 <br/>
                 <span class="ignored-method-name">termsAndConditions</span>
+                <br/>
+                <span class="ignored-method-name">animation</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
@@ -295,18 +317,18 @@ return data;
             <div class="chronological-class">
               <div class="chronological-class-name">com.testscripts.Testcases</div> <!-- chronological-class-name -->
               <div class="configuration-suite before">
-                <span class="method-name">OpenApp</span>
+                <span class="method-name">openApp</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-suite before -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">withLoanBalanceDetails</span>
-                <span class="method-start">11474 ms</span>
+                <span class="method-name">transfers</span>
+                <span class="method-start">10901 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-suite after">
-                <span class="method-name">CloseApp</span>
-                <span class="method-start">128563 ms</span>
+                <span class="method-name">closeApp</span>
+                <span class="method-start">155578 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

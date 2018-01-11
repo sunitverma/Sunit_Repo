@@ -19,7 +19,8 @@
                 <exclude name="logOutButton" />
 				<exclude name="feedBackButton" />
                 <exclude name="termsAndConditions" />
-                <include name="animation" />
+                <exclude name="animation" />
+                <include name="transfers" />
              </methods>
         </class>
     </classes>
