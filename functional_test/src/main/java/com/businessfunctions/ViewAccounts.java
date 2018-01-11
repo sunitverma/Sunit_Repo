@@ -53,4 +53,42 @@ public class ViewAccounts{
         browser.click("xpath", "//*[@content-desc='backButton']");
         browser.verifyText("xpath", "//*[@content-desc='welcomeName']", browser.getText("xpath", "//*[@text[starts-with(.,'Good')]]"));
     }
+    
+  //K - Method - to verify me to me transfers
+     public void meToMeTransfer() throws InterruptedException
+     {
+         if(browser.verifyElementPresent("xpath", "//*[@class='android.widget.ImageView' and ./parent::*[@contentDescription='Next Button Disabled']]"))
+         {
+             browser.click("xpath", "//*[@contentDescription='accountCard' and ./parent::*[./parent::*[./preceding-sibling::*[@class='android.view.ViewGroup']]] and ./*[@text='Savings']]");
+             browser.click("xpath", "//*[@class='android.widget.ImageView' and ./parent::*[@contentDescription='Next Button Enabled']]");
+         }
+             Thread.sleep(5000);
+             browser.sendKeys("xpath", "//*[@text and @class='android.widget.EditText']", "100.00");
+     }
+     
+     //K - Method - to verify me to me transfers on accounts from Account List page
+     public void meToMeTransfersAccountListPage(String AccountType,String AccountNumber) throws InterruptedException
+     {
+         
+         if(browser.getSize("xpath", AccountType)!=0)
+            {
+                browser.click("xpath", AccountNumber);
+                Thread.sleep(5000);
+                meToMeTransfer();
+            }
+         
+     }
+     
+     //K - Method - to verify me to me transfers on accounts from Account Summary page
+     public void meToMeTransfersAccountSummaryPage(String AccountType,String AccountNumber,String TransferButton) throws InterruptedException
+     {
+         if(browser.getSize("xpath", AccountType)!=0)
+            {
+                System.out.println("Saving account is available");
+                browser.click("xpath", AccountNumber);
+                browser.click("xpath", TransferButton);
+                meToMeTransfer();
+            }
+     }
+    
 }

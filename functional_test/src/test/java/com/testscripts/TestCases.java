@@ -282,4 +282,56 @@ public class TestCases extends RootTest {
       	viewaccounts.transferButtonOnAccountDetailsPage("Chequing");
       	System.out.println("Testcase 17 - Successfully Completed");
     }
+    
+    //Test case_17 Verify Me to Me Transfer from Savings Account List Page -- K
+    @Test
+    public void meToMeTransferfromSavingsListPage() throws Exception
+    {
+    	System.out.println("Running Testcase 18 - Verify Me to Me Transfer from Savings Account List Page");
+        brow.reset();
+        login.loginToapp("YANDISUD","Password1##");
+        homepage.animationOnLanding();
+        login.acceptTermAndConditions();
+        brow.waitUntilElementPresent("//*[@content-desc='welcomeName']");
+        viewaccounts.meToMeTransfersAccountListPage("//*[@class='android.view.ViewGroup' and *[@text='Savings']]","//*[@text='TRANSFER' and ./parent::*[./preceding-sibling::*[@text='435335217']]]");
+    }
+    
+  //Test case_ Verify Me to Me Transfer from Savings Account summary page -- K
+    @Test
+    public void meToMeTransferfromSavingsSummaryPage() throws Exception
+    {
+    	System.out.println("Running Testcase 19 - Verify Me to Me Transfer from Savings Account Summary Page");
+        brow.reset();
+        login.loginToapp("YANDISUD","Password1##");
+        homepage.animationOnLanding();
+        login.acceptTermAndConditions();
+        brow.waitUntilElementPresent("//*[@content-desc='welcomeName']");
+        viewaccounts.meToMeTransfersAccountSummaryPage("//*[@class='android.view.ViewGroup' and *[@text='Savings']]","//*[@contentDescription='accountCard' and  ./*[@text='435335217'] and ./*[@text='Savings']]","//*[@contentDescription='Transfer Button' and ./preceding-sibling::*[@class='android.widget.ScrollView']]");
+    }
+    
+  //Test case_ Verify Me to Me Transfer from Chequings Account List page -- K
+    @Test
+    public void meToMeTransferfromChequingsListPage() throws Exception
+    {
+    	System.out.println("Running Testcase 20 - Verify Me to Me Transfer from Chequing Account List Page");
+        brow.reset();
+        login.loginToapp("POLLYANNA","Password1##");
+        homepage.animationOnLanding();
+        login.acceptTermAndConditions();
+        brow.waitUntilElementPresent("//*[@content-desc='welcomeName']");
+        viewaccounts.meToMeTransfersAccountListPage("//*[@class='android.view.ViewGroup' and *[@text='Chequing']]","//*[@text='TRANSFER' and ./parent::*[./preceding-sibling::*[@text='061162232']]]");
+    }
+    
+  //Test case_ Verify Me to Me Transfer from Chequings Account summary page -- K
+    @Test
+    public void meToMeTransferfromChequingsSummaryPage() throws Exception
+    {
+    	System.out.println("Running Testcase 21 - Verify Me to Me Transfer from Chequing Account Summary Page");
+        brow.reset();
+        login.loginToapp("POLLYANNA","Password1##");
+        homepage.animationOnLanding();
+        login.acceptTermAndConditions();
+        brow.waitUntilElementPresent("//*[@content-desc='welcomeName']");
+        viewaccounts.meToMeTransfersAccountSummaryPage("//*[@class='android.view.ViewGroup' and *[@text='Chequing']]","//*[@contentDescription='accountCard' and  ./*[@text='061162232'] and ./*[@text='Chequing']]","//*[@contentDescription='Transfer Button' and ./preceding-sibling::*[@class='android.widget.ScrollView']]");
+    }
 }
