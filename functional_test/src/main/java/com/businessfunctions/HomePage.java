@@ -6,6 +6,7 @@ public class HomePage {
      
     Common browser;
     //constructor with one argument.
+    
     public HomePage(Common br)
     {
         browser=br;
@@ -40,7 +41,8 @@ public class HomePage {
         {
             System.out.println("Loan account is available");
         }
-        else {
+        else
+        {
             System.out.println("Neither Savings nor Loan account is available");
         }
         browser.screenShot();
@@ -50,7 +52,7 @@ public class HomePage {
     public void verifyHomepageNoAccounts() throws InterruptedException
     {       
         browser.sleepThread(2000);
-        if(browser.getSize("xpath", "//*[@content-desc='alertMessage']")!=0)
+        if(browser.getSize("name", "alertMessage")!=0)
         {
             System.out.println("No accounts are available");
         }
@@ -60,41 +62,43 @@ public class HomePage {
     // S - Method - to verify animation displayed on Landing page
     public void animationOnLanding()
     {
-      if (browser.getSize("xpath", "//*[@content-desc='spinnerText']")!=0)
-      {
-        if (browser.getText("xpath", "//*[@content-desc='spinnerText']").equals("One moment please"))
+        if (browser.getSize("name", "spinnerText")!=0)
         {
-          browser.screenShot();
-          System.out.println("Correct anitmation message displayed - One moment please");
+            if (browser.getText("name", "spinnerText").equals("One moment please"))
+            {
+                browser.screenShot();
+                System.out.println("Correct anitmation message displayed - One moment please");
+            }
+            else
+            {
+                browser.screenShot();
+                System.out.println("Animation message on Landing page is not correct");
+            }
+            browser.waitUntilElementPresent("//*[@content-desc='scrollToEndButton' or @content-desc='welcomeName']");
         }
         else
         {
-          browser.screenShot();
-          System.out.println("Animation message on Landing page is not correct");
+            browser.waitUntilElementPresent("//*[@content-desc='scrollToEndButton' or @content-desc='welcomeName']");
+            System.out.println("Animation not displayed on Landing page");
         }
-        browser.waitUntilElementPresent("//*[@content-desc='scrollToEndButton' or @content-desc='welcomeName']");
-      }
-      else
-      {
-        browser.waitUntilElementPresent("//*[@content-desc='scrollToEndButton' or @content-desc='welcomeName']");
-        System.out.println("Animation not displayed on Landing page");
-      }
     }
     
     //S - Method - to verify transfer button working for saving and Chequing accounts on landing page
     public void transferButtonOnLandingPage(String accounttype)
     {
-      browser.click("xpath", "(//*[@content-desc='accountCard' and *[@text='"+ accounttype + "'] and *[@text>0]]//*[@content-desc='Transfer Button'])[1]");
-      browser.verifyText("xpath", "//*[@content-desc='TransferHeader']", "Where would you like to transfer to ?");
-      browser.verifyElementPresent("xpath", "//*[@content-desc='backButton']");
-      browser.click("xpath", "//*[@content-desc='backButton']");
-      browser.verifyText("xpath", "//*[@content-desc='welcomeName']", browser.getText("xpath", "//*[@text[starts-with(.,'Good')]]"));
-      if(browser.getSize("xpath", "//*[@content-desc='accountCard' and *[@text='Loan']]//*[@content-desc='Transfer Button']")!=0)
-      {
-          System.out.println("The Transfer button is there for Loan account");
-      }
-      {
+        browser.click("xpath", "(//*[@content-desc='accountCard' and *[@text='"+ accounttype + "'] and *[@text>0]]//*[@content-desc='Transfer Button'])[1]");
+        browser.verifyText("name", "TransferHeader", "Where would you like to transfer to ?");
+        browser.verifyElementPresent("name", "backButton");
+        browser.click("name", "backButton");
+        browser.verifyText("name", "welcomeName", browser.getText("xpath", "//*[@text[starts-with(.,'Good')]]"));
+        
+        if(browser.getSize("xpath", "//*[@content-desc='accountCard' and *[@text='Loan']]//*[@content-desc='Transfer Button']")!=0)
+        {
+            System.out.println("The Transfer button is there for Loan account");
+        }
+        else
+        {
           System.out.println("The Transfer button is not there for Loan account and its as expected");
-      }
+        }
     }
 }

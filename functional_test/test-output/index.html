@@ -24,7 +24,7 @@
     <div class="top-banner-root">
       <span class="top-banner-title-font">Test results</span>
       <br/>
-      <span class="top-banner-font-1">1 suite, 1 failed test</span>
+      <span class="top-banner-font-1">1 suite</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -38,7 +38,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" class="navigator-link" panel-name="suite-Automation">
-              <span class="suite-name border-failed">Automation</span>
+              <span class="suite-name border-passed">Automation</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -91,21 +91,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method, 1 failed,   </span>
+                    <span class="method-stats">1 method,   1 passed</span>
                   </li>
                   <li>
-                    <span class="method-list-title failed">Failed methods</span>
-                    <span class="show-or-hide-methods failed">
-                      <a href="#" panel-name="suite-Automation" class="hide-methods failed suite-Automation"> (hide)</a> <!-- hide-methods failed suite-Automation -->
-                      <a href="#" panel-name="suite-Automation" class="show-methods failed suite-Automation"> (show)</a> <!-- show-methods failed suite-Automation -->
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-Automation" class="hide-methods passed suite-Automation"> (hide)</a> <!-- hide-methods passed suite-Automation -->
+                      <a href="#" panel-name="suite-Automation" class="show-methods passed suite-Automation"> (show)</a> <!-- show-methods passed suite-Automation -->
                     </span>
-                    <div class="method-list-content failed suite-Automation">
+                    <div class="method-list-content passed suite-Automation">
                       <span>
-                        <img width="3%" src="failed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Automation" title="com.testscripts.Testcases" hash-for-method="transfers">transfers</a> <!-- method navigator-link -->
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Automation" title="com.testscripts.TestCases" hash-for-method="meToMetransfer">meToMetransfer</a> <!-- method navigator-link -->
                       </span>
                       <br/>
-                    </div> <!-- method-list-content failed suite-Automation -->
+                    </div> <!-- method-list-content passed suite-Automation -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -117,60 +117,21 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Automation" class="panel Automation">
-          <div class="suite-Automation-class-failed">
+          <div class="suite-Automation-class-passed">
             <div class="main-panel-header rounded-window-top">
-              <img src="failed.png"/>
-              <span class="class-name">com.testscripts.Testcases</span>
+              <img src="passed.png"/>
+              <span class="class-name">com.testscripts.TestCases</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="transfers">
-                  </a> <!-- transfers -->
-                  <span class="method-name">transfers</span>
-                  <div class="stack-trace">org.openqa.selenium.NoSuchElementException: no such element (An element could not be located on the page using the given search parameters (XPATH=&apos;//*[@text[starts-with(.,&apos;Good&apos;)]]&apos;))  (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 0 milliseconds
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;3.8.1&apos;, revision: &apos;6e95a6684b&apos;, time: &apos;2017-12-01T18:33:54.468Z&apos;
-System info: host: &apos;MGGG0HH2&apos;, ip: &apos;10.149.250.218&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_152&apos;
-Driver info: io.appium.java_client.android.AndroidDriver
-Capabilities {appActivity: .MainActivity, appPackage: com.jncb.mobile, autoAcceptAlerts: false, autoDismissAlerts: false, autoWebview: false, desired: {appActivity: .MainActivity, appPackage: com.jncb.mobile, platformName: Android, reportDirectory: reports, reportFormat: xml, testName: Untitled, udid: 0123456789ABCDEF, unicodeKeyboard: True}, device.category: PHONE, device.majorVersion: 5.x, device.manufacture: ZTE, device.model: DIGICEL DL910, device.name: DIGICEL DL910, device.os: Android, device.screenSize: 480x854, device.serialNumber: 0123456789ABCDEF, device.version: 5.0, dontGoHomeOnQuit: false, dontStopAppOnReset: false, fullReset: false, instrumentApp: false, javascriptEnabled: true, keystorePath: ~/.android/debug.keystore, noReset: false, platform: ANDROID, platformName: ANDROID, projectName: , reportDirectory: reports, reportFormat: xml, reportUrl: C:\Users\vermas\appiumstudi..., reservationDuration: 240, testName: Untitled, udid: 0123456789ABCDEF, unicodeKeyboard: True, useKeystore: false, waitForDeviceTimeout: 120000}
-Session ID: 76544219-dc9b-4309-894f-ef0f1737d46d
-*** Element info: {Using=xpath, value=//*[@text[starts-with(.,&apos;Good&apos;)]]}
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
-	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
-	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
-	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
-	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:89)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
-	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:42)
-	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
-	at io.appium.java_client.android.AndroidDriver.execute(AndroidDriver.java:1)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:371)
-	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:62)
-	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
-	at io.appium.java_client.android.AndroidDriver.findElement(AndroidDriver.java:1)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:473)
-	at io.appium.java_client.DefaultGenericMobileDriver.findElementByXPath(DefaultGenericMobileDriver.java:140)
-	at io.appium.java_client.AppiumDriver.findElementByXPath(AppiumDriver.java:1)
-	at io.appium.java_client.android.AndroidDriver.findElementByXPath(AndroidDriver.java:1)
-	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
-	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:58)
-	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
-	at io.appium.java_client.android.AndroidDriver.findElement(AndroidDriver.java:1)
-	at com.library.Common.webElementId(Common.java:89)
-	at com.library.Common.getText(Common.java:236)
-	at com.businessfunctions.ViewAccounts.transferButtonOnAccountDetailsPage(ViewAccounts.java:54)
-	at com.testscripts.Testcases.transfers(Testcases.java:282)
-... Removed 29 stack frames
-</div> <!-- stack-trace -->
+                  <a name="meToMetransfer">
+                  </a> <!-- meToMetransfer -->
+                  <span class="method-name">meToMetransfer</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Automation-class-failed -->
+          </div> <!-- suite-Automation-class-passed -->
         </div> <!-- panel Automation -->
         <div panel-name="test-xml-Automation" class="panel">
           <div class="main-panel-header rounded-window-top">
@@ -183,27 +144,11 @@ Session ID: 76544219-dc9b-4309-894f-ef0f1737d46d
 &lt;suite thread-count=&quot;-1&quot; guice-stage=&quot;DEVELOPMENT&quot; name=&quot;Automation&quot;&gt;
   &lt;test name=&quot;TestScripts&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;com.testscripts.Testcases&quot;&gt;
+      &lt;class name=&quot;com.testscripts.TestCases&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;transfers&quot;/&gt;
-          &lt;exclude name=&quot;loginWithEmptyData&quot;/&gt;
-          &lt;exclude name=&quot;loginWithValidTestdata&quot;/&gt;
-          &lt;exclude name=&quot;loginWithInvalidUsername&quot;/&gt;
-          &lt;exclude name=&quot;loginWithInvalidPassword&quot;/&gt;
-          &lt;exclude name=&quot;passwordRetry&quot;/&gt;
-          &lt;exclude name=&quot;verifyHomepageAllAccounts&quot;/&gt;
-          &lt;exclude name=&quot;verifyHomepageOneAccount&quot;/&gt;
-          &lt;exclude name=&quot;verifyHomepageNoAccounts&quot;/&gt;
-          &lt;exclude name=&quot;showTenTransaction&quot;/&gt;
-          &lt;exclude name=&quot;withLoanBalanceDetails&quot;/&gt;
-          &lt;exclude name=&quot;zeroLoanBalanceDetails&quot;/&gt;
-          &lt;exclude name=&quot;savingsBalanceBreakdown&quot;/&gt;
-          &lt;exclude name=&quot;logOutButton&quot;/&gt;
-          &lt;exclude name=&quot;feedBackButton&quot;/&gt;
-          &lt;exclude name=&quot;termsAndConditions&quot;/&gt;
-          &lt;exclude name=&quot;animation&quot;/&gt;
+          &lt;include name=&quot;meToMetransfer&quot;/&gt;
         &lt;/methods&gt;
-      &lt;/class&gt; &lt;!-- com.testscripts.Testcases --&gt;
+      &lt;/class&gt; &lt;!-- com.testscripts.TestCases --&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- TestScripts --&gt;
 &lt;/suite&gt; &lt;!-- Automation --&gt;
@@ -245,14 +190,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'transfers')
-data.setCell(0, 2, 'com.testscripts.Testcases')
-data.setCell(0, 3, 144637);
+data.setCell(0, 1, 'meToMetransfer')
+data.setCell(0, 2, 'com.testscripts.TestCases')
+data.setCell(0, 3, 206022);
 window.suiteTableData['Automation']= { tableData: data, tableDiv: 'times-div-Automation'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 2 minutes</span>
+              <span class="suite-total-time">Total running time: 3 minutes</span>
               <div id="times-div-Automation">
               </div> <!-- times-div-Automation -->
             </div> <!-- times-div -->
@@ -267,43 +212,53 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Automation" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">16 ignored methods</span>
+            <span class="header-content">21 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
-              <span class="ignored-class-name">com.testscripts.Testcases</span>
+              <span class="ignored-class-name">com.testscripts.TestCases</span>
               <div class="ignored-methods-div">
-                <span class="ignored-method-name">logOutButton</span>
+                <span class="ignored-method-name">transfers</span>
                 <br/>
                 <span class="ignored-method-name">verifyHomepageNoAccounts</span>
                 <br/>
-                <span class="ignored-method-name">loginWithEmptyData</span>
+                <span class="ignored-method-name">logOutButton</span>
                 <br/>
-                <span class="ignored-method-name">loginWithValidTestdata</span>
-                <br/>
-                <span class="ignored-method-name">zeroLoanBalanceDetails</span>
-                <br/>
-                <span class="ignored-method-name">loginWithInvalidUsername</span>
+                <span class="ignored-method-name">meToMeTransferfromChequingsSummaryPage</span>
                 <br/>
                 <span class="ignored-method-name">loginWithInvalidPassword</span>
                 <br/>
                 <span class="ignored-method-name">feedBackButton</span>
                 <br/>
-                <span class="ignored-method-name">showTenTransaction</span>
+                <span class="ignored-method-name">loginWithInvalidUsername</span>
                 <br/>
-                <span class="ignored-method-name">passwordRetry</span>
+                <span class="ignored-method-name">zeroLoanBalanceDetails</span>
                 <br/>
-                <span class="ignored-method-name">savingsBalanceBreakdown</span>
+                <span class="ignored-method-name">loginWithValidTestdata</span>
                 <br/>
-                <span class="ignored-method-name">verifyHomepageOneAccount</span>
+                <span class="ignored-method-name">meToMeTransferfromSavingsListPage</span>
+                <br/>
+                <span class="ignored-method-name">loginWithEmptyData</span>
                 <br/>
                 <span class="ignored-method-name">verifyHomepageAllAccounts</span>
                 <br/>
-                <span class="ignored-method-name">withLoanBalanceDetails</span>
+                <span class="ignored-method-name">verifyHomepageOneAccount</span>
+                <br/>
+                <span class="ignored-method-name">meToMeTransferfromSavingsSummaryPage</span>
+                <br/>
+                <span class="ignored-method-name">savingsBalanceBreakdown</span>
+                <br/>
+                <span class="ignored-method-name">passwordRetry</span>
+                <br/>
+                <span class="ignored-method-name">showTenTransaction</span>
+                <br/>
+                <span class="ignored-method-name">animation</span>
                 <br/>
                 <span class="ignored-method-name">termsAndConditions</span>
                 <br/>
-                <span class="ignored-method-name">animation</span>
+                <span class="ignored-method-name">withLoanBalanceDetails</span>
+                <br/>
+                <span class="ignored-method-name">meToMeTransferfromChequingsListPage</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
@@ -315,20 +270,18 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">com.testscripts.Testcases</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">com.testscripts.TestCases</div> <!-- chronological-class-name -->
               <div class="configuration-suite before">
                 <span class="method-name">openApp</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-suite before -->
               <div class="test-method">
-                <img src="failed.png">
-                </img>
-                <span class="method-name">transfers</span>
-                <span class="method-start">10901 ms</span>
+                <span class="method-name">meToMetransfer</span>
+                <span class="method-start">10209 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-suite after">
                 <span class="method-name">closeApp</span>
-                <span class="method-start">155578 ms</span>
+                <span class="method-start">216302 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

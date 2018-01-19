@@ -9,47 +9,10 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="7">Automation</th></tr>
-<tr><td><a href="#t0">TestScripts</a></td><td class="num">0</td><td class="num">0</td><td class="num attn">1</td><td class="num">144,660</td><td></td><td></td></tr>
+<tr><td><a href="#t0">TestScripts</a></td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">206,074</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Automation</th></tr></tbody><tbody id="t0"><tr><th colspan="4">TestScripts &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">com.testscripts.Testcases</td><td><a href="#m0">transfers</a></td><td rowspan="1">1515522831223</td><td rowspan="1">144637</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Automation</th></tr></tbody><tbody id="t0"><tr><th colspan="4">TestScripts &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">com.testscripts.TestCases</td><td><a href="#m0">meToMetransfer</a></td><td rowspan="1">1516309629134</td><td rowspan="1">206022</td></tr></tbody>
 </table>
-<h2>TestScripts</h2><h3 id="m0">com.testscripts.Testcases#transfers</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.NoSuchElementException: no such element (An element could not be located on the page using the given search parameters (XPATH=&apos;//*[@text[starts-with(.,&apos;Good&apos;)]]&apos;))  (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 0 milliseconds
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;3.8.1&apos;, revision: &apos;6e95a6684b&apos;, time: &apos;2017-12-01T18:33:54.468Z&apos;
-System info: host: &apos;MGGG0HH2&apos;, ip: &apos;10.149.250.218&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_152&apos;
-Driver info: io.appium.java_client.android.AndroidDriver
-Capabilities {appActivity: .MainActivity, appPackage: com.jncb.mobile, autoAcceptAlerts: false, autoDismissAlerts: false, autoWebview: false, desired: {appActivity: .MainActivity, appPackage: com.jncb.mobile, platformName: Android, reportDirectory: reports, reportFormat: xml, testName: Untitled, udid: 0123456789ABCDEF, unicodeKeyboard: True}, device.category: PHONE, device.majorVersion: 5.x, device.manufacture: ZTE, device.model: DIGICEL DL910, device.name: DIGICEL DL910, device.os: Android, device.screenSize: 480x854, device.serialNumber: 0123456789ABCDEF, device.version: 5.0, dontGoHomeOnQuit: false, dontStopAppOnReset: false, fullReset: false, instrumentApp: false, javascriptEnabled: true, keystorePath: ~/.android/debug.keystore, noReset: false, platform: ANDROID, platformName: ANDROID, projectName: , reportDirectory: reports, reportFormat: xml, reportUrl: C:\Users\vermas\appiumstudi..., reservationDuration: 240, testName: Untitled, udid: 0123456789ABCDEF, unicodeKeyboard: True, useKeystore: false, waitForDeviceTimeout: 120000}
-Session ID: 76544219-dc9b-4309-894f-ef0f1737d46d
-*** Element info: {Using=xpath, value=//*[@text[starts-with(.,&apos;Good&apos;)]]}
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
-	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
-	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
-	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
-	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:89)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
-	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:42)
-	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
-	at io.appium.java_client.android.AndroidDriver.execute(AndroidDriver.java:1)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:371)
-	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:62)
-	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
-	at io.appium.java_client.android.AndroidDriver.findElement(AndroidDriver.java:1)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:473)
-	at io.appium.java_client.DefaultGenericMobileDriver.findElementByXPath(DefaultGenericMobileDriver.java:140)
-	at io.appium.java_client.AppiumDriver.findElementByXPath(AppiumDriver.java:1)
-	at io.appium.java_client.android.AndroidDriver.findElementByXPath(AndroidDriver.java:1)
-	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
-	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:58)
-	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
-	at io.appium.java_client.android.AndroidDriver.findElement(AndroidDriver.java:1)
-	at com.library.Common.webElementId(Common.java:89)
-	at com.library.Common.getText(Common.java:236)
-	at com.businessfunctions.ViewAccounts.transferButtonOnAccountDetailsPage(ViewAccounts.java:54)
-	at com.testscripts.Testcases.transfers(Testcases.java:282)
-... Removed 29 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>TestScripts</h2><h3 id="m0">com.testscripts.TestCases#meToMetransfer</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>

@@ -3,13 +3,13 @@
 <suite thread-count="-1" guice-stage="DEVELOPMENT" name="Failed suite [Automation]">
   <test name="TestScripts(failed)">
     <classes>
-      <class name="com.testscripts.Testcases">
+      <class name="com.testscripts.TestCases">
         <methods>
+          <include name="meToMetransfer"/>
           <include name="openApp"/>
-          <include name="transfers"/>
           <include name="closeApp"/>
         </methods>
-      </class> <!-- com.testscripts.Testcases -->
+      </class> <!-- com.testscripts.TestCases -->
     </classes>
   </test> <!-- TestScripts(failed) -->
 </suite> <!-- Failed suite [Automation] -->

@@ -6,6 +6,7 @@ public class ViewSavingsDetails {
        
     Common browser;
     //constructor with one argument.
+    
     public ViewSavingsDetails(Common br)
     {
         browser=br;
@@ -14,25 +15,25 @@ public class ViewSavingsDetails {
     // Savings account balance breakdown -- K
     public void savingAccountBalanceBreakdown() throws InterruptedException
     {
-        String accountType= browser.getText("xpath", "(//*[@content-desc='accountType'])").toString();
-        String accountNumber= browser.getText("xpath", "(//*[@content-desc='accountNumber'])").toString();
+        String accountType= browser.getText("name", "accountType").toString();
+        String accountNumber= browser.getText("name", "accountNumber").toString();
         System.out.printf("Account Type: %s Account Number: %s\n",accountType, accountNumber);
             
-        String availableBalance = browser.getText("xpath", "(//*[@content-desc='availableBalance'])");
-        String availableAmount = browser.getText("xpath", "(//*[@content-desc='availableBalanceBalanceAmount'])");
+        String availableBalance = browser.getText("name", "availableBalance");
+        String availableAmount = browser.getText("name", "availableBalanceBalanceAmount");
         System.out.printf("Balance Type: %s , Available Amount: %s\n",availableBalance, availableAmount);
             
-        String lienBalance = browser.getText("xpath", "(//*[@content-desc='lienBalance'])");
-        String lienBalanceAmount = browser.getText("xpath", "(//*[@content-desc='lienBalanceBalanceAmount'])");
+        String lienBalance = browser.getText("name", "lienBalance)");
+        String lienBalanceAmount = browser.getText("name", "lienBalanceBalanceAmount");
         System.out.printf("Balance Type: %s , Lien Balance Amount: %s\n",lienBalance, lienBalanceAmount);
             
-        String unclearedBalance = browser.getText("xpath", "(//*[@content-desc='unclearBalance'])");
-        String unclearedBalanceAmount = browser.getText("xpath", "(//*[@content-desc='unclearBalanceBalanceAmount'])");
+        String unclearedBalance = browser.getText("name", "unclearBalance");
+        String unclearedBalanceAmount = browser.getText("name", "unclearBalanceBalanceAmount");
         System.out.printf("Balance Type: %s , Uncleared Balance Amount: %s\n",unclearedBalance, unclearedBalanceAmount);
         
-        String balanceType = browser.getText("xpath", "(//*[@content-desc='balanceTypeTitle'])");
-        String balanceAmount = browser.getText("xpath", "(//*[@content-desc='balanceAmount'])");
+        String balanceType = browser.getText("name", "balanceTypeTitle");
+        String balanceAmount = browser.getText("name", "balanceAmount");
         System.out.printf("Balance Type: %s , Balance Amount: %s\n",balanceType, balanceAmount);
         browser.scrollDown("Down", 200, 3500);
-     }
+    }
 }

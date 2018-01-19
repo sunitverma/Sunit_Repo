@@ -10,11 +10,12 @@ import org.testng.annotations.Test;
 
 public class TestCases extends RootTest {
 	
-    static Login login=new Login(brow);
+	static Login login=new Login(brow);
     static HomePage homepage = new HomePage(brow);
     static ViewAccounts viewaccounts = new ViewAccounts(brow);
     static ViewLoanDetails viewloandetails = new ViewLoanDetails(brow);
     static ViewSavingsDetails viewsavingdetails = new ViewSavingsDetails(brow);
+    static TransferPage transferpage=new TransferPage(brow);
     
     //===================================================
     // Created by Sunit Verma and Murali(Date: 13/11/2017)
@@ -25,14 +26,14 @@ public class TestCases extends RootTest {
     @BeforeSuite
     public static void openApp() throws Exception
     {
-        brow.setUp();
+    	brow.setUp();
         FileUtils.deleteDirectory("target/surefire-reports/screenShots");
     }
     
     @AfterSuite
     public static void closeApp() throws Exception
     {
-        brow.quitObject();
+    	brow.quitObject();
     }
     
     //================Sprint 1: 2 test cases ============================
@@ -42,7 +43,7 @@ public class TestCases extends RootTest {
     @Test
     public static void loginWithEmptyData() throws Exception
     {
-        System.out.println("Running Testcase 01 - Login with Empty Testdata");
+    	System.out.println("Running Testcase 01 - Login with Empty Testdata");
         brow.reset();
         login.loginToapp("","");
         login.emptyLoginExpeceted();
@@ -53,15 +54,15 @@ public class TestCases extends RootTest {
     @Test
     public static void loginWithValidTestdata() throws Exception
     {
-        System.out.println("Running Testcase 02 - Login with Valid Credentials");
-        brow.reset();
-        login.loginToapp("pollyanna","Password1##");
-        login.acceptTermAndConditions();
-        brow.waitUntilElementPresent("//*[@class='android.widget.TextView'][1]");
+    	System.out.println("Running Testcase 02 - Login with Valid Credentials");
+    	brow.reset();
+    	login.loginToapp("pollyanna","Password1##");
+    	login.acceptTermAndConditions();
+    	brow.waitUntilElementPresent("//*[@class='android.widget.TextView'][1]");
         brow.verifyText("xpath", "//*[@class='android.widget.TextView'][1]","Log Out");
         brow.screenShot();
         System.out.println("Testcase 02 - Successfully Completed");
-    }     
+    }
     
     //=============== Sprint 1 End ======================================
     //================Sprint 2: 6 test cases ============================
@@ -71,7 +72,7 @@ public class TestCases extends RootTest {
     @Test
     public static void loginWithInvalidUsername() throws Exception
     {
-        System.out.println("Running Testcase 03 - Login with Invalid Username");
+    	System.out.println("Running Testcase 03 - Login with Invalid Username");
         brow.reset();
         login.loginToapp("pollyannaa","Password1##");
         login.invalidUserExpected();
@@ -80,9 +81,9 @@ public class TestCases extends RootTest {
     
     // Test case_04 Login with Invalid Password	-- S
     @Test
-    public static void LoginWithInvalidPassword() throws Exception
+    public static void loginWithInvalidPassword() throws Exception
     {
-        System.out.println("Running Testcase 04 - Login with Invalid Password");
+    	System.out.println("Running Testcase 04 - Login with Invalid Password");
         brow.resetCount("pollyanna");
         brow.reset();
         login.loginToapp("pollyanna","Password1###");
@@ -92,9 +93,9 @@ public class TestCases extends RootTest {
     
     // Test case_05 Login with 3 Password retry -- S
     @Test
-    public static void PasswordRetry() throws Exception
+    public static void passwordRetry() throws Exception
     {
-        System.out.println("Running Testcase 05 - Login with Invalid Password with retry 3 times");
+    	System.out.println("Running Testcase 05 - Login with Invalid Password with retry 3 times");
         brow.resetCount("TOMMYS");
         brow.reset();
         brow.click("xpath", "//*[@content-desc='loginText']");
@@ -106,7 +107,7 @@ public class TestCases extends RootTest {
     @Test
     public static void verifyHomepageAllAccounts() throws MalformedURLException, InterruptedException 
     {
-        System.out.println("Running Testcase 06 - Verifying Login page - User having Saving, Chequing and Loan Accounts");
+    	System.out.println("Running Testcase 06 - Verifying Login page - User having Saving, Chequing and Loan Accounts");
         brow.reset();
         login.loginToapp("YANDISUD", "Password1##");
         login.acceptTermAndConditions();
@@ -119,7 +120,7 @@ public class TestCases extends RootTest {
     public static void verifyHomepageOneAccount() throws MalformedURLException, InterruptedException 
     {
     	System.out.println("Running Testcase 07 - Verifying Login page - User having One Account");
-        brow.reset();
+    	brow.reset();
         login.loginToapp("YANDISUD", "Password1##");
         login.acceptTermAndConditions();
         homepage.verifyHomepageOneAccounts();
@@ -144,7 +145,7 @@ public class TestCases extends RootTest {
     
     // Test case_09 Show top 10 transaction -- K
     @Test
-    public static void ShowTenTransaction() throws Exception
+    public static void showTenTransaction() throws Exception
     {
         System.out.println("Running Testcase 09 - Show Ten Transaction");
         brow.reset();
@@ -210,7 +211,7 @@ public class TestCases extends RootTest {
     
     // Test case_13 Verify Log out button functionality -- S
     @Test
-    public void LogOutButton() throws Exception
+    public void logOutButton() throws Exception
     {
     	System.out.println("Running Testcase 13 - Verify Log out button functionality");
         brow.reset();
@@ -224,7 +225,7 @@ public class TestCases extends RootTest {
 
     // Test case_14 Verify Feed back button functionality -- S
     @Test
-    public void FeedBackButton() throws Exception
+    public void feedBackButton() throws Exception
     {
     	System.out.println("Running Testcase 14 - Verify Feed Back button functionality");
     	brow.reset();
@@ -283,20 +284,23 @@ public class TestCases extends RootTest {
       	System.out.println("Testcase 17 - Successfully Completed");
     }
     
-    //Test case_17 Verify Me to Me Transfer from Savings Account List Page -- K
+    //Test case_18 Verify Me to Me Transfer from Savings Account List Page -- K
     @Test
     public void meToMeTransferfromSavingsListPage() throws Exception
     {
     	System.out.println("Running Testcase 18 - Verify Me to Me Transfer from Savings Account List Page");
         brow.reset();
         login.loginToapp("YANDISUD","Password1##");
-        homepage.animationOnLanding();
+        //homepage.animationOnLanding();
         login.acceptTermAndConditions();
         brow.waitUntilElementPresent("//*[@content-desc='welcomeName']");
-        viewaccounts.meToMeTransfersAccountListPage("//*[@class='android.view.ViewGroup' and *[@text='Savings']]","//*[@text='TRANSFER' and ./parent::*[./preceding-sibling::*[@text='435335217']]]");
+        transferpage.meToMeTransfersAccountListPage("Savings","435335217");
+        // Enter the Index of the currency in the currency dropdown
+        transferpage.meToMeTransfer("2");
+        System.out.println("Testcase 18 - Successfully Completed");
     }
     
-  //Test case_ Verify Me to Me Transfer from Savings Account summary page -- K
+    //Test case_19 Verify Me to Me Transfer from Savings Account summary page -- K
     @Test
     public void meToMeTransferfromSavingsSummaryPage() throws Exception
     {
@@ -306,10 +310,13 @@ public class TestCases extends RootTest {
         homepage.animationOnLanding();
         login.acceptTermAndConditions();
         brow.waitUntilElementPresent("//*[@content-desc='welcomeName']");
-        viewaccounts.meToMeTransfersAccountSummaryPage("//*[@class='android.view.ViewGroup' and *[@text='Savings']]","//*[@contentDescription='accountCard' and  ./*[@text='435335217'] and ./*[@text='Savings']]","//*[@contentDescription='Transfer Button' and ./preceding-sibling::*[@class='android.widget.ScrollView']]");
+        transferpage.meToMeTransfersAccountSummaryPage("Savings","435335217");
+        // Enter the Index of the currency in the currency dropdown
+        transferpage.meToMeTransfer("2");
+        System.out.println("Testcase 19 - Successfully Completed");
     }
     
-  //Test case_ Verify Me to Me Transfer from Chequings Account List page -- K
+    //Test case_20 Verify Me to Me Transfer from Chequings Account List page -- K
     @Test
     public void meToMeTransferfromChequingsListPage() throws Exception
     {
@@ -319,10 +326,13 @@ public class TestCases extends RootTest {
         homepage.animationOnLanding();
         login.acceptTermAndConditions();
         brow.waitUntilElementPresent("//*[@content-desc='welcomeName']");
-        viewaccounts.meToMeTransfersAccountListPage("//*[@class='android.view.ViewGroup' and *[@text='Chequing']]","//*[@text='TRANSFER' and ./parent::*[./preceding-sibling::*[@text='061162232']]]");
+        transferpage.meToMeTransfersAccountListPage("Chequing","061162232");
+        // Enter the Index of the currency in the currency dropdown
+        transferpage.meToMeTransfer("2");
+        System.out.println("Testcase 20 - Successfully Completed");
     }
     
-  //Test case_ Verify Me to Me Transfer from Chequings Account summary page -- K
+    //Test case_21 Verify Me to Me Transfer from Chequings Account summary page -- K
     @Test
     public void meToMeTransferfromChequingsSummaryPage() throws Exception
     {
@@ -332,6 +342,41 @@ public class TestCases extends RootTest {
         homepage.animationOnLanding();
         login.acceptTermAndConditions();
         brow.waitUntilElementPresent("//*[@content-desc='welcomeName']");
-        viewaccounts.meToMeTransfersAccountSummaryPage("//*[@class='android.view.ViewGroup' and *[@text='Chequing']]","//*[@contentDescription='accountCard' and  ./*[@text='061162232'] and ./*[@text='Chequing']]","//*[@contentDescription='Transfer Button' and ./preceding-sibling::*[@class='android.widget.ScrollView']]");
+        transferpage.meToMeTransfersAccountSummaryPage("Chequing","061162232");
+        // Enter the Index of the currency in the currency dropdown
+        transferpage.meToMeTransfer("2");
+        System.out.println("Testcase 21 - Successfully Completed");
+    }
+    
+    //Test case_22 Verify Me to You Transfer --K
+    @Test
+    public void meToYouTransfer() throws Exception
+    {
+    	System.out.println("Running Testcase 22 - Verify Me to You Transfer");
+        brow.reset();
+        login.loginToapp("YANDISUD","Password1##");
+        homepage.animationOnLanding();
+        login.acceptTermAndConditions();
+        brow.waitUntilElementPresent("//*[@content-desc='welcomeName']");
+        transferpage.meToMeTransfersAccountListPage("Savings","435335217");
+        transferpage.meToYouTransferButton();
+        // Enter the Index of the currency in the currency dropdown
+        transferpage.meToYouTransfer("2","Andres");
+        System.out.println("Testcase 22 - Successfully Completed");
+    }
+
+    //Test case_23 Verify Me to Me Transfer -- S
+    @Test
+    public void meToMetransfer() throws Exception
+    {
+        System.out.println("Running Testcase 22 - Verify Me to Me Transfer, Transfer Edit and Confirmation page");
+        brow.reset();
+        login.loginToapp("stonepj","Password1##");
+        homepage.animationOnLanding();
+        login.acceptTermAndConditions();
+        transferpage.transferFlowMeToMe("Savings", "1");
+        brow.sleepThread(1000);
+        //transferpage.transferReviewPage();
+        System.out.println("success");
     }
 }

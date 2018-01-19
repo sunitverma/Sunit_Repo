@@ -293,4 +293,11 @@ public class Common {
     {
         driver.resetApp();
     }
+    
+    //Value SubString
+    public String subString(String value, int begin, int end)
+    {
+      String a =value.substring(begin, end);
+      return a;
+    }
 }

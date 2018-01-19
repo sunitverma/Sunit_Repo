@@ -6,6 +6,7 @@ public class Login {
     
     Common browser;
     //constructor with one argument.
+    
     public Login(Common br)
     {
         browser=br;
@@ -15,8 +16,7 @@ public class Login {
     public void loginToapp(String username,String password) throws InterruptedException
     {
         browser.waitUntilElementPresent("//*[@content-desc='logoImage']");
-        browser.click("xpath", "//*[@content-desc='loginText']");
-        
+        browser.click("name", "loginText");
         browser.waitUntilElementPresent("//*[@content-desc='Username']");
         browser.sendKeys("xpath", "//*[@content-desc='Username']",username);
         browser.keyboardKeys(66);
@@ -25,16 +25,16 @@ public class Login {
         browser.sleepThread(1000);
         browser.keyboardKeys(66);
         
-        browser.click("xpath", "//*[@content-desc='loginButtonText']");
+        browser.click("name", "loginButtonText");
                                        
-        browser.sleepThread(60000);
+        browser.sleepThread(1000);
         browser.screenShot();
     }
     
     // M - Method - Expected - Verifying the Login button while login with Empty Credentials
     public void emptyLoginExpeceted() throws InterruptedException
     {
-        boolean buttonValue = browser.isButtonEnabled("xpath","//*[@content-desc='loginButtonText']");
+        boolean buttonValue = browser.isButtonEnabled("name","loginButtonText");
         
         if(buttonValue == true)
         {
@@ -77,12 +77,12 @@ public class Login {
         browser.keyboardKeys(66);
         
         //First error message
-        browser.click("xpath", "//*[@content-desc='loginButtonText']");
+        browser.click("name", "loginButtonText");
         browser.sleepThread(1000);
-        String errormsg1= browser.getText("xpath", "//*[@content-desc='alertMessage']");
+        String errormsg1= browser.getText("name", "alertMessage");
         browser.screenShot();
         
-        if (errormsg1 == msg1)
+        if (errormsg1.equals(msg1))
         {
             System.out.println("Expected first message is correct");
         }
@@ -92,12 +92,12 @@ public class Login {
         }
         
         //Second error message
-        browser.click("xpath", "//*[@content-desc='loginButtonText']");
+        browser.click("name", "loginButtonText");
         browser.sleepThread(1000);
-        String errormsg2= browser.getText("xpath", "//*[@content-desc='alertMessage']");
+        String errormsg2= browser.getText("name", "alertMessage");
         browser.screenShot();
         
-        if (errormsg2==msg2)
+        if (errormsg2.equals(msg2))
         {
             System.out.println("Expected second message is correct");
         }
@@ -107,12 +107,12 @@ public class Login {
         }
         
         //Third error message
-        browser.click("xpath", "//*[@content-desc='loginButtonText']");
+        browser.click("name", "loginButtonText");
         browser.sleepThread(1000);
-        String errormsg3= browser.getText("xpath", "//*[@content-desc='alertMessage']");
+        String errormsg3= browser.getText("name", "alertMessage");
         browser.screenShot();
         
-        if (errormsg3==msg3)
+        if (errormsg3.equals(msg3))
         {
             System.out.println("Expected third message is correct");
         }
@@ -120,10 +120,6 @@ public class Login {
         {
             System.out.println("Expected third message is wrong");
         }
-        
-        //String message1 = errormsg1;
-        //String message2= errormsg2;
-        //String message3= errormsg3;
         
         //if message is wrong the test case will fail
         browser.compareTexts(errormsg1,msg1);
@@ -134,27 +130,27 @@ public class Login {
     // S - Method - Expected - Login with invalid password
     public void logOutButtonFunction()
     {
-        browser.verifyElementPresent("xpath", "//*[@content-desc='logoutButton']");
-        browser.verifyText("xpath", "//*[@content-desc='logoutButton']", "Log out");
+        browser.verifyElementPresent("name", "logoutButton");
+        browser.verifyText("name", "logoutButton", "Log out");
         
-        browser.click("xpath", "//*[@content-desc='logoutButton']");
+        browser.click("name", "logoutButton");
         
-        browser.verifyText("xpath", "//*[@content-desc='logoutModalFirstTextField']", "Leaving already?");
-        browser.verifyText("xpath", "//*[@content-desc='logoutModalSecondTextField']", "Are you sure you want to log out?");
+        browser.verifyText("name", "logoutModalFirstTextField", "Leaving already?");
+        browser.verifyText("name", "logoutModalSecondTextField", "Are you sure you want to log out?");
         
-        browser.verifyElementPresent("xpath", "//*[@content-desc='logoutModalCancelButton']");
-        browser.verifyElementPresent("xpath", "//*[@content-desc='logoutModalLogoutButton']");
+        browser.verifyElementPresent("name", "logoutModalCancelButton");
+        browser.verifyElementPresent("name", "logoutModalLogoutButton");
         browser.screenShot();
         
-        browser.click("xpath", "//*[@content-desc='logoutModalCancelButton']");
-        browser.verifyText("xpath", "//*[@content-desc='welcomeName']", browser.getText("xpath", "//*[@text[starts-with(.,'Good')]]"));
+        browser.click("name", "logoutModalCancelButton");
+        browser.verifyText("name", "welcomeName", browser.getText("xpath", "//*[@text[starts-with(.,'Good')]]"));
         browser.screenShot();
         System.out.println("Cancel button working fine on Log out pop up");
         
-        browser.click("xpath", "//*[@content-desc='logoutButton']");
+        browser.click("name", "logoutButton");
         
-        browser.click("xpath", "//*[@content-desc='logoutModalLogoutButton']");
-        browser.verifyText("xpath", "//*[@content-desc='loginTitle']", "Log in");
+        browser.click("name", "logoutModalLogoutButton");
+        browser.verifyText("name", "loginTitle", "Log in");
         browser.screenShot();
         System.out.println("Log out button working fine on Log out pop up");
     }
@@ -180,7 +176,7 @@ public class Login {
                 browser.sleepThread(1000);
                 browser.keyboardKeys(66);
                 browser.click("xpath", "(//*[@content-desc='loginButtonText'])");
-                browser.sleepThread(10000);
+                browser.sleepThread(1000);
                 browser.click("xpath", "(//*[@content-desc='scrollToEndButton'])");
                 browser.verifyElementPresent("xpath", "(//*[@content-desc='acceptButton'])");
                 browser.click("xpath", "(//*[@content-desc='acceptButton'])");
@@ -200,21 +196,22 @@ public class Login {
         browser.verifyText("xpath", "(//*[@class='android.widget.TextView'])[2]", "WhatsApp us your Feedback");
         browser.verifyElementPresent("xpath", "(//*[@class='android.view.View'])[13]");
         browser.screenShot();
+        browser.click("xpath", "(//*[@class='android.widget.TextView'])[1]");
         
-        browser.click("xpath", "(//*[@class='android.view.View'])[10]");
         browser.verifyText("id", "from_account_name", "kratosbuild@gmail.com");
-        
-        browser.sendKeys("id", "body", "Feed back for NCB App");
+        browser.verifyText("id", "to", "<mobileappfeedback@jncb.com>, ");
+        browser.verifyText("id", "subject", "Mobile App Feedback");
+        browser.sendKeys("id", "body", "Feed back for NCB App via Automation Script");
         browser.click("id", "send");
         browser.screenShot();
         
         browser.verifyElementPresent("xpath", "(//*[@class='android.view.View'])[7]");
         browser.click("xpath", "(//*[@class='android.view.View'])[7]");
         
-        browser.click("xpath", "(//*[@class='android.view.View'])[13]");
+        browser.click("xpath", "(//*[@class='android.widget.TextView'])[2]");
         browser.verifyElementPresent("id", "entry");
         
-        browser.sendKeys("id", "entry", "Feed back for NCB App");
+        browser.sendKeys("id", "entry", "Feed back for NCB App via Automation Script");
         browser.click("id", "send");
         browser.screenShot();
     }
@@ -222,23 +219,23 @@ public class Login {
     //K - Method - Accept Terms and Conditions
     public void acceptTermAndConditions()
     {
-        if(browser.getSize("xpath", "//*[@content-desc='welcomeName']")!=0)
+        if(browser.getSize("name", "welcomeName")!=0)
         {
             System.out.println("The user has already accepted Terms and Conditions");
         }
-        else if(browser.getSize("xpath", "//*[@content-desc='scrollToEndButton']")!=0)
+        else if(browser.getSize("name", "scrollToEndButton")!=0)
         {
-            browser.click("xpath", "(//*[@content-desc='scrollToEndButton'])");
-            browser.click("xpath", "(//*[@content-desc='acceptButton'])");
+            browser.click("name", "scrollToEndButton");
+            browser.click("name", "acceptButton");
         }
     }
     
     // S - Method - wait for animation page to hide
     public void animationHide()
     {
-      if (browser.getSize("xpath", "//*[@content-desc='spinnerText']")!=0)
-      {
-        browser.waitUntilElementPresent("//*[@content-desc='scrollToEndButton' or @content-desc='welcomeName' or @text='My Accounts']");
-      }
+        if (browser.getSize("xpath", "//*[@content-desc='spinnerText']")!=0)
+        {
+            browser.waitUntilElementPresent("//*[@content-desc='scrollToEndButton' or @content-desc='welcomeName' or @text='My Accounts']");
+        }
     }
 }
