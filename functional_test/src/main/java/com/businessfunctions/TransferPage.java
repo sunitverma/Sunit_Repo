@@ -105,8 +105,9 @@ public class TransferPage {
     {    
         String accountfromno = browser.getText("xpath", "(//*[@content-desc='accountCard' and *[@text='"+ accountfromtype +"']]//*[@content-desc='accountCardNumber'])[1]");
         String accounttono = browser.getText("xpath", "(//*[@content-desc='accountCard' and *[@accountCardType='Savings' or 'Chequing']]//*[@content-desc='accountCardNumber'][not(@text='"+ accountfromno +"')])[1]");
+        String accounttotype = browser.getText("xpath", "//*[@content-desc='accountCard' and *[@text='"+ accounttono + "']]//*[@content-desc='accountCardType']");
+        System.out.println(accountfromno + " " + accounttono + " " + accounttotype);
         browser.click("xpath", "//*[@content-desc='accountCard' and *[@text='"+ accountfromno +"']]//*[@content-desc='Transfer Button']");
-        String accounttotype = browser.getText("xpath", "(//*[@content-desc='accountCard' and *[@text='Savings' or 'Chequing']]//*[@content-desc='accountCardNumber'][not(@text='"+ accountfromno +"')])[1]");
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
         browser.click("xpath", "//*[@text='MY ACCOUNTS']");
         String trunck = browser.subString(accounttono, 5, 9);

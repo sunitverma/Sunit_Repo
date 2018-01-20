@@ -38,7 +38,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" class="navigator-link" panel-name="suite-Automation">
-              <span class="suite-name border-passed">Automation</span>
+              <span class="suite-name border-skipped">Automation</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -91,21 +91,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method,   1 passed</span>
+                    <span class="method-stats">1 method,  1 skipped,  </span>
                   </li>
                   <li>
-                    <span class="method-list-title passed">Passed methods</span>
-                    <span class="show-or-hide-methods passed">
-                      <a href="#" panel-name="suite-Automation" class="hide-methods passed suite-Automation"> (hide)</a> <!-- hide-methods passed suite-Automation -->
-                      <a href="#" panel-name="suite-Automation" class="show-methods passed suite-Automation"> (show)</a> <!-- show-methods passed suite-Automation -->
+                    <span class="method-list-title skipped">Skipped methods</span>
+                    <span class="show-or-hide-methods skipped">
+                      <a href="#" panel-name="suite-Automation" class="hide-methods skipped suite-Automation"> (hide)</a> <!-- hide-methods skipped suite-Automation -->
+                      <a href="#" panel-name="suite-Automation" class="show-methods skipped suite-Automation"> (show)</a> <!-- show-methods skipped suite-Automation -->
                     </span>
-                    <div class="method-list-content passed suite-Automation">
+                    <div class="method-list-content skipped suite-Automation">
                       <span>
-                        <img width="3%" src="passed.png"/>
+                        <img width="3%" src="skipped.png"/>
                         <a href="#" class="method navigator-link" panel-name="suite-Automation" title="com.testscripts.TestCases" hash-for-method="meToMetransfer">meToMetransfer</a> <!-- method navigator-link -->
                       </span>
                       <br/>
-                    </div> <!-- method-list-content passed suite-Automation -->
+                    </div> <!-- method-list-content skipped suite-Automation -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -117,9 +117,9 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Automation" class="panel Automation">
-          <div class="suite-Automation-class-passed">
+          <div class="suite-Automation-class-skipped">
             <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
+              <img src="skipped.png"/>
               <span class="class-name">com.testscripts.TestCases</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
@@ -128,10 +128,47 @@
                   <a name="meToMetransfer">
                   </a> <!-- meToMetransfer -->
                   <span class="method-name">meToMetransfer</span>
+                  <div class="stack-trace">org.openqa.selenium.SessionNotCreatedException: session not created (No device with the following information was found: //device[(@serialnumber=&apos;0123456789abcdef&apos;) and not(@emulator=&apos;true&apos;) ] Lock Device by query: @serialnumber=&apos;0123456789ABCDEF&apos; )  (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 49 milliseconds
+Build info: version: &apos;3.8.1&apos;, revision: &apos;6e95a6684b&apos;, time: &apos;2017-12-01T18:33:54.468Z&apos;
+System info: host: &apos;MGGG0HH2&apos;, ip: &apos;192.168.0.6&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_152&apos;
+Driver info: driver.version: AndroidDriver
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
+	at org.openqa.selenium.remote.JsonWireProtocolResponse.lambda$new$0(JsonWireProtocolResponse.java:53)
+	at org.openqa.selenium.remote.JsonWireProtocolResponse.lambda$getResponseFunction$2(JsonWireProtocolResponse.java:91)
+	at org.openqa.selenium.remote.ProtocolHandshake.lambda$createSession$0(ProtocolHandshake.java:123)
+	at java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:193)
+	at java.util.Spliterators$ArraySpliterator.tryAdvance(Spliterators.java:958)
+	at java.util.stream.ReferencePipeline.forEachWithCancel(ReferencePipeline.java:126)
+	at java.util.stream.AbstractPipeline.copyIntoWithCancel(AbstractPipeline.java:498)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:485)
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:471)
+	at java.util.stream.FindOps$FindOp.evaluateSequential(FindOps.java:152)
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.util.stream.ReferencePipeline.findFirst(ReferencePipeline.java:464)
+	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:126)
+	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:73)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:142)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:89)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
+	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:42)
+	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
+	at io.appium.java_client.android.AndroidDriver.execute(AndroidDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.startSession(RemoteWebDriver.java:219)
+	at org.openqa.selenium.remote.RemoteWebDriver.&lt;init&gt;(RemoteWebDriver.java:142)
+	at io.appium.java_client.DefaultGenericMobileDriver.&lt;init&gt;(DefaultGenericMobileDriver.java:38)
+	at io.appium.java_client.AppiumDriver.&lt;init&gt;(AppiumDriver.java:83)
+	at io.appium.java_client.AppiumDriver.&lt;init&gt;(AppiumDriver.java:93)
+	at io.appium.java_client.android.AndroidDriver.&lt;init&gt;(AndroidDriver.java:72)
+	at com.library.Common.setUp(Common.java:55)
+	at com.testscripts.TestCases.openApp(TestCases.java:29)
+... Removed 24 stack frames
+</div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Automation-class-passed -->
+          </div> <!-- suite-Automation-class-skipped -->
         </div> <!-- panel Automation -->
         <div panel-name="test-xml-Automation" class="panel">
           <div class="main-panel-header rounded-window-top">
@@ -147,6 +184,28 @@
       &lt;class name=&quot;com.testscripts.TestCases&quot;&gt;
         &lt;methods&gt;
           &lt;include name=&quot;meToMetransfer&quot;/&gt;
+          &lt;exclude name=&quot;LoginWithEmptyData&quot;/&gt;
+          &lt;exclude name=&quot;LoginWithValidTestdata&quot;/&gt;
+          &lt;exclude name=&quot;LoginWithInvalidUsername&quot;/&gt;
+          &lt;exclude name=&quot;LoginWithInvalidPassword&quot;/&gt;
+          &lt;exclude name=&quot;PasswordRetry&quot;/&gt;
+          &lt;exclude name=&quot;verifyHomepageAllAccounts&quot;/&gt;
+          &lt;exclude name=&quot;verifyHomepageOneAccount&quot;/&gt;
+          &lt;exclude name=&quot;verifyHomepageNoAccounts&quot;/&gt;
+          &lt;exclude name=&quot;showTenTransaction&quot;/&gt;
+          &lt;exclude name=&quot;withLoanBalanceDetails&quot;/&gt;
+          &lt;exclude name=&quot;zeroLoanBalanceDetails&quot;/&gt;
+          &lt;exclude name=&quot;savingsBalanceBreakdown&quot;/&gt;
+          &lt;exclude name=&quot;logOutButton&quot;/&gt;
+          &lt;exclude name=&quot;feedBackButton&quot;/&gt;
+          &lt;exclude name=&quot;termsAndConditions&quot;/&gt;
+          &lt;exclude name=&quot;animation&quot;/&gt;
+          &lt;exclude name=&quot;transfers&quot;/&gt;
+          &lt;exclude name=&quot;meToMeTransferfromSavingsListPage&quot;/&gt;
+          &lt;exclude name=&quot;meToMeTransferfromSavingsSummaryPage&quot;/&gt;
+          &lt;exclude name=&quot;meToMeTransferfromChequingsListPage&quot;/&gt;
+          &lt;exclude name=&quot;meToMeTransferfromChequingsSummaryPage&quot;/&gt;
+          &lt;exclude name=&quot;meToYouTransfer&quot;/&gt;
         &lt;/methods&gt;
       &lt;/class&gt; &lt;!-- com.testscripts.TestCases --&gt;
     &lt;/classes&gt;
@@ -192,12 +251,12 @@ data.addRows(1);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'meToMetransfer')
 data.setCell(0, 2, 'com.testscripts.TestCases')
-data.setCell(0, 3, 206022);
+data.setCell(0, 3, 0);
 window.suiteTableData['Automation']= { tableData: data, tableDiv: 'times-div-Automation'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 3 minutes</span>
+              <span class="suite-total-time">Total running time: 0 ms</span>
               <div id="times-div-Automation">
               </div> <!-- times-div-Automation -->
             </div> <!-- times-div -->
@@ -212,7 +271,7 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Automation" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">21 ignored methods</span>
+            <span class="header-content">22 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
@@ -223,6 +282,8 @@ return data;
                 <span class="ignored-method-name">verifyHomepageNoAccounts</span>
                 <br/>
                 <span class="ignored-method-name">logOutButton</span>
+                <br/>
+                <span class="ignored-method-name">meToYouTransfer</span>
                 <br/>
                 <span class="ignored-method-name">meToMeTransferfromChequingsSummaryPage</span>
                 <br/>
@@ -244,9 +305,9 @@ return data;
                 <br/>
                 <span class="ignored-method-name">verifyHomepageOneAccount</span>
                 <br/>
-                <span class="ignored-method-name">meToMeTransferfromSavingsSummaryPage</span>
-                <br/>
                 <span class="ignored-method-name">savingsBalanceBreakdown</span>
+                <br/>
+                <span class="ignored-method-name">meToMeTransferfromSavingsSummaryPage</span>
                 <br/>
                 <span class="ignored-method-name">passwordRetry</span>
                 <br/>
@@ -271,18 +332,16 @@ return data;
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
               <div class="chronological-class-name">com.testscripts.TestCases</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">meToMetransfer</span>
+                <span class="method-start">0 ms</span>
+              </div> <!-- test-method -->
               <div class="configuration-suite before">
+                <img src="failed.png">
+                </img>
                 <span class="method-name">openApp</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-suite before -->
-              <div class="test-method">
-                <span class="method-name">meToMetransfer</span>
-                <span class="method-start">10209 ms</span>
-              </div> <!-- test-method -->
-              <div class="configuration-suite after">
-                <span class="method-name">closeApp</span>
-                <span class="method-start">216302 ms</span>
-              </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
       </div> <!-- main-panel-root -->
