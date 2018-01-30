@@ -189,7 +189,7 @@ public class Common {
         	return false;
         }
     }
-    
+
     //Thread sleep
     public void sleepThread(long sleeptime) 
     {
@@ -273,7 +273,7 @@ public class Common {
         int count=e.size();
         return count;
     }
-    
+
     //Scroll down the page
     public void scrollDown(String Direction,int Start,int End) throws InterruptedException
     {
@@ -299,5 +299,27 @@ public class Common {
     {
       String a =value.substring(begin, end);
       return a;
+    }
+    
+    // Check box selected
+    public boolean isButtonSelected(String identifier,String locator)
+    {
+        WebElement e=webElementId(identifier, locator);
+        if (e.isSelected())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    //Get the char count of text box
+    public int getCharCount(String identifier,String locator)
+    {
+        WebElement e=webElementId(identifier, locator);
+        int count=e.getText().length();
+        return count;
     }
 }

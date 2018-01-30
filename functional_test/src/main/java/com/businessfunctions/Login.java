@@ -49,14 +49,12 @@ public class Login {
     public void invalidUserExpected()
     {
         browser.verifyText("xpath", "//*[@class='android.widget.TextView'][4]", "Invalid username");
-        browser.screenShot();
     }
     
     // M - Method - Expected - Login with invalid password
     public void invalidPasswordExpected()
     {
         browser.verifyText("xpath", "//*[@class='android.widget.TextView'][5]", "Incorrect password");
-        browser.screenShot();
     }
     
     // S - Method - Retry 3 times  
