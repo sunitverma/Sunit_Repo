@@ -1,34 +1,38 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Automation">
-    <test name="TestScripts">
-        <classes>
-            <class name="com.testscripts.TestCases" >
-            <methods>
-                <exclude name="LoginWithEmptyData" />
-                <exclude name="LoginWithValidTestdata" />
-                <exclude name="LoginWithInvalidUsername" />
-                <exclude name="LoginWithInvalidPassword" />
-                <exclude name="PasswordRetry" />
-                <exclude name="verifyHomepageAllAccounts" />
-                <exclude name="verifyHomepageOneAccount" />
-                <exclude name="verifyHomepageNoAccounts" />
-				<exclude name="showTenTransaction" />
-				<exclude name="withLoanBalanceDetails" />
-                <exclude name="zeroLoanBalanceDetails" />
-				<exclude name="savingsBalanceBreakdown" />
-                <exclude name="logOutButton" />
-				<exclude name="feedBackButton" />
-                <exclude name="termsAndConditions" />
-                <exclude name="animation" />
-                <exclude name="transfers" />
-                <exclude name="meToMeTransferfromSavingsListPage" />
-                <exclude name="meToMeTransferfromSavingsSummaryPage" />
-                <exclude name="meToMeTransferfromChequingsListPage" />
-                <exclude name="meToMeTransferfromChequingsSummaryPage" />
-                <exclude name="meToYouTransfer" />
-                <include name="meToMetransfer" />
-             </methods>
-        </class>
-    </classes>
-  </test>
- </suite>
+	<test name="TestScripts">
+		<classes>
+			<class name="com.testscripts.TestCases" >
+				<methods>
+			        <include name="loginWithEmptyData" />
+					<include name="loginWithValidTestdata" />
+					<include name="loginWithInvalidUsername" />
+					<include name="loginWithInvalidPassword" />
+					<include name="passwordRetry" />
+					<include name="verifyHomepageAllAccounts" />
+					<include name="verifyHomepageOneAccount" />
+					<include name="verifyHomepageNoAccounts" />
+					<include name="showTenTransaction" />
+					<include name="withLoanBalanceDetails" />
+					<include name="zeroLoanBalanceDetails" />
+					<include name="savingsBalanceBreakdown" />
+					<include name="logOutButton" />
+					<include name="feedBackButton" />
+					<include name="termsAndConditions" />
+					<include name="animation" />
+					<include name="transfers" />
+					<include name="meToMeTransferfromSavingsListPage" />
+					<include name="meToMeTransferfromSavingsSummaryPage" />
+					<include name="meToMeTransferfromChequingsListPage" />
+					<include name="meToMeTransferfromChequingsSummaryPage" />
+					<include name="meToYouTransfer" />
+					<include name="meToMetransfer" />
+					<include name="addBeneficiaryRetail" />
+                	<include name="addBeneficiaryCorporate" />					
+					<include name="addBeneficiarySubmit" />
+					<include name="addBeneficiaryCancel" />
+            	</methods>
+        	</class>
+    	</classes>
+	</test>
+</suite>

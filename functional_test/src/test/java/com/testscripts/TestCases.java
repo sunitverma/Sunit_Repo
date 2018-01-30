@@ -369,14 +369,88 @@ public class TestCases extends RootTest {
     @Test
     public void meToMetransfer() throws Exception
     {
-        System.out.println("Running Testcase 22 - Verify Me to Me Transfer, Transfer Edit and Confirmation page");
+        System.out.println("Running Testcase 23 - Verify Me to Me Transfer, Transfer Edit and Confirmation page");
         brow.reset();
-        login.loginToapp("stonepj","Password1##");
-        homepage.animationOnLanding();
+        login.loginToapp("stanigar","Password1##");
         login.acceptTermAndConditions();
         transferpage.transferFlowMeToMe("Savings", "1");
         brow.sleepThread(1000);
-        //transferpage.transferReviewPage();
-        System.out.println("success");
+        System.out.println("Testcase 23 - Successfully Completed");
+    }
+    
+    //Test case_24 Add Retail beneficiary -- S
+    @Test
+    public void addBeneficiaryRetail() throws Exception
+    {
+        System.out.println("Running Testcase 24 - Add Retail beneficiary to account");
+        brow.reset();
+        login.loginToapp("stonepj","Password1##");
+        login.acceptTermAndConditions();
+        brow.waitUntilElementPresent("//*[@content-desc='welcomeName']");
+        transferpage.addBeneficiaryToAccount("Savings");
+        //transferpage.blankbeneficiaryPageRetail();
+        transferpage.cancelBeneficiaryRetail();
+        transferpage.beneficiaryRetail();
+        System.out.println("Testcase 24 - Successfully Completed");
+    }
+    
+    //Test case_25 Add Corporate beneficiary -- S
+    @Test
+    public void addBeneficiaryCorporate() throws Exception
+    {
+        System.out.println("Running Testcase 25 - Add Corporate beneficiary to account");
+        brow.reset();
+        login.loginToapp("stonepj","Password1##");
+        login.acceptTermAndConditions();
+        brow.waitUntilElementPresent("//*[@content-desc='welcomeName']");
+        transferpage.addBeneficiaryToAccount("Chequing");
+        //transferpage.blankbeneficiaryPageCorporate();
+        transferpage.cancelBeneficiaryCorporate();
+        transferpage.beneficiaryCorporate();
+        System.out.println("Testcase 25 - Successfully Completed");
+    }
+
+    //Test case_26 Verify Me to You Transfer -- S
+    @Test
+    public void reviewMeToYoutransfer() throws Exception
+    {
+        System.out.println("Running Testcase 24 - Verify Me to You Transfer, Transfer Edit and Confirmation page");
+        brow.reset();
+        login.loginToapp("darkelor","Password1##");
+        homepage.animationOnLanding();
+        login.acceptTermAndConditions();
+        transferpage.transferFlowMeToYou("Savings", "1");
+        brow.sleepThread(1000);
+        System.out.println("Testcase 26 - Successfully Completed");
+    }
+    
+    //Test case_27 Add Beneficiary Submit after entering OTP
+    @Test
+    public void addBeneficiarySubmit() throws Exception
+    {
+        System.out.println("Running Testcase 25 - Verify Adding beneficiary by entering PIN + OTP and click on submit");
+        brow.reset();
+        login.loginToapp("yandisud","Password1##");
+        homepage.animationOnLanding();
+        login.acceptTermAndConditions();
+        //add beneficiary
+        transferpage.transferUsingOTPSubmit();
+        brow.sleepThread(1000);
+        System.out.println("Testcase 27 - Successfully Completed");
+    }
+    
+    //Test case_28 Add Beneficiary Cancel after entering OTP
+    @Test
+    public void addBeneficiaryCancel() throws Exception
+    {
+        System.out.println("Running Testcase 28 - Verify Adding beneficiary by entering PIN + OTP and click on submit");
+        brow.reset();
+        login.loginToapp("yandisud","Password1##");
+        homepage.animationOnLanding();
+        login.acceptTermAndConditions();
+        //add beneficiary
+        transferpage.transferUsingOTPCancel();
+        brow.sleepThread(1000);
+        System.out.println("Testcase 28 - Successfully Completed");
     }
 }
