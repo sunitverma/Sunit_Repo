@@ -5,7 +5,7 @@
     <classes>
       <class name="com.testscripts.TestCases">
         <methods>
-          <include name="meToMetransfer"/>
+          <include name="addBeneficiaryRetail"/>
           <include name="openApp"/>
           <include name="closeApp"/>
         </methods>
