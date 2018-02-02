@@ -185,7 +185,7 @@ public class TestCases extends RootTest {
         login.loginToapp("YANDISUD","Password1##");
         login.acceptTermAndConditions();
         brow.waitUntilElementPresent("//*[@content-desc='welcomeName']");
-        brow.click("xpath", "(//*[@text='Loan'])[1]");
+        brow.click("xpath", "//*[@class='android.view.View' and *[@text='Loan']][1]");
         viewloandetails.zeroLoanBalance();
         System.out.println("Testcase 11 - Successfully Completed");
     }
@@ -439,18 +439,82 @@ public class TestCases extends RootTest {
         System.out.println("Testcase 27 - Successfully Completed");
     }
     
-    //Test case_28 Add Beneficiary Cancel after entering OTP
+    //Test case_28 Error handling for Me to Me Transfers: Verify the available balance and exceed the total amount -- S
     @Test
-    public void addBeneficiaryCancel() throws Exception
+    public void errorHandlingMetoMeBalanceAndExceed() throws Exception
     {
-        System.out.println("Running Testcase 28 - Verify Adding beneficiary by entering PIN + OTP and click on submit");
+        System.out.println("Running Testcase 28 - Verify the available balance and exceed the total amount");
         brow.reset();
-        login.loginToapp("yandisud","Password1##");
+        login.loginToapp("stanigar","Password1##");
         homepage.animationOnLanding();
         login.acceptTermAndConditions();
-        //add beneficiary
-        transferpage.transferUsingOTPCancel();
-        brow.sleepThread(1000);
+        transferpage.balanceAndExceedMetoMe("304523913","356425529");
         System.out.println("Testcase 28 - Successfully Completed");
+    }
+    
+    //Test case_29 Error handling for Me to Me Transfers: Verify the transfer freeze on dormant/restricted accounts -- S
+    @Test
+    public void errorHandlingMetoMeRestriction() throws Exception
+    {
+        System.out.println("Running Testcase 29 - Verify the transfer freeze on dormant/restricted accounts");
+        brow.reset();
+        login.loginToapp("tommys","Password1##");
+        homepage.animationOnLanding();
+        login.acceptTermAndConditions();
+        transferpage.restictionsMetoMe("756201891","351182717");
+        System.out.println("Testcase 29 - Successfully Completed");
+    }
+    
+    //Test case_30 Error handling for Me to Me Transfers: Verify the oops message -- S
+    @Test
+    public void errorHandlingMetoMeOopsMessage() throws Exception
+    {
+      System.out.println("Running Testcase 30 - Verify the oops message");
+      brow.reset();
+      login.loginToapp("stanigar","Password1##");
+      homepage.animationOnLanding();
+      login.acceptTermAndConditions();
+      transferpage.oopsMetoMe("304523913","4450");
+      brow.sleepThread(1000);
+      System.out.println("Testcase 30 - Successfully Completed");
+    }
+
+    //Test case_31 Error handling for Me to You Transfers: Verify the available balance and exceed the total amount -- S
+    @Test
+    public void errorHandlingMetoYouBalanceAndExceed() throws Exception
+    {
+        System.out.println("Running Testcase 29 - Verify Error Handling for me to me cases");
+        brow.reset();
+        login.loginToapp("stanigar","Password1##");
+        homepage.animationOnLanding();
+        login.acceptTermAndConditions();
+        transferpage.balanceAndExceedMetoYou("304523913","356425529");
+        System.out.println("Testcase 31 - Successfully Completed");
+    }
+    
+    //Test case_32 Error handling for Me to You Transfers: Verify the transfer freeze on dormant/restricted accounts -- S
+    @Test
+    public void errorHandlingMetoYouRestriction() throws Exception
+    {
+        System.out.println("Running Testcase 29 - Verify Error Handling for me to me cases");
+        brow.reset();
+        login.loginToapp("tommys","Password1##");
+        homepage.animationOnLanding();
+        login.acceptTermAndConditions();
+        transferpage.restictionsMetoYou("756201891","351182717");
+        System.out.println("Testcase 32 - Successfully Completed");
+    }
+    
+    //Test case_33 Error handling for Me to You Transfers: Verify the oops message -- S
+    @Test
+    public void errorHandlingMetoYouOopsMessage() throws Exception
+    {
+      System.out.println("Running Testcase 30 - Verify Error Handling for me to you cases");
+      brow.reset();
+      login.loginToapp("stanigar","Password1##");
+      homepage.animationOnLanding();
+      login.acceptTermAndConditions();
+      transferpage.oopsMetoYou("304523913","4450");
+      System.out.println("Testcase 33 - Successfully Completed");
     }
 }

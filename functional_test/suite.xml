@@ -4,33 +4,39 @@
 		<classes>
 			<class name="com.testscripts.TestCases" >
 				<methods>
-			        <include name="loginWithEmptyData" />
-					<include name="loginWithValidTestdata" />
-					<include name="loginWithInvalidUsername" />
-					<include name="loginWithInvalidPassword" />
-					<include name="passwordRetry" />
-					<include name="verifyHomepageAllAccounts" />
-					<include name="verifyHomepageOneAccount" />
-					<include name="verifyHomepageNoAccounts" />
-					<include name="showTenTransaction" />
-					<include name="withLoanBalanceDetails" />
-					<include name="zeroLoanBalanceDetails" />
-					<include name="savingsBalanceBreakdown" />
-					<include name="logOutButton" />
-					<include name="feedBackButton" />
-					<include name="termsAndConditions" />
-					<include name="animation" />
-					<include name="transfers" />
-					<include name="meToMeTransferfromSavingsListPage" />
-					<include name="meToMeTransferfromSavingsSummaryPage" />
-					<include name="meToMeTransferfromChequingsListPage" />
-					<include name="meToMeTransferfromChequingsSummaryPage" />
-					<include name="meToYouTransfer" />
-					<include name="meToMetransfer" />
-					<include name="addBeneficiaryRetail" />
-                	<include name="addBeneficiaryCorporate" />					
-					<include name="addBeneficiarySubmit" />
-					<include name="addBeneficiaryCancel" />
+			        <exclude name="loginWithEmptyData" />
+					<exclude name="loginWithValidTestdata" />
+					<exclude name="loginWithInvalidUsername" />
+					<exclude name="loginWithInvalidPassword" />
+					<exclude name="passwordRetry" />
+					<exclude name="verifyHomepageAllAccounts" />
+					<exclude name="verifyHomepageOneAccount" />
+					<exclude name="verifyHomepageNoAccounts" />
+					<exclude name="showTenTransaction" />
+					<exclude name="withLoanBalanceDetails" />
+					<exclude name="zeroLoanBalanceDetails" />
+					<exclude name="savingsBalanceBreakdown" />
+					<exclude name="logOutButton" />
+					<exclude name="feedBackButton" />
+					<exclude name="termsAndConditions" />
+					<exclude name="animation" />
+					<exclude name="transfers" />
+					<exclude name="meToMeTransferfromSavingsListPage" />
+					<exclude name="meToMeTransferfromSavingsSummaryPage" />
+					<exclude name="meToMeTransferfromChequingsListPage" />
+					<exclude name="meToMeTransferfromChequingsSummaryPage" />
+					<exclude name="meToYouTransfer" />
+					<exclude name="meToMetransfer" />
+					<exclude name="addBeneficiaryRetail" />
+                	<exclude name="addBeneficiaryCorporate" />					
+					<exclude name="addBeneficiarySubmit" />
+					<exclude name="addBeneficiaryCancel" />
+					<exclude name="errorHandlingMetoMeBalanceAndExceed" />
+					<include name="errorHandlingMetoMeRestriction" />
+					<exclude name="errorHandlingMetoMeOopsMessage" />
+					<exclude name="errorHandlingMetoYouBalanceAndExceed" />
+					<exclude name="errorHandlingMetoYouRestriction" />
+					<exclude name="errorHandlingMetoYouOopsMessage" />
             	</methods>
         	</class>
     	</classes>
