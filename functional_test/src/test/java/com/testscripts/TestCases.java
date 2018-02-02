@@ -378,25 +378,25 @@ public class TestCases extends RootTest {
         System.out.println("Testcase 23 - Successfully Completed");
     }
     
-    //Test case_24 Add Retail beneficiary -- S
+    //Test case_24 Add Personal beneficiary -- S
     @Test
-    public void addBeneficiaryRetail() throws Exception
+    public void addBeneficiaryPersonal() throws Exception
     {
-        System.out.println("Running Testcase 24 - Add Retail beneficiary to account");
+        System.out.println("Running Testcase 24 - Add Personal beneficiary to account");
         brow.reset();
-        login.loginToapp("stonepj","Password1##");
+        login.loginToapp("darkelor","Password1##");
         login.acceptTermAndConditions();
         brow.waitUntilElementPresent("//*[@content-desc='welcomeName']");
         transferpage.addBeneficiaryToAccount("Savings");
-        //transferpage.blankbeneficiaryPageRetail();
-        transferpage.cancelBeneficiaryRetail();
-        transferpage.beneficiaryRetail();
+        transferpage.blankbeneficiaryPagePersonal();
+        transferpage.cancelBeneficiaryPersonal();
+        //transferpage.beneficiaryPersonal("");
         System.out.println("Testcase 24 - Successfully Completed");
     }
     
-    //Test case_25 Add Corporate beneficiary -- S
+    //Test case_25 Add Business beneficiary -- S
     @Test
-    public void addBeneficiaryCorporate() throws Exception
+    public void addBeneficiaryBusiness() throws Exception
     {
         System.out.println("Running Testcase 25 - Add Corporate beneficiary to account");
         brow.reset();
@@ -404,9 +404,9 @@ public class TestCases extends RootTest {
         login.acceptTermAndConditions();
         brow.waitUntilElementPresent("//*[@content-desc='welcomeName']");
         transferpage.addBeneficiaryToAccount("Chequing");
-        //transferpage.blankbeneficiaryPageCorporate();
-        transferpage.cancelBeneficiaryCorporate();
-        transferpage.beneficiaryCorporate();
+        transferpage.blankbeneficiaryPageBusiness();
+        transferpage.cancelBeneficiaryBusiness();
+        //transferpage.beneficiaryBusiness();
         System.out.println("Testcase 25 - Successfully Completed");
     }
 
@@ -414,7 +414,7 @@ public class TestCases extends RootTest {
     @Test
     public void reviewMeToYoutransfer() throws Exception
     {
-        System.out.println("Running Testcase 24 - Verify Me to You Transfer, Transfer Edit and Confirmation page");
+        System.out.println("Running Testcase 26 - Verify Me to You Transfer, Transfer Edit and Confirmation page");
         brow.reset();
         login.loginToapp("darkelor","Password1##");
         homepage.animationOnLanding();
@@ -428,7 +428,7 @@ public class TestCases extends RootTest {
     @Test
     public void addBeneficiarySubmit() throws Exception
     {
-        System.out.println("Running Testcase 25 - Verify Adding beneficiary by entering PIN + OTP and click on submit");
+        System.out.println("Running Testcase 27 - Verify Adding beneficiary by entering PIN + OTP and click on submit");
         brow.reset();
         login.loginToapp("yandisud","Password1##");
         homepage.animationOnLanding();
@@ -443,7 +443,7 @@ public class TestCases extends RootTest {
     @Test
     public void errorHandlingMetoMeBalanceAndExceed() throws Exception
     {
-        System.out.println("Running Testcase 28 - Verify the available balance and exceed the total amount");
+        System.out.println("Running Testcase 28 - Verify the available balance and exceed the total amount: Me to Me");
         brow.reset();
         login.loginToapp("stanigar","Password1##");
         homepage.animationOnLanding();
@@ -456,7 +456,7 @@ public class TestCases extends RootTest {
     @Test
     public void errorHandlingMetoMeRestriction() throws Exception
     {
-        System.out.println("Running Testcase 29 - Verify the transfer freeze on dormant/restricted accounts");
+        System.out.println("Running Testcase 29 - Verify the transfer freeze on dormant/restricted accounts: Me to Me");
         brow.reset();
         login.loginToapp("tommys","Password1##");
         homepage.animationOnLanding();
@@ -469,26 +469,25 @@ public class TestCases extends RootTest {
     @Test
     public void errorHandlingMetoMeOopsMessage() throws Exception
     {
-      System.out.println("Running Testcase 30 - Verify the oops message");
-      brow.reset();
-      login.loginToapp("stanigar","Password1##");
-      homepage.animationOnLanding();
-      login.acceptTermAndConditions();
-      transferpage.oopsMetoMe("304523913","4450");
-      brow.sleepThread(1000);
-      System.out.println("Testcase 30 - Successfully Completed");
+        System.out.println("Running Testcase 30 - Verify the oops message: Me to Me");
+        brow.reset();
+        login.loginToapp("yandisud","Password1##");
+        homepage.animationOnLanding();
+        login.acceptTermAndConditions();
+        transferpage.oopsMetoMe("435335217","614078707");
+        System.out.println("Testcase 30 - Successfully Completed");
     }
-
+    
     //Test case_31 Error handling for Me to You Transfers: Verify the available balance and exceed the total amount -- S
     @Test
     public void errorHandlingMetoYouBalanceAndExceed() throws Exception
     {
-        System.out.println("Running Testcase 29 - Verify Error Handling for me to me cases");
+        System.out.println("Running Testcase 31 - Verify the available balance and exceed the total amount: Me to You");
         brow.reset();
         login.loginToapp("stanigar","Password1##");
         homepage.animationOnLanding();
         login.acceptTermAndConditions();
-        transferpage.balanceAndExceedMetoYou("304523913","356425529");
+        transferpage.balanceAndExceedMetoYou("304523913","4450");
         System.out.println("Testcase 31 - Successfully Completed");
     }
     
@@ -496,12 +495,12 @@ public class TestCases extends RootTest {
     @Test
     public void errorHandlingMetoYouRestriction() throws Exception
     {
-        System.out.println("Running Testcase 29 - Verify Error Handling for me to me cases");
+        System.out.println("Running Testcase 32 - Verify the transfer freeze on dormant/restricted accounts: Me to You");
         brow.reset();
         login.loginToapp("tommys","Password1##");
         homepage.animationOnLanding();
         login.acceptTermAndConditions();
-        transferpage.restictionsMetoYou("756201891","351182717");
+        transferpage.restictionsMetoYou("756201891","4450");
         System.out.println("Testcase 32 - Successfully Completed");
     }
     
@@ -509,12 +508,12 @@ public class TestCases extends RootTest {
     @Test
     public void errorHandlingMetoYouOopsMessage() throws Exception
     {
-      System.out.println("Running Testcase 30 - Verify Error Handling for me to you cases");
-      brow.reset();
-      login.loginToapp("stanigar","Password1##");
-      homepage.animationOnLanding();
-      login.acceptTermAndConditions();
-      transferpage.oopsMetoYou("304523913","4450");
-      System.out.println("Testcase 33 - Successfully Completed");
+        System.out.println("Running Testcase 33 - Verify the oops message: Me to You");
+        brow.reset();
+        login.loginToapp("yandisud","Password1##");
+        homepage.animationOnLanding();
+        login.acceptTermAndConditions();
+        transferpage.oopsMetoYou("435335217","4450");
+        System.out.println("Testcase 33 - Successfully Completed");
     }
 }

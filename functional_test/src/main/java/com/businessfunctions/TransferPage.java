@@ -216,66 +216,42 @@ public class TransferPage {
     }
       
     //S - Method - to verify text fields validation on blank page for save button and close button functionality
-    public void blankbeneficiaryPageRetail()
+    public void blankbeneficiaryPagePersonal() throws Exception
     {
         browser.click("name", "addButton");
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader'][@text='Add New Beneficiary']");
-        browser.click("name", "Retail");
+        browser.click("name", "retail");
         
-        browser.click("name", "saveBeneficiary");
-        browser.verifyText("name", "firstname", "first name missing");
-        browser.verifyText("name", "lastname", "last name missing");
-        browser.verifyText("name", "accountnumber", "account number missing");
-        browser.verifyText("name", "nickname", "nick name missing");
-        browser.click("name", "closeButton");
-        browser.waitUntilElementPresent("//*[@content-desc='logoutModalFirstTextField']");
-        browser.click("name", "logoutModalLogoutButton");
-        browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
-        System.out.println("blank beneficiary page for Retail tested");
-    }
-    
-    //S - Method - to verify elements available on Retail add beneficiary page/pop-up message and cancel button functionality
-    public void cancelBeneficiaryRetail() throws Exception
-    {
-        browser.click("name", "addButton");
-        browser.waitUntilElementPresent("//*[@content-desc='TransferHeader'][@text='Add New Beneficiary']");
-        browser.click("name", "Retail");
+        browser.click("name", "firstname");
+        browser.keyboardKeys(66);
+        browser.click("name", "lastname");
+        browser.keyboardKeys(66);
+        browser.click("name", "accountnumber");
+        browser.keyboardKeys(66);
+        browser.click("name", "nickname");
+        browser.keyboardKeys(66);
         
-        browser.verifyElementPresent("name", "firstname");
-        browser.verifyElementPresent("name", "lastname");
-        browser.verifyElementPresent("name", "accountnumber");
-        browser.verifyElementPresent("name", "nickname");
-        browser.verifyElementPresent("name", "cancelBeneficiary");
-        browser.verifyElementPresent("name", "saveBeneficiary");
+        browser.scrollDown("Down", 200, 400);
         
-        //browser.scrollDown("Down", 200, 500);
-        browser.click("xpath", "//*[@content-desc='cancelBeneficiary']");
-        browser.verifyText("name", "logoutModalFirstTextField", "Cancel adding new beneficiary");
-        browser.verifyText("name", "logoutModalSecondTextField", "Are you sure you want to cancel adding a new beneficiary?");
-        browser.verifyElementPresent("name", "logoutModalCancelButton");
-        browser.verifyElementPresent("name", "logoutModalLogoutButton");
-        browser.click("name", "logoutModalCancelButton");
-        browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
-        browser.click("xpath", "//*[@content-desc='cancelBeneficiary']");
-        browser.click("name", "logoutModalLogoutButton");
-        browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
-        System.out.println("cancel button on beneficiary page for Retail tested");
-    }
-    
-    //S - Method - to verify add beneficiary Retail page
-    public void beneficiaryRetail() throws Exception
-    {
-        browser.click("name", "addButton");
-        browser.waitUntilElementPresent("//*[@content-desc='TransferHeader'][@text='Add New Beneficiary']");
-        browser.click("name", "Retail");
+        //Verify error message for blank fields
+        browser.verifyText("xpath", "//*[@content-desc='undefined-error'][1]", "Please enter a first name");
+        browser.verifyText("xpath", "//*[@content-desc='undefined-error'][2]", "Please enter a last name");
+        browser.verifyText("xpath", "//*[@content-desc='undefined-error'][3]", "Please enter a 9 digit account number");
+        browser.verifyText("xpath", "//*[@content-desc='undefined-error'][4]", "Please enter a nickname");
+        browser.screenShot();
+
+        //Verify error message for duplicate nick name
+        browser.sendKeys("name", "nickname","Allen");
+        browser.keyboardKeys(66);
+        browser.click("name", "accountnumber");
+        browser.keyboardKeys(66);
+        browser.verifyText("xpath", "//*[@content-desc='undefined-error'][4]", "The nickname is already in use please try another");
+        browser.screenShot();
         
-        String fname = "Kartosfirstname";
-        String lname = "Kartoslastname";
-        String anumber = "304510080";
-        String nname = "Kartosnickname1";        
-        
-        /*browser.sendKeys("name", "first name", "RFirst Name Pneumonoultramicroscopicsilicovolcanoconiosis");
-        int fNameChar = browser.getCharCount("name", "first name");
+        //Verify the field length for text fields
+        browser.sendKeys("name", "firstname", "RFirst Name Pneumonoultramicroscopicsilicovolcanoconiosis");
+        browser.keyboardKeys(66);
+        int fNameChar = browser.getCharCount("name", "firstname");
         if (fNameChar==40)
         {
             System.out.println("First Name is 40 character");
@@ -284,9 +260,10 @@ public class TransferPage {
         {
             System.out.println("First Name is " + fNameChar +" character");
         }
-          
-        browser.sendKeys("name", "last name", "RLast Name Pneumonoultramicroscopicsilicovolcanoconiosis");
-        int lNameChar = browser.getCharCount("name", "last name");
+        
+        browser.sendKeys("name", "lastname", "RLast Name Pneumonoultramicroscopicsilicovolcanoconiosis");
+        browser.keyboardKeys(66);
+        int lNameChar = browser.getCharCount("name", "lastname");
         if (lNameChar==40)
         {
             System.out.println("Last Name is 40 character");
@@ -296,9 +273,9 @@ public class TransferPage {
             System.out.println("Last Name is " + lNameChar +" character");
         }
         
-        browser.sendKeys("name", "account number", "1234567890");
-        String aNumber = browser.getText("name", "account number");
-        int aNumbercount = browser.getCharCount("name", "account number");
+        browser.sendKeys("name", "accountnumber", "1234567890");
+        browser.keyboardKeys(66);
+        int aNumbercount = browser.getCharCount("name", "accountnumber");
         if (aNumbercount==9)
         {
             System.out.println("Account Number is 9 digit");
@@ -309,7 +286,7 @@ public class TransferPage {
         }
           
         browser.sendKeys("name", "nickname","RNick Name Pneumonoultramicroscopicsilicovolcanoconiosis");        
-        String nName = browser.getText("name", "nickname");
+        browser.keyboardKeys(66);
         int nNameChar = browser.getCharCount("name", "nickname");
         if (nNameChar==17)
         {
@@ -319,89 +296,115 @@ public class TransferPage {
         {
             System.out.println("Nick Name is " + nNameChar +" character");
         }
-        */
         
+        browser.screenShot();
+  
+        browser.click("name", "closeButton");
+        browser.waitUntilElementPresent("//*[@content-desc='logoutModalFirstTextField']");
+        browser.click("name", "logoutModalLogoutButton");
+        browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
+        System.out.println("blank beneficiary page for Personal tested");
+    }
+    
+    //S - Method - to verify elements available on Personal add beneficiary page/pop-up message and cancel button functionality
+    public void cancelBeneficiaryPersonal() throws Exception
+    {
+        browser.click("name", "addButton");
+        browser.waitUntilElementPresent("//*[@content-desc='TransferHeader'][@text='Add New Beneficiary']");
+        browser.click("name", "retail");
+        
+        browser.verifyElementPresent("name", "firstname");
+        browser.verifyElementPresent("name", "lastname");
+        browser.verifyElementPresent("name", "accountnumber");
+        browser.verifyElementPresent("name", "nickname");
+        browser.scrollDown("Down", 200, 500);
+        browser.verifyElementPresent("name", "cancelBeneficiary");
+        browser.verifyElementPresent("name", "saveBeneficiary");
+        browser.screenShot();
+        
+        browser.click("xpath", "//*[@content-desc='cancelBeneficiary']");
+        browser.verifyText("name", "logoutModalFirstTextField", "Cancel adding new beneficiary");
+        browser.verifyText("name", "logoutModalSecondTextField", "Are you sure you want to cancel adding a new beneficiary?");
+        browser.verifyElementPresent("name", "logoutModalCancelButton");
+        browser.verifyElementPresent("name", "logoutModalLogoutButton");
+        browser.screenShot();
+        
+        browser.click("name", "logoutModalCancelButton");
+        browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
+        browser.click("xpath", "//*[@content-desc='cancelBeneficiary']");
+        browser.click("name", "logoutModalLogoutButton");
+        browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
+        System.out.println("cancel button on beneficiary page for Personal tested");
+    }
+    
+    //S - Method - to verify add beneficiary Personal page
+    public void beneficiaryPersonal(String nicknames) throws Exception
+    {
+        browser.click("name", "addButton");
+        browser.waitUntilElementPresent("//*[@content-desc='TransferHeader'][@text='Add New Beneficiary']");
+        browser.click("name", "retail");
+        
+        String fname = "Kartosfirstname";
+        String lname = "Kartoslastname";
+        String anumber = "304510080";
+               
         browser.sendKeys("name", "firstname", fname);
         browser.keyboardKeys(66);
         browser.sendKeys ("name", "lastname", lname);
         browser.keyboardKeys(66);
         browser.sendKeys ("name", "accountnumber", anumber);
         browser.keyboardKeys(66);
-        browser.sendKeys ("name", "nickname", nname);
+        browser.sendKeys ("name", "nickname", nicknames);
         browser.keyboardKeys(66);
         
         String aNumberChange = browser.subString(anumber, 5, 9); 
         String aNumberChange1 = "  ••" + aNumberChange;
         
         browser.scrollDown("Down", 200, 400);
+        
         browser.verifyElementPresent("xpath", "//*[@content-desc='saveBeneficiary']");
         browser.click("xpath", "//*[@content-desc='saveBeneficiary']");
         browser.sleepThread(1000);
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
         browser.scrollDown("Down", 200, 400);
-        browser.verifyText("xpath", "//*[@content-desc='accountCard' and *[@text='"+ nname +"']]", nname);
+        browser.verifyText("xpath", "//*[@content-desc='accountCard' and *[@text='"+ nicknames +"']]", nicknames);
         browser.verifyText("xpath", "//*[@content-desc='accountCard' and *[@text='"+ "  ••"+ aNumberChange +"']]", aNumberChange1);
         browser.sleepThread(2000);
     }
     
     //S - Method - to verify text fields validation on blank page for save button and close button functionality
-    public void blankbeneficiaryPageCorporate()
+    public void blankbeneficiaryPageBusiness() throws Exception
     {
         browser.click("name", "addButton");
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader'][@text='Add New Beneficiary']");
-        browser.click("name", "Corporate");
+        browser.click("name", "corporate");
         
-        browser.click("name", "saveBeneficiary");
-        browser.verifyText("name", "companyname", "name missing");
-        browser.verifyText("name", "accountname", "account number missing");
-        browser.verifyText("name", "nickname", "nick name missing");
-        browser.click("name", "closeButton");
-        browser.waitUntilElementPresent("//*[@content-desc='logoutModalFirstTextField']");
-        browser.click("name", "logoutModalLogoutButton");
-        browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
-        System.out.println("blank beneficiary page for Corporate tested");
-    }
-
-    //S - Method - to verify elements available on Corporate add beneficiary page/pop-up message and cancel button functionality
-    public void cancelBeneficiaryCorporate() throws Exception
-    {
-        browser.click("name", "addButton");
-        browser.waitUntilElementPresent("//*[@content-desc='TransferHeader'][@text='Add New Beneficiary']");
-        browser.click("name", "Corporate;");
+        browser.click("name", "companyname");
+        browser.keyboardKeys(66);
+        browser.click("name", "accountname");
+        browser.keyboardKeys(66);
+        browser.click("name", "nickname");
+        browser.keyboardKeys(66);
         
-        browser.verifyElementPresent("name", "companyname");
-        browser.verifyElementPresent("name", "accountname");
-        browser.verifyElementPresent("name", "nickname");
-        browser.verifyElementPresent("name", "cancelBeneficiary");
-        browser.verifyElementPresent("name", "saveBeneficiary");
+        browser.scrollDown("Down", 200, 400);
         
-        //browser.scrollDown("Down", 200, 500);
-        browser.click("xpath", "//*[@content-desc='cancelBeneficiary']");
-        browser.verifyText("name", "logoutModalFirstTextField", "Cancel adding new beneficiary");
-        browser.verifyText("name", "logoutModalSecondTextField", "Are you sure you want to cancel adding a new beneficiary?");
-        browser.verifyElementPresent("name", "logoutModalCancelButton");
-        browser.verifyElementPresent("name", "logoutModalLogoutButton");
-        browser.click("name", "logoutModalCancelButton");
-        browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
-        browser.click("xpath", "//*[@content-desc='cancelBeneficiary']");
-        browser.click("name", "logoutModalLogoutButton");
-        browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
-        System.out.println("cancle button on beneficiary page for Corporate tested");
-    }
-    
-    //S - Method - to verify add beneficiary Corporate page
-    public void beneficiaryCorporate() throws Exception
-    {
-        browser.click("name", "addButton");
-        browser.waitUntilElementPresent("//*[@content-desc='TransferHeader'][@text='Add New Beneficiary']");
-        browser.click("name", "Corporate");
-
-        String cname = "Kartoscompanyname";
-        String anumber = "304510080";
-        String nname = "Kartoscomnickname";
+        //Verify error message for blank fields
+        browser.verifyText("xpath", "//*[@content-desc='undefined-error'][1]", "Please enter a business name");
+        browser.verifyText("xpath", "//*[@content-desc='undefined-error'][2]", "Please enter a 9 digit account number");
+        browser.verifyText("xpath", "//*[@content-desc='undefined-error'][3]", "Please enter a nickname");
+        browser.screenShot();
         
-        /*browser.sendKeys("name", "company name", "CName Pneumonoultramicroscopicsilicovolcanoconiosis Pneumonoultramicroscopicsilicovolcanoconiosis");
-        int CName = browser.getCharCount("name", "company name");
+        //Verify error message for duplicate nick name
+        browser.sendKeys("name", "nickname","Auto1");
+        browser.keyboardKeys(66);
+        browser.click("name", "accountnumber");
+        browser.keyboardKeys(66);
+        browser.verifyText("xpath", "//*[@content-desc='undefined-error'][3]", "The nickname is already in use please try another");
+        browser.screenShot();
+        
+        //Verify the field length for text fields
+        browser.sendKeys("name", "companyname", "CName Pneumonoultramicroscopicsilicovolcanoconiosis Pneumonoultramicroscopicsilicovolcanoconiosis");
+        int CName = browser.getCharCount("name", "companyname");
         if (CName==80)
         {
           System.out.println("Company Name is 80 character");
@@ -411,36 +414,82 @@ public class TransferPage {
           System.out.println("Company Name is " + CName +" character");
         }
         
-        browser.sendKeys("name", "account number", "1234567890");
-        String aNumber = browser.getText("name", "account number");
-        int aNumbercount = browser.getCharCount("name", "account number");
+        browser.sendKeys("name", "accountnumber", "1234567890");
+        browser.keyboardKeys(66);
+        int aNumbercount = browser.getCharCount("name", "accountnumber");
         if (aNumbercount==9)
         {
-          System.out.println("Account Number is 9 digit");
+            System.out.println("Account Number is 9 digit");
         }
         else
         {
-          System.out.println("Account Number is " + aNumbercount +" digit");
+            System.out.println("Account Number is " + aNumbercount +" digit");
         }
-        
-        browser.sendKeys("name", "nickname","CNick Name Pneumonoultramicroscopicsilicovolcanoconiosis");
-        String nName = browser.getText("name", "nickname");
+          
+        browser.sendKeys("name", "nickname","RNick Name Pneumonoultramicroscopicsilicovolcanoconiosis");        
+        browser.keyboardKeys(66);
         int nNameChar = browser.getCharCount("name", "nickname");
         if (nNameChar==17)
         {
-          System.out.println("Nick Name is 17 character");
+            System.out.println("Nick Name is 17 character");
         }
         else
         {
-          System.out.println("Nick Name is " + nNameChar +" character");
+            System.out.println("Nick Name is " + nNameChar +" character");
         }
-        */
+          
+        browser.click("name", "closeButton");
+        browser.waitUntilElementPresent("//*[@content-desc='logoutModalFirstTextField']");
+        browser.click("name", "logoutModalLogoutButton");
+        browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
+        System.out.println("blank beneficiary page for Corporate tested");
+    }
+
+    //S - Method - to verify elements available on Corporate add beneficiary page/pop-up message and cancel button functionality
+    public void cancelBeneficiaryBusiness() throws Exception
+    {
+        browser.click("name", "addButton");
+        browser.waitUntilElementPresent("//*[@content-desc='TransferHeader'][@text='Add New Beneficiary']");
+        browser.click("name", "corporate;");
         
+        browser.verifyElementPresent("name", "companyname");
+        browser.verifyElementPresent("name", "accountname");
+        browser.verifyElementPresent("name", "nickname");
+        browser.scrollDown("Down", 200, 500);
+        browser.verifyElementPresent("name", "cancelBeneficiary");
+        browser.verifyElementPresent("name", "saveBeneficiary");
+        browser.screenShot();
+        
+        browser.click("xpath", "//*[@content-desc='cancelBeneficiary']");
+        browser.verifyText("name", "logoutModalFirstTextField", "Cancel adding new beneficiary");
+        browser.verifyText("name", "logoutModalSecondTextField", "Are you sure you want to cancel adding a new beneficiary?");
+        browser.verifyElementPresent("name", "logoutModalCancelButton");
+        browser.verifyElementPresent("name", "logoutModalLogoutButton");
+        browser.screenShot();
+        
+        browser.click("name", "logoutModalCancelButton");
+        browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
+        browser.click("xpath", "//*[@content-desc='cancelBeneficiary']");
+        browser.click("name", "logoutModalLogoutButton");
+        browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
+        System.out.println("cancle button on beneficiary page for Corporate tested");
+    }
+    
+    //S - Method - to verify add beneficiary Corporate page
+    public void beneficiaryBusiness(String nicknames) throws Exception
+    {
+        browser.click("name", "addButton");
+        browser.waitUntilElementPresent("//*[@content-desc='TransferHeader'][@text='Add New Beneficiary']");
+        browser.click("name", "corporate");
+
+        String cname = "Kartoscompanyname";
+        String anumber = "304510080";
+                
         browser.sendKeys("name", "companyname", cname);
         browser.keyboardKeys(66);
         browser.sendKeys ("name", "accountname", anumber);
         browser.keyboardKeys(66);
-        browser.sendKeys ("name", "nickname", nname);
+        browser.sendKeys ("name", "nickname", nicknames);
         browser.keyboardKeys(66);
         
         String aNumberChange = browser.subString(anumber, 5, 9); 
@@ -452,7 +501,7 @@ public class TransferPage {
         browser.sleepThread(1000);
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
         browser.scrollDown("Down", 200, 400);
-        browser.verifyText("xpath", "//*[@content-desc='accountCard' and *[@text='"+ nname +"']]", nname);
+        browser.verifyText("xpath", "//*[@content-desc='accountCard' and *[@text='"+ nicknames +"']]", nicknames);
         browser.verifyText("xpath", "//*[@content-desc='accountCard' and *[@text='"+ "  ••"+ aNumberChange +"']]", aNumberChange1);
         browser.sleepThread(2000);
     }
@@ -479,11 +528,9 @@ public class TransferPage {
         browser.waitUntilElementPresent("//*[@content-desc='alertMessage']");
         browser.verifyText("name", "alertMessage", "Your account has "+ balance +" "+ currency + ". Please enter a smaller amount in order to complete the transfer.");
         browser.screenShot();
-        //browser.click("partialLinkText", "enter a smaller amount");
+        browser.click("name", "backButton");
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
         browser.verifyElementPresent("name", "TransferHeader");
-        browser.click("xpath", "//*[@text='Cancel']");
-        browser.click("name", "cancelModalLogoutButton");
     }
     
     //S - Method - Error handling for Me to Me Transfers: Verify the error message for restricted accounts
@@ -528,10 +575,9 @@ public class TransferPage {
         browser.waitUntilElementPresent("//*[@content-desc='alertMessage']");
         browser.verifyText("name", "alertMessage", "Oops! We have encountered an error. We apologize for the inconvenience while we fix it.");
         browser.screenShot();
+        browser.click("name", "backButton");
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
         browser.verifyElementPresent("name", "TransferHeader");
-        browser.click("xpath", "//*[@text='Cancel']");
-        browser.click("name", "cancelModalLogoutButton");
     }
     
     //S - Method - Error handling for Me to You Transfers: Verify the available balance and exceed the total amount 
@@ -554,12 +600,10 @@ public class TransferPage {
         browser.click("name", "submitTransferButton");
         browser.waitUntilElementPresent("//*[@content-desc='alertMessage']");
         browser.verifyText("name", "alertMessage", "Your account has "+ balance +" "+ currency + ". Please enter a smaller amount in order to complete the transfer.");
-        //browser.click("partialLinkText", "enter a smaller amount");
         browser.screenShot();
+        browser.click("name", "backButton");
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
         browser.verifyElementPresent("name", "TransferHeader");
-        browser.click("xpath", "//*[@text='Cancel']");
-        browser.click("name", "cancelModalLogoutButton");
     }
     
     //S - Method - Error handling for Me to You Transfers: Verify the error message for restricted accounts
@@ -602,9 +646,8 @@ public class TransferPage {
         browser.waitUntilElementPresent("//*[@content-desc='alertMessage']");
         browser.verifyText("name", "alertMessage", "Oops! We have encountered an error. We apologize for the inconvenience while we fix it.");
         browser.screenShot();
+        browser.click("name", "backButton");
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
         browser.verifyElementPresent("name", "TransferHeader");
-        browser.click("xpath", "//*[@text='Cancel']");
-        browser.click("name", "cancelModalLogoutButton"); 
     }
 }

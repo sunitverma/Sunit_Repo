@@ -6,7 +6,7 @@
       <class name="com.testscripts.TestCases">
         <methods>
           <include name="openApp"/>
-          <include name="errorHandlingMetoMeRestriction"/>
+          <include name="addBeneficiaryBusiness"/>
           <include name="closeApp"/>
         </methods>
       </class> <!-- com.testscripts.TestCases -->

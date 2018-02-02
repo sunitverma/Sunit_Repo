@@ -3,35 +3,45 @@
 <suite thread-count="-1" guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="com.testscripts.Testcases">
+      <class name="com.testscripts.TestCases">
         <methods>
-          <include name="meToMetransfer"/>
-          <include name="transfers"/>
-          <include name="loginWithEmptyData"/>
-          <include name="feedBackButton"/>
-          <include name="showTenTransaction"/>
-          <include name="openApp"/>
-          <include name="verifyHomepageOneAccount"/>
-          <include name="meToMeTransferfromChequingsListPage"/>
-          <include name="termsAndConditions"/>
-          <include name="meToMeTransferfromChequingsSummaryPage"/>
-          <include name="meToYouTransfer"/>
-          <include name="logOutButton"/>
           <include name="verifyHomepageNoAccounts"/>
-          <include name="meToMeTransferfromSavingsListPage"/>
-          <include name="loginWithValidTestdata"/>
+          <include name="logOutButton"/>
+          <include name="meToYouTransfer"/>
+          <include name="meToMeTransferfromChequingsSummaryPage"/>
+          <include name="reviewMeToYoutransfer"/>
+          <include name="loginWithInvalidPassword"/>
           <include name="loginWithInvalidUsername"/>
           <include name="zeroLoanBalanceDetails"/>
-          <include name="loginWithInvalidPassword"/>
-          <include name="passwordRetry"/>
+          <include name="errorHandlingMetoMeBalanceAndExceed"/>
+          <include name="loginWithValidTestdata"/>
+          <include name="meToMeTransferfromSavingsListPage"/>
+          <include name="verifyHomepageAllAccounts"/>
           <include name="meToMeTransferfromSavingsSummaryPage"/>
           <include name="savingsBalanceBreakdown"/>
-          <include name="verifyHomepageAllAccounts"/>
-          <include name="closeApp"/>
-          <include name="withLoanBalanceDetails"/>
+          <include name="errorHandlingMetoMeRestriction"/>
+          <include name="passwordRetry"/>
           <include name="animation"/>
+          <include name="withLoanBalanceDetails"/>
+          <include name="addBeneficiaryBusiness"/>
+          <include name="errorHandlingMetoMeOopsMessage"/>
+          <include name="addBeneficiaryPersonal"/>
+          <include name="closeApp"/>
+          <include name="transfers"/>
+          <include name="meToMetransfer"/>
+          <include name="errorHandlingMetoYouRestriction"/>
+          <include name="errorHandlingMetoYouBalanceAndExceed"/>
+          <include name="feedBackButton"/>
+          <include name="addBeneficiarySubmit"/>
+          <include name="loginWithEmptyData"/>
+          <include name="verifyHomepageOneAccount"/>
+          <include name="openApp"/>
+          <include name="errorHandlingMetoYouOopsMessage"/>
+          <include name="showTenTransaction"/>
+          <include name="termsAndConditions"/>
+          <include name="meToMeTransferfromChequingsListPage"/>
         </methods>
-      </class> <!-- com.testscripts.Testcases -->
+      </class> <!-- com.testscripts.TestCases -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

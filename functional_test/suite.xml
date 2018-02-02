@@ -27,12 +27,12 @@
 					<exclude name="meToMeTransferfromChequingsSummaryPage" />
 					<exclude name="meToYouTransfer" />
 					<exclude name="meToMetransfer" />
-					<exclude name="addBeneficiaryRetail" />
-                	<exclude name="addBeneficiaryCorporate" />					
+					<include name="addBeneficiaryPersonal" />
+                	<include name="addBeneficiaryBusiness" />					
 					<exclude name="addBeneficiarySubmit" />
 					<exclude name="addBeneficiaryCancel" />
 					<exclude name="errorHandlingMetoMeBalanceAndExceed" />
-					<include name="errorHandlingMetoMeRestriction" />
+					<exclude name="errorHandlingMetoMeRestriction" />
 					<exclude name="errorHandlingMetoMeOopsMessage" />
 					<exclude name="errorHandlingMetoYouBalanceAndExceed" />
 					<exclude name="errorHandlingMetoYouRestriction" />
