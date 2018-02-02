@@ -5,8 +5,8 @@
     <classes>
       <class name="com.testscripts.TestCases">
         <methods>
-          <include name="meToMetransfer"/>
           <include name="openApp"/>
+          <include name="errorHandlingMetoMeRestriction"/>
           <include name="closeApp"/>
         </methods>
       </class> <!-- com.testscripts.TestCases -->

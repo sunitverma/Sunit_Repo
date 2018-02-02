@@ -9,82 +9,14 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="7">Automation</th></tr>
-<tr><td><a href="#t0">TestScripts</a></td><td class="num">0</td><td class="num attn">1</td><td class="num">0</td><td class="num">22</td><td></td><td></td></tr>
+<tr><td><a href="#t0">TestScripts</a></td><td class="num">0</td><td class="num">0</td><td class="num attn">1</td><td class="num">110,181</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Automation</th></tr></tbody><tbody id="t0"><tr><th colspan="4">TestScripts &#8212; failed (configuration methods)</th></tr><tr class="failedeven"><td rowspan="1">com.testscripts.TestCases</td><td><a href="#m0">openApp</a></td><td rowspan="1">1516420641431</td><td rowspan="1">909</td></tr><tr><th colspan="4">TestScripts &#8212; skipped (configuration methods)</th></tr><tr class="skippedeven"><td rowspan="1">com.testscripts.TestCases</td><td><a href="#m1">closeApp</a></td><td rowspan="1">1516420642413</td><td rowspan="1">0</td></tr><tr><th colspan="4">TestScripts &#8212; skipped</th></tr><tr class="skippedeven"><td rowspan="1">com.testscripts.TestCases</td><td><a href="#m2">meToMetransfer</a></td><td rowspan="1">1516420642372</td><td rowspan="1">0</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Automation</th></tr></tbody><tbody id="t0"><tr><th colspan="4">TestScripts &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">com.testscripts.TestCases</td><td><a href="#m0">errorHandlingMetoMeRestriction</a></td><td rowspan="1">1517523286797</td><td rowspan="1">110162</td></tr></tbody>
 </table>
-<h2>TestScripts</h2><h3 id="m0">com.testscripts.TestCases#openApp</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.SessionNotCreatedException: session not created (No device with the following information was found: //device[(@serialnumber=&apos;0123456789abcdef&apos;) and not(@emulator=&apos;true&apos;) ] Lock Device by query: @serialnumber=&apos;0123456789ABCDEF&apos; )  (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 49 milliseconds
-Build info: version: &apos;3.8.1&apos;, revision: &apos;6e95a6684b&apos;, time: &apos;2017-12-01T18:33:54.468Z&apos;
-System info: host: &apos;MGGG0HH2&apos;, ip: &apos;192.168.0.6&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_152&apos;
-Driver info: driver.version: AndroidDriver
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
-	at org.openqa.selenium.remote.JsonWireProtocolResponse.lambda$new$0(JsonWireProtocolResponse.java:53)
-	at org.openqa.selenium.remote.JsonWireProtocolResponse.lambda$getResponseFunction$2(JsonWireProtocolResponse.java:91)
-	at org.openqa.selenium.remote.ProtocolHandshake.lambda$createSession$0(ProtocolHandshake.java:123)
-	at java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:193)
-	at java.util.Spliterators$ArraySpliterator.tryAdvance(Spliterators.java:958)
-	at java.util.stream.ReferencePipeline.forEachWithCancel(ReferencePipeline.java:126)
-	at java.util.stream.AbstractPipeline.copyIntoWithCancel(AbstractPipeline.java:498)
-	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:485)
-	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:471)
-	at java.util.stream.FindOps$FindOp.evaluateSequential(FindOps.java:152)
-	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
-	at java.util.stream.ReferencePipeline.findFirst(ReferencePipeline.java:464)
-	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:126)
-	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:73)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:142)
-	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:89)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
-	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:42)
-	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
-	at io.appium.java_client.android.AndroidDriver.execute(AndroidDriver.java:1)
-	at org.openqa.selenium.remote.RemoteWebDriver.startSession(RemoteWebDriver.java:219)
-	at org.openqa.selenium.remote.RemoteWebDriver.&lt;init&gt;(RemoteWebDriver.java:142)
-	at io.appium.java_client.DefaultGenericMobileDriver.&lt;init&gt;(DefaultGenericMobileDriver.java:38)
-	at io.appium.java_client.AppiumDriver.&lt;init&gt;(AppiumDriver.java:83)
-	at io.appium.java_client.AppiumDriver.&lt;init&gt;(AppiumDriver.java:93)
-	at io.appium.java_client.android.AndroidDriver.&lt;init&gt;(AndroidDriver.java:72)
-	at com.library.Common.setUp(Common.java:55)
-	at com.testscripts.TestCases.openApp(TestCases.java:29)
-... Removed 24 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m1">com.testscripts.TestCases#closeApp</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m2">com.testscripts.TestCases#meToMetransfer</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.SessionNotCreatedException: session not created (No device with the following information was found: //device[(@serialnumber=&apos;0123456789abcdef&apos;) and not(@emulator=&apos;true&apos;) ] Lock Device by query: @serialnumber=&apos;0123456789ABCDEF&apos; )  (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 49 milliseconds
-Build info: version: &apos;3.8.1&apos;, revision: &apos;6e95a6684b&apos;, time: &apos;2017-12-01T18:33:54.468Z&apos;
-System info: host: &apos;MGGG0HH2&apos;, ip: &apos;192.168.0.6&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_152&apos;
-Driver info: driver.version: AndroidDriver
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
-	at org.openqa.selenium.remote.JsonWireProtocolResponse.lambda$new$0(JsonWireProtocolResponse.java:53)
-	at org.openqa.selenium.remote.JsonWireProtocolResponse.lambda$getResponseFunction$2(JsonWireProtocolResponse.java:91)
-	at org.openqa.selenium.remote.ProtocolHandshake.lambda$createSession$0(ProtocolHandshake.java:123)
-	at java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:193)
-	at java.util.Spliterators$ArraySpliterator.tryAdvance(Spliterators.java:958)
-	at java.util.stream.ReferencePipeline.forEachWithCancel(ReferencePipeline.java:126)
-	at java.util.stream.AbstractPipeline.copyIntoWithCancel(AbstractPipeline.java:498)
-	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:485)
-	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:471)
-	at java.util.stream.FindOps$FindOp.evaluateSequential(FindOps.java:152)
-	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
-	at java.util.stream.ReferencePipeline.findFirst(ReferencePipeline.java:464)
-	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:126)
-	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:73)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:142)
-	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:89)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
-	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:42)
-	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
-	at io.appium.java_client.android.AndroidDriver.execute(AndroidDriver.java:1)
-	at org.openqa.selenium.remote.RemoteWebDriver.startSession(RemoteWebDriver.java:219)
-	at org.openqa.selenium.remote.RemoteWebDriver.&lt;init&gt;(RemoteWebDriver.java:142)
-	at io.appium.java_client.DefaultGenericMobileDriver.&lt;init&gt;(DefaultGenericMobileDriver.java:38)
-	at io.appium.java_client.AppiumDriver.&lt;init&gt;(AppiumDriver.java:83)
-	at io.appium.java_client.AppiumDriver.&lt;init&gt;(AppiumDriver.java:93)
-	at io.appium.java_client.android.AndroidDriver.&lt;init&gt;(AndroidDriver.java:72)
-	at com.library.Common.setUp(Common.java:55)
-	at com.testscripts.TestCases.openApp(TestCases.java:29)
-... Removed 24 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>TestScripts</h2><h3 id="m0">com.testscripts.TestCases#errorHandlingMetoMeRestriction</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException
+	at com.library.Common.verifyElementPresent(Common.java:183)
+	at com.businessfunctions.TransferPage.restictionsMetoMe(TransferPage.java:508)
+	at com.testscripts.TestCases.errorHandlingMetoMeRestriction(TestCases.java:464)
+... Removed 25 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>
