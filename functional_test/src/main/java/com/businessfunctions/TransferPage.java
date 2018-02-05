@@ -184,7 +184,7 @@ public class TransferPage {
     }
     
     //K - Method - Transfer Me to You after entering OTP and PIN and click on submit
-    public void transferUsingOTPSubmit()
+    public void addBeneficiaryUsingOTPSubmit()
     {
         browser.click("xpath", "save button"); //click on save button
         browser.verifyElementPresent("xpath", "Cancel button"); //Verify cancel button
@@ -196,7 +196,7 @@ public class TransferPage {
     }
     
     //K - Method - Transfer Me to You after entering OTP and PIN and click on submit
-    public void transferUsingOTPCancel()
+    public void addBeneficiaryUsingOTPCancel()
     {
         browser.click("xpath", "save button"); //click on save button
         browser.verifyElementPresent("xpath", "Cancel button"); //Verify cancel button
@@ -649,5 +649,35 @@ public class TransferPage {
         browser.click("name", "backButton");
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
         browser.verifyElementPresent("name", "TransferHeader");
+    }
+    
+    //M - Method - to verify Limits while transferring money
+    public void verifyLimit(String accountfromtype,String amount) throws InterruptedException
+    {
+        String accountfromno = browser.getText("xpath", "(//*[@content-desc='accountCard' and *[@text='"+ accountfromtype +"']]//*[@content-desc='accountCardNumber'])[1]");
+        browser.click("xpath", "//*[@content-desc='accountCard' and *[@text='"+ accountfromno +"']]//*[@content-desc='Transfer Button']");
+        browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
+        browser.click("xpath", "//*[@text='NCB BENEFICIARIES']");
+        browser.click("xpath", "(//*[@content-desc='accountCard'][1])[3]");
+        browser.click("xpath", "(//*[@contentDescription='Next Button Enabled'])[2]");
+        browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
+        browser.verifyElementPresent("name", "TransferHeader");
+        browser.sendKeys("name", "MoneyInput", amount);
+        browser.keyboardKeys(66);
+        browser.click("xpath", "(//*[@contentDescription='Next Button Enabled'])[3]");
+        //Transfer Review Page
+        browser.waitUntilElementPresent("//*[@content-desc='sourceAccountTitle']");
+        browser.verifyText("name", "sourceAccountTitle", "Send from");
+        browser.verifyText("name", "destinationAccountTitle", "to");
+        browser.verifyText("name", "transferAmountTitle", "for the amount of");
+        browser.verifyElementPresent("name", "submitTransferButton");
+        browser.verifyText("name", "sourceAccountTypeAndNumber", accountfromtype + "  ••" + browser.subString(accountfromno, 5, 9) );
+        browser.verifyText("name", "transferAmount", "$"+amount+"0.00");
+        browser.click("name", "submitTransferButton");
+        if(browser.getSize("name", "Errormessage")!=0)//Error message if limit exceeded
+        {
+            System.out.println("You have exceeded the limit to transfer the amount");
+            browser.verifyElementPresent("xpath", "transfer button disabled");//disable transfer button 
+        }
     }
 }
