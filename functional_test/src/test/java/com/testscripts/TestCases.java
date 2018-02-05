@@ -434,8 +434,9 @@ public class TestCases extends RootTest {
         homepage.animationOnLanding();
         login.acceptTermAndConditions();
         //add beneficiary
-        transferpage.transferUsingOTPSubmit();
+        transferpage.addBeneficiaryUsingOTPSubmit();
         brow.sleepThread(1000);
+        brow.screenShot();
         System.out.println("Testcase 27 - Successfully Completed");
     }
     
@@ -515,5 +516,36 @@ public class TestCases extends RootTest {
         login.acceptTermAndConditions();
         transferpage.oopsMetoYou("435335217","4450");
         System.out.println("Testcase 33 - Successfully Completed");
+    }
+
+    //Test case_34 Add Beneficiary Cancel after entering OTP
+    @Test
+    public void addBeneficiaryUsingOTPCancel() throws Exception
+    {
+        System.out.println("Running Testcase 34 - Verify Adding beneficiary by entering PIN + OTP and click on cancel");
+        brow.reset();
+        login.loginToapp("yandisud","Password1##");
+        homepage.animationOnLanding();
+        login.acceptTermAndConditions();
+        //add beneficiary
+        transferpage.addBeneficiaryUsingOTPCancel();
+        brow.sleepThread(1000);
+        brow.screenShot();
+        System.out.println("Testcase 34 - Successfully Completed");
+    }
+    
+    //Test case_35 Verifying the Limits while me to you transfer
+    @Test
+    public void verifyTransferLimits() throws Exception
+    {
+        System.out.println("Running Testcase 35 - Verify the limits while transferring the amount");
+        brow.reset();
+        login.loginToapp("yandisud","Password1##");
+        homepage.animationOnLanding();
+        login.acceptTermAndConditions();
+        transferpage.verifyLimit("Savings", "500000");
+        brow.sleepThread(1000);
+        brow.screenShot();
+        System.out.println("Testcase 35 - Successfully Completed");
     }
 }

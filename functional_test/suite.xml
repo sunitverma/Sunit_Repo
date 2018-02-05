@@ -28,15 +28,17 @@
 					<exclude name="meToYouTransfer" />
 					<exclude name="meToMetransfer" />
 					<include name="addBeneficiaryPersonal" />
-                	<include name="addBeneficiaryBusiness" />					
-					<exclude name="addBeneficiarySubmit" />
-					<exclude name="addBeneficiaryCancel" />
+                	<include name="addBeneficiaryBusiness" />	
+                	<include name="reviewMeToYoutransfer" />				
+					<exclude name="addBeneficiaryUsingOTPSubmit" />
+					<exclude name="addBeneficiaryUsingOTPCancel" />
 					<exclude name="errorHandlingMetoMeBalanceAndExceed" />
 					<exclude name="errorHandlingMetoMeRestriction" />
 					<exclude name="errorHandlingMetoMeOopsMessage" />
 					<exclude name="errorHandlingMetoYouBalanceAndExceed" />
 					<exclude name="errorHandlingMetoYouRestriction" />
-					<exclude name="errorHandlingMetoYouOopsMessage" />
+					<exclude name="errorHandlingMetoYouOopsMessage" />				
+					<include name="verifyTransferLimits" />
             	</methods>
         	</class>
     	</classes>
