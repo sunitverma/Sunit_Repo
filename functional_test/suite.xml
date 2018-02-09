@@ -1,18 +1,18 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Automation">
-	<test name="TestScripts">
+<suite name = "Automation">
+	<test name = "TestScripts">
 		<classes>
 			<class name="com.testscripts.TestCases" >
 				<methods>
 			        <exclude name="loginWithEmptyData" />
-					<exclude name="loginWithValidTestdata" />
+					<include name="loginWithValidTestdata" />
 					<exclude name="loginWithInvalidUsername" />
 					<exclude name="loginWithInvalidPassword" />
 					<exclude name="passwordRetry" />
 					<exclude name="verifyHomepageAllAccounts" />
 					<exclude name="verifyHomepageOneAccount" />
 					<exclude name="verifyHomepageNoAccounts" />
-					<exclude name="showTenTransaction" />
+					<exclude name="showFiftyTransaction" />
 					<exclude name="withLoanBalanceDetails" />
 					<exclude name="zeroLoanBalanceDetails" />
 					<exclude name="savingsBalanceBreakdown" />
@@ -27,9 +27,9 @@
 					<exclude name="meToMeTransferfromChequingsSummaryPage" />
 					<exclude name="meToYouTransfer" />
 					<exclude name="meToMetransfer" />
-					<include name="addBeneficiaryPersonal" />
-                	<include name="addBeneficiaryBusiness" />	
-                	<include name="reviewMeToYoutransfer" />				
+					<exclude name="addBeneficiaryPersonal" />
+                	<exclude name="addBeneficiaryBusiness" />	
+                	<exclude name="reviewMeToYoutransfer" />				
 					<exclude name="addBeneficiaryUsingOTPSubmit" />
 					<exclude name="addBeneficiaryUsingOTPCancel" />
 					<exclude name="errorHandlingMetoMeBalanceAndExceed" />
@@ -38,7 +38,7 @@
 					<exclude name="errorHandlingMetoYouBalanceAndExceed" />
 					<exclude name="errorHandlingMetoYouRestriction" />
 					<exclude name="errorHandlingMetoYouOopsMessage" />				
-					<include name="verifyTransferLimits" />
+					<exclude name="verifyTransferLimits" />
             	</methods>
         	</class>
     	</classes>

@@ -51,6 +51,7 @@ public class Common {
         dc.setCapability(MobileCapabilityType.UDID, Des.getProperty("UDID_number"));
         dc.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.jncb.mobile");
         dc.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, ".MainActivity");
+        dc.setCapability("deviceName", "Samsung S5");
         dc.setCapability(AndroidMobileCapabilityType.UNICODE_KEYBOARD,"True");
         driver = new AndroidDriver<AndroidElement>(new URL("http://localhost:4723/wd/hub"), dc);
     		}catch (IOException io) {
@@ -203,7 +204,8 @@ public class Common {
     }
            
     //capture screenshot
-    public void screenShot(){
+    public void screenShot()
+    {
     // Take screenshot and store as a file format
     File src= ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
     try {
@@ -239,7 +241,7 @@ public class Common {
     }
     
     //send the keyboard key
-    public void keyboardKeys(int key)
+    public void keyboardKey(int key)
     {
     	driver.pressKeyCode(key);
     }
@@ -275,7 +277,7 @@ public class Common {
     }
 
     //Scroll down the page
-    public void scrollDown(String Direction,int Start,int End) throws InterruptedException
+    public void scrollDown(String Direction,int Start,int End)
     {
     	char a = '\"';
         driver.executeScript("client:client.swipe("+ a + Direction + a + "," + Start + ","+ End +")");
