@@ -13,19 +13,22 @@ public class HomePage {
     }
        
     // K - Method - to verify the available accounts    
-    public void verifyHomepageAccounts()
+    public void homePageWithAccounts()
     {
-        if(browser.getSize("xpath", "//*[@content-desc='accountCard' and *[@text='Savings']]") != 0)
-        {
-            System.out.println("Savings account is available");
-        }
-        if(browser.getSize("xpath", "//*[@content-desc='accountCard' and *[@text='Chequing']]") != 0)
-        {
-            System.out.println("Chequing account is available");
-        }
-        if(browser.getSize("xpath", "//*[@content-desc='accountCard' and *[@text='Loan']]") != 0)
-        {
-            System.out.println("Loan account is available");
+        if ((browser.getSize("xpath", "//*[@content-desc='accountCard' and *[@text='Savings']]") != 0) || (browser.getSize("xpath", "//*[@content-desc='accountCard' and *[@text='Chequing']]") != 0) || (browser.getSize("xpath", "//*[@content-desc='accountCard' and *[@text='Loan']]") != 0))
+        {  
+            if(browser.getSize("xpath", "//*[@content-desc='accountCard' and *[@text='Savings']]") != 0)
+                {
+                    System.out.println("Savings account is available");
+                }
+            if(browser.getSize("xpath", "//*[@content-desc='accountCard' and *[@text='Chequing']]") != 0)
+                {
+                    System.out.println("Chequing account is available");
+                }
+            if(browser.getSize("xpath", "//*[@content-desc='accountCard' and *[@text='Loan']]") != 0)
+                {
+                    System.out.println("Loan account is available");
+                }
         }
         else
         {
@@ -34,13 +37,13 @@ public class HomePage {
     }
     
     // K - Method - to verify no account
-    public void verifyHomepageNoAccounts()
+    public void homePageWithoutAccounts()
     {       
         browser.waitUntilElementPresent("//*[@content-desc='alertMessage']");
         
-        if(browser.getSize("name", "alertMessage") != 0)
+        if(browser.getSize("accessibilityId", "alertMessage") != 0)
         {
-            String msg = browser.getText("name", "alertMessage");
+            String msg = browser.getText("accessibilityId", "alertMessage");
             System.out.println(msg);
             System.out.println("No accounts are available");
         }
@@ -64,10 +67,10 @@ public class HomePage {
     {
         browser.click("xpath", "(//*[@content-desc='accountCard' and *[@text='" + accounttype + "']]//*[@content-desc='Transfer Button'])[1]");
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
-        browser.verifyText("name", "TransferHeader", "Where would you like to transfer to?");
-        browser.verifyElementPresent("name", "backButton");
-        browser.click("name", "backButton");
+        browser.verifyText("accessibilityId", "TransferHeader", "Where would you like to transfer to?");
+        browser.verifyElementPresent("accessibilityId", "backButton");
+        browser.click("accessibilityId", "backButton");
         browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
-        browser.verifyText("name", "welcomeName", browser.getText("xpath", "//*[@text[starts-with(.,'Good')]]"));
+        browser.verifyText("accessibilityId", "welcomeName", browser.getText("xpath", "//*[@text[starts-with(.,'Good')]]"));
     }
 }

@@ -15,30 +15,31 @@
 					<exclude name="showFiftyTransaction" />
 					<exclude name="withLoanBalanceDetails" />
 					<exclude name="zeroLoanBalanceDetails" />
-					<exclude name="savingsBalanceBreakdown" />
+					<exclude name="withSavingsBalanceDetails" />
 					<exclude name="logOutButton" />
 					<exclude name="feedBackButton" />
 					<exclude name="termsAndConditions" />
 					<exclude name="animation" />
 					<exclude name="transfers" />
-					<exclude name="meToMeTransferfromSavingsListPage" />
-					<exclude name="meToMeTransferfromSavingsSummaryPage" />
-					<exclude name="meToMeTransferfromChequingsListPage" />
-					<exclude name="meToMeTransferfromChequingsSummaryPage" />
+					<exclude name="meToMeTransferFromSavingsListPage" />
+					<exclude name="meToMeTransferFromSavingsSummaryPage" />
+					<exclude name="meToMeTransferFromChequingsListPage" />
+					<exclude name="meToMeTransferFromChequingsSummaryPage" />
 					<exclude name="meToYouTransfer" />
-					<exclude name="meToMetransfer" />
+					<exclude name="meToMeTransfer" />
 					<exclude name="addBeneficiaryPersonal" />
                 	<exclude name="addBeneficiaryBusiness" />	
-                	<exclude name="reviewMeToYoutransfer" />				
-					<exclude name="addBeneficiaryUsingOTPSubmit" />
-					<exclude name="addBeneficiaryUsingOTPCancel" />
-					<exclude name="errorHandlingMetoMeBalanceAndExceed" />
-					<exclude name="errorHandlingMetoMeRestriction" />
-					<exclude name="errorHandlingMetoMeOopsMessage" />
-					<exclude name="errorHandlingMetoYouBalanceAndExceed" />
-					<exclude name="errorHandlingMetoYouRestriction" />
-					<exclude name="errorHandlingMetoYouOopsMessage" />				
-					<exclude name="verifyTransferLimits" />
+                	<exclude name="reviewMeToYouTransfer" />				
+					<exclude name="addBeneficiarySubmit" />
+					<exclude name="addBeneficiaryUsingOtpCancel" />
+					<exclude name="errorHandlingMeToMeBalanceAndExceed" />
+					<exclude name="errorHandlingMeToMeRestriction" />
+					<exclude name="errorHandlingMeToMeOopsMessage" />
+					<exclude name="errorHandlingMeToYouBalanceAndExceed" />
+					<exclude name="errorHandlingMeToYouRestriction" />
+					<exclude name="errorHandlingMeToYouOopsMessage" />				
+					<exclude name="verifyTransferLimitsMetoMe" />
+					<exclude name="verifyTransferLimitsMetoYou" />
             	</methods>
         	</class>
     	</classes>

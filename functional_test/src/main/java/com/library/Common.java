@@ -1,18 +1,17 @@
 package com.library;
 
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
+import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.remote.MobileCapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
-import static org.testng.Assert.assertTrue;
+import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,6 +20,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
 import java.util.Properties;
+import static org.testng.Assert.assertTrue;
 
 public class Common {
 
@@ -51,7 +51,6 @@ public class Common {
         dc.setCapability(MobileCapabilityType.UDID, Des.getProperty("UDID_number"));
         dc.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.jncb.mobile");
         dc.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, ".MainActivity");
-        dc.setCapability("deviceName", "Samsung S5");
         dc.setCapability(AndroidMobileCapabilityType.UNICODE_KEYBOARD,"True");
         driver = new AndroidDriver<AndroidElement>(new URL("http://localhost:4723/wd/hub"), dc);
     		}catch (IOException io) {
@@ -59,76 +58,88 @@ public class Common {
     		}
     }
         
-    //WebElement 
-    public WebElement webElementId(String identifier,String locator)
+    //AndroidElement 
+    public AndroidElement androidElementId(String identifier,String locator)
     {
-    	WebElement e=null;
+        AndroidElement e=null;
         switch (identifier)
         {
         case "id" : 
-            e=driver.findElement(By.id(locator));
+            e=driver.findElementById(locator);
             	break;
         case "className" : 
-            e=driver.findElement(By.className(locator));
+            e=driver.findElementByClassName(locator);
                 break;
         case "tagName" : 
-            e=driver.findElement(By.tagName(locator));
+            e=driver.findElementByTagName(locator);
             	break;
         case "name" : 
-            e=driver.findElement(By.name(locator));
+            e=driver.findElementByName(locator);
             	break;       
         case "linkText" : 
-            e=driver.findElement(By.linkText(locator));
+            e=driver.findElementByLinkText(locator);
             	break;       
         case "partialLinkText" : 
-            e=driver.findElement(By.partialLinkText(locator));
+            e=driver.findElementByPartialLinkText(locator);
             	break;          
         case "cssSelector" : 
-            e=driver.findElement(By.cssSelector(locator));
+            e=driver.findElementByCssSelector(locator);
             	break;
         case "xpath" :
-            e=driver.findElement(By.xpath(locator));
+            e=driver.findElementByXPath(locator);
             	break;
+        case "accessibilityId" :
+            e=driver.findElementByAccessibilityId(locator);
+                break;
+        case "androidUIAutomator" :
+            e=driver.findElementByAndroidUIAutomator(locator);
+                break;
         default : 
             System.out.println("Locator not found");
-            	e=null;
+            e=null;
         }
         return e;
     }
     
-    //WebElements
-    public List<AndroidElement> webElementIds(String identifier,String locator)
+    //AndroidElements
+    public List<AndroidElement> androidElementIds(String identifier,String locator)
     {
     	List<AndroidElement> e=null;
         switch (identifier)
         {
         case "id" :
-        	e=driver.findElements(By.id(locator));
+        	e=driver.findElementsById(locator);
         		break;
         case "className" :
-            e=driver.findElements(By.className(locator));
+            e=driver.findElementsByClassName(locator);
             	break;
         case "tagName" :
-            e=driver.findElements(By.tagName(locator));
+            e=driver.findElementsByTagName(locator);
             	break;
         case "name" :
-            e=driver.findElements(By.name(locator));
+            e=driver.findElementsByName(locator);
             	break;      
         case "linkText" :
-            e=driver.findElements(By.linkText(locator));
+            e=driver.findElementsByLinkText(locator);
             	break;      
         case "partialLinkText" :
-            e=driver.findElements(By.partialLinkText(locator));
+            e=driver.findElementsByPartialLinkText(locator);
             	break;          
         case "cssSelector" :
-            e=driver.findElements(By.cssSelector(locator));
+            e=driver.findElementsByCssSelector(locator);
             	break;
         case "xpath" :
-            e=driver.findElements(By.xpath(locator));
+            e=driver.findElementsByXPath(locator);
             	break;
+        case "accessibilityId" :
+            e=driver.findElementsByAccessibilityId(locator);
+                break;
+        case "androidUIAutomator" :
+            e=driver.findElementsByAndroidUIAutomator(locator);
+                break;
         default	:
             System.out.println("Locator not found");
-            	e=null;
+            e=null;
         }
         return e;
     }
@@ -137,21 +148,21 @@ public class Common {
     public void sendKeys(String identifier,String locator,String content)
     {
         
-    	WebElement e=webElementId(identifier, locator);
+    	AndroidElement e=androidElementId(identifier, locator);
         e.sendKeys(content);        
     }
     
     //Clear text  field method
     public void clearTextField(String identifier,String locator)
     {
-        WebElement e=webElementId(identifier, locator);
+        AndroidElement e=androidElementId(identifier, locator);
         e.clear();      
     }
     
     //click general method
     public void click(String identifier,String locator)
     {
-        WebElement e=webElementId(identifier, locator); 
+        AndroidElement e=androidElementId(identifier, locator); 
         e.click();
     }
         
@@ -166,7 +177,7 @@ public class Common {
     //Verify Text // sunit change on 20/11/2017
     public void verifyText(String identifier,String locator,String text)
     {
-        WebElement e=webElementId(identifier, locator);
+        AndroidElement e=androidElementId(identifier, locator);
         if (e.getText().equals(text))
         {
             System.out.println(text+" text displayed");
@@ -180,7 +191,7 @@ public class Common {
     //verify element present
     public boolean verifyElementPresent(String identifier,String locator)
     {
-        WebElement e=webElementId(identifier, locator);
+        AndroidElement e=androidElementId(identifier, locator);
         if (e.isDisplayed())
         {
             return true;
@@ -221,7 +232,7 @@ public class Common {
     // M - Button Enabled
     public boolean isButtonEnabled(String identifier,String locator)
     {
-    	WebElement e=webElementId(identifier, locator);
+    	AndroidElement e=androidElementId(identifier, locator);
         if (e.isEnabled())
         {
             return true;
@@ -235,19 +246,19 @@ public class Common {
     //Get the text of element
     public String getText(String identifier,String locator)
     {
-        WebElement e=webElementId(identifier, locator);
-        String msg=e.getText();
+        AndroidElement e=androidElementId(identifier, locator);
+        String msg=e.getText().trim();
         return msg;
     }
     
     //send the keyboard key
     public void keyboardKey(int key)
     {
-    	driver.pressKeyCode(key);
+        driver.pressKeyCode(key);
     }
     
     //reset the count for a user, use this when want to unlock the password
-    public void resetCount(String username) throws Exception
+    public void resetUser(String username) throws Exception
     {
     	Process p = Runtime.getRuntime().exec(new String[] {"explorer", "http://hillevi:7070/passwordreset/api/user/reset/"+username});
     	sleepThread(1000);
@@ -271,7 +282,7 @@ public class Common {
     //Get the count of element
     public int getCount(String identifier,String locator)
     {
-        List<AndroidElement> e=webElementIds(identifier, locator);
+        List<AndroidElement> e=androidElementIds(identifier, locator);
         int count=e.size();
         return count;
     }
@@ -286,7 +297,7 @@ public class Common {
     //Get the Size of element
     public int getSize(String identifier,String locator)
     {
-    	List<AndroidElement> e=webElementIds(identifier, locator);
+    	List<AndroidElement> e=androidElementIds(identifier, locator);
     	return e.size();
       }
 
@@ -299,14 +310,14 @@ public class Common {
     //Value SubString
     public String subString(String value, int begin, int end)
     {
-      String a =value.substring(begin, end);
+      String a=value.substring(begin, end);
       return a;
     }
     
     // Check box selected
     public boolean isButtonSelected(String identifier,String locator)
     {
-        WebElement e=webElementId(identifier, locator);
+        AndroidElement e=androidElementId(identifier, locator);
         if (e.isSelected())
         {
             return true;
@@ -320,7 +331,7 @@ public class Common {
     //Get the char count of text box
     public int getCharCount(String identifier,String locator)
     {
-        WebElement e=webElementId(identifier, locator);
+        AndroidElement e=androidElementId(identifier, locator);
         int count=e.getText().length();
         return count;
     }

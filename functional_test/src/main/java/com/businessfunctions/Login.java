@@ -1,8 +1,16 @@
 package com.businessfunctions;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+
 import com.library.Common;
 
+
 public class Login {
+    
+    ExtentReports extent;
+    ExtentTest test;
     
     Common browser;
     
@@ -16,7 +24,7 @@ public class Login {
     public void loginToApp(String username,String password)
     {
         browser.waitUntilElementPresent("//*[@content-desc='logoImage']");
-        browser.click("name", "login");
+        browser.click("accessibilityId", "login");
         browser.waitUntilElementPresent("//*[@content-desc='Username']");
         browser.sendKeys("xpath", "//*[@content-desc='Username']", username);
         browser.keyboardKey(66);
@@ -24,21 +32,27 @@ public class Login {
         browser.sendKeys("xpath", "//*[@content-desc='Password']", password);
         browser.keyboardKey(66);
         
-        browser.click("name", "loginButtonText");
+        browser.click("accessibilityId", "loginButtonText");
     }
     
     // M - Method - Expected - Verifying the Login button while login with Empty Credentials
     public void emptyLoginExpeceted()
     {
-        boolean buttonValue = browser.isButtonEnabled("name", "loginButtonText");
+        boolean buttonValue = browser.isButtonEnabled("accessibilityId", "loginButtonText");
         
         if(buttonValue == true)
         {
-            System.out.println("Login button is disabled - Please enter the credentials");
+          test.pass("Login button is disabled - Please enter the credentials"); //.pass(driver.getTitle() +" contain "+"QA manual");
+  
+          //System.out.println("Login button is disabled - Please enter the credentials");
+        }
+        else
+        {
+          test.log(Status.FAIL, "Button is Enabled" );
         }
     }
   
-    // M - Method - Expected - Login with invalid user name  
+    // M - Method - Expected - Login with invalid user accessibilityId  
     public void invalidUserExpected()
     {
         browser.verifyText("xpath", "//*[@class='android.widget.TextView'][4]", "Invalid username");
@@ -56,7 +70,7 @@ public class Login {
         //update the expected error message
         String msg1 = "You will be locked out after 2 more password attempts. To unlock your account, you will need to call Customer Care at 1-888-622-3478.";
         String msg2 = "You will be locked out after 1 more password attempts. To unlock your account, you will need to call Customer Care at 1-888-622-3478.";
-        String msg3 = "You have been locked out.To reactivate your account, please call Customer Care at 1-888-622-3478.";
+        String msg3 = "You have been locked out. To reactivate your account, please call Customer Care at 1-888-622-3478.";
         
         browser.waitUntilElementPresent("//*[@content-desc='Username']");
         browser.sendKeys("xpath", "//*[@content-desc='Username']", username);
@@ -66,10 +80,10 @@ public class Login {
         browser.keyboardKey(66);
         
         //First error message
-        browser.click("name", "loginButtonText");
+        browser.click("accessibilityId", "loginButtonText");
         browser.screenShot();
         
-        String errormsg1 = browser.getText("name", "alertMessage");
+        String errormsg1 = browser.getText("accessibilityId", "alertMessage");
         if (errormsg1.equals(msg1))
         {
             System.out.println("Expected first message is correct");
@@ -80,10 +94,10 @@ public class Login {
         }
         
         //Second error message
-        browser.click("name", "loginButtonText");
+        browser.click("accessibilityId", "loginButtonText");
         browser.screenShot();
         
-        String errormsg2 = browser.getText("name", "alertMessage");
+        String errormsg2 = browser.getText("accessibilityId", "alertMessage");
         if (errormsg2.equals(msg2))
         {
             System.out.println("Expected second message is correct");
@@ -94,10 +108,10 @@ public class Login {
         }
         
         //Third error message
-        browser.click("name", "loginButtonText");
+        browser.click("accessibilityId", "loginButtonText");
         browser.screenShot();
         
-        String errormsg3 = browser.getText("name", "alertMessage");
+        String errormsg3 = browser.getText("accessibilityId", "alertMessage");
         if (errormsg3.equals(msg3))
         {
             System.out.println("Expected third message is correct");
@@ -116,29 +130,27 @@ public class Login {
     // S - Method - Expected - Login with invalid password
     public void logOutButtonFunction()
     {
-        browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
-      
-        browser.verifyElementPresent("name", "logoutButton");
-        browser.verifyText("name", "logoutButton", "Log out");
+        browser.verifyElementPresent("accessibilityId", "logoutButton");
+        browser.verifyText("accessibilityId", "logoutButton", "Log out");
         
-        browser.click("name", "logoutButton");
+        browser.click("accessibilityId", "logoutButton");
         
-        browser.verifyText("name", "logoutModalFirstTextField", "Leaving already?");
-        browser.verifyText("name", "logoutModalSecondTextField", "Are you sure you want to log out?");
+        browser.verifyText("accessibilityId", "logoutModalFirstTextField", "Leaving already?");
+        browser.verifyText("accessibilityId", "logoutModalSecondTextField", "Are you sure you want to log out?");
         
-        browser.verifyElementPresent("name", "logoutModalCancelButton");
-        browser.verifyElementPresent("name", "logoutModalLogoutButton");
+        browser.verifyElementPresent("accessibilityId", "logoutModalCancelButton");
+        browser.verifyElementPresent("accessibilityId", "logoutModalLogoutButton");
         browser.screenShot();
         
-        browser.click("name", "logoutModalCancelButton");
-        browser.verifyText("name", "welcomeName", browser.getText("xpath", "//*[@text[starts-with(.,'Good')]]"));
+        browser.click("accessibilityId", "logoutModalCancelButton");
+        browser.verifyText("accessibilityId", "welcomeName", browser.getText("xpath", "//*[@text[starts-with(.,'Good')]]"));
         browser.screenShot();
         System.out.println("Cancel button working fine on Log out pop up");
         
-        browser.click("name", "logoutButton");
+        browser.click("accessibilityId", "logoutButton");
         
-        browser.click("name", "logoutModalLogoutButton");
-        browser.verifyText("name", "loginTitle", "Log in");
+        browser.click("accessibilityId", "logoutModalLogoutButton");
+        browser.verifyText("accessibilityId", "loginTitle", "Log in");
         browser.screenShot();
         System.out.println("Log out button working fine on Log out pop up");
     }
@@ -146,15 +158,15 @@ public class Login {
     // K - Method - Verifying Terms and Conditions
     public void termsAndConditionsExists(String username,String password)
     {
-        if(browser.getSize("name", "welcomeName")!=0)
+        if(browser.getSize("accessibilityId", "welcomeName")!=0)
         {
             System.out.println("The user has already accepted Terms and Conditions");
         }
-        else if(browser.getSize("name", "scrollToEndButton")!=0)
+        else if(browser.getSize("accessibilityId", "scrollToEndButton")!=0)
         {
-            browser.click("name", "scrollToEndButton");
-            browser.verifyElementPresent("name", "declineButton");
-            browser.click("name", "declineButton");
+            browser.click("accessibilityId", "scrollToEndButton");
+            browser.verifyElementPresent("accessibilityId", "declineButton");
+            browser.click("accessibilityId", "declineButton");
             
             if(browser.verifyElementPresent("xpath", "(//*[@content-desc='Username'])"))
             {
@@ -165,17 +177,17 @@ public class Login {
                 browser.sendKeys("xpath", "//*[@content-desc='Password']", password);
                 browser.keyboardKey(66);
                 
-                browser.click("name", "loginButtonText");
+                browser.click("accessibilityId", "loginButtonText");
                 
                 browser.waitUntilElementPresent("//*[@content-desc='scrollToEndButton']");
                 browser.screenShot();
                 
-                browser.click("name", "scrollToEndButton");
+                browser.click("accessibilityId", "scrollToEndButton");
                 
-                browser.verifyElementPresent("name", "acceptButton");
+                browser.verifyElementPresent("accessibilityId", "acceptButton");
                 browser.screenShot();
                 
-                browser.click("name", "acceptButton");
+                browser.click("accessibilityId", "acceptButton");
                 
                 System.out.println("The user accept Terms and Conditions");
                 browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
@@ -186,7 +198,7 @@ public class Login {
     // S - Method - Verifying the Feed back button functionality
     public void feedBackButtonFunction()
     {
-        browser.click("name", "login");
+        browser.click("accessibilityId", "login");
       
         browser.verifyElementPresent("xpath", "(//*[@class='android.view.View'])[8]");
         browser.click("xpath", "(//*[@class='android.view.View'])[8]");
@@ -220,15 +232,15 @@ public class Login {
     // K - Method - Accept Terms and Conditions
     public void acceptTermAndConditions()
     {
-        if(browser.getSize("name", "welcomeName") != 0)
+        if(browser.getSize("accessibilityId", "welcomeName") != 0)
         {
             //Nothing to print
             browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
         }
-        else if(browser.getSize("name", "scrollToEndButton") != 0)
+        else if(browser.getSize("accessibilityId", "scrollToEndButton") != 0)
         {
-            browser.click("name", "scrollToEndButton");
-            browser.click("name", "acceptButton");
+            browser.click("accessibilityId", "scrollToEndButton");
+            browser.click("accessibilityId", "acceptButton");
             browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
         }
     }
@@ -238,7 +250,7 @@ public class Login {
     {
       browser.screenShot();
       
-      if (browser.getSize("name", "spinnerText") != 0)
+      if (browser.getSize("accessibilityId", "spinnerText") != 0)
       {
           System.out.println("Animation displayed on Landing page");
           browser.waitUntilElementPresent("//*[@content-desc='scrollToEndButton' or @content-desc='welcomeName']");
