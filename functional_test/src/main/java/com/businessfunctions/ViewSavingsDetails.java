@@ -12,30 +12,29 @@ public class ViewSavingsDetails {
         browser=br;
     }
     
-    // K - Savings account balance breakdown
-    public void savingAccountBalanceBreakdown()
+    // K - Verify the details on Savings Details page
+    public void viewSavingsDetail()
     {
-        browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
         browser.click("xpath", "(//*[@content-desc='accountCard'])[1]");
       
-        String accountType= browser.getText("name", "accountType").toString();
-        String accountNumber= browser.getText("name", "accountNumber").toString();
+        String accountType= browser.getText("accessibilityId", "accountType").toString();
+        String accountNumber= browser.getText("accessibilityId", "accountNumber").toString();
         System.out.printf("Account Type: %s Account Number: %s\n", accountType, accountNumber);
             
-        String availableBalance = browser.getText("name", "availableBalance");
-        String availableAmount = browser.getText("name", "availableBalanceBalanceAmount");
+        String availableBalance = browser.getText("accessibilityId", "availableBalance");
+        String availableAmount = browser.getText("accessibilityId", "availableBalanceBalanceAmount");
         System.out.printf("Balance Type: %s , Available Amount: %s\n", availableBalance, availableAmount);
             
-        String lienBalance = browser.getText("name", "lienBalance)");
-        String lienBalanceAmount = browser.getText("name", "lienBalanceBalanceAmount");
+        String lienBalance = browser.getText("accessibilityId", "lienBalance)");
+        String lienBalanceAmount = browser.getText("accessibilityId", "lienBalanceBalanceAmount");
         System.out.printf("Balance Type: %s , Lien Balance Amount: %s\n", lienBalance, lienBalanceAmount);
             
-        String unclearedBalance = browser.getText("name", "unclearBalance");
-        String unclearedBalanceAmount = browser.getText("name", "unclearBalanceBalanceAmount");
+        String unclearedBalance = browser.getText("accessibilityId", "unclearBalance");
+        String unclearedBalanceAmount = browser.getText("accessibilityId", "unclearBalanceBalanceAmount");
         System.out.printf("Balance Type: %s , Uncleared Balance Amount: %s\n", unclearedBalance, unclearedBalanceAmount);
         
-        String balanceType = browser.getText("name", "balanceTypeTitle");
-        String balanceAmount = browser.getText("name", "balanceAmount");
+        String balanceType = browser.getText("accessibilityId", "balanceTypeTitle");
+        String balanceAmount = browser.getText("accessibilityId", "balanceAmount");
         System.out.printf("Balance Type: %s , Balance Amount: %s\n", balanceType, balanceAmount);
         browser.scrollDown("Down", 200, 3500);
     }
