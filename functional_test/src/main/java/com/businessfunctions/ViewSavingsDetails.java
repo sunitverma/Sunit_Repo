@@ -1,41 +1,59 @@
 package com.businessfunctions;
 
 import com.library.Common;
+import org.openqa.selenium.NoSuchElementException;
 
 public class ViewSavingsDetails {
        
     Common browser;
     
     //constructor with one argument.
-    public ViewSavingsDetails(Common br)
-    {
-        browser=br;
+    public ViewSavingsDetails(Common br) {
+      browser = br;
     }
-    
+
     // K - Verify the details on Savings Details page
-    public void viewSavingsDetail()
-    {
-        browser.click("xpath", "(//*[@content-desc='accountCard'])[1]");
+    public void viewSavingsDetail() {
       
-        String accountType= browser.getText("accessibilityId", "accountType").toString();
-        String accountNumber= browser.getText("accessibilityId", "accountNumber").toString();
-        System.out.printf("Account Type: %s Account Number: %s\n", accountType, accountNumber);
-            
-        String availableBalance = browser.getText("accessibilityId", "availableBalance");
-        String availableAmount = browser.getText("accessibilityId", "availableBalanceBalanceAmount");
-        System.out.printf("Balance Type: %s , Available Amount: %s\n", availableBalance, availableAmount);
-            
-        String lienBalance = browser.getText("accessibilityId", "lienBalance)");
-        String lienBalanceAmount = browser.getText("accessibilityId", "lienBalanceBalanceAmount");
-        System.out.printf("Balance Type: %s , Lien Balance Amount: %s\n", lienBalance, lienBalanceAmount);
-            
-        String unclearedBalance = browser.getText("accessibilityId", "unclearBalance");
-        String unclearedBalanceAmount = browser.getText("accessibilityId", "unclearBalanceBalanceAmount");
-        System.out.printf("Balance Type: %s , Uncleared Balance Amount: %s\n", unclearedBalance, unclearedBalanceAmount);
-        
-        String balanceType = browser.getText("accessibilityId", "balanceTypeTitle");
-        String balanceAmount = browser.getText("accessibilityId", "balanceAmount");
-        System.out.printf("Balance Type: %s , Balance Amount: %s\n", balanceType, balanceAmount);
-        browser.scrollDown("Down", 200, 3500);
+      try {
+        if(browser.getSize("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='SAVINGS']]]") != 0) {
+          String accountNo = browser.getText("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='SAVINGS']]][1]//*[@content-desc='accountCardNumber']");
+          String accountBal = browser.getText("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='SAVINGS']]][1]//*[@content-desc='accountCardBalanceAmount']");
+          String currencySign = browser.getText("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='SAVINGS']]][1]//*[@content-desc='accountCardBalanceNegative']");
+          String currency = browser.getText("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='SAVINGS']]][1]//*[@content-desc='accountCardBalanceCurrency']");
+          
+          browser.click("xpath", "(//*[@content-desc='accountCardType'][@text='SAVINGS'])[1]");
+          browser.waitUntilElementPresent("//*[@content-desc='logoutButton']");
+          
+          //Verify the details on Savings account details page
+          browser.verifyText("accessibilityId", "accountType", "SAVINGS");
+          browser.verifyText("accessibilityId", "balanceTypeTitle", accountNo);
+          browser.verifyText("accessibilityId", "balanceAmount", currencySign + accountBal);
+          browser.verifyText("accessibilityId", "accountCurrency", " " + currency);
+          
+          browser.verifyText("accessibilityId", "availableBalance", "Available:");
+          browser.verifyElementPresent("accessibilityId", "availableBalanceBalanceAmount");
+          browser.verifyText("accessibilityId", "availableBalanceCurrency", " " + currency);
+          
+          browser.verifyText("accessibilityId", "lienBalance", "Lien:");
+          browser.verifyElementPresent("accessibilityId", "lienBalanceBalanceAmount");
+          browser.verifyText("accessibilityId", "lienBalanceCurrency", " " + currency);
+          
+          browser.verifyText("accessibilityId", "unclearBalance", "Uncleared:");
+          browser.verifyElementPresent("accessibilityId", "unclearBalanceBalanceAmount");
+          browser.verifyText("accessibilityId", "unclearBalanceCurrency", " " + currency);
+          
+          browser.verifyText("accessibilityId", "transactionHeader", "TRANSACTIONS HISTORY");
+          browser.verifyText("accessibilityId", "transactionHeaderCurrency", currency);
+          
+          browser.scrollDown("Down", 200, 3500);
+        }
+        else {
+          System.out.println("No Savings account is avaliable for this user. Please use another user for automation testing which have Savings account.");
+        }
+      } catch (NoSuchElementException e) {
+        System.out.println("Element Not Found");
+        e.printStackTrace();
+      }
     }
 }

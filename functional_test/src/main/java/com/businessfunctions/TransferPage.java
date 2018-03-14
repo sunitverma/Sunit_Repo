@@ -1,112 +1,176 @@
 package com.businessfunctions;
 
 import com.library.Common;
+import org.openqa.selenium.NoSuchElementException;
 
 public class TransferPage {
 
     Common browser;
     
     //constructor with one argument.
-    public TransferPage(Common br)
-    {
-        browser=br;
+    public TransferPage(Common br) {
+      browser = br;
     }
     
-    // K - Method - to verify me to me transfers
-    public void meToMeTransfer(String currency)
-    {
-        if(browser.verifyElementPresent("xpath", "//*[@class='android.widget.ImageView' and ./parent::*[@content-desc='Next Button Disabled']]"))
-        {
-            browser.click("xpath", "//*[@content-desc='accountCard' and ./parent::*[./parent::*[./preceding-sibling::*[@class='android.view.ViewGroup']]] and ./*[@text='Savings']]");
-            browser.click("xpath", "//*[@class='android.widget.ImageView' and ./parent::*[@content-desc='Next Button Enabled']]");
-        }   
-        //Thread.sleep(5000);
+    /*// K - Method - to verify me to me transfers
+    public void meToMeTransfer(String currency) {
+      
+      try {
         
-        if(browser.verifyElementPresent("accessibilityId", "Next Button Disabled"))
-        {
-            browser.getText("accessibilityId", "MoneyInput");
-            browser.sendKeys("accessibilityId", "MoneyInput", "1");
-            browser.click("accessibilityId", "TransferHeader");
-            
-            browser.click("xpath", "//*[@class='android.widget.ImageView' and ./preceding-sibling::*[@class='android.view.ViewGroup']]");
-            browser.click("xpath", "//*[@class='android.widget.EditText' and ./preceding-sibling::*[@class='android.widget.TextView']]");
-            browser.click("xpath", "((//*[@class='android.view.ViewGroup' and ./parent::*[@class='android.widget.ScrollView']]/*[@class='android.view.ViewGroup'])[" + currency + "])");
-            
-            //browser.click("xpath", "((//*[@class='android.view.ViewGroup' and ./parent::*[@class='android.widget.ScrollView']]/*[@class='android.view.ViewGroup'])/*[@text='"+Currency+"'])");
-            browser.click("accessibilityId", "Next Button Enabled");
-            browser.verifyElementPresent("accessibilityId", "sourceAccountTitle");
-            browser.click("xpath", "//*[@text='Cancel']");
-            
-            if(browser.getSize("accessibilityId", "cancelModalLogoutButton")!=0)
-            {
-                browser.click("accessibilityId", "cancelModalLogoutButton"); 
-                browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
-                browser.verifyElementPresent("xpath", "//*[@content-desc='welcomeName']");
-            }
+        if(browser.verifyElementPresent("xpath", "//*[@class='android.widget.ImageView' and ./parent::*[@content-desc='Next Button Disabled']]")) {
+          browser.click("xpath", "//*[@content-desc='accountCard' and ./parent::*[./parent::*[./preceding-sibling::*[@class='android.view.ViewGroup']]] and ./*[@text='Savings']]");
+          browser.click("xpath", "//*[@class='android.widget.ImageView' and ./parent::*[@content-desc='Next Button Enabled']]");
         }
+        
+        if(browser.verifyElementPresent("accessibilityId", "Next Button Disabled")) {
+          browser.getText("accessibilityId", "MoneyInput");
+          browser.sendKeys("accessibilityId", "MoneyInput", "1");
+          browser.click("accessibilityId", "TransferHeader");
+          
+          browser.click("xpath", "//*[@class='android.widget.ImageView' and ./preceding-sibling::*[@class='android.view.ViewGroup']]");
+          browser.click("xpath", "//*[@class='android.widget.EditText' and ./preceding-sibling::*[@class='android.widget.TextView']]");
+          browser.click("xpath", "((//*[@class='android.view.ViewGroup' and ./parent::*[@class='android.widget.ScrollView']]/*[@class='android.view.ViewGroup'])[" + currency + "])");
+          
+          //browser.click("xpath", "((//*[@class='android.view.ViewGroup' and ./parent::*[@class='android.widget.ScrollView']]/*[@class='android.view.ViewGroup'])/*[@text='"+Currency+"'])");
+          browser.click("accessibilityId", "Next Button Enabled");
+          browser.verifyElementPresent("accessibilityId", "sourceAccountTitle");
+          browser.click("xpath", "//*[@text='Cancel']");
+          
+          if(browser.getSize("accessibilityId", "cancelModalLogoutButton")!=0) {
+            browser.click("accessibilityId", "cancelModalLogoutButton"); 
+            browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
+            browser.verifyElementPresent("xpath", "//*[@content-desc='welcomeName']");
+          }
+        }
+      } catch (NoSuchElementException e) {
+        System.out.println("Element Not Found");
+        e.printStackTrace();
+      }
     }
      
     // K - Method - to verify me to me transfers on accounts from Account List page
-    public void meToMeTransfersAccountListPage(String accounttype, String accountnumber)
-    {
-        if(browser.getSize("xpath", "//*[@content-desc='accountCard' and *[@text='" + accounttype + "']]")!=0)
-        {
-            String currency = browser.getText("xpath", "//*[@text='JMD' and  ./preceding-sibling::*[@text='" + accountnumber + "'] and ./preceding-sibling::*[@text='Savings']]");
-            System.out.println("currency is " + currency);
-            browser.click("xpath", "//*[@text='TRANSFER' and ./parent::*[./preceding-sibling::*[@text='" + accountnumber + "']]]");
+    public void meToMeTransfersAccountListPage(String accounttype, String accountnumber) {
+      
+      try {
+        if(browser.getSize("xpath", "//*[@content-desc='accountCard' and *[@text='" + accounttype + "']]")!=0) {
+          String currency = browser.getText("xpath", "//*[@text='JMD' and  ./preceding-sibling::*[@text='" + accountnumber + "'] and ./preceding-sibling::*[@text='Savings']]");
+          System.out.println("currency is " + currency);
+          browser.click("xpath", "//*[@text='TRANSFER' and ./parent::*[./preceding-sibling::*[@text='" + accountnumber + "']]]");
         }
+      } catch (NoSuchElementException e) {
+        System.out.println("Element Not Found");
+        e.printStackTrace();
+      }
     }
-     
-    // K - Method - to verify me to me transfers on accounts from Account Summary page
-    public void meToMeTransfersAccountSummaryPage(String accounttype, String accountnumber)
-    {
-        if(browser.getSize("xpath", "//*[@class='android.view.ViewGroup' and *[@text='"+ accounttype +"']]")!=0)
-        {
-            browser.click("xpath", "//*[@content-desc='accountCard' and ./*[@text='" + accountnumber + "'] and ./*[@text='" + accounttype + "']]");
-            browser.click("xpath", "//*[@content-desc='Transfer Button' and ./preceding-sibling::*[@class='android.widget.ScrollView']]");
+    */
+    
+    // S - Method - To use in billPaymentButtonOnLandingPage method
+    public void meToMeTransfer(String accounttype, String currency) {
+      String accountTypeFrom = browser.getText("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='" + accounttype + "']]][1]//*[@content-desc='accountCardType']");
+      String accountNoFrom = browser.getText("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='" + accounttype + "']]][1]//*[@content-desc='accountCardNumber']");
+      String accountCurrencySignFrom = browser.getText("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='" + accounttype + "']]][1]//*[@content-desc='accountCardBalanceNegative']");
+      String accountBalanceFrom = browser.getText("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='" + accounttype + "']]][1]//*[@content-desc='accountCardBalanceAmount']");
+      String accountCurrencyTypeFrom = browser.getText("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='" + accounttype + "']]][1]//*[@content-desc='accountCardBalanceCurrency']");
+      //String accountTypeTo = browser.getText("xpath", "(//*[@content-desc='accountCard']//*[@text='SAVINGS' or @text='CHEQUING' and *[@content-desc='accountCardNumber'][not(@text[contains(.,'" + accountNoFrom + "')])] and *[@content-desc='accountCardType']])[1]");
+      String accountNoTo = browser.getText("xpath", "(//*[@content-desc='accountCard' and ./*[./*[@text='SAVINGS' or @text='CHEQUING']]]//*[@content-desc='accountCardNumber'][not(@text[contains(.,'" + accountNoFrom + "')])])[1]/..//*[@content-desc='accountCardType']");
+      //System.out.println(accountTypeTo + " " +accountNoTo + " ");
+      browser.verifyText("accessibilityId", "TransferHeader", "Where would you like to transfer to?");
+      browser.verifyElementPresent("accessibilityId", "backButton");
+      browser.click("accessibilityId", "backButton");
+      browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
+      browser.verifyText("accessibilityId", "welcomeName", browser.getText("xpath", "//*[@text[starts-with(.,'Good')]]"));
+    }
+    
+    // S - Method - To verify pay a bill button working for saving and Chequing account on account details page and back button working
+    public void meToMeTransfersAccountListPage(String accounttype, String currency) {
+      
+      //try {
+        if (browser.getSize("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='" + accounttype + "']]]")!= 0) {
+          if (browser.getSize("accessibilityId", "PAY A BILL BUTTON") != 0) {
+            browser.click("xpath", "//*[@content-desc='moreButton' and ./following-sibling::*[@content-desc='MAKE A TRANSFER BUTTON']]");
+            browser.screenShot();
+            meToMeTransfer(accounttype, currency);
+            System.out.println("Bill payment and back button are working on Account details page for " + accounttype + " account.");
+          }
+          else {
+            browser.screenShot();
+            meToMeTransfer(accounttype, currency);
+            System.out.println("Bill payment and back button are working on Account details page for " + accounttype + " account.");
+          }
         }
+        else {
+          System.out.println("No " + accounttype + " is account avaliable for this user. Please use another user for automation testing which have " + accounttype + " account.");
+        }
+      /*} catch (NoSuchElementException e) {
+        System.out.println("Element Not Found");
+        e.printStackTrace();
+      }*/
+    }
+    
+    // K - Method - to verify me to me transfers on accounts from Account Summary page
+    public void meToMeTransfersAccountSummaryPage(String accounttype, String accountnumber) {
+      
+      try {
+        if(browser.getSize("xpath", "//*[@class='android.view.ViewGroup' and *[@text='"+ accounttype +"']]")!=0) {
+          browser.click("xpath", "//*[@content-desc='accountCard' and ./*[@text='" + accountnumber + "'] and ./*[@text='" + accounttype + "']]");
+          browser.click("xpath", "//*[@content-desc='Transfer Button' and ./preceding-sibling::*[@class='android.widget.ScrollView']]");
+        }
+      } catch (NoSuchElementException e) {
+        System.out.println("Element Not Found");
+        e.printStackTrace();
+      }
     }
      
     // K - Method - to verify me to you transfers button
-    public void meToYouTransferButton()
-    {
+    public void meToYouTransferButton() {
+      
+      try {
         //Thread.sleep(5000);
         browser.click("xpath", "//*[@text='NCB BENEFICIARIES']");
+      } catch (NoSuchElementException e) {
+        System.out.println("Element Not Found");
+        e.printStackTrace();
+      }
     }
-    
+        
     // K - Method - to verify me to you transfers
-    public void meToYouTransfer(String currency, String nickname)
-    {
-        if(browser.getSize("xpath","//*[@content-desc='Next Button Disabled' and @width>0]")!=0)
-        {
-            browser.click("xpath", "(//*[@content-desc='accountCard'][1])[3]");
-            //browser.click("xpath", "//*[@content-desc='accountCard' and ./*[@text='"+ Nickname +"']]");
-            browser.click("xpath", "(//*[@content-desc='Next Button Enabled'])[2]");
-            browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
-            browser.verifyElementPresent("accessibilityId", "TransferHeader");
-            browser.getText("accessibilityId", "MoneyInput");
-            browser.sendKeys("accessibilityId", "MoneyInput", "1");
-            browser.click("accessibilityId", "TransferHeader");
-            browser.click("xpath", "//*[@class='android.widget.ImageView' and ./preceding-sibling::*[@class='android.view.ViewGroup']]");
-            browser.click("xpath", "//*[@class='android.widget.EditText' and ./preceding-sibling::*[@class='android.widget.TextView']]");
-            browser.click("xpath", "((//*[@class='android.view.ViewGroup' and ./parent::*[@class='android.widget.ScrollView']]/*[@class='android.view.ViewGroup'])[" + currency + "])");
-            //browser.click("xpath", "((//*[@class='android.view.ViewGroup' and ./parent::*[@class='android.widget.ScrollView']]/*[@class='android.view.ViewGroup'])/*[@text='"+Currency+"'])");
-            browser.click("xpath", "(//*[@content-desc='Next Button Enabled'])[2]");
-            browser.verifyElementPresent("accessibilityId", "sourceAccountTitle");
-            browser.click("xpath", "//*[@text='Cancel']");
-            if(browser.getSize("accessibilityId", "cancelModalLogoutButton")!=0)
-            {
-                browser.click("accessibilityId", "cancelModalLogoutButton"); 
-                browser.verifyElementPresent("xpath", "//*[@content-desc='welcomeName']");
-            }
+    public void meToYouTransfer(String currency, String nickname) {
+      
+      try {
+        if(browser.getSize("xpath","//*[@content-desc='Next Button Disabled' and @width>0]")!=0) {
+          browser.click("xpath", "(//*[@content-desc='accountCard'][1])[3]");
+          //browser.click("xpath", "//*[@content-desc='accountCard' and ./*[@text='"+ Nickname +"']]");
+          browser.click("xpath", "(//*[@content-desc='Next Button Enabled'])[2]");
+          browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
+          browser.verifyElementPresent("accessibilityId", "TransferHeader");
+          browser.getText("accessibilityId", "MoneyInput");
+          browser.sendKeys("accessibilityId", "MoneyInput", "1");
+          browser.click("accessibilityId", "TransferHeader");
+          browser.click("xpath", "//*[@class='android.widget.ImageView' and ./preceding-sibling::*[@class='android.view.ViewGroup']]");
+          browser.click("xpath", "//*[@class='android.widget.EditText' and ./preceding-sibling::*[@class='android.widget.TextView']]");
+          browser.click("xpath", "((//*[@class='android.view.ViewGroup' and ./parent::*[@class='android.widget.ScrollView']]/*[@class='android.view.ViewGroup'])[" + currency + "])");
+          //browser.click("xpath", "((//*[@class='android.view.ViewGroup' and ./parent::*[@class='android.widget.ScrollView']]/*[@class='android.view.ViewGroup'])/*[@text='"+Currency+"'])");
+          browser.click("xpath", "(//*[@content-desc='Next Button Enabled'])[2]");
+          browser.verifyElementPresent("accessibilityId", "sourceAccountTitle");
+          browser.click("xpath", "//*[@text='Cancel']");
+          
+          if(browser.getSize("accessibilityId", "cancelModalLogoutButton")!=0) {
+            browser.click("accessibilityId", "cancelModalLogoutButton"); 
+            browser.verifyElementPresent("xpath", "//*[@content-desc='welcomeName']");
+          }
         }
+      } catch (NoSuchElementException e) {
+        System.out.println("Element Not Found");
+        e.printStackTrace();
+      }
     }
-    
+     
     // S - Method - to verify transfer flow page
-    public void transferFlowMeToMe(String accountfromtype, String amount)
-    {    
+    public void transferFlowMeToMe(String accountfromtype, String amount) {
+      
+      try {
         String accountFromNo = browser.getText("xpath", "(//*[@content-desc='accountCard']//*[@content-desc='accountCardType'][@text='" + accountfromtype + "']/../*[@content-desc='accountCardBalanceAmount'][not(@text='0.00')])[1]");
-        String accountToNo = browser.getText("xpath", "(//*[@content-desc='accountCard']//*[@content-desc='accountCardType'][@text='Savings' and 'Chequing']/..//*[@content-desc='accountCardNumber'][not(@text='356425529')])[1]");//"+ accountfromno +"
+        String accountToNo = browser.getText("xpath", "(//*[@content-desc='accountCard']//*[@content-desc='accountCardType'][@text='Savings' and 'Chequing']/..//*[@content-desc='accountCardNumber'][not(@text='356425529')])[1]");    //"+ accountfromno +"
         String accountToType = browser.getText("xpath", "//*[@content-desc='accountCard' and *[@text='" + accountFromNo + "']]//*[@content-desc='accountCardType']");
         browser.click("xpath", "//*[@content-desc='accountCard' and *[@text='"+ accountToNo +"']]//*[@content-desc='Transfer Button']");
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
@@ -117,7 +181,7 @@ public class TransferPage {
         browser.click("accessibilityId", "Next Button Enabled");
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
         browser.verifyElementPresent("accessibilityId", "TransferHeader");
-        browser.sendKeys("accessibilityId", "MoneyInput", amount);
+        browser.sendKeys("xpath", "(//*[@content-desc='MoneyInput'])[2]", amount);
         browser.keyboardKey(66);
         String currency = browser.getText("xpath" , "(//*[@class='android.widget.EditText'])[4]");
         browser.click("accessibilityId", "Next Button Enabled");
@@ -139,11 +203,16 @@ public class TransferPage {
         browser.click("accessibilityId", "backToAccountsButton");
         browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
         browser.verifyText("xpath", "//*[@text='" + accountFromNo + "']", accountToNo);
+      } catch (NoSuchElementException e) {
+        System.out.println("Element Not Found");
+        e.printStackTrace();
+      }
     }
-    
+        
     // K - Method - to verify Me to You transfer flow page
-    public void transferFlowMeToYou(String accountfromtype, String amount)
-    {
+    public void transferFlowMeToYou(String accountfromtype, String amount) {
+      
+      try {
         String accountFromNo = browser.getText("xpath", "(//*[@content-desc='accountCard' and *[@text='" + accountfromtype + "']]//*[@content-desc='accountCardNumber'])[1]");
         browser.click("xpath", "//*[@content-desc='accountCard' and *[@text='" + accountFromNo + "']]//*[@content-desc='Transfer Button']");
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
@@ -165,15 +234,14 @@ public class TransferPage {
         browser.verifyElementPresent("accessibilityId", "submitTransferButton");
         browser.verifyText("accessibilityId", "sourceAccountTypeAndNumber", accountfromtype + "  ••" + browser.subString(accountFromNo, 5, 9) );
         int size=browser.getCharCount("xpath", "//*[@content-desc='destinationAccountTypeAndNumber']");
-        if (size == 17)
-        {
-            System.out.println("Nickname length is 17, as per requirement");
-            
+        
+        if (size == 17) {
+          System.out.println("Nickname length is 17, as per requirement");
         }
         else
         {
-            System.out.println("Nickname length is not equals to 17 characters");
-            System.out.println("The length is " + (size-3));
+          System.out.println("Nickname length is not equals to 17 characters");
+          System.out.println("The length is " + (size-3));
         }
         
         browser.verifyText("accessibilityId", "transferAmount", "$" + amount + "0.00");
@@ -184,11 +252,16 @@ public class TransferPage {
         browser.click("accessibilityId", "backToAccountsButton");
         browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
         browser.verifyText("xpath", "//*[@text='" + accountFromNo + "']", accountFromNo);
+      } catch (NoSuchElementException e) {
+        System.out.println("Element Not Found");
+        e.printStackTrace();
+      }
     }
     
     // K - Method - Transfer Me to You after entering OTP and PIN and click on submit
-    public void addBeneficiaryUsingOtpSubmit()
-    {
+    public void addBeneficiaryUsingOtpSubmit() {
+      
+      try {
         browser.click("xpath", "save button"); //click on save button
         browser.verifyElementPresent("xpath", "Cancel button"); //Verify cancel button
         browser.verifyElementPresent("xpath", "Submit button"); //Verify submit button
@@ -196,32 +269,47 @@ public class TransferPage {
         browser.click("xpath", "submit button"); //click on submit button
         browser.verifyElementPresent("xpath", "Element in list of beneficiaries page");
         browser.verifyElementPresent("xpath", "toast message"); //verify the toast message
+      } catch (NoSuchElementException e) {
+        System.out.println("Element Not Found");
+        e.printStackTrace();
+      }
     }
-    
+        
     // K - Method - Transfer Me to You after entering OTP and PIN and click on submit
-    public void addBeneficiaryUsingOtpCancel()
-    {
+    public void addBeneficiaryUsingOtpCancel() {
+      
+      try {
         browser.click("xpath", "save button"); //click on save button
         browser.verifyElementPresent("xpath", "Cancel button"); //Verify cancel button
         browser.verifyElementPresent("xpath", "Submit button"); //Verify submit button
         browser.sendKeys("xpath", "PIN + TOKEN", "PIN + TOKEN"); //Enter pin and token
         browser.click("xpath", "cancel button"); //click on submit button
-        browser.verifyElementPresent("xpath", "Element in list of beneficiaries page"); 
+        browser.verifyElementPresent("xpath", "Element in list of beneficiaries page");
+      } catch (NoSuchElementException e) {
+        System.out.println("Element Not Found");
+        e.printStackTrace();
+      }
     }
-    
+        
     // S - Method - to verify add beneficiary functionality
-    public void addBeneficiaryToAccount(String accounttype)
-    {
+    public void addBeneficiaryToAccount(String accounttype) {
+      
+      try {
         //browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
         browser.click("xpath", "(//*[@content-desc='accountCard' and *[@text='" + accounttype + "']]//*[@content-desc='Transfer Button'])[1]");
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
         browser.click("xpath", "//*[@text='NCB BENEFICIARIES']");
         browser.waitUntilElementPresent("//*[@content-desc='addButton']");
+      } catch (NoSuchElementException e) {
+        System.out.println("Element Not Found");
+        e.printStackTrace();
+      }
     }
       
     // S - Method - to verify text fields validation on blank page for save button and close button functionality
-    public void blankBeneficiaryPagePersonal()
-    {
+    public void blankBeneficiaryPagePersonal() {
+      
+      try {
         browser.click("accessibilityId", "addButton");
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader'][@text='Add New Beneficiary']");
         browser.click("accessibilityId", "Retail");
@@ -262,66 +350,64 @@ public class TransferPage {
         browser.keyboardKey(66);
         
         int fNameChar = browser.getCharCount("accessibilityId", "firstname");
-        if (fNameChar == 40)
-        {
-            System.out.println("First Name is 40 character");
+        if (fNameChar == 40) {
+          System.out.println("First Name is 40 character");
         }
-        else
-        {
-            System.out.println("First Name is " + fNameChar +" character");
+        else {
+          System.out.println("First Name is " + fNameChar +" character");
         }
         
         browser.sendKeys("accessibilityId", "lastname", "RLast Name Pneumonoultramicroscopicsilicovolcanoconiosis");
         browser.keyboardKey(66);
         
         int lNameChar = browser.getCharCount("accessibilityId", "lastname");
-        if (lNameChar == 40)
-        {
-            System.out.println("Last Name is 40 character");
+        if (lNameChar == 40) {
+          System.out.println("Last Name is 40 character");
         }
-        else
-        {
-            System.out.println("Last Name is " + lNameChar + " character");
+        else {
+          System.out.println("Last Name is " + lNameChar + " character");
         }
         
         browser.sendKeys("accessibilityId", "accountnumber", "1234567890");
         browser.keyboardKey(66);
         
         int aNumberCount = browser.getCharCount("accessibilityId", "accountnumber");
-        if (aNumberCount == 9)
-        {
-            System.out.println("Account Number is 9 digit");
+        if (aNumberCount == 9) {
+          System.out.println("Account Number is 9 digit");
         }
-        else
-        {
-            System.out.println("Account Number is " + aNumberCount + " digit");
+        else {
+          System.out.println("Account Number is " + aNumberCount + " digit");
         }
           
         browser.sendKeys("accessibilityId", "nickname","RNick Name Pneumonoultramicroscopicsilicovolcanoconiosis");        
         browser.keyboardKey(66);
         
         int nNameChar = browser.getCharCount("accessibilityId", "nickname");
-        if (nNameChar == 17)
-        {
-            System.out.println("Nick Name is 17 character");
+        if (nNameChar == 17) {
+          System.out.println("Nick Name is 17 character");
         }
-        else
-        {
-            System.out.println("Nick Name is " + nNameChar +" character");
+        else {
+          System.out.println("Nick Name is " + nNameChar +" character");
         }
         
         browser.screenShot();
-  
+          
         browser.click("accessibilityId", "closeButton");
         browser.waitUntilElementPresent("//*[@content-desc='logoutModalFirstTextField']");
         browser.click("accessibilityId", "logoutModalLogoutButton");
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
         System.out.println("blank beneficiary page for Personal tested");
+      } catch (NoSuchElementException e) {
+        System.out.println("Element Not Found");
+        e.printStackTrace();
+      }
     }
+
     
     // S - Method - to verify elements available on Personal add beneficiary page/pop-up message and cancel button functionality
-    public void cancelBeneficiaryPersonal()
-    {
+    public void cancelBeneficiaryPersonal() {
+      
+      try {
         browser.click("accessibilityId", "addButton");
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader'][@text='Add New Beneficiary']");
         browser.click("accessibilityId", "Retail");
@@ -353,11 +439,16 @@ public class TransferPage {
         browser.click("accessibilityId", "logoutModalLogoutButton");
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
         System.out.println("cancel button on beneficiary page for Personal tested");
+      } catch (NoSuchElementException e) {
+        System.out.println("Element Not Found");
+        e.printStackTrace();
+      }
     }
     
     // S - Method - to verify add beneficiary Personal page
-    public void beneficiaryPersonal(String nickname)
-    {
+    public void beneficiaryPersonal(String nickname) {
+      
+      try {
         browser.click("accessibilityId", "addButton");
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader'][@text='Add New Beneficiary']");
         browser.click("accessibilityId", "Retail");
@@ -392,11 +483,16 @@ public class TransferPage {
         browser.verifyText("xpath", "//*[@content-desc='accountCard' and *[@text='"+ nickname +"']]", nickname);
         browser.verifyText("xpath", "//*[@content-desc='accountCard' and *[@text='" + "  ••" + aNumberChange + "']]", aNumberChange1);
         //browser.sleepThread(2000);
+      } catch (NoSuchElementException e) {
+        System.out.println("Element Not Found");
+        e.printStackTrace();
+      }
     }
-    
+
     // S - Method - to verify text fields validation on blank page for save button and close button functionality
-    public void blankBeneficiaryPageBusiness()
-    {
+    public void blankBeneficiaryPageBusiness() {
+      
+      try {
         browser.click("accessibilityId", "addButton");
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader'][@text='Add New Beneficiary']");
         browser.click("accessibilityId", "Corporate");
@@ -433,12 +529,10 @@ public class TransferPage {
         browser.sendKeys("accessibilityId", "companyname", "CName Pneumonoultramicroscopicsilicovolcanoconiosis Pneumonoultramicroscopicsilicovolcanoconiosis");
         
         int CName = browser.getCharCount("accessibilityId", "companyname");
-        if (CName == 80)
-        {
+        if (CName == 80) {
           System.out.println("Company accessibilityId is 80 character");
         }
-        else
-        {
+        else {
           System.out.println("Company accessibilityId is " + CName +" character");
         }
         
@@ -446,38 +540,39 @@ public class TransferPage {
         browser.keyboardKey(66);
         
         int aNumberCount = browser.getCharCount("accessibilityId", "accountnumber");
-        if (aNumberCount == 9)
-        {
-            System.out.println("Account Number is 9 digit");
+        if (aNumberCount == 9) {
+          System.out.println("Account Number is 9 digit");
         }
-        else
-        {
-            System.out.println("Account Number is " + aNumberCount + " digit");
+        else {
+          System.out.println("Account Number is " + aNumberCount + " digit");
         }
-          
+                  
         browser.sendKeys("accessibilityId", "nickname","RNick Name Pneumonoultramicroscopicsilicovolcanoconiosis");        
         browser.keyboardKey(66);
         
         int nNameChar = browser.getCharCount("accessibilityId", "nickname");
-        if (nNameChar == 17)
-        {
-            System.out.println("Nick accessibilityId is 17 character");
+        if (nNameChar == 17) {
+          System.out.println("Nick accessibilityId is 17 character");
         }
-        else
-        {
-            System.out.println("Nick accessibilityId is " + nNameChar + " character");
+        else {
+          System.out.println("Nick accessibilityId is " + nNameChar + " character");
         }
-          
+                  
         browser.click("accessibilityId", "closeButton");
         browser.waitUntilElementPresent("//*[@content-desc='logoutModalFirstTextField']");
         browser.click("accessibilityId", "logoutModalLogoutButton");
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
         System.out.println("blank beneficiary page for Corporate tested");
+      } catch (NoSuchElementException e) {
+        System.out.println("Element Not Found");
+        e.printStackTrace();
+      }
     }
 
     // S - Method - to verify elements available on Corporate add beneficiary page/pop-up message and cancel button functionality
-    public void cancelBeneficiaryBusiness()
-    {
+    public void cancelBeneficiaryBusiness() {
+      
+      try {
         browser.click("accessibilityId", "addButton");
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader'][@text='Add New Beneficiary']");
         browser.click("accessibilityId", "Corporate;");
@@ -505,11 +600,16 @@ public class TransferPage {
         browser.click("accessibilityId", "logoutModalLogoutButton");
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
         System.out.println("cancle button on beneficiary page for Corporate tested");
+      } catch (NoSuchElementException e) {
+        System.out.println("Element Not Found");
+        e.printStackTrace();
+      }
     }
-    
+
     // S - Method - to verify add beneficiary Corporate page
-    public void beneficiaryBusiness(String nickname)
-    {
+    public void beneficiaryBusiness(String nickname) {
+      
+      try {
         browser.click("accessibilityId", "addButton");
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader'][@text='Add New Beneficiary']");
         browser.click("accessibilityId", "corporate");
@@ -536,11 +636,16 @@ public class TransferPage {
         browser.verifyText("xpath", "//*[@content-desc='accountCard' and *[@text='" + nickname + "']]", nickname);
         browser.verifyText("xpath", "//*[@content-desc='accountCard' and *[@text='" + "  ••" + aNumberChange + "']]", aNumberChange1);
         //browser.sleepThread(2000);
+      } catch (NoSuchElementException e) {
+        System.out.println("Element Not Found");
+        e.printStackTrace();
+      }
     }
-    
+
     // S - Method - Error handling for Me to Me Transfers: Verify the available balance and exceed the total amount 
-    public void balanceAndExceedMeToMe(String accountfrom, String accountto)
-    {
+    public void balanceAndExceedMeToMe(String accountfrom, String accountto) {
+      
+      try {
         String balance = browser.getText("xpath", "//*[@content-desc='accountCard' and *[@text='" + accountfrom + "']]//*[@content-desc='accountCardBalanceAmount']");
         String currency = browser.getText("xpath", "//*[@content-desc='accountCard' and *[@text='" + accountfrom + "']]//*[@content-desc='accountCardBalanceCurrency']");
         browser.click("xpath", "//*[@content-desc='accountCard' and *[@text='" + accountfrom + "']]//*[@text='TRANSFER']");
@@ -563,11 +668,16 @@ public class TransferPage {
         browser.click("accessibilityId", "backButton");
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
         browser.verifyElementPresent("accessibilityId", "TransferHeader");
+      } catch (NoSuchElementException e) {
+        System.out.println("Element Not Found");
+        e.printStackTrace();
+      }
     }
     
     // S - Method - Error handling for Me to Me Transfers: Verify the error message for restricted accounts
-    public void restictionsMeToMe(String accountfrom, String accountto)
-    {
+    public void restictionsMeToMe(String accountfrom, String accountto) {
+      
+      try {
         browser.click("xpath", "//*[@content-desc='accountCard' and *[@text='" + accountfrom + "']]//*[@text='TRANSFER']");
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader'][1]");
         browser.click("xpath", "//*[@text='MY ACCOUNTS']");
@@ -587,11 +697,16 @@ public class TransferPage {
         browser.verifyElementPresent("errorModalButton", "Back to accounts");
         browser.click("errorModalButton", "Back to accounts");
         browser.waitUntilElementPresent("//*[@content-desc='welcomeName'");
+      } catch (NoSuchElementException e) {
+        System.out.println("Element Not Found");
+        e.printStackTrace();
+      }
     }
     
     // S - Method - Error handling for Me to Me Transfers: Verify the oops message
-    public void oopsMeToMe(String accountfrom, String accountto)
-    {
+    public void oopsMeToMe(String accountfrom, String accountto) {
+      
+      try {
         browser.click("xpath", "//*[@content-desc='accountCard' and *[@text='" + accountfrom + "']]//*[@text='TRANSFER']");
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader'][1]");
         browser.click("xpath", "//*[@text='MY ACCOUNTS']");
@@ -610,11 +725,16 @@ public class TransferPage {
         browser.click("accessibilityId", "backButton");
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
         browser.verifyElementPresent("accessibilityId", "TransferHeader");
+      } catch (NoSuchElementException e) {
+        System.out.println("Element Not Found");
+        e.printStackTrace();
+      }
     }
     
     // S - Method - Error handling for Me to You Transfers: Verify the available balance and exceed the total amount 
-    public void balanceAndExceedMeToYou(String accountfrom, String accountto)
-    {
+    public void balanceAndExceedMeToYou(String accountfrom, String accountto) {
+      
+      try {
         String balance = browser.getText("xpath", "//*[@content-desc='accountCard' and *[@text='" + accountfrom + "']]//*[@content-desc='accountCardBalanceAmount']");
         String currency = browser.getText("xpath", "//*[@content-desc='accountCard' and *[@text='" + accountfrom + "']]//*[@content-desc='accountCardBalanceCurrency']");
         browser.click("xpath", "//*[@content-desc='accountCard' and *[@text='" + accountfrom + "']]//*[@text='TRANSFER']");
@@ -636,11 +756,16 @@ public class TransferPage {
         browser.click("accessibilityId", "backButton");
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
         browser.verifyElementPresent("accessibilityId", "TransferHeader");
+      } catch (NoSuchElementException e) {
+        System.out.println("Element Not Found");
+        e.printStackTrace();
+      }
     }
-    
+
     // S - Method - Error handling for Me to You Transfers: Verify the error message for restricted accounts
-    public void restictionsMeToYou(String accountfrom, String accountto)
-    {
+    public void restictionsMeToYou(String accountfrom, String accountto) {
+      
+      try {
         browser.click("xpath", "//*[@content-desc='accountCard' and *[@text='" + accountfrom + "']]//*[@text='TRANSFER']");
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader'][1]");
         browser.click("xpath", "//*[@text='NCB BENEFICIARIES']");
@@ -659,11 +784,16 @@ public class TransferPage {
         browser.verifyElementPresent("errorModalButton", "Back to accounts");
         browser.click("errorModalButton", "Back to accounts");
         browser.waitUntilElementPresent("//*[@content-desc='welcomeName'");
+      } catch (NoSuchElementException e) {
+        System.out.println("Element Not Found");
+        e.printStackTrace();
+      }
     }
-    
+
     // S - Method - Error handling for Me to You Transfers: Verify the oops message
-    public void oopsMeToYou(String accountfrom, String accountto)
-    {
+    public void oopsMeToYou(String accountfrom, String accountto) {
+      
+      try {
         browser.click("xpath", "//*[@content-desc='accountCard' and *[@text='" + accountfrom + "']]//*[@text='TRANSFER']");
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader'][1]");
         browser.click("xpath", "//*[@text='NCB BENEFICIARIES']");
@@ -681,12 +811,17 @@ public class TransferPage {
         browser.click("accessibilityId", "backButton");
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
         browser.verifyElementPresent("accessibilityId", "TransferHeader");
+      } catch (NoSuchElementException e) {
+        System.out.println("Element Not Found");
+        e.printStackTrace();
+      }
     }
     
-    //M - Method - to verify Limits while transferring money
-    public void verifyLimitMeToMe(String accountfromtype,String accountfromno,String amount)
-    {
-        browser.click("xpath", "//*[@content-desc='accountCard' and *[@text='"+ accountfromno +"']]//*[@content-desc='Transfer Button']");
+    //M - Method - to verify Limits while transferring money for me to me
+    public void verifyLimitMeToMe(String accountfromtype, String accountfromno, String amount) {
+      
+      try {
+        browser.click("xpath", "//*[@content-desc='accountCard' and *[@text='" + accountfromno + "']]//*[@content-desc='Transfer Button']");
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
         browser.click("xpath", "//*[@text='MY ACCOUNTS']");
         browser.click("xpath", "(//*[@content-desc='accountCard'][1])[2]");
@@ -699,20 +834,24 @@ public class TransferPage {
         
         //Transfer Review Page
         browser.waitUntilElementPresent("//*[@content-desc='sourceAccountTitle']");
-        browser.verifyText("accessibilityId", "transferAmount", "$"+amount+"0.00");
+        browser.verifyText("accessibilityId", "transferAmount", "$" + amount + "0.00");
         browser.click("accessibilityId", "submitTransferButton");
         
-        if(browser.getSize("accessibilityId", "alertMessage")!=0)//Error message if limit exceeded
-        {
-            browser.verifyText("accessibilityId", "alertMessage", "");
-            System.out.println("We're sorry, this transfer exceeds the limit. Please click here and enter a smaller amount in order to complete the transfer.");
+        if(browser.getSize("accessibilityId", "alertMessage") != 0) { //Error message if limit exceeded
+          browser.verifyText("accessibilityId", "alertMessage", "");
+          System.out.println("We're sorry, this transfer exceeds the limit. Please click here and enter a smaller amount in order to complete the transfer.");
         }
+      } catch (NoSuchElementException e) {
+        System.out.println("Element Not Found");
+        e.printStackTrace();
+      }
     }
-
-    //M - Method - to verify Limits while transferring money
-    public void verifyLimitMeToYou(String accountfromtype,String accountfromno,String amount)
-    {
-        browser.click("xpath", "//*[@content-desc='accountCard' and *[@text='"+ accountfromno +"']]//*[@content-desc='Transfer Button']");
+    
+    //M - Method - to verify Limits while transferring money for me to you
+    public void verifyLimitMeToYou(String accountfromtype, String accountfromno, String amount) {
+      
+      try {
+        browser.click("xpath", "//*[@content-desc='accountCard' and *[@text='" + accountfromno + "']]//*[@content-desc='Transfer Button']");
         browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
         browser.click("xpath", "//*[@text='NCB BENEFICIARIES']");
         browser.click("xpath", "(//*[@content-desc='accountCard'][1])[3]");
@@ -726,12 +865,16 @@ public class TransferPage {
         
         //Transfer Review Page
         browser.waitUntilElementPresent("//*[@content-desc='sourceAccountTitle']");
-        browser.verifyText("accessibilityId", "transferAmount", "$"+amount+"0.00");
+        browser.verifyText("accessibilityId", "transferAmount", "$" + amount + "0.00");
         browser.click("accessibilityId", "submitTransferButton");
-        if(browser.getSize("accessibilityId", "alertMessage")!=0)//Error message if limit exceeded
-        {
-            browser.verifyText("accessibilityId", "alertMessage", "");
-            System.out.println("We're sorry, this transfer exceeds the limit. Please click here and enter a smaller amount in order to complete the transfer.");
+        
+        if(browser.getSize("accessibilityId", "alertMessage")!=0) { //Error message if limit exceeded
+          browser.verifyText("accessibilityId", "alertMessage", "");
+          System.out.println("We're sorry, this transfer exceeds the limit. Please click here and enter a smaller amount in order to complete the transfer.");
         }
+      } catch (NoSuchElementException e) {
+        System.out.println("Element Not Found");
+        e.printStackTrace();
+      }
     }
 }
