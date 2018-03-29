@@ -4,7 +4,7 @@
 		<classes>
 			<class name="com.testscripts.TestCases" >
 				<methods>
-			        <exclude name="loginWithEmptyData" />
+			        <include name="loginWithEmptyData" />
 					<exclude name="loginWithValidTestdata" />
 					<exclude name="loginWithInvalidUsername" />
 					<exclude name="loginWithInvalidPassword" />
@@ -21,31 +21,32 @@
 					<exclude name="termsAndConditions" />
 					<exclude name="animation" />
 					<exclude name="transfers" />
-					<exclude name="meToMeTransferFromSavingsListPage" />
+					<include name="meToMeTransferFromSavingsListPage" />
 					<exclude name="meToMeTransferFromSavingsSummaryPage" />
 					<exclude name="meToMeTransferFromChequingsListPage" />
 					<exclude name="meToMeTransferFromChequingsSummaryPage" />
 					<exclude name="meToYouTransfer" />
-					<exclude name="meToMeTransfer" />
+					<exclude name="reviewMeToMeTransfer" />
 					<exclude name="addBeneficiaryPersonal" />
-                	<exclude name="addBeneficiaryBusiness" />	
-                	<exclude name="reviewMeToYouTransfer" />				
+                	<exclude name="addBeneficiaryBusiness" />
+                	<exclude name="reviewMeToYouTransfer" />
 					<exclude name="addBeneficiarySubmit" />
-					<exclude name="addBeneficiaryUsingOtpCancel" />
 					<exclude name="errorHandlingMeToMeBalanceAndExceed" />
 					<exclude name="errorHandlingMeToMeRestriction" />
 					<exclude name="errorHandlingMeToMeOopsMessage" />
 					<exclude name="errorHandlingMeToYouBalanceAndExceed" />
 					<exclude name="errorHandlingMeToYouRestriction" />
-					<exclude name="errorHandlingMeToYouOopsMessage" />				
+					<exclude name="errorHandlingMeToYouOopsMessage" />
+					<exclude name="addBeneficiaryUsingOtpCancel" />
 					<exclude name="verifyTransferLimitsMetoMe" />
 					<exclude name="verifyTransferLimitsMetoYou" />
 					<exclude name="Payments" />
-					<include name="billPaymentFromSavingsListPage" />
-					<include name="billPaymentFromSavingsSummaryPage" />
+					<exclude name="billPaymentFromSavingsListPage" />
+					<exclude name="billPaymentFromSavingsSummaryPage" />
 					<exclude name="billPaymentFromChequingsListPage" />
 					<exclude name="billPaymentFromChequingsSummaryPage" />
 					<exclude name="noBillPayee" />
+					<exclude name="backButtons" />
             	</methods>
         	</class>
     	</classes>

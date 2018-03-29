@@ -2,12 +2,14 @@ package com.testscripts;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.businessfunctions.*;
 import com.utils.ExtentReports.ExtentManager;
 import org.apache.maven.shared.utils.io.FileUtils;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
@@ -20,7 +22,7 @@ public class TestCases extends RootTest {
     static Login login = new Login(brow);
     static HomePage homepage = new HomePage(brow);
     static ViewAccounts viewaccounts = new ViewAccounts(brow);
-    static ViewLoanDetails viewloandetails = new ViewLoanDetails(brow);
+    static ViewLoanDetails viewloandetails  = new ViewLoanDetails(brow);
     static ViewSavingsDetails viewsavingdetails = new ViewSavingsDetails(brow);
     static TransferPage transferpage = new TransferPage(brow);
     static BillPayment billpayment = new BillPayment(brow);
@@ -36,22 +38,23 @@ public class TestCases extends RootTest {
     
     @BeforeSuite
     public void openApp() throws Exception {
-      extent = ExtentManager.GetExtent();
+      //extent = ExtentManager.GetExtent();
       brow.setUp();
       FileUtils.deleteDirectory("target/surefire-reports/screenShots");
     }
     
     @AfterSuite
     public void closeApp() {
-      extent.flush();
+      //extent.flush();
       brow.quitObject();
     }
     
-    @AfterMethod
-    public void getResult(ITestResult result) {
+   /* @AfterMethod
+    public void getResult(ITestResult result) throws Exception {
       if(result.getStatus() == ITestResult.FAILURE) {
         test.log(Status.FAIL, MarkupHelper.createLabel(result.getName()+" Test case FAILED due to below issues:", ExtentColor.RED));
-        test.fail(result.getThrowable());
+        //test.addScreencastFromPath("screenshot.png");
+        test.fail("details", MediaEntityBuilder.createScreenCaptureFromPath("screenshot.png").build());
       }
       else if(result.getStatus() == ITestResult.SUCCESS) {
         test.log(Status.PASS, MarkupHelper.createLabel(result.getName()+" Test Case PASSED", ExtentColor.GREEN));
@@ -60,7 +63,7 @@ public class TestCases extends RootTest {
         test.log(Status.SKIP, MarkupHelper.createLabel(result.getName()+" Test Case SKIPPED", ExtentColor.ORANGE));
         test.skip(result.getThrowable());
       }
-    }
+    }*/
        
     //================Sprint 1: 2 test cases ============================
     //================Sprint 1 Start=====================================
@@ -68,27 +71,24 @@ public class TestCases extends RootTest {
     // Test case_01 with Empty Login Credentials username -- M
     @Test
     public void loginWithEmptyData() {
-      test = extent.createTest("Test case_01", "Empty Login Credentials username");
-      //System.out.println("Running Testcase 01 - Login with Empty Testdata");
+      System.out.println("Running Testcase 01 - Login with Empty Testdata");
       brow.reset();
       login.loginToApp("", "");
       login.emptyLoginExpeceted();
       brow.screenShot();
-      test.pass("Testcase 01 - Successfully Completed");
-      //System.out.println("Testcase 01 - Successfully Completed");
+      System.out.println("Testcase 01 - Successfully Completed");
     }
         
     // Testcase_02 with valid Credentials -- M
     @Test
     public void loginWithValidTestdata() {
-      test = extent.createTest("Test case_02", "Login with Valid Credentials");
-      //System.out.println("Running Testcase 02 - Login with Valid Credentials");
+      System.out.println("Running Testcase 02 - Login with Valid Credentials");
       brow.reset();
-      login.loginToApp("pollyanna", "Password1##");
+      login.loginToApp("yandisud", "Password1##");
       login.acceptTermAndConditions();
       brow.verifyText("accessibilityId", "welcomeName", brow.getText("xpath", "//*[@text[starts-with(.,'Good')]]"));
       brow.screenShot();
-      //System.out.println("Testcase 02 - Successfully Completed");
+      System.out.println("Testcase 02 - Successfully Completed");
     }
         
     //=============== Sprint 1 End ======================================
@@ -100,7 +100,7 @@ public class TestCases extends RootTest {
     public void loginWithInvalidUsername() {
       System.out.println("Running Testcase 03 - Login with Invalid Username");
       brow.reset();
-      login.loginToApp("pollyannaa", "Password1##");
+      login.loginToApp("yandisudd", "Password1##");
       login.invalidUserExpected();
       brow.screenShot();
       System.out.println("Testcase 03 - Successfully Completed");
@@ -111,7 +111,7 @@ public class TestCases extends RootTest {
     public void loginWithInvalidPassword() {
       System.out.println("Running Testcase 04 - Login with Invalid Password");
       brow.reset();
-      login.loginToApp("pollyanna", "Password1###");
+      login.loginToApp("yandisud", "Password1###");
       login.invalidPasswordExpected();
       brow.screenShot();
       System.out.println("Testcase 04 - Successfully Completed");
@@ -146,7 +146,7 @@ public class TestCases extends RootTest {
     public void verifyHomepageOneAccount() {
       System.out.println("Running Testcase 07 - Verifying Login page - User having One Account");
       brow.reset();
-      login.loginToApp("walnutkitten", "Password1##");
+      login.loginToApp("darkelor", "Password1##");
       login.acceptTermAndConditions();
       homepage.homePageWithAccounts();
       brow.screenShot();
@@ -175,7 +175,7 @@ public class TestCases extends RootTest {
     public void showFiftyTransaction() {
       System.out.println("Running Testcase 09 - Show Fifty Transactions");
       brow.reset();
-      login.loginToApp("douglasca", "Password1##");
+      login.loginToApp("yandisud", "Password1##");
       login.acceptTermAndConditions();
       viewaccounts.viewAccount();
       brow.screenShot();
@@ -253,8 +253,8 @@ public class TestCases extends RootTest {
     public void termsAndConditions() {
       System.out.println("Running Testcase 15 - Verify Terms and Conditions functionality");
       brow.reset();
-      login.loginToApp("douglasca", "Password1##");
-      login.termsAndConditionsExists("douglasca", "Password1##");
+      login.loginToApp("yandisud", "Password1##");
+      login.termsAndConditionsExists("yandisud", "Password1##");
       System.out.println("Testcase 15 - Successfully Completed"); 
     }
 
@@ -267,7 +267,7 @@ public class TestCases extends RootTest {
     public void animation() {
       System.out.println("Running Testcase 16 - Verify Anitmation on Loading and Account details page");
       brow.reset();
-      login.loginToApp("pollyanna", "Password1##");
+      login.loginToApp("yandisud", "Password1##");
       login.animationOnLandingPage();
       login.acceptTermAndConditions();
       viewaccounts.animationOnAccountDetail();
@@ -283,12 +283,12 @@ public class TestCases extends RootTest {
     public void transfers() {
       System.out.println("Running Testcase 17 - Verify Transfers button functionality");
       brow.reset();
-      login.loginToApp("michele", "Password1##");
+      login.loginToApp("stonepj", "Password1##");
       login.acceptTermAndConditions();
       homepage.quickActionsButtonNotForLoan();
-      homepage.transferButtonOnLandingPage("SAVINGS");
+      homepage.transferButtonOnListPage("SAVINGS");
       viewaccounts.transferButtonOnAccountDetailsPage("SAVINGS");
-      homepage.transferButtonOnLandingPage("CHEQUING");
+      homepage.transferButtonOnListPage("CHEQUING");
       viewaccounts.transferButtonOnAccountDetailsPage("CHEQUING");
       System.out.println("Testcase 17 - Successsfully Completed");
     }
@@ -301,7 +301,6 @@ public class TestCases extends RootTest {
       login.loginToApp("yandisud", "Password1##");
       login.acceptTermAndConditions();
       transferpage.meToMeTransfersAccountListPage("SAVINGS", "10");
-      //transferpage.meToMeTransfer("2");
       System.out.println("Testcase 18 - Successfully Completed");
     }
        
@@ -310,10 +309,9 @@ public class TestCases extends RootTest {
     public void meToMeTransferFromSavingsSummaryPage() {
       System.out.println("Running Testcase 19 - Verify Me to Me Transfer from Savings Account Summary Page");
       brow.reset();
-      login.loginToApp("YANDISUD", "Password1##");
+      login.loginToApp("yandisud", "Password1##");
       login.acceptTermAndConditions();
-      transferpage.meToMeTransfersAccountSummaryPage("Savings", "435335217");
-      //transferpage.meToMeTransfer("2");
+      transferpage.meToMeTransfersAccountSummaryPage("SAVINGS", "10");
       System.out.println("Testcase 19 - Successfully Completed");
     }
      
@@ -322,10 +320,9 @@ public class TestCases extends RootTest {
     public void meToMeTransferFromChequingsListPage() {
       System.out.println("Running Testcase 20 - Verify Me to Me Transfer from Chequing Account List Page");
       brow.reset();
-      login.loginToApp("POLLYANNA", "Password1##");
+      login.loginToApp("YANDISUD", "Password1##");
       login.acceptTermAndConditions();
-      transferpage.meToMeTransfersAccountListPage("Chequing", "061162232");
-      //transferpage.meToMeTransfer("2");
+      transferpage.meToMeTransfersAccountListPage("CHEQUING", "10");
       System.out.println("Testcase 20 - Successfully Completed");
     }
 
@@ -334,10 +331,9 @@ public class TestCases extends RootTest {
     public void meToMeTransferFromChequingsSummaryPage() {
       System.out.println("Running Testcase 21 - Verify Me to Me Transfer from Chequing Account Summary Page");
       brow.reset();
-      login.loginToApp("POLLYANNA", "Password1##");
+      login.loginToApp("YANDISUD", "Password1##");
       login.acceptTermAndConditions();
-      transferpage.meToMeTransfersAccountSummaryPage("Chequing", "061162232");
-      //transferpage.meToMeTransfer("2");
+      transferpage.meToMeTransfersAccountSummaryPage("CHEQUING", "10");
       System.out.println("Testcase 21 - Successfully Completed");
     }
     
@@ -348,7 +344,7 @@ public class TestCases extends RootTest {
       brow.reset();
       login.loginToApp("YANDISUD", "Password1##");
       login.acceptTermAndConditions();
-      transferpage.meToMeTransfersAccountListPage("Savings", "435335217");
+      transferpage.meToMeTransfersAccountListPage("SAVINGS", "435335217");
       transferpage.meToYouTransferButton();
       transferpage.meToYouTransfer("2", "Andres");    // Enter the Index of the currency in the currency dropdown
       System.out.println("Testcase 22 - Successfully Completed");
@@ -356,14 +352,12 @@ public class TestCases extends RootTest {
     
     //Test case_23 Verify Me to Me Transfer -- S
     @Test
-    public void meToMeTransfer() {
+    public void reviewMeToMeTransfer() {
       System.out.println("Running Testcase 23 - Verify Me to Me Transfer, Transfer Edit and Confirmation page");
-      brow.reset();
-      login.loginToApp("stanigar", "Password1##");
+      login.loginToApp("yandisud", "Password1##");
       login.acceptTermAndConditions();
-      transferpage.transferFlowMeToMe("Savings", "1");
-      brow.sleepThread(1000);
-      System.out.println("Testcase 23 - Successfully Completed");
+      transferpage.transferFlowMeToYou("SAVINGS", "1");
+      System.out.println("Testcase 26 - Successfully Completed");
     }
 
     //Test case_24 Add Personal beneficiary -- S
@@ -373,10 +367,10 @@ public class TestCases extends RootTest {
       brow.reset();
       login.loginToApp("darkelor", "Password1##");
       login.acceptTermAndConditions();
-      transferpage.addBeneficiaryToAccount("Savings");
-      transferpage.blankBeneficiaryPageBusiness();
+      transferpage.addBeneficiaryToAccount("SAVINGS");
+      transferpage.blankBeneficiaryPagePersonal("Jody");
       transferpage.cancelBeneficiaryPersonal();
-      //transferpage.beneficiaryPersonal();
+      //transferpage.beneficiaryPersonal("");
       System.out.println("Testcase 24 - Successfully Completed");
     }
     
@@ -387,10 +381,10 @@ public class TestCases extends RootTest {
       brow.reset();
       login.loginToApp("stonepj", "Password1##");
       login.acceptTermAndConditions();
-      transferpage.addBeneficiaryToAccount("Chequing");
+      transferpage.addBeneficiaryToAccount("CHEQUING");
       transferpage.blankBeneficiaryPageBusiness();
       transferpage.cancelBeneficiaryBusiness();
-      //transferpage.beneficiaryBusiness();
+      transferpage.beneficiaryBusiness("");
       System.out.println("Testcase 25 - Successfully Completed");
     }
 
@@ -422,13 +416,16 @@ public class TestCases extends RootTest {
     //Test case_28 Error handling for Me to Me Transfers: Verify the available balance and exceed the total amount -- S
     @Test
     public void errorHandlingMeToMeBalanceAndExceed() {
+      test = extent.createTest("Running Testcase 28", "Verify the available balance and exceed the total amount: Me to Me");
       System.out.println("Running Testcase 28 - Verify the available balance and exceed the total amount: Me to Me");
       brow.reset();
-      login.loginToApp("stanigar", "Password1##");
-      login.animationOnLandingPage();
+      login.loginToApp("yandisud", "Password1##");
       login.acceptTermAndConditions();
-      transferpage.balanceAndExceedMeToMe("304523913", "356425529");
+      transferpage.balanceAndExceedMeToMe("SAVINGS");
+      Assert.assertTrue(brow.verifyText("accessibilityId", "Snackbar Message", "1Amount exceeds available balance. Please reduce the amount."));
+      test.log(Status.INFO, "This step shows usage of log(status, details)");
       System.out.println("Testcase 28 - Successfully Completed");
+      
     }
     
     //Test case_29 Error handling for Me to Me Transfers: Verify the transfer freeze on dormant/restricted accounts -- S
@@ -436,8 +433,7 @@ public class TestCases extends RootTest {
     public void errorHandlingMeToMeRestriction() {
       System.out.println("Running Testcase 29 - Verify the transfer freeze on dormant/restricted accounts: Me to Me");
       brow.reset();
-      login.loginToApp("tommys", "Password1##");
-      login.animationOnLandingPage();
+      login.loginToApp("yandisud", "Password1##");
       login.acceptTermAndConditions();
       transferpage.restictionsMeToMe("756201891", "351182717");
       System.out.println("Testcase 29 - Successfully Completed");
@@ -449,7 +445,6 @@ public class TestCases extends RootTest {
       System.out.println("Running Testcase 30 - Verify the oops message: Me to Me");
       brow.reset();
       login.loginToApp("yandisud", "Password1##");
-      login.animationOnLandingPage();
       login.acceptTermAndConditions();
       transferpage.oopsMeToMe("435335217", "614078707");
       System.out.println("Testcase 30 - Successfully Completed");
@@ -461,7 +456,6 @@ public class TestCases extends RootTest {
       System.out.println("Running Testcase 31 - Verify the available balance and exceed the total amount: Me to You");
       brow.reset();
       login.loginToApp("stanigar", "Password1##");
-      login.animationOnLandingPage();
       login.acceptTermAndConditions();
       transferpage.balanceAndExceedMeToYou("304523913", "4450");
       System.out.println("Testcase 31 - Successfully Completed");
@@ -473,9 +467,8 @@ public class TestCases extends RootTest {
       System.out.println("Running Testcase 32 - Verify the transfer freeze on dormant/restricted accounts: Me to You");
       brow.reset();
       login.loginToApp("tommys", "Password1##");
-      login.animationOnLandingPage();
       login.acceptTermAndConditions();
-      transferpage.restictionsMeToMe("756201891", "4450");
+      transferpage.restictionsMeToYou("756201891", "4450");
       System.out.println("Testcase 32 - Successfully Completed");
     }
      
@@ -485,9 +478,8 @@ public class TestCases extends RootTest {
       System.out.println("Running Testcase 33 - Verify the oops message: Me to You");
       brow.reset();
       login.loginToApp("yandisud", "Password1##");
-      login.animationOnLandingPage();
       login.acceptTermAndConditions();
-      transferpage.oopsMeToMe("435335217", "4450");
+      transferpage.oopsMeToYou("435335217", "4450");
       System.out.println("Testcase 33 - Successfully Completed");
     }
 
@@ -498,8 +490,7 @@ public class TestCases extends RootTest {
       brow.reset();
       login.loginToApp("yandisud", "Password1##");
       login.acceptTermAndConditions();
-      transferpage.addBeneficiaryUsingOtpCancel();    //add beneficiary
-      brow.sleepThread(1000);
+      transferpage.addBeneficiaryUsingOtpCancel();
       brow.screenShot();
       System.out.println("Testcase 34 - Successfully Completed");
     }
@@ -507,11 +498,11 @@ public class TestCases extends RootTest {
     //Test case_35 Verifying the Limits while me to me transfer -- K
     @Test
     public void verifyTransferLimitsMetoMe() {
-      System.out.println("Running Testcase 35 - Verify the limits while transferring the amount");
+      System.out.println("Running Testcase 35 - Verify the limits while transferring the amount for Me to Me");
       brow.reset();
-      login.loginToApp("stonepj", "Password1##");
+      login.loginToApp("yandisud", "Password1##");
       login.acceptTermAndConditions();
-      transferpage.verifyLimitMeToMe("Savings", "354162075","80000");
+      transferpage.verifyLimitMeToMe("SAVINGS", "5000000");
       brow.screenShot();
       System.out.println("Testcase 35 - Successfully Completed");
     }
@@ -519,11 +510,11 @@ public class TestCases extends RootTest {
     //Test case_36 Verifying the Limits while me to you transfer -- K
     @Test
     public void verifyTransferLimitsMetoYou() {
-      System.out.println("Running Testcase 36 - Verify the limits while transferring the amount");
+      System.out.println("Running Testcase 36 - Verify the limits while transferring the amount for Me to You");
       brow.reset();
-      login.loginToApp("stonepj", "Password1##");
+      login.loginToApp("yandisud", "Password1##");
       login.acceptTermAndConditions();
-      transferpage.verifyLimitMeToYou("Savings", "354162075", "800");
+      transferpage.verifyLimitMeToYou("SAVINGS", "5000000");
       brow.screenShot();
       System.out.println("Testcase 36 - Successfully Completed");
     }
@@ -531,70 +522,83 @@ public class TestCases extends RootTest {
     // Test case_37 Verify the Navigation for Bill Payment on Landing and Summary Page -- S
     @Test
     public void Payments() {
-      test = extent.createTest("Test case_37", "Verify the Navigation for Bill Payment on Landing and Summary Page");
+      System.out.println("Testcase 37 - Verify the Navigation for Bill Payment on Landing and Summary Page");
       brow.reset();
-      login.loginToApp("michele", "Password1##");
+      login.loginToApp("yandisud", "Password1##");
       login.acceptTermAndConditions();
       homepage.quickActionsButtonNotForLoan();
       homepage.billPaymentButtonOnLandingPage("SAVINGS");
       viewaccounts.billPaymentButtonOnAccountDetailsPage("SAVINGS");
       homepage.billPaymentButtonOnLandingPage("CHEQUING");
       viewaccounts.billPaymentButtonOnAccountDetailsPage("CHEQUING");
-      test.pass("Testcase 37 - Successsfully Completed");
+      System.out.println("Testcase 37 - Successsfully Completed");
     }
     
-    // Test case_38 Verify Bill Payment from Saving Account List page -- S
+    // Test case_38 Verify Bill Payment from Saving Account List page and Back to Accounts button functionality -- S
     @Test
     public void billPaymentFromSavingsListPage() {
-      test = extent.createTest("Test case_38", "Verify Bill Payment from Saving Account List page");
+      System.out.println("Testcase 38 - Verify Bill Payment from Saving Account List page");
       brow.reset();
-      login.loginToApp("michele", "Password1##");
+      login.loginToApp("yandisud", "Password1##");
       login.acceptTermAndConditions();
       billpayment.billPaymentListPage("SAVINGS", "1");
-      test.pass("Testcase 38 - Successfully Completed");
+      billpayment.backToAccountsButton();
+      System.out.println("Testcase 38 - Successsfully Completed");
     }
     
-    // Test case_39 Verify Bill Payment from Saving Account Summary page -- S
+    // Test case_39 Verify Bill Payment from Saving Account Summary page and Pay Another Bill button functionality -- S
     @Test
     public void billPaymentFromSavingsSummaryPage() {
-      test = extent.createTest("Test case_39", "Verify Bill Payment from Saving Account Summary page");
+      System.out.println("Testcase 39 - Verify Bill Payment from Saving Account Summary page");
       brow.reset();
-      login.loginToApp("michele", "Password1##");
+      login.loginToApp("yandisud", "Password1##");
       login.acceptTermAndConditions();
       billpayment.billPaymentSummaryPage("SAVINGS", "1");
-      test.pass("Testcase 39 - Successfully Completed");
+      billpayment.payAnotherBillButton();
+      System.out.println("Testcase 39 - Successsfully Completed");
     }
     
     // Test case_40 Verify Bill Payment from Chequings Account List page -- S
     @Test
     public void billPaymentFromChequingsListPage() {
-      test = extent.createTest("Test case_40", "Verify Bill Payment from Chequings Account List page");
+      System.out.println("Testcase 40 - Verify Bill Payment from Chequings Account List page");
       brow.reset();
-      login.loginToApp("michele", "Password1##");
+      login.loginToApp("yandisud", "Password1##");
       login.acceptTermAndConditions();
       billpayment.billPaymentListPage("CHEQUING", "1");
-      test.pass("Testcase 40 - Successfully Completed");
+      System.out.println("Testcase 40 - Successsfully Completed");
     }
     
     // Test case_41 Verify Bill Payment from Chequings Account Summary page -- S
     @Test
     public void billPaymentFromChequingsSummaryPage() {
-      test = extent.createTest("Test case_41", "Verify Bill Payment from Chequings Account Summary page");
+      System.out.println("Testcase 41 - Verify Bill Payment from Chequings Account Summary page");
       brow.reset();
-      login.loginToApp("michele", "Password1##");
+      login.loginToApp("yandisud", "Password1##");
       login.acceptTermAndConditions();
       billpayment.billPaymentSummaryPage("CHEQUING", "1");
-      test.pass("Testcase 41 - Successfully Completed");
+      System.out.println("Testcase 41 - Successsfully Completed");
     }
     
     // Test case_42 Verify no Bill Payee -- S
     @Test
     public void noBillPayee() {
-      test = extent.createTest("Test case_42", "Verify Bill Payment from Chequings Account Summary page");
+      System.out.println("Testcase 42 - Verify Bill Payment from Chequings Account Summary page");
       brow.reset();
       login.loginToApp("stanigar", "Password1##");
       login.acceptTermAndConditions();
       billpayment.billPaymentSummaryPage("SAVINGS", "1");
-      test.pass("Testcase 42 - Successfully Completed");
+      System.out.println("Testcase 42 - Successsfully Completed");
+    }
+    
+    // Test case_43 Verify no Bill Payee -- S
+    @Test
+    public void backButtons() {
+      System.out.println("Testcase 43 - Verify Cancel button funcationality on all pages");
+      brow.reset();
+      login.loginToApp("yandisud", "Password1##");
+      login.acceptTermAndConditions();
+      homepage.backButton("SAVINGS", "billpay"); //billpay for 'PAY A BILL' and moneytrf for 'MAKE A TRANSFER'
+      System.out.println("Testcase 43 - Successsfully Completed");
     }
 }

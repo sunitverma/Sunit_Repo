@@ -21,13 +21,14 @@ public class ViewSavingsDetails {
           String accountBal = browser.getText("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='SAVINGS']]][1]//*[@content-desc='accountCardBalanceAmount']");
           String currencySign = browser.getText("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='SAVINGS']]][1]//*[@content-desc='accountCardBalanceNegative']");
           String currency = browser.getText("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='SAVINGS']]][1]//*[@content-desc='accountCardBalanceCurrency']");
+          String subAccountNo = browser.subString(accountNo, 3, 7);
           
           browser.click("xpath", "(//*[@content-desc='accountCardType'][@text='SAVINGS'])[1]");
           browser.waitUntilElementPresent("//*[@content-desc='logoutButton']");
           
           //Verify the details on Savings account details page
           browser.verifyText("accessibilityId", "accountType", "SAVINGS");
-          browser.verifyText("accessibilityId", "balanceTypeTitle", accountNo);
+          browser.verifyText("accessibilityId", "balanceTypeTitle", browser.getText("xpath", "(//*[@text[contains(., " + "'" + subAccountNo + "'" + ")]][1])[2]"));
           browser.verifyText("accessibilityId", "balanceAmount", currencySign + accountBal);
           browser.verifyText("accessibilityId", "accountCurrency", " " + currency);
           
@@ -46,7 +47,7 @@ public class ViewSavingsDetails {
           browser.verifyText("accessibilityId", "transactionHeader", "TRANSACTIONS HISTORY");
           browser.verifyText("accessibilityId", "transactionHeaderCurrency", currency);
           
-          browser.scrollDown("Down", 200, 3500);
+          browser.scroll("Down", 200, 3500);
         }
         else {
           System.out.println("No Savings account is avaliable for this user. Please use another user for automation testing which have Savings account.");
