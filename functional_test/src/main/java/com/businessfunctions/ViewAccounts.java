@@ -85,7 +85,8 @@ public class ViewAccounts {
       browser.waitUntilElementPresent("//*[@content-desc='accountType']");
       browser.click("accessibilityId", "MAKE A TRANSFER BUTTON");
       
-      browser.verifyText("xpath", "//*[@content-desc='TransferHeader'][1]", "Where would you like to transfer to?");
+      browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");      
+      browser.verifyText("accessibilityId", "TransferHeader", "To whom would you like to transfer?");
       browser.verifyElementPresent("accessibilityId", "backButton");
       browser.screenShot();
       browser.click("accessibilityId", "backButton");

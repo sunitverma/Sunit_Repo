@@ -7,6 +7,8 @@ import io.appium.java_client.android.AndroidElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -24,7 +26,10 @@ import static org.testng.Assert.assertTrue;
 
 public class Common {
 
-	public static WebDriverWait wait = null;
+    ExtentReports extent;
+    ExtentTest test;
+  
+    public static WebDriverWait wait = null;
     private String reportDirectory = "reports";
     private String reportFormat = "xml";
     private String testName = "Untitled";
@@ -172,14 +177,17 @@ public class Common {
     }
         
     //Verify Text // sunit change on 20/11/2017
-    public void verifyText(String identifier,String locator,String text) {
+    public boolean verifyText(String identifier,String locator,String text) {
       
       AndroidElement e=androidElementId(identifier, locator);
       if (e.getText().equals(text)) {
         System.out.println(text+" text displayed");
+        
+        return true;
       }
       else  {
         System.out.println(text+" text did not displayed");
+        return false;
       }
     }
         
@@ -275,8 +283,8 @@ public class Common {
       return count;
     }
     
-    //Scroll down the page
-    public void scrollDown(String Direction,int Start,int End) {
+    //Scroll up or down the page
+    public void scroll(String Direction,int Start,int End) {
       
       char a = '\"';
       driver.executeScript("client:client.swipe("+ a + Direction + a + "," + Start + ","+ End +")");

@@ -21,20 +21,21 @@ public class ViewLoanDetails {
           String accountBal = browser.getText("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='LOAN']]][1]//*[@content-desc='accountCardBalanceAmount']");
           String currencySign = browser.getText("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='LOAN']]][1]//*[@content-desc='accountCardBalanceNegative']");
           String currency = browser.getText("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='LOAN']]][1]//*[@content-desc='accountCardBalanceCurrency']");
+          String subAccountNo = browser.subString(accountNo, 3, 7);
           
           browser.click("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='LOAN']]][1]");
           browser.waitUntilElementPresent("//*[@content-desc='logoutButton']");
           
           //Verify the details on Loan account details page
           browser.verifyText("accessibilityId", "accountType", "LOAN");
-          browser.verifyText("accessibilityId", "balanceTypeTitle", accountNo);
+          browser.verifyText("accessibilityId", "balanceTypeTitle", browser.getText("xpath", "(//*[@text[contains(., " + "'" + subAccountNo + "'" + ")]][1])[2]"));
           browser.verifyText("accessibilityId", "balanceAmount", currencySign + accountBal);
           browser.verifyText("accessibilityId", "accountCurrency", " " + currency);
           
           browser.verifyText("accessibilityId", "Next Payment", "Next Payment");
           browser.verifyElementPresent("accessibilityId", "nextPaymentDueDate");
           browser.verifyElementPresent("accessibilityId", "installmentAmount");
-          browser.verifyText("xpath", "(//*[@class='android.widget.TextView'])[88]", " JMD");
+          browser.verifyText("xpath", "(//*[@class='android.widget.TextView'])[86]", " JMD");
               
           browser.verifyText("accessibilityId", "Loan Period", "Loan Period");
           browser.verifyElementPresent("xpath", "//*[@content-desc='loanPeriod'][1]");
@@ -81,4 +82,4 @@ public class ViewLoanDetails {
         e.printStackTrace();
       }
     }
-}   
+}

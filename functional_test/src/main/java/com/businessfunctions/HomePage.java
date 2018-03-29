@@ -2,13 +2,8 @@ package com.businessfunctions;
 
 import com.library.Common;
 import org.openqa.selenium.NoSuchElementException;
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
 
 public class HomePage {
-    
-    ExtentReports extent;
-    ExtentTest test;
     
     Common browser;
     
@@ -50,8 +45,8 @@ public class HomePage {
       try {
         browser.waitUntilElementPresent("//*[@content-desc='alertMessage']");
         
-        if(browser.getSize("accessibilityId", "alertMessage") != 0) {
-          String msg = browser.getText("accessibilityId", "alertMessage");
+        if(browser.getSize("accessibilityId", "Snackbar Message") != 0) {
+          String msg = browser.getText("accessibilityId", "Snackbar Message");
           System.out.println(msg);
           System.out.println("No accounts are available and error message as expected");
         }
@@ -90,7 +85,7 @@ public class HomePage {
       browser.click("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='" + accounttype + "']]]//*[@content-desc='MAKE A TRANSFER BUTTON']");
       browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
       browser.screenShot();
-      browser.verifyText("accessibilityId", "TransferHeader", "Where would you like to transfer to?");
+      browser.verifyText("accessibilityId", "TransferHeader", "To whom would you like to transfer?");
       browser.verifyElementPresent("accessibilityId", "backButton");
       browser.click("accessibilityId", "backButton");
       browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
@@ -98,7 +93,7 @@ public class HomePage {
     }
     
     // S - Method - to verify transfer button working for saving and Chequing accounts on landing page and back button working
-    public void transferButtonOnLandingPage(String accounttype) {
+    public void transferButtonOnListPage(String accounttype) {
       
       try {
         if(browser.getSize("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='" + accounttype + "']]]")!= 0) {
@@ -158,6 +153,91 @@ public class HomePage {
           System.out.println("No " + accounttype + " is account avaliable for this user. Please use another user for automation testing which have " + accounttype + " account.");
         }
       } catch (NoSuchElementException e) {
+        System.out.println("Element Not Found");
+        e.printStackTrace();
+      }
+    }
+
+    // S - Method - to verify back button is working on all pages for Savings or Chequing accounts.
+    public void backButton(String accounttype, String paymenttype) {
+      
+      try {
+        if (browser.getSize("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='" + accounttype + "']]]")!= 0) {
+          if (browser.getSize("xpath", "//*[@content-desc='accountCard' and .//*[@text='SAVINGS' or @text='CHEQUING']]") >= 2) {
+            if (browser.getSize("accessibilityId", "MAKE A TRANSFER BUTTON") != 0) {
+              browser.click("xpath", "//*[@content-desc='moreButton' and ./following-sibling::*[@content-desc='MAKE A TRANSFER BUTTON']]");
+              
+              browser.click("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='" + accounttype + "']]][1]//*[@content-desc='moreButton']");  
+              if (paymenttype =="moneytrf") {
+                browser.click("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='" + accounttype + "']]]//*[@content-desc='MAKE A TRANSFER BUTTON']");
+              }
+              else if (paymenttype =="billpay") {
+                browser.click("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='" + accounttype + "']]]//*[@content-desc='PAY A BILL BUTTON']");
+              }
+              
+              browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
+              browser.click("xpath", "(//*[@content-desc='Bill Payee Nickname'])[1] | //*[@content-desc='accountCard' and .//*[@text='Savings' or @text='Chequing']][1] ");
+              browser.click("accessibilityId", "Next Button Enabled");
+              browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
+              
+              browser.sendKeys("accessibilityId", "MoneyInput", "1");
+              
+              browser.click("accessibilityId", "Next Button Enabled");
+              
+              browser.waitUntilElementPresent("//*[@content-desc='sourceAccountTitle' or @content-desc='billPaymentReviewTitle']");
+              
+              browser.click("accessibilityId", "backButton");
+              
+              browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
+              browser.verifyText("xpath", "(//*[@content-desc='TransferHeader'][1])[2]", "How much would you like to transfer? ");
+              
+              browser.click("accessibilityId", "backButton");
+              
+              browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
+              browser.verifyText("accessibilityId", "TransferHeader", "To whom would you like to transfer?");
+              
+              browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
+              
+              System.out.println("Back buttons are working on all pages for Money Transfer flow of " + accounttype + ".");
+            }
+            else {
+              browser.click("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='" + accounttype + "']]][1]//*[@content-desc='moreButton']");  
+              browser.click("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='" + accounttype + "']]]//*[@content-desc='MAKE A TRANSFER BUTTON']");
+              
+              browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
+              browser.click("xpath", "//*[@content-desc='accountCard' and .//*[@text='Savings' or @text='Chequing']][1]");
+              browser.click("accessibilityId", "Next Button Enabled");
+              browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
+              
+              browser.sendKeys("accessibilityId", "MoneyInput", "1");
+              
+              browser.click("accessibilityId", "Next Button Enabled");
+              
+              browser.waitUntilElementPresent("//*[@content-desc='sourceAccountTitle']");
+              
+              browser.click("accessibilityId", "backButton");
+              
+              browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
+              browser.verifyText("xpath", "(//*[@content-desc='TransferHeader'][1])[2]", "How much would you like to transfer? ");
+              
+              browser.click("accessibilityId", "backButton");
+              
+              browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
+              browser.verifyText("accessibilityId", "TransferHeader", "To whom would you like to transfer?");
+              
+              browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
+              
+              System.out.println("Back buttons are working on all pages for Money Transfer flow of " + accounttype + ".");
+            }
+          }
+          else {
+            System.out.println("This user have only one account which is " + accounttype + ". So please use another user for automation testing which have more then one savings or chequing account.");
+          }
+        }
+        else {
+          System.out.println("No " + accounttype + " is account avaliable for this user. Please use another user for automation testing which have " + accounttype + " account.");
+        }
+        } catch (NoSuchElementException e) {
         System.out.println("Element Not Found");
         e.printStackTrace();
       }
