@@ -38,32 +38,33 @@ public class TestCases extends RootTest {
     
     @BeforeSuite
     public void openApp() throws Exception {
-      //extent = ExtentManager.GetExtent();
-      brow.setUp();
-      FileUtils.deleteDirectory("target/surefire-reports/screenShots");
+    	//extent = ExtentManager.GetExtent();
+    	brow.setUp();
+    	FileUtils.deleteDirectory("target/surefire-reports/screenShots");
     }
     
     @AfterSuite
     public void closeApp() {
-      //extent.flush();
-      brow.quitObject();
+    	//extent.flush();
+    	brow.quitObject();
     }
     
-   /* @AfterMethod
+    /*@AfterMethod
     public void getResult(ITestResult result) throws Exception {
-      if(result.getStatus() == ITestResult.FAILURE) {
-        test.log(Status.FAIL, MarkupHelper.createLabel(result.getName()+" Test case FAILED due to below issues:", ExtentColor.RED));
-        //test.addScreencastFromPath("screenshot.png");
-        test.fail("details", MediaEntityBuilder.createScreenCaptureFromPath("screenshot.png").build());
-      }
-      else if(result.getStatus() == ITestResult.SUCCESS) {
-        test.log(Status.PASS, MarkupHelper.createLabel(result.getName()+" Test Case PASSED", ExtentColor.GREEN));
-      }
-      else {
-        test.log(Status.SKIP, MarkupHelper.createLabel(result.getName()+" Test Case SKIPPED", ExtentColor.ORANGE));
-        test.skip(result.getThrowable());
-      }
+      	if(result.getStatus() == ITestResult.FAILURE) {
+      		test.log(Status.FAIL, MarkupHelper.createLabel(result.getName()+" Test case FAILED due to below issues:", ExtentColor.RED));
+      		//test.addScreencastFromPath("screenshot.png");
+      		test.fail("details", MediaEntityBuilder.createScreenCaptureFromPath("screenshot.png").build());
+      	}
+      	else if(result.getStatus() == ITestResult.SUCCESS) {
+      		test.log(Status.PASS, MarkupHelper.createLabel(result.getName()+" Test Case PASSED", ExtentColor.GREEN));
+      	}
+      	else {
+      		test.log(Status.SKIP, MarkupHelper.createLabel(result.getName()+" Test Case SKIPPED", ExtentColor.ORANGE));
+      		test.skip(result.getThrowable());
+      	}
     }*/
+      	
        
     //================Sprint 1: 2 test cases ============================
     //================Sprint 1 Start=====================================
@@ -71,68 +72,68 @@ public class TestCases extends RootTest {
     // Test case_01 with Empty Login Credentials username -- M
     @Test
     public void loginWithEmptyData() {
-      System.out.println("Running Testcase 01 - Login with Empty Testdata");
-      brow.reset();
-      login.loginToApp("", "");
-      login.emptyLoginExpeceted();
-      brow.screenShot();
-      System.out.println("Testcase 01 - Successfully Completed");
+    	System.out.println("Running Testcase 01 - Login with Empty Testdata");
+    	brow.reset();
+    	login.loginToApp("", "");
+    	login.emptyLoginExpeceted();
+    	brow.screenShot();
+    	System.out.println("Testcase 01 - Successfully Completed");
     }
         
     // Testcase_02 with valid Credentials -- M
     @Test
-    public void loginWithValidTestdata() {
-      System.out.println("Running Testcase 02 - Login with Valid Credentials");
-      brow.reset();
-      login.loginToApp("yandisud", "Password1##");
-      login.acceptTermAndConditions();
-      brow.verifyText("accessibilityId", "welcomeName", brow.getText("xpath", "//*[@text[starts-with(.,'Good')]]"));
-      brow.screenShot();
-      System.out.println("Testcase 02 - Successfully Completed");
+    public void loginWithValidTestData() {
+    	System.out.println("Running Testcase 02 - Login with Valid Credentials");
+    	brow.reset();
+    	login.loginToApp("yandisud", "Password1##");
+    	login.acceptTermAndConditions();
+    	brow.verifyText("accessibilityId", "welcomeName", brow.getText("xpath", "//*[@text[starts-with(.,'Good')]]"));
+    	brow.screenShot();
+    	System.out.println("Testcase 02 - Successfully Completed");
     }
         
     //=============== Sprint 1 End ======================================
     //================Sprint 2: 6 test cases ============================
     //================Sprint 2 Start=====================================
           
-    // Test case_03 Login with Invalid User accessibilityId -- S
+    // Test case_03 Login with Invalid User name -- S
     @Test
     public void loginWithInvalidUsername() {
-      System.out.println("Running Testcase 03 - Login with Invalid Username");
-      brow.reset();
-      login.loginToApp("yandisudd", "Password1##");
-      login.invalidUserExpected();
-      brow.screenShot();
-      System.out.println("Testcase 03 - Successfully Completed");
+    	System.out.println("Running Testcase 03 - Login with Invalid Username");
+    	brow.reset();
+    	login.loginToApp("yandisudd", "Password1##");
+    	login.invalidUserExpected();
+    	brow.screenShot();
+    	System.out.println("Testcase 03 - Successfully Completed");
     }
        
     // Test case_04 Login with Invalid Password	-- S
     @Test
     public void loginWithInvalidPassword() {
-      System.out.println("Running Testcase 04 - Login with Invalid Password");
-      brow.reset();
-      login.loginToApp("yandisud", "Password1###");
-      login.invalidPasswordExpected();
-      brow.screenShot();
-      System.out.println("Testcase 04 - Successfully Completed");
+    	System.out.println("Running Testcase 04 - Login with Invalid Password");
+    	brow.reset();
+    	login.loginToApp("yandisud", "Password1###");
+    	login.invalidPasswordExpected();
+    	brow.screenShot();
+    	System.out.println("Testcase 04 - Successfully Completed");
     }
     
-    // Test case_05 Login with 3 Password retry -- S
+    // Test case_05 Retry 3 times login with Invalid Password -- S
     @Test
     public void passwordRetry() throws Exception {
-      System.out.println("Running Testcase 05 - Login with Invalid Password with retry 3 times");
-      brow.resetUser("stanigar");
-      brow.reset();
-      brow.click("accessibilityId", "login");
-      login.retryPassword("stanigar", "Password1###");
-      brow.resetUser("stanigar");
-      System.out.println("Testcase 05 - Successfully Completed");
+    	System.out.println("Running Testcase 05 - Retry 3 times login with Invalid Password");
+    	brow.resetUser("stanigar");
+    	brow.reset();
+    	brow.click("accessibilityId", "login");
+    	login.retryPassword("stanigar", "Password1###");
+      	brow.resetUser("stanigar");
+      	System.out.println("Testcase 05 - Successfully Completed");
     }
         
     // Test case_06 Verify Home page after Login user having all the 3 Accounts -- K
     @Test
     public void verifyHomepageAllAccounts() {
-      System.out.println("Running Testcase 06 - Verifying Login page - User having Saving, Chequing and Loan Accounts");
+      System.out.println("Running Testcase 06 - Verifying Home page - User having Saving, Chequing and Loan Accounts");
       brow.reset();
       login.loginToApp("darkelor", "Password1##");
       login.acceptTermAndConditions();
@@ -144,20 +145,19 @@ public class TestCases extends RootTest {
     // Test case_07 Verify Home page after Login user having only one account -- K
     @Test
     public void verifyHomepageOneAccount() {
-      System.out.println("Running Testcase 07 - Verifying Login page - User having One Account");
+      System.out.println("Running Testcase 07 - Verifying Home page - User having one Account");
       brow.reset();
       login.loginToApp("darkelor", "Password1##");
       login.acceptTermAndConditions();
       homepage.homePageWithAccounts();
       brow.screenShot();
       System.out.println("Testcase 07 - Successfully Completed");
-      Reporter.log("Testcase 07 - Successfully Completed");
     }
             
-    // Test case_08 Verify Home page after Login user having only No accounts -- K
+    // Test case_08 Verify Home page after Login user having no accounts -- K
     @Test
     public void verifyHomepageNoAccounts() {
-      System.out.println("Running Testcase 08 - Verifying Login page - User having No Accounts");
+      System.out.println("Running Testcase 08 - Verifying Home page - User having No Accounts");
       brow.reset();
       login.loginToApp("pinniram", "Password1##");
       homepage.homePageWithoutAccounts();
@@ -213,7 +213,7 @@ public class TestCases extends RootTest {
     // Test case_12 Show Saving balance details -- K
     @Test
     public void withSavingsBalanceDetails() {
-      System.out.println("Running Testcase 12 - Show Savings account balance breakdown");
+      System.out.println("Running Testcase 12 - View Savings Balance Details of Customer");
       brow.reset();
       login.loginToApp("yandisud", "Password1##");
       login.acceptTermAndConditions();
@@ -248,10 +248,10 @@ public class TestCases extends RootTest {
       System.out.println("Testcase 14 - Successfully Completed");
     }
     
-    // Test case_15 Verify the Terms and Conditions page -- K
+    // Test case_15 Verify the Terms and Conditions functionality -- K
     @Test
     public void termsAndConditions() {
-      System.out.println("Running Testcase 15 - Verify Terms and Conditions functionality");
+      System.out.println("Running Testcase 15 - Verify the Terms and Conditions functionality");
       brow.reset();
       login.loginToApp("yandisud", "Password1##");
       login.termsAndConditionsExists("yandisud", "Password1##");
@@ -278,10 +278,10 @@ public class TestCases extends RootTest {
     //================Sprint 7:  test cases =============================
     //================Sprint 7 Start=====================================
  
-    // Test case_17 Verify the Navigation for Transfers on Card and Summary Page (FE) -- S
+    // Test case_17 Verify Transfers button is available on different pages -- S
     @Test
     public void transfers() {
-      System.out.println("Running Testcase 17 - Verify Transfers button functionality");
+      System.out.println("Running Testcase 17 - Verify Transfers button is available on different pages");
       brow.reset();
       login.loginToApp("stonepj", "Password1##");
       login.acceptTermAndConditions();
@@ -293,77 +293,88 @@ public class TestCases extends RootTest {
       System.out.println("Testcase 17 - Successsfully Completed");
     }
     
-    //Test case_18 Verify Me to Me Transfer from Savings Account List Page -- K
+    //Test case_18 Text and Elements validation for Me to Me Transfer flow for Savings Account List Page -- K
     @Test
     public void meToMeTransferFromSavingsListPage() {
-      System.out.println("Running Testcase 18 - Verify Me to Me Transfer from Savings Account List Page");
+      System.out.println("Running Testcase 18 - Validate text and elements for Me to Me Transfer from Savings Account List Page");
       brow.reset();
-      login.loginToApp("yandisud", "Password1##");
+      login.loginToApp("stonepj", "Password1##");
       login.acceptTermAndConditions();
       transferpage.meToMeTransfersAccountListPage("SAVINGS", "10");
       System.out.println("Testcase 18 - Successfully Completed");
     }
        
-    //Test case_19 Verify Me to Me Transfer from Savings Account summary page -- K
+    //Test case_19 Text and Elements validation for Me to Me Transfer flow for Savings Account Summary Page -- K
     @Test
     public void meToMeTransferFromSavingsSummaryPage() {
-      System.out.println("Running Testcase 19 - Verify Me to Me Transfer from Savings Account Summary Page");
+      System.out.println("Running Testcase 19 - Validate text and elements for Me to Me Transfer from Savings Account Summary Page");
       brow.reset();
-      login.loginToApp("yandisud", "Password1##");
+      login.loginToApp("stonepj", "Password1##");
       login.acceptTermAndConditions();
       transferpage.meToMeTransfersAccountSummaryPage("SAVINGS", "10");
       System.out.println("Testcase 19 - Successfully Completed");
     }
      
-    //Test case_20 Verify Me to Me Transfer from Chequings Account List page -- K
+    //Test case_20 Text and Elements validation for Me to Me Transfer flow for Chequing Account List Page -- K
     @Test
     public void meToMeTransferFromChequingsListPage() {
-      System.out.println("Running Testcase 20 - Verify Me to Me Transfer from Chequing Account List Page");
+      System.out.println("Running Testcase 20 - Validate text and elements for Me to Me Transfer from Chequing Account List Page");
       brow.reset();
-      login.loginToApp("YANDISUD", "Password1##");
+      login.loginToApp("stonepj", "Password1##");
       login.acceptTermAndConditions();
       transferpage.meToMeTransfersAccountListPage("CHEQUING", "10");
       System.out.println("Testcase 20 - Successfully Completed");
     }
 
-    //Test case_21 Verify Me to Me Transfer from Chequings Account summary page -- K
+    //Test case_21 Text and Elements validation for Me to Me Transfer flow for Chequing Account Summary Page -- K
     @Test
     public void meToMeTransferFromChequingsSummaryPage() {
-      System.out.println("Running Testcase 21 - Verify Me to Me Transfer from Chequing Account Summary Page");
+      System.out.println("Running Testcase 21 - Validate text and elements for Me to Me Transfer from Chequing Account Summary Page");
       brow.reset();
-      login.loginToApp("YANDISUD", "Password1##");
+      login.loginToApp("stonepj", "Password1##");
       login.acceptTermAndConditions();
       transferpage.meToMeTransfersAccountSummaryPage("CHEQUING", "10");
       System.out.println("Testcase 21 - Successfully Completed");
     }
+
+    //Test case_22 Verify end to end flow for Me to Me Transfer -- S
+    @Test
+    public void endToEndMeToMeTransfer() {
+      System.out.println("Running Testcase 22 - Verify end to end flow for Me to Me Transfer");
+      login.loginToApp("yandisud", "Password1##");
+      login.acceptTermAndConditions();
+      transferpage.transferFlowMeToMe("SAVINGS", "10");
+      System.out.println("Testcase 22 - Successfully Completed");
+    }
     
-    //Test case_22 Verify Me to You Transfer -- K
+    //Test case_23 Text and Elements validation for Me to You Transfer flow for Savings Account List Page -- K
     @Test
     public void meToYouTransfer() {
-      System.out.println("Running Testcase 22 - Verify Me to You Transfer");
+      System.out.println("Running Testcase 23 - Validate text and elements for Me to Me Transfer from Savings Account List Page");
       brow.reset();
-      login.loginToApp("YANDISUD", "Password1##");
+      login.loginToApp("yandisud", "Password1##");
       login.acceptTermAndConditions();
       transferpage.meToMeTransfersAccountListPage("SAVINGS", "435335217");
       transferpage.meToYouTransferButton();
       transferpage.meToYouTransfer("2", "Andres");    // Enter the Index of the currency in the currency dropdown
-      System.out.println("Testcase 22 - Successfully Completed");
+      System.out.println("Testcase 23 - Successfully Completed");
     }
     
-    //Test case_23 Verify Me to Me Transfer -- S
+    //Test case_24 Verify end to end flow for Me to You Transfer -- S
     @Test
-    public void reviewMeToMeTransfer() {
-      System.out.println("Running Testcase 23 - Verify Me to Me Transfer, Transfer Edit and Confirmation page");
-      login.loginToApp("yandisud", "Password1##");
+    public void endToEndMeToYouTransfer() {
+      System.out.println("Running Testcase 24 - Verify end to end flow for Me to You Transfer");
+      brow.reset();
+      login.loginToApp("darkelor", "Password1##");
       login.acceptTermAndConditions();
-      transferpage.transferFlowMeToYou("SAVINGS", "1");
-      System.out.println("Testcase 26 - Successfully Completed");
+      transferpage.transferFlowMeToYou("Savings", "1");
+      System.out.println("Testcase 24 - Successfully Completed");
     }
 
-    //Test case_24 Add Personal beneficiary -- S
+    //Test case_25 Add Personal beneficiary to account -- S
     @Test
     public void addBeneficiaryPersonal() {
-      System.out.println("Running Testcase 24 - Add Personal beneficiary to account");
+      System.out.println("Running Testcase 25 - Add Personal beneficiary to account");
       brow.reset();
       login.loginToApp("darkelor", "Password1##");
       login.acceptTermAndConditions();
@@ -371,13 +382,13 @@ public class TestCases extends RootTest {
       transferpage.blankBeneficiaryPagePersonal("Jody");
       transferpage.cancelBeneficiaryPersonal();
       //transferpage.beneficiaryPersonal("");
-      System.out.println("Testcase 24 - Successfully Completed");
+      System.out.println("Testcase 25 - Successfully Completed");
     }
     
-    //Test case_25 Add Business beneficiary -- S
+    //Test case_26 Add Business beneficiary to account -- S
     @Test
     public void addBeneficiaryBusiness() {
-      System.out.println("Running Testcase 25 - Add Corporate beneficiary to account");
+      System.out.println("Running Testcase 26 - Add Corporate beneficiary to account");
       brow.reset();
       login.loginToApp("stonepj", "Password1##");
       login.acceptTermAndConditions();
@@ -385,24 +396,12 @@ public class TestCases extends RootTest {
       transferpage.blankBeneficiaryPageBusiness();
       transferpage.cancelBeneficiaryBusiness();
       transferpage.beneficiaryBusiness("");
-      System.out.println("Testcase 25 - Successfully Completed");
-    }
-
-    //Test case_26 Verify Me to You Transfer -- S
-    @Test
-    public void reviewMeToYouTransfer() {
-      System.out.println("Running Testcase 26 - Verify Me to You Transfer, Transfer Edit and Confirmation page");
-      brow.reset();
-      login.loginToApp("darkelor", "Password1##");
-      login.acceptTermAndConditions();
-      transferpage.transferFlowMeToYou("Savings", "1");
-      brow.sleepThread(1000);
       System.out.println("Testcase 26 - Successfully Completed");
     }
-    
+
     //Test case_27 Add Beneficiary Submit after entering OTP -- K
     @Test
-    public void addBeneficiarySubmit() {
+    public void addBeneficiaryWithOTP() {
       System.out.println("Running Testcase 27 - Verify Adding beneficiary by entering PIN + OTP and click on submit");
       brow.reset();
       login.loginToApp("yandisud", "Password1##");
@@ -413,25 +412,23 @@ public class TestCases extends RootTest {
       System.out.println("Testcase 27 - Successfully Completed");
     }
     
-    //Test case_28 Error handling for Me to Me Transfers: Verify the available balance and exceed the total amount -- S
+    //Test case_28 Error handling for Me to Me Transfers: Verify the error message if try to transfer money more then account balance -- S
     @Test
     public void errorHandlingMeToMeBalanceAndExceed() {
-      test = extent.createTest("Running Testcase 28", "Verify the available balance and exceed the total amount: Me to Me");
-      System.out.println("Running Testcase 28 - Verify the available balance and exceed the total amount: Me to Me");
+      System.out.println("Running Testcase 28 - Verify the error message if try to transfer money more then account balance: Me to Me");
       brow.reset();
       login.loginToApp("yandisud", "Password1##");
       login.acceptTermAndConditions();
       transferpage.balanceAndExceedMeToMe("SAVINGS");
-      Assert.assertTrue(brow.verifyText("accessibilityId", "Snackbar Message", "1Amount exceeds available balance. Please reduce the amount."));
-      test.log(Status.INFO, "This step shows usage of log(status, details)");
+//      Assert.assertTrue(brow.verifyText("accessibilityId", "Snackbar Message", "1Amount exceeds available balance. Please reduce the amount."));
+//      test.log(Status.INFO, "This step shows usage of log(status, details)");
       System.out.println("Testcase 28 - Successfully Completed");
-      
     }
     
-    //Test case_29 Error handling for Me to Me Transfers: Verify the transfer freeze on dormant/restricted accounts -- S
+    //Test case_29 Error handling for Me to Me Transfers: Verify the error message for transfer money to dormant/restricted accounts -- S
     @Test
     public void errorHandlingMeToMeRestriction() {
-      System.out.println("Running Testcase 29 - Verify the transfer freeze on dormant/restricted accounts: Me to Me");
+      System.out.println("Running Testcase 29 - Verify the error message for transfer money to dormant/restricted accounts: Me to Me");
       brow.reset();
       login.loginToApp("yandisud", "Password1##");
       login.acceptTermAndConditions();
@@ -439,10 +436,10 @@ public class TestCases extends RootTest {
       System.out.println("Testcase 29 - Successfully Completed");
     }
     
-    //Test case_30 Error handling for Me to Me Transfers: Verify the oops message -- S
+    //Test case_30 Error handling for Me to Me Transfers: Verify the oops error message -- S
     @Test
     public void errorHandlingMeToMeOopsMessage() {
-      System.out.println("Running Testcase 30 - Verify the oops message: Me to Me");
+      System.out.println("Running Testcase 30 - Verify the oops error message: Me to Me");
       brow.reset();
       login.loginToApp("yandisud", "Password1##");
       login.acceptTermAndConditions();
@@ -450,10 +447,10 @@ public class TestCases extends RootTest {
       System.out.println("Testcase 30 - Successfully Completed");
     }
         
-    //Test case_31 Error handling for Me to You Transfers: Verify the available balance and exceed the total amount -- S
+    //Test case_31 Error handling for Me to You Transfers: Verify the error message if try to transfer money more then account balance -- S
     @Test
     public void errorHandlingMeToYouBalanceAndExceed() {
-      System.out.println("Running Testcase 31 - Verify the available balance and exceed the total amount: Me to You");
+      System.out.println("Running Testcase 31 - Verify the error message if try to transfer money more then account balance: Me to You");
       brow.reset();
       login.loginToApp("stanigar", "Password1##");
       login.acceptTermAndConditions();
@@ -461,10 +458,10 @@ public class TestCases extends RootTest {
       System.out.println("Testcase 31 - Successfully Completed");
     }
     
-    //Test case_32 Error handling for Me to You Transfers: Verify the transfer freeze on dormant/restricted accounts -- S
+    //Test case_32 Error handling for Me to Me Transfers: Verify the error message for transfer money to dormant/restricted accounts -- S
     @Test
     public void errorHandlingMeToYouRestriction() {
-      System.out.println("Running Testcase 32 - Verify the transfer freeze on dormant/restricted accounts: Me to You");
+      System.out.println("Running Testcase 32 - Verify the error message for transfer money to dormant/restricted accounts: Me to You");
       brow.reset();
       login.loginToApp("tommys", "Password1##");
       login.acceptTermAndConditions();
@@ -472,10 +469,10 @@ public class TestCases extends RootTest {
       System.out.println("Testcase 32 - Successfully Completed");
     }
      
-    //Test case_33 Error handling for Me to You Transfers: Verify the oops message -- S
+    //Test case_33 Error handling for Me to Me Transfers: Verify the oops error message -- S
     @Test
     public void errorHandlingMeToYouOopsMessage() {
-      System.out.println("Running Testcase 33 - Verify the oops message: Me to You");
+      System.out.println("Running Testcase 33 - Verify the oops error message: Me to You");
       brow.reset();
       login.loginToApp("yandisud", "Password1##");
       login.acceptTermAndConditions();
@@ -583,7 +580,7 @@ public class TestCases extends RootTest {
     // Test case_42 Verify no Bill Payee -- S
     @Test
     public void noBillPayee() {
-      System.out.println("Testcase 42 - Verify Bill Payment from Chequings Account Summary page");
+      System.out.println("Testcase 42 - Verify no bill payee message");
       brow.reset();
       login.loginToApp("stanigar", "Password1##");
       login.acceptTermAndConditions();
@@ -591,10 +588,10 @@ public class TestCases extends RootTest {
       System.out.println("Testcase 42 - Successsfully Completed");
     }
     
-    // Test case_43 Verify no Bill Payee -- S
+    // Test case_43 Verify Cancel button functionality on all pages -- S
     @Test
     public void backButtons() {
-      System.out.println("Testcase 43 - Verify Cancel button funcationality on all pages");
+      System.out.println("Testcase 43 - Verify Cancel button functionality on all pages");
       brow.reset();
       login.loginToApp("yandisud", "Password1##");
       login.acceptTermAndConditions();
