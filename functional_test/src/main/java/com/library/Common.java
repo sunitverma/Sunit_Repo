@@ -54,6 +54,7 @@ public class Common {
                
         //update the UDID_number in DesiredCapabilites properties file as per your device
         dc.setCapability(MobileCapabilityType.UDID, Des.getProperty("UDID_number"));
+        dc.setCapability(MobileCapabilityType.DEVICE_NAME, Des.getProperty("Device_name"));
         dc.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.jncb.mobile");
         dc.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, ".MainActivity");
         dc.setCapability(AndroidMobileCapabilityType.UNICODE_KEYBOARD,"True");
@@ -95,9 +96,9 @@ public class Common {
         case "accessibilityId":
           e=driver.findElementByAccessibilityId(locator);
           break;
-        case "androidUIAutomator":
+        /*case "androidUIAutomator":
           e=driver.findElementByAndroidUIAutomator(locator);
-          break;
+          break;*/
         default:
           System.out.println("Locator not found");
           e=null;

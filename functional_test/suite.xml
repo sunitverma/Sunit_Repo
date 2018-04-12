@@ -4,15 +4,15 @@
 		<classes>
 			<class name="com.testscripts.TestCases" >
 				<methods>
-			        <include name="loginWithEmptyData" />
-					<exclude name="loginWithValidTestdata" />
+			        <exclude name="loginWithEmptyData" />
+					<exclude name="loginWithValidTestData" />
 					<exclude name="loginWithInvalidUsername" />
 					<exclude name="loginWithInvalidPassword" />
 					<exclude name="passwordRetry" />
 					<exclude name="verifyHomepageAllAccounts" />
 					<exclude name="verifyHomepageOneAccount" />
 					<exclude name="verifyHomepageNoAccounts" />
-					<exclude name="showFiftyTransaction" />
+					<include name="showFiftyTransaction" />
 					<exclude name="withLoanBalanceDetails" />
 					<exclude name="zeroLoanBalanceDetails" />
 					<exclude name="withSavingsBalanceDetails" />
@@ -21,16 +21,16 @@
 					<exclude name="termsAndConditions" />
 					<exclude name="animation" />
 					<exclude name="transfers" />
-					<include name="meToMeTransferFromSavingsListPage" />
+					<exclude name="meToMeTransferFromSavingsListPage" />
 					<exclude name="meToMeTransferFromSavingsSummaryPage" />
 					<exclude name="meToMeTransferFromChequingsListPage" />
 					<exclude name="meToMeTransferFromChequingsSummaryPage" />
+					<exclude name="endToEndMeToMeTransfer" />
 					<exclude name="meToYouTransfer" />
-					<exclude name="reviewMeToMeTransfer" />
-					<exclude name="addBeneficiaryPersonal" />
+					<exclude name="endToEndMeToYouTransfer" />
+                	<exclude name="addBeneficiaryPersonal" />
                 	<exclude name="addBeneficiaryBusiness" />
-                	<exclude name="reviewMeToYouTransfer" />
-					<exclude name="addBeneficiarySubmit" />
+					<exclude name="addBeneficiaryWithOTP" />
 					<exclude name="errorHandlingMeToMeBalanceAndExceed" />
 					<exclude name="errorHandlingMeToMeRestriction" />
 					<exclude name="errorHandlingMeToMeOopsMessage" />

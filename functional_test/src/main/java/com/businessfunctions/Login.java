@@ -57,6 +57,7 @@ public class Login {
   public void invalidUserExpected() {
     
     try {
+      browser.waitUntilElementPresent("//*[@content-desc='Snackbar Message']");
       browser.verifyText("accessibilityId", "Snackbar Message", "Invalid username or password.");
     } catch (NoSuchElementException e) {
       System.out.println("Element Not Found");
@@ -68,8 +69,9 @@ public class Login {
   public void invalidPasswordExpected() {
     
     try {
+      browser.waitUntilElementPresent("//*[@content-desc='Snackbar Message']");
       String msg = "Invalid username or password. You will be locked out after 2 more failed login attempts.";
-      browser.verifyText("accessibilityId", "alertMessage", msg);
+      browser.verifyText("accessibilityId", "Snackbar Message", msg);
     } catch (NoSuchElementException e) {
       System.out.println("Element Not Found");
       e.printStackTrace();
@@ -255,40 +257,41 @@ public class Login {
 
   // K - Method - Accept Terms and Conditions
   public void acceptTermAndConditions() {
-    
-    try {
-      if(browser.getSize("accessibilityId", "welcomeName") != 0) {
-        //Nothing to print
-        browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
-      }
-      else if(browser.getSize("accessibilityId", "scrollToEndButton") != 0) {
-        browser.click("accessibilityId", "scrollToEndButton");
-        browser.click("accessibilityId", "acceptButton");
-        browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
-      }
-    } catch (NoSuchElementException e) {
-      System.out.println("Element Not Found");
-      e.printStackTrace();
-    }
+	  
+	  try {
+		  browser.waitUntilElementPresent("//*[@content-desc='scrollToEndButton'] | //*[@content-desc='welcomeName']");
+		  if(browser.getSize("accessibilityId", "welcomeName") != 0) {
+			  //Nothing to print
+			  browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
+		  }
+		  else if(browser.getSize("accessibilityId", "scrollToEndButton") != 0) {
+			  browser.click("accessibilityId", "scrollToEndButton");
+			  browser.click("accessibilityId", "acceptButton");
+			  browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
+		  }
+	  } catch (NoSuchElementException e) {
+		  System.out.println("Element Not Found");
+		  e.printStackTrace();
+	  }
   }
-
+  
   // S - Method - to verify animation displayed on Landing page
   public void animationOnLandingPage() {
-    
-    try {
-      browser.screenShot();
-      
-      if (browser.getSize("accessibilityId", "spinnerText") != 0) {
-        System.out.println("Animation displayed on Landing page");
-        browser.waitUntilElementPresent("//*[@content-desc='scrollToEndButton' or @content-desc='welcomeName']");
-      }
-      else {
-        System.out.println("Animation not displayed on Landing page");
-        browser.waitUntilElementPresent("//*[@content-desc='scrollToEndButton' or @content-desc='welcomeName']");
-      }
-    } catch (NoSuchElementException e) {
-      System.out.println("Element Not Found");
-      e.printStackTrace();
-    }
+	  
+	  try {
+		  browser.screenShot();
+		  
+		  if (browser.getSize("accessibilityId", "spinnerText") != 0) {
+			  System.out.println("Animation displayed on Landing page");
+			  browser.waitUntilElementPresent("//*[@content-desc='scrollToEndButton' or @content-desc='welcomeName']");
+		  }
+		  else {
+			  System.out.println("Animation not displayed on Landing page");
+			  browser.waitUntilElementPresent("//*[@content-desc='scrollToEndButton' or @content-desc='welcomeName']");
+		  }
+	  } catch (NoSuchElementException e) {
+		  System.out.println("Element Not Found");
+		  e.printStackTrace();
+	  }
   }
 }
