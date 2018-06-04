@@ -4,15 +4,15 @@
 		<classes>
 			<class name="com.testscripts.TestCases" >
 				<methods>
-			        <exclude name="loginWithEmptyData" />
-					<exclude name="loginWithValidTestData" />
-					<exclude name="loginWithInvalidUsername" />
-					<exclude name="loginWithInvalidPassword" />
+			        <include name="loginWithEmptyData" />
+					<include name="loginWithValidTestData" />
+					<include name="loginWithInvalidUsername" />
+					<include name="loginWithInvalidPassword" />
 					<exclude name="passwordRetry" />
 					<exclude name="verifyHomepageAllAccounts" />
 					<exclude name="verifyHomepageOneAccount" />
 					<exclude name="verifyHomepageNoAccounts" />
-					<include name="showFiftyTransaction" />
+					<exclude name="showFiftyTransaction" />
 					<exclude name="withLoanBalanceDetails" />
 					<exclude name="zeroLoanBalanceDetails" />
 					<exclude name="withSavingsBalanceDetails" />
@@ -47,6 +47,15 @@
 					<exclude name="billPaymentFromChequingsSummaryPage" />
 					<exclude name="noBillPayee" />
 					<exclude name="backButtons" />
+					<exclude name="loginWithoutRSA" />
+					<exclude name="loginWithoutRSAgettoken" />
+					<exclude name="billPaymentFromSavingsSummaryPageErmsg" />
+					<exclude name="billPaymentFromChequingSummaryPageErmsg" />
+					<exclude name="dailyLmtExceedmsgMetoMetransferChequing" />
+					<exclude name="dailyLmtExceedmsgMetoMetransferSavings" />
+					<exclude name="meToyouErrSavings" />
+					<exclude name="meToyouErrChequing" />
+					<exclude name="creditCardonHome" />
             	</methods>
         	</class>
     	</classes>
