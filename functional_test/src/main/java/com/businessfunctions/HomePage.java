@@ -57,6 +57,7 @@ public class HomePage {
     public void quickActionsButtonNotForLoan() {
     	
     	try {
+    		browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
     		if(browser.getSize("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='LOAN']]]") != 0) {
     			if (browser.getSize("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='LOAN']]]//*[@content-desc='moreButton']")!=0) {
     				System.out.println("Quick Actions - Make A Transfer/ Pay A Bill options are available for Loan account.");
@@ -79,13 +80,14 @@ public class HomePage {
     public void transferButtonFlow(String accounttype) {
     	
     	browser.click("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='" + accounttype + "']]][1]//*[@content-desc='moreButton']");  
+    	browser.waitUntilElementPresent("//*[@content-desc='MAKE A TRANSFER BUTTON']");
     	browser.click("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='" + accounttype + "']]]//*[@content-desc='MAKE A TRANSFER BUTTON']");
     	browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
     	browser.screenShot();
     	browser.verifyText("accessibilityId", "TransferHeader", "To whom would you like to transfer?");
     	browser.verifyElementPresent("accessibilityId", "backButton");
     	browser.click("accessibilityId", "backButton");
-    	browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
+    	browser.waitUntilElementPresent("//*[@content-desc='logoutButton']");
     	browser.verifyText("accessibilityId", "welcomeName", browser.getText("xpath", "//*[@text[starts-with(.,'Good')]]"));
     }
     
@@ -93,6 +95,7 @@ public class HomePage {
     public void transferButtonOnListPage(String accounttype) {
     	
     	try {
+    		browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
     		if(browser.getSize("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='" + accounttype + "']]]")!= 0) {
     			if(browser.getSize("accessibilityId", "MAKE A TRANSFER BUTTON") != 0) {
     				browser.click("xpath", "//*[@content-desc='moreButton' and ./following-sibling::*[@content-desc='MAKE A TRANSFER BUTTON']]");
@@ -234,4 +237,52 @@ public class HomePage {
     		e.printStackTrace();
     	}
     }
+    
+    // A - Method - to verify Credit Cards details are shown properly on home page 10-5-2018
+ 	public void homePageCardInfo() {
+ 		
+ 		try {
+ 			if ((browser.getSize("accessibilityId", "creditCard") != 0)) {
+ 				
+ 				boolean avlBal;
+ 				boolean logo;
+ 				boolean prodName;
+ 				boolean cardNum;
+ 				boolean avlText;
+
+ 				avlBal = browser.verifyElementPresent("accessibilityId", "availableBalance");
+ 				if (avlBal) {
+ 					String available = browser.getText("xpath", "//*[@content-desc='availableBalance']");
+ 					System.out.println("Available balance shown " + available);
+ 				}
+ 			
+ 				logo = browser.verifyElementPresent("accessibilityId", "logo");
+ 				if (logo) {
+ 					System.out.println("logo for card is shown");
+ 				}
+ 				
+ 				prodName = browser.verifyElementPresent("accessibilityId", "productName");
+ 				if (prodName) {
+ 					String cardBrand = browser.getText("xpath", "//*[@content-desc='productName']");
+ 					System.out.println("Brand of card shown " + cardBrand);
+ 				}
+ 				
+ 				cardNum = browser.verifyElementPresent("accessibilityId", "cardNumber");
+ 				if (cardNum) {
+ 					String cardNumb = browser.getText("xpath", "//*[@content-desc='cardNumber']");
+ 					System.out.println("card number is :" + cardNumb);
+ 				}
+ 				
+ 				avlText = browser.verifyElementPresent("xpath", "//*[@content-desc='creditCard' and ./*[@text='Available Balance']][1]");
+ 				if (avlText) {
+ 					System.out.println("available balance text shown");
+ 				}
+ 			
+ 				browser.screenShot();
+ 			}
+ 		} catch (NoSuchElementException e) {
+ 			System.out.println("Element Not Found");
+ 			e.printStackTrace();
+ 		}
+ 	}
 }

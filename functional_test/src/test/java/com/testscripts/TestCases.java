@@ -1,18 +1,8 @@
 package com.testscripts;
 
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.MediaEntityBuilder;
-import com.aventstack.extentreports.Status;
-import com.aventstack.extentreports.markuputils.ExtentColor;
-import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.businessfunctions.*;
-import com.utils.ExtentReports.ExtentManager;
+
 import org.apache.maven.shared.utils.io.FileUtils;
-import org.testng.Assert;
-import org.testng.ITestResult;
-import org.testng.Reporter;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
@@ -27,8 +17,8 @@ public class TestCases extends RootTest {
     static TransferPage transferpage = new TransferPage(brow);
     static BillPayment billpayment = new BillPayment(brow);
     
-    ExtentReports extent;
-    ExtentTest test;
+    //ExtentReports extent;
+    //ExtentTest test;
     
     //===================================================
     // Created by Sunit Verma and Murali(Date: 13/11/2017)
@@ -44,9 +34,10 @@ public class TestCases extends RootTest {
     }
     
     @AfterSuite
-    public void closeApp() {
+    public void closeApp() throws Exception {
     	//extent.flush();
     	brow.quitObject();
+    	Runtime.getRuntime().exec("adb -s emulator-5554 emu kill");
     }
     
     /*@AfterMethod
@@ -73,7 +64,6 @@ public class TestCases extends RootTest {
     @Test
     public void loginWithEmptyData() {
     	System.out.println("Running Testcase 01 - Login with Empty Testdata");
-    	brow.reset();
     	login.loginToApp("", "");
     	login.emptyLoginExpeceted();
     	brow.screenShot();
@@ -341,22 +331,21 @@ public class TestCases extends RootTest {
     @Test
     public void endToEndMeToMeTransfer() {
       System.out.println("Running Testcase 22 - Verify end to end flow for Me to Me Transfer");
-      login.loginToApp("yandisud", "Password1##");
+      brow.reset();
+      login.loginToApp("stonepj", "Password1##");
       login.acceptTermAndConditions();
-      transferpage.transferFlowMeToMe("SAVINGS", "10");
+      transferpage.transferFlowMeToMe("SAVINGS", "200");
       System.out.println("Testcase 22 - Successfully Completed");
     }
     
     //Test case_23 Text and Elements validation for Me to You Transfer flow for Savings Account List Page -- K
     @Test
     public void meToYouTransfer() {
-      System.out.println("Running Testcase 23 - Validate text and elements for Me to Me Transfer from Savings Account List Page");
+      System.out.println("Running Testcase 23 - Validate text and elements for Me to You Transfer from Savings Account List Page");
       brow.reset();
-      login.loginToApp("yandisud", "Password1##");
+      login.loginToApp("stonepj", "Password1##");
       login.acceptTermAndConditions();
-      transferpage.meToMeTransfersAccountListPage("SAVINGS", "435335217");
-      transferpage.meToYouTransferButton();
-      transferpage.meToYouTransfer("2", "Andres");    // Enter the Index of the currency in the currency dropdown
+      transferpage.meToYouTransfers("SAVINGS", "30");
       System.out.println("Testcase 23 - Successfully Completed");
     }
     
@@ -365,9 +354,9 @@ public class TestCases extends RootTest {
     public void endToEndMeToYouTransfer() {
       System.out.println("Running Testcase 24 - Verify end to end flow for Me to You Transfer");
       brow.reset();
-      login.loginToApp("darkelor", "Password1##");
+      login.loginToApp("stonepj", "Password1##");
       login.acceptTermAndConditions();
-      transferpage.transferFlowMeToYou("Savings", "1");
+      transferpage.transferFlowMeToYou("SAVINGS", "40000");
       System.out.println("Testcase 24 - Successfully Completed");
     }
 
@@ -376,7 +365,7 @@ public class TestCases extends RootTest {
     public void addBeneficiaryPersonal() {
       System.out.println("Running Testcase 25 - Add Personal beneficiary to account");
       brow.reset();
-      login.loginToApp("darkelor", "Password1##");
+      login.loginToApp("stonepj", "Password1##");
       login.acceptTermAndConditions();
       transferpage.addBeneficiaryToAccount("SAVINGS");
       transferpage.blankBeneficiaryPagePersonal("Jody");
@@ -598,4 +587,108 @@ public class TestCases extends RootTest {
       homepage.backButton("SAVINGS", "billpay"); //billpay for 'PAY A BILL' and moneytrf for 'MAKE A TRANSFER'
       System.out.println("Testcase 43 - Successsfully Completed");
     }
+
+    // Test case_44 Verify userWithoutRSA if user clicks cancel button -- A
+    @Test
+    public static void loginWithoutRSA()
+    {
+    	System.out.println("Running Testcase 44 - Login without RSA");
+        brow.reset();
+        login.loginToApp("Rhonegan", "Password1##");
+        login.RSAExpected();
+        brow.screenShot();
+        login.rsaCancel();
+        brow.screenShot();
+        System.out.println("Testcase 44 - Successfully Completed");
+    } 
+    
+    // Test case_45 Login without RSA key get button -- A      
+    @Test
+    public static void loginWithoutRSAgettoken()
+    {
+        System.out.println("Running Testcase 44 - Token required link verification");
+        brow.reset();
+        login.loginToApp("Rhonegan", "Password1##");
+        login.RSAExpected();
+        login.getToken();
+        brow.screenShot();
+        System.out.println("Testcase 45 for token - Successfully Completed");
+    }
+      
+    // Test case_46 Verify Bill Payment from Saving Account Summary page Err Msg -- A
+    @Test
+    public void billPaymentFromSavingsSummaryPageErmsg() {
+    	System.out.println("Running Testcase 47 - Verify Bill Payment from Saving Account Error msg on Summary page");
+    	brow.reset();
+    	login.loginToApp("darkelor", "Password1##");
+    	login.acceptTermAndConditions();
+    	billpayment.billPaymentSummaryPageErr("SAVINGS", "200001");
+    	System.out.println("Testcase 46 - Successfully Completed");
+    }
+    
+    // Test case_47 Verify Bill Payment from Chequing Account Summary page Err Msg -- A
+    @Test
+    public void billPaymentFromChequingSummaryPageErmsg() {
+    	System.out.println("Running Testcase 47 - Verify Bill Payment from Chequing Account Error msg on Summary page");
+    	brow.reset();
+    	login.loginToApp("darkelor", "Password1##");
+    	login.acceptTermAndConditions();
+    	billpayment.billPaymentSummaryPageErr("CHEQUING", "200001");
+    	System.out.println("Testcase 47 - Successfully Completed");
+    }
+    
+    //Test case_48 Error handling for Me to Me Transfers: Verify the available balance and exceed the total amount -- A
+    @Test
+    public void dailyLmtExceedmsgMetoMetransferChequing() {
+    	System.out.println("Running Testcase 48 - Error handling for Me to Me Transfers: Verify the available balance and exceed the total amount");
+    	brow.reset();
+    	login.loginToApp("darkelor", "Password1##");
+    	login.acceptTermAndConditions();
+    	transferpage.meTomeErr("CHEQUING", "200001");
+    	System.out.println("Testcase 48 - Successfully Completed");
+    }
+   
+    //Test case_49 Error handling for Me to Me Transfers: Verify the available balance and exceed the total amount -- A
+    @Test
+    public void dailyLmtExceedmsgMetoMetransferSavings() {
+    	System.out.println("Running Testcase 49 - Verify the available balance and exceed the total amount: Me to Me");
+    	brow.reset();
+    	login.loginToApp("darkelor", "Password1##");
+    	login.acceptTermAndConditions();
+    	transferpage.meTomeErr("SAVINGS", "200001");
+    	System.out.println("Testcase 49 - Successfully Completed");
+    }
+    
+    //Test case_50 Error handling for Me to you Transfers: Verify the available balance and exceed the total amount -- A
+    @Test
+    public void meToyouErrSavings() {
+    	System.out.println("Running Testcase 50 - Verify exceed limit msg error for saving : Me to You");
+    	brow.reset();
+    	login.loginToApp("darkelor", "Password1##");
+    	login.acceptTermAndConditions();
+    	transferpage.meToyouErr("SAVINGS", "500001");
+    	System.out.println("Testcase 50 - Successfully Completed");
+    }
+    
+  //Test case_51 Error handling for Me to you Transfers: Verify the available balance and exceed the total amount -- A
+    @Test
+    public void meToyouErrChequing() {
+    	System.out.println("Running Testcase 51 - Verify exceed limit msg error for Chequing : Me to You");
+    	brow.reset();
+    	login.loginToApp("darkelor", "Password1##");
+    	login.acceptTermAndConditions();
+    	transferpage.meToyouErr("CHEQUING", "500001");
+    	System.out.println("Testcase 51 - Successfully Completed");
+    }
+    
+    // test case_52 Credit Card details on home page -- A 10-5-2018
+ 	@Test
+ 	public void creditCardonHome() {
+ 		System.out.println("Running Testcase 52 - Verify Credit Card details on home page");
+ 		brow.reset();
+ 		login.loginToApp("darkelor", "Password1##");
+ 		login.acceptTermAndConditions();
+ 		homepage.homePageCardInfo();
+ 		System.out.println("Testcase 52 - Credit card details test Successfully Completed");
+ 	}
 }

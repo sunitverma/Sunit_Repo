@@ -15,7 +15,7 @@ public class BillPayment {
     ExtentTest test;
   
     Common browser;
-  
+    
     //constructor with one argument.
     public BillPayment(Common br) {
     	browser = br;
@@ -43,7 +43,7 @@ public class BillPayment {
 	        browser.waitUntilElementPresent("//*[@content-desc='billPaymentReviewTitle']");
 	        browser.verifyText("accessibilityId", "billPaymentReviewTitle", "Please review and confirm details.");
 	        browser.verifyText("accessibilityId", "sendFromLabel", "Send from");
-	        browser.verifyText("accessibilityId", "sendFromData", browser.titleCase("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='" + accounttype + "']]][1]//*[@content-desc='accountCardType']") + " " + accountNoFrom);
+	        //browser.verifyText("accessibilityId", "sendFromData", browser.titleCase("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='" + accounttype + "']]][1]//*[@content-desc='accountCardType']") + " " + accountNoFrom);
 	        browser.verifyText("accessibilityId", "toText", "to");
 	        browser.verifyText("accessibilityId", "toData", accountNameTo);
 	        browser.click("accessibilityId", "scrollToEndButton");
@@ -184,5 +184,104 @@ public class BillPayment {
     		System.out.println("Element Not Found");
     		e.printStackTrace();
     	}
+    }
+    
+    // A - Method - To use in billPaymentListPage and billPaymentSummaryPage method error
+    public void billPaymentEndToEndErr(String accounttype, String amount, String accountNoFrom, String accountBalanceFrom, String accountCurrencyTypeFrom) {
+    	
+    	try {
+    	
+    	browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
+    	browser.verifyText("accessibilityId", "TransferHeader", "Who would you like to pay?");
+      
+    	if (browser.getSize("accessibilityId", "Bill Payee Nickname") != 0) {
+    		
+    		browser.click("xpath", "(//*[@content-desc='Bill Payee Nickname'])[2]");
+    		browser.click("accessibilityId", "Next Button Enabled");
+    		browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
+             
+    		browser.sendKeys("accessibilityId", "MoneyInput", amount);
+        
+	        String moneyInput = browser.getText("accessibilityId", "MoneyInput");
+	        browser.keyboardKey(66);     
+	        browser.click("accessibilityId", "Next Button Enabled");
+	        
+	        browser.waitUntilElementPresent("//*[@content-desc='ReviewTitle']");
+	        browser.verifyText("accessibilityId", "ReviewTitle", "Please review and confirm details");
+	       
+	        browser.verifyText("accessibilityId", "toText", "to");
+	       
+	        browser.verifyText("accessibilityId", "amountLabel", "for the amount of");
+	        browser.verifyText("accessibilityId", "amountCurrency", accountCurrencyTypeFrom);
+	        browser.verifyText("accessibilityId", "amountData", moneyInput);
+	        
+	        browser.waitUntilElementPresent("//*[@content-desc='scrollToEndButton']");
+	        browser.click("accessibilityId", "scrollToEndButton");
+	        
+	        browser.verifyText("accessibilityId", "disclaimerNote", "Note: Once you select the Submit Payment button, you CANNOT undo this payment.");
+	        browser.click("accessibilityId", "submitPaymentButton");
+	        
+	        browser.waitUntilElementPresent("//*[@content-desc='Snackbar Message']");
+	        browser.verifyText("accessibilityId", "Snackbar Message", "Unable to process. You may have exceeded your payment limit or there was an error submitting your request.");
+	        System.out.println("Err msg is working fine for " + accounttype + " account.");
+	        browser.click("accessibilityId", "backButton");
+	        browser.waitUntilElementPresent("//*[@content-desc='Next Button Enabled']");
+	        browser.click("accessibilityId", "Next Button Enabled");
+	        browser.click("accessibilityId", "scrollToEndButton");
+	        browser.waitUntilElementPresent("//*[@content-desc='disclaimerNote']");
+	        browser.verifyText("accessibilityId", "disclaimerNote", "Note: Once you select the Submit Payment button, you CANNOT undo this payment.");
+	        
+	        if (browser.getSize("accessibilityId", "disclaimerNote") != 0) {
+	        	System.out.println("Error message is not shown after coming back from prvious page, so test passed");
+	        }
+	        else {
+	        	System.out.println("Error message is shown, so test not  passed");
+	        }
+    	}
+    	else {
+    		browser.verifyText("accessibilityId", "No Payees Message", "There are no payees to display.\nPlease visit JNCB online to add a new payee.");
+    		System.out.println("No Payee for this user so please use another user for automation testing which have payee");
+    	}
+    	} catch (NoSuchElementException e) {
+            System.out.println("Element Not Found");
+            e.printStackTrace();
+    	}
+    }
+        
+    // A - error msg on summary page when payment limit exceeds
+    public void billPaymentSummaryPageErr(String accounttype, String amount) {
+        
+        try {
+        	if (browser.getSize("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='" + accounttype + "']]]")!= 0) {
+        		
+        		accountNoFrom = browser.getText("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='" + accounttype + "']]][1]//*[@content-desc='accountCardNumber']");
+        		accountBalanceFrom = browser.getText("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='" + accounttype + "']]][1]//*[@content-desc='accountCardBalanceAmount']");
+        		accountCurrencyTypeFrom = browser.getText("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='" + accounttype + "']]][1]//*[@content-desc='accountCardBalanceCurrency']");
+        		
+        		if (browser.getSize("accessibilityId", "PAY A BILL BUTTON") != 0) {
+        			browser.click("xpath", "//*[@content-desc='moreButton' and ./following-sibling::*[@content-desc='PAY A BILL BUTTON']]");
+        			browser.click("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='" + accounttype + "']]][1]");
+        			browser.waitUntilElementPresent("//*[@content-desc='PAY A BILL BUTTON']");
+        			browser.click("accessibilityId", "PAY A BILL BUTTON");
+	              
+        			browser.screenShot();
+        			billPaymentEndToEndErr(accounttype, amount, accountNoFrom, accountBalanceFrom, accountCurrencyTypeFrom);
+        		}
+        		else {
+        			browser.click("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='" + accounttype + "']]][1]");
+        			browser.waitUntilElementPresent("//*[@content-desc='PAY A BILL BUTTON']");
+        			browser.click("xpath", "//*[@text='submitPaymentButton']");
+              
+        			browser.screenShot();
+        			billPaymentEndToEndErr(accounttype, amount, accountNoFrom, accountBalanceFrom, accountCurrencyTypeFrom);
+        		}
+        	}
+        	else {
+        		System.out.println("No " + accounttype + " is account available for this user. So please use another user for automation testing which have " + accounttype + " account.");
+        	}
+        } catch (NoSuchElementException e) {
+        	System.out.println("Element Not Found");
+        	e.printStackTrace();
+        }
     }
 }

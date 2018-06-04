@@ -20,8 +20,7 @@ public class ViewAccounts {
     			
     			browser.click("xpath", "//*[@content-desc='accountCardType'][@text='SAVINGS'][1]");
     			browser.waitUntilElementPresent("//*[@content-desc='accountType']");
-    			int count=browser.getCount("accessibilityId", "merchantText");
-    			System.out.println(count);
+    			int count=browser.getSize("accessibilityId", "merchantText");
     			
     			if (count==50) {
     				System.out.println("Able to get the top 50 transactions");
@@ -88,7 +87,7 @@ public class ViewAccounts {
     	browser.verifyElementPresent("accessibilityId", "backButton");
     	browser.screenShot();
     	browser.click("accessibilityId", "backButton");
-    	browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
+    	browser.waitUntilElementPresent("//*[@content-desc='logoutButton']");
     	browser.verifyText("accessibilityId", "welcomeName", browser.getText("xpath", "//*[@text[starts-with(.,'Good')]]"));
     }
         
@@ -96,6 +95,7 @@ public class ViewAccounts {
     public void transferButtonOnAccountDetailsPage(String accounttype) {
     	
     	try {
+    		browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
     		if (browser.getSize("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='" + accounttype + "']]]")!= 0) {
     			if (browser.getSize("accessibilityId", "MAKE A TRANSFER BUTTON") != 0) {
     				browser.click("xpath", "//*[@content-desc='moreButton' and ./following-sibling::*[@content-desc='MAKE A TRANSFER BUTTON']]");

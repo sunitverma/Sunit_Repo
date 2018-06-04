@@ -18,7 +18,7 @@
     	<dependency>
     		<groupId>io.appium</groupId>
     		<artifactId>java-client</artifactId>
-    		<version>6.0.0-BETA4</version>
+    		<version>6.0.0-BETA5</version>
     	</dependency>
     	<dependency>
   			<groupId>org.apache.maven.plugins</groupId>
@@ -35,12 +35,22 @@
 		<dependency>
     		<groupId>org.mongodb</groupId>
     		<artifactId>bson</artifactId>
-    		<version>3.6.3</version>
+    		<version>3.8.0-beta1</version>
     	</dependency>
     	<dependency>
     		<groupId>org.freemarker</groupId>
     		<artifactId>freemarker</artifactId>
     		<version>2.3.28</version>
+		</dependency>
+		<dependency>
+  			<groupId>com.beust</groupId>
+  			<artifactId>jcommander</artifactId>
+  			<version>1.72</version>
+		</dependency>
+		<dependency>
+    		<groupId>io.selendroid</groupId>
+    		<artifactId>selendroid-server</artifactId>
+   			<version>0.17.0</version>
 		</dependency>
 	</dependencies>
   	<build>
