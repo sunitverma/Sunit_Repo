@@ -4,12 +4,12 @@
 		<classes>
 			<class name="com.testscripts.TestCases" >
 				<methods>
-			        <include name="loginWithEmptyData" />
-					<include name="loginWithValidTestData" />
-					<include name="loginWithInvalidUsername" />
-					<include name="loginWithInvalidPassword" />
+			        <exclude name="loginWithEmptyData" />
+					<exclude name="loginWithValidTestData" />
+					<exclude name="loginWithInvalidUsername" />
+					<exclude name="loginWithInvalidPassword" />
 					<exclude name="passwordRetry" />
-					<exclude name="verifyHomepageAllAccounts" />
+					<include name="verifyHomepageAllAccounts" />
 					<exclude name="verifyHomepageOneAccount" />
 					<exclude name="verifyHomepageNoAccounts" />
 					<exclude name="showFiftyTransaction" />

@@ -1,14 +1,24 @@
 package com.businessfunctions;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 import com.library.Common;
 
+import static org.testng.Assert.assertTrue;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.openqa.selenium.NoSuchElementException;
+import org.testng.Assert;
+import org.testng.Reporter;
 
 public class Login {
 	
 	Common browser;
   
-	//constructor with one argument.
+	ExtentReports extent;
+    ExtentTest test;
+	
+    //constructor with one argument.
 	public Login(Common br) {
     	browser = br;
 	}
@@ -33,21 +43,32 @@ public class Login {
 	}
 	  
 	// M - Method - Expected - Verifying the Login button while login with Empty Credentials
-	public void emptyLoginExpeceted() {
+	public boolean emptyLoginExpeceted() {
 		
 		try {
 			boolean buttonValue = browser.isButtonEnabled("accessibilityId", "loginButtonText");
       
-			if (buttonValue == true) {
+			if (buttonValue == false) {
 				System.out.println("Login button is disabled - Please enter the credentials");
+				Reporter.log ("Login button is disabled - Please enter the credentials");
+				//test.log(Status.INFO, "Login button is disabled - Please enter the credentials");
+				//test.pass("Login button is disabled - Please enter the credentials");
+				Assert.assertTrue(true);
+				return true;
 			}
 			else {
 				System.out.println("Button is Enabled");
+				Reporter.log ("Button is Enabled");
+				//test.fail("Button is Enabled");
+				assertTrue(false);
+				return true;
 			}
 		} catch (NoSuchElementException e) {
 			System.out.println("Element Not Found");
+			test.log(Status.INFO, ExceptionUtils.getStackTrace(e));
 			e.printStackTrace();
 		}
+		return false;
 	}
 	
 	// M - Method - Expected - Login with invalid user accessibilityId  

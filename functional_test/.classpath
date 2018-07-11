@@ -22,5 +22,8 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="con" path="org.testng.TESTNG_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/vermas/AppData/Local/Android/sdk/platforms/android-28/android.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vermas/AppData/Local/Android/sdk/platforms/android-28/uiautomator.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

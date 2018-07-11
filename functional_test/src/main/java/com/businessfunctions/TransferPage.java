@@ -712,7 +712,7 @@ public class TransferPage {
 	        browser.keyboardKey(66);
 	        
 	        String aNumberChange = browser.subString(aNumber, 5, 9); 
-	        String aNumberChange1 = "  ••" + aNumberChange;
+	        String aNumberChange1 = "  ï¿½ï¿½" + aNumberChange;
 	        
 	        browser.scroll("Down", 200, 400);
 	        
@@ -723,7 +723,7 @@ public class TransferPage {
 	        
 	        browser.scroll("Down", 200, 400);
 	        browser.verifyText("xpath", "//*[@content-desc='accountCard' and *[@text='"+ nickname +"']]", nickname);
-	        browser.verifyText("xpath", "//*[@content-desc='accountCard' and *[@text='" + "  ••" + aNumberChange + "']]", aNumberChange1);
+	        browser.verifyText("xpath", "//*[@content-desc='accountCard' and *[@text='" + "  ï¿½ï¿½" + aNumberChange + "']]", aNumberChange1);
 	        //browser.sleepThread(2000);
     	} catch (NoSuchElementException e) {
     		System.out.println("Element Not Found");
@@ -867,7 +867,7 @@ public class TransferPage {
 	        browser.keyboardKey(66);
 	        
 	        String aNumberChange = browser.subString(aNumber, 5, 9); 
-	        String aNumberChange1 = "  ••" + aNumberChange;
+	        String aNumberChange1 = "  ï¿½ï¿½" + aNumberChange;
 	        
 	        browser.scroll("Down", 200, 400);
 	        browser.verifyElementPresent("xpath", "//*[@content-desc='saveBeneficiary']");
@@ -876,7 +876,7 @@ public class TransferPage {
 	        browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
 	        browser.scroll("Down", 200, 400);
 	        browser.verifyText("xpath", "//*[@content-desc='accountCard' and *[@text='" + nickname + "']]", nickname);
-	        browser.verifyText("xpath", "//*[@content-desc='accountCard' and *[@text='" + "  ••" + aNumberChange + "']]", aNumberChange1);
+	        browser.verifyText("xpath", "//*[@content-desc='accountCard' and *[@text='" + "  ï¿½ï¿½" + aNumberChange + "']]", aNumberChange1);
     	} catch (NoSuchElementException e) {
     		System.out.println("Element Not Found");
     		e.printStackTrace();
@@ -947,7 +947,7 @@ public class TransferPage {
     	browser.click("xpath", "//*[@text='MY ACCOUNTS']");
     	
     	String accountToLastFour = browser.subString(accountto, 5, 9);
-    	browser.click("xpath", "//*[@content-desc='accountCard' and ./*[contains(@text, '•••" + accountToLastFour + "')]]");
+    	browser.click("xpath", "//*[@content-desc='accountCard' and ./*[contains(@text, 'ï¿½ï¿½ï¿½" + accountToLastFour + "')]]");
     	
     	browser.click("xpath", "(//*[@content-desc='Next Button Enabled'][1])[1]");
     	browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
@@ -1030,7 +1030,7 @@ public class TransferPage {
     		browser.click("xpath", "//*[@content-desc='accountCard' and *[@text='" + accountfrom + "']]//*[@text='TRANSFER']");
 	        browser.waitUntilElementPresent("//*[@content-desc='TransferHeader'][1]");
 	        browser.click("xpath", "//*[@text='NCB BENEFICIARIES']");
-	        browser.click("xpath", "//*[@content-desc='accountCard' and ./*[contains(@text, '  ••" + accountto + "')]][1]");
+	        browser.click("xpath", "//*[@content-desc='accountCard' and ./*[contains(@text, '  ï¿½ï¿½" + accountto + "')]][1]");
 	        browser.click("xpath", "(//*[@content-desc='Next Button Enabled'][1])[2]");
 	        browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
 	        browser.verifyText("xpath", "(//*[@content-desc='TransferHeader'][2])[2]", "Your current balance is $" + balance + " "+ currency +".");
@@ -1059,7 +1059,7 @@ public class TransferPage {
     		browser.click("xpath", "//*[@content-desc='accountCard' and *[@text='" + accountfrom + "']]//*[@text='TRANSFER']");
 	        browser.waitUntilElementPresent("//*[@content-desc='TransferHeader'][1]");
 	        browser.click("xpath", "//*[@text='NCB BENEFICIARIES']");
-	        browser.click("xpath", "//*[@content-desc='accountCard' and ./*[contains(@text, '  ••" + accountto + "')]][1]");
+	        browser.click("xpath", "//*[@content-desc='accountCard' and ./*[contains(@text, '  ï¿½ï¿½" + accountto + "')]][1]");
 	        browser.click("xpath", "(//*[@content-desc='Next Button Enabled'][1])[2]");
 	        browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
 	        browser.sendKeys("accessibilityId", "MoneyInput", "10");
@@ -1087,7 +1087,7 @@ public class TransferPage {
     		browser.click("xpath", "//*[@content-desc='accountCard' and *[@text='" + accountfrom + "']]//*[@text='TRANSFER']");
 	        browser.waitUntilElementPresent("//*[@content-desc='TransferHeader'][1]");
 	        browser.click("xpath", "//*[@text='NCB BENEFICIARIES']");
-	        browser.click("xpath", "//*[@content-desc='accountCard' and ./*[contains(@text, '  ••" + accountto + "')]][1]");
+	        browser.click("xpath", "//*[@content-desc='accountCard' and ./*[contains(@text, '  ï¿½ï¿½" + accountto + "')]][1]");
 	        browser.click("accessibilityId", "Next Button Enabled");
 	        browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
 	        browser.sendKeys("accessibilityId", "MoneyInput", "10");

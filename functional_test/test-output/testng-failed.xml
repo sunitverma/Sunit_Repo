@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite thread-count="-1" guice-stage="DEVELOPMENT" name="Failed suite [Automation]">
-  <test name="TestScripts(failed)">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Automation]">
+  <test thread-count="5" name="TestScripts(failed)">
     <classes>
       <class name="com.testscripts.TestCases">
         <methods>
+          <include name="verifyHomepageAllAccounts"/>
           <include name="openApp"/>
-          <include name="addBeneficiaryBusiness"/>
+          <include name="testend"/>
           <include name="closeApp"/>
         </methods>
       </class> <!-- com.testscripts.TestCases -->

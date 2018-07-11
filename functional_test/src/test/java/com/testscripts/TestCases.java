@@ -1,9 +1,22 @@
 package com.testscripts;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.businessfunctions.*;
+import com.utils.ExtentReports.ExtentManager;
+import com.utils.ExtentReports.Retry;
 
-import org.apache.maven.shared.utils.io.FileUtils;
+import org.codehaus.plexus.util.FileUtils;
+import org.openqa.selenium.NoSuchElementException;
+import org.testng.ITestResult;
+import org.testng.Reporter;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
@@ -17,8 +30,8 @@ public class TestCases extends RootTest {
     static TransferPage transferpage = new TransferPage(brow);
     static BillPayment billpayment = new BillPayment(brow);
     
-    //ExtentReports extent;
-    //ExtentTest test;
+    ExtentReports extent;
+    ExtentTest test;
     
     //===================================================
     // Created by Sunit Verma and Murali(Date: 13/11/2017)
@@ -28,7 +41,7 @@ public class TestCases extends RootTest {
     
     @BeforeSuite
     public void openApp() throws Exception {
-    	//extent = ExtentManager.GetExtent();
+    	extent = ExtentManager.GetExtent();
     	brow.setUp();
     	FileUtils.deleteDirectory("target/surefire-reports/screenShots");
     }
@@ -37,15 +50,24 @@ public class TestCases extends RootTest {
     public void closeApp() throws Exception {
     	//extent.flush();
     	brow.quitObject();
-    	Runtime.getRuntime().exec("adb -s emulator-5554 emu kill");
+    	//Runtime.getRuntime().exec("adb -s emulator-5554 emu kill");
+    }
+    
+    @AfterTest
+    public void testend() throws Exception {
+        extent.flush();
     }
     
     /*@AfterMethod
     public void getResult(ITestResult result) throws Exception {
       	if(result.getStatus() == ITestResult.FAILURE) {
       		test.log(Status.FAIL, MarkupHelper.createLabel(result.getName()+" Test case FAILED due to below issues:", ExtentColor.RED));
-      		//test.addScreencastFromPath("screenshot.png");
-      		test.fail("details", MediaEntityBuilder.createScreenCaptureFromPath("screenshot.png").build());
+      		test.addScreencastFromPath("screenshot.png");
+      		test.fail("details", MediaEntityBuilder.createScreenCaptureFromPath("//target//surefire-reports//screenshots//screenshot.png").build());
+      		test.fail(result.getThrowable());
+      	
+//      		Exception exception = new NullPointerException();
+//      		test.fail(exception, MediaEntityBuilder.createScreenCaptureFromPath("screen.png").build());
       	}
       	else if(result.getStatus() == ITestResult.SUCCESS) {
       		test.log(Status.PASS, MarkupHelper.createLabel(result.getName()+" Test Case PASSED", ExtentColor.GREEN));
@@ -55,24 +77,28 @@ public class TestCases extends RootTest {
       		test.skip(result.getThrowable());
       	}
     }*/
-      	
        
     //================Sprint 1: 2 test cases ============================
     //================Sprint 1 Start=====================================
     
     // Test case_01 with Empty Login Credentials username -- M
-    @Test
+    @Test (retryAnalyzer=Retry.class)
     public void loginWithEmptyData() {
+    	test = extent.createTest("Testcase 01", "Login with Empty Testdata");
+    	test.assignAuthor("Murali");
     	System.out.println("Running Testcase 01 - Login with Empty Testdata");
     	login.loginToApp("", "");
     	login.emptyLoginExpeceted();
     	brow.screenShot();
     	System.out.println("Testcase 01 - Successfully Completed");
+    	Reporter.log ("Testcase 01 - Successfully Completed");
     }
         
     // Testcase_02 with valid Credentials -- M
-    @Test
+    @Test //(retryAnalyzer=Retry.class)
     public void loginWithValidTestData() {
+    	try {
+    	//test = extent.createTest("Testcase 02", "Login with Valid Credentials");
     	System.out.println("Running Testcase 02 - Login with Valid Credentials");
     	brow.reset();
     	login.loginToApp("yandisud", "Password1##");
@@ -80,6 +106,11 @@ public class TestCases extends RootTest {
     	brow.verifyText("accessibilityId", "welcomeName", brow.getText("xpath", "//*[@text[starts-with(.,'Good')]]"));
     	brow.screenShot();
     	System.out.println("Testcase 02 - Successfully Completed");
+    	} catch (NoSuchElementException e) {
+			System.out.println("Element Not Found");
+			//test.log(Status.INFO, ExceptionUtils.getStackTrace(e));
+			e.printStackTrace();
+		}
     }
         
     //=============== Sprint 1 End ======================================
@@ -87,7 +118,7 @@ public class TestCases extends RootTest {
     //================Sprint 2 Start=====================================
           
     // Test case_03 Login with Invalid User name -- S
-    @Test
+    @Test (retryAnalyzer=Retry.class)
     public void loginWithInvalidUsername() {
     	System.out.println("Running Testcase 03 - Login with Invalid Username");
     	brow.reset();
@@ -98,7 +129,7 @@ public class TestCases extends RootTest {
     }
        
     // Test case_04 Login with Invalid Password	-- S
-    @Test
+    @Test (retryAnalyzer=Retry.class)
     public void loginWithInvalidPassword() {
     	System.out.println("Running Testcase 04 - Login with Invalid Password");
     	brow.reset();

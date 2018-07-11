@@ -20,17 +20,24 @@ public class ViewAccounts {
     			
     			browser.click("xpath", "//*[@content-desc='accountCardType'][@text='SAVINGS'][1]");
     			browser.waitUntilElementPresent("//*[@content-desc='accountType']");
-    			int count=browser.getSize("accessibilityId", "merchantText");
+    			//int count=browser.getSize("accessibilityId", "merchantText");
     			
-    			if (count==50) {
-    				System.out.println("Able to get the top 50 transactions");
-    			}
-    			else if (count>50) {
-    				System.out.println("The given account have transactions more than 50");
-    			}
-    			else {
-    				System.out.println("The given account have transactions less than 50");
-    			}
+    			try {
+					browser.count();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+    			
+//    			if (count==50) {
+//    				System.out.println("Able to get the top 50 transactions");
+//    			}
+//    			else if (count>50) {
+//    				System.out.println("The given account have transactions more than 50");
+//    			}
+//    			else {
+//    				System.out.println("The given account have transactions less than 50");
+//    			}
     		}
     		else {
     			System.out.println("No Savings account is avaliable for this user. Please use another user for automation testing which have Savings account.");

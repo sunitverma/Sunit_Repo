@@ -17,15 +17,15 @@ public class HomePage {
     	
     	try {
     		if((browser.getSize("accessibilityId", "accountCard") != 0)) {
-    			if(browser.getSize("xpath", "//*[@content-desc='accountCardType'][@text='SAVINGS']") != 0) {
+    			if(browser.getSize("androidUIAutomator", "new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().textContains(\"SAVINGS\"))") != 0) {
     				System.out.println("Savings account is available");
     			}
-    			if(browser.getSize("xpath", "//*[@content-desc='accountCardType'][@text='CHEQUING']") != 0) {
-    				System.out.println("Chequing account is available");
-    			}
-    			if(browser.getSize("xpath", "//*[@content-desc='accountCardType'][@text='LOAN']") != 0) {
-    				System.out.println("Loan account is available");
-    			}
+				if(browser.getSize("androidUIAutomator", "new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().textContains(\"CHEQUING\"))") != 0) {
+					System.out.println("Chequing account is available");
+				}
+				if(browser.getSize("androidUIAutomator", "new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().textContains(\"LOAN\"))") != 0) {
+					System.out.println("Loan account is available");
+				}
     		}
     		else {
     			System.out.println("Neither Savings or Chequing nor Loan account is available. Please use another user for automation testing which have all accounts.");
@@ -35,7 +35,7 @@ public class HomePage {
     		e.printStackTrace();
     	}
     }
-    
+    	
     // K - Method - to verify no account
     public void homePageWithoutAccounts() {
     	
