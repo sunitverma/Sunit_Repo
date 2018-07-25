@@ -88,17 +88,16 @@ public class ViewAccounts {
     	browser.verifyElementPresent("accessibilityId", "backButton");
     	browser.screenShot();
     	browser.click("accessibilityId", "backButton");
-    	browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
-    	browser.verifyText("accessibilityId", "welcomeName", browser.getText("xpath", "//*[@text[starts-with(.,'Good')]]"));
+    	browser.waitUntilElementPresent("//*[@content-desc='QUICK ACTIONS Button']");
     }
-        
+            
     // S - Method - to verify transfer button working on saving and Chequing account details page and back button working
     public void transferButtonOnAccountDetailsPage(String accounttype) {
     	
     	try {
-    		if (browser.getSize("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='" + accounttype + "']]]")!= 0) {
+    		if(browser.getSize("androidUIAutomator", "new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().textContains(\""+ accounttype +"\"))") != 0) {
     			if (browser.getSize("accessibilityId", "MAKE A TRANSFER BUTTON") != 0) {
-    				browser.click("xpath", "//*[@content-desc='moreButton' and ./following-sibling::*[@content-desc='MAKE A TRANSFER BUTTON']]");
+    				browser.click("xpath", "//*[@content-desc='QUICK ACTIONS Button' and ./following-sibling::*[@content-desc='MAKE A TRANSFER BUTTON']]");
     				browser.screenShot();
     				transferButtonFlow(accounttype);
     				System.out.println("Transfer and back button are working on Account details page for " + accounttype + " account.");

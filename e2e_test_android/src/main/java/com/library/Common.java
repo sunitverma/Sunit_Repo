@@ -2,66 +2,125 @@ package com.library;
 
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
+import io.appium.java_client.touch.TapOptions;
+import io.appium.java_client.touch.offset.ElementOption;
+import io.appium.java_client.touch.offset.PointOption;
+
 import org.openqa.selenium.remote.DesiredCapabilities;
+
+import io.appium.java_client.MobileBy;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.MultiTouchAction;
+import io.appium.java_client.Setting;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.android.Activity;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.WordUtils;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
-//import static org.testng.Assert.assertTrue;
+
+import com.android.uiautomator.core.UiDevice;
+import com.android.uiautomator.core.UiObject;
+import com.android.uiautomator.core.UiObjectNotFoundException;
+import com.android.uiautomator.core.UiScrollable;
+import com.android.uiautomator.core.UiSelector;
+
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
 
 public class Common {
 
+    ExtentReports extent;
+    ExtentTest test;
+  
     public static WebDriverWait wait = null;
-    
+   
     protected AndroidDriver<AndroidElement> driver = null;
      
     DesiredCapabilities dc = new DesiredCapabilities();
               
     public void setUp() {
-    	
-    	Properties Des = new Properties();
-    	InputStream input = null;
+      
+      Properties Des = new Properties();
+      InputStream input = null;
 
-    	try {
-    		input = new FileInputStream("./src/main/java/com/capabilities/DesiredCapabilities.properties");
-    		
-    		// load a properties file
-    		Des.load(input);      
-    		
-    		//update the UDID_number, Device_name and AVD_name in DesiredCapabilites properties file as per your device
-    		dc.setCapability(MobileCapabilityType.DEVICE_NAME, Des.getProperty("Device_name"));
-	        dc.setCapability(AndroidMobileCapabilityType.AVD, Des.getProperty("AVD_name")); // Applicable only for Emulator
-	        
-	        dc.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
-	        dc.setCapability(MobileCapabilityType.LANGUAGE, "en"); // Applicable only for Emulator
-	        dc.setCapability(MobileCapabilityType.LOCALE, "US"); // Applicable only for Emulator
-	        dc.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.jncb.mobile");
-	        dc.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, ".MainActivity");
-	        dc.setCapability(AndroidMobileCapabilityType.APP_WAIT_ACTIVITY, "com.jncb.mobile.*");
-	        dc.setCapability(AndroidMobileCapabilityType.DONT_STOP_APP_ON_RESET, true);
-	        dc.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, true);
-	        //dc.setCapability(MobileCapabilityType.FULL_RESET, true); // to uninstall current apk
+      try {
+        input = new FileInputStream("./src/main/java/com/capabilities/DesiredCapabilities.properties");
         
-	        driver = new AndroidDriver<AndroidElement>(new URL("http://localhost:4723/wd/hub"), dc);
-    	} catch (IOException io) {
-    		io.printStackTrace();
-    	}
+        // load a properties file
+        Des.load(input);      
+        
+        //update the UDID_number, Device_name and AVD_name in DesiredCapabilites properties file as per your device
+        //dc.setCapability(MobileCapabilityType.UDID, Des.getProperty("UDID_number")); //Need for real device
+        dc.setCapability(MobileCapabilityType.DEVICE_NAME, Des.getProperty("Device_name"));
+        dc.setCapability(AndroidMobileCapabilityType.AVD, Des.getProperty("AVD_name")); // Applicable only for Emulator
+        
+        dc.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
+        dc.setCapability(MobileCapabilityType.LANGUAGE, "en"); // Applicable only for Emulator
+        dc.setCapability(MobileCapabilityType.LOCALE, "US"); // Applicable only for Emulator
+        dc.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.jncb.mobile");
+        dc.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, ".MainActivity");
+        dc.setCapability(AndroidMobileCapabilityType.APP_WAIT_ACTIVITY, "com.jncb.mobile.*");
+        dc.setCapability(AndroidMobileCapabilityType.DONT_STOP_APP_ON_RESET, true);
+        dc.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, true);
+        //dc.setCapability(MobileCapabilityType.FULL_RESET, true); // to uninstall current apk
+        
+        driver = new AndroidDriver<AndroidElement>(new URL("http://localhost:4723/wd/hub"), dc);
+        
+        
+     // Set my TestObject API Key
+        /*
+        dc.setCapability("testobjectApiKey", "0F2FA3005F2B4E6DAD4219368CCF01B6");
+         
+        // Dynamic device allocation of an iPhone 7, running iOS 10.3 device
+        dc.setCapability("platformName", "Andorid");
+        dc.setCapability("platformVersion", "7");
+        dc.setCapability("deviceName", "iPhone 7");
+        
+        dc.setCapability("automationName", "uiautomator2");
+  
+        // Set allocation from private device pool only
+        dc.setCapability("privateDevicesOnly", "true");
+         
+        // Set Application under test
+        dc.setCapability("testobject_app_id", "1");
+        dc.setCapability("name", "My Test 1!");
+ 
+        // Set Appium version
+        dc.setCapability("appiumVersion", "1.6.2");
+             
+        // Set Appium end point
+        driver = new AndroidDriver<AndroidElement>(new URL("https://us1.appium.testobject.com/wd/hub"), dc);*/
+      } catch (IOException io) {
+        io.printStackTrace();
+      }
     }
-    
+
     //AndroidElement 
     public AndroidElement AndroidElementId(String identifier,String locator) {
     	
@@ -157,11 +216,14 @@ public class Common {
     	AndroidElement e=AndroidElementId(identifier, locator);
     	if (e.getText().trim().equals(text)) {
     		System.out.println(text+" text displayed");
+    		//test.log(Status.INFO, text+" text displayed");
     		return true;
     	}
     	else {
     		System.out.println(text+" text did not displayed");
+    		//test.log(Status.INFO, text+" text did not displayed");
     		return false;
+    		//Assert.assertTrue(false);
     	}
     }
         
@@ -224,7 +286,7 @@ public class Common {
     //send the keyboard key
     public void keyboardKey(int key) {
     	
-    	driver.pressKeyCode(key);
+    	driver.findElementsByAndroidUIAutomator("new UiDevice().pressKeyCode("+key+")");
     }
     
     //reset the count for a user, use this when want to unlock the password
@@ -238,7 +300,7 @@ public class Common {
     //verify element present
     public boolean compareTexts(String actual,String expected) {
     	
-    	//assertTrue(actual.equals(expected));
+    	Assert.assertTrue(actual.equals(expected));
     	return false;
     }
     
@@ -254,6 +316,100 @@ public class Common {
     	
     	char a = '\"';
     	driver.executeScript("client:client.swipe("+ a + Direction + a + "," + Start + ","+ End +")");
+    }
+    
+    // 
+    public void count(int  x, int y) throws Exception {
+//    	List<AndroidElement> a = driver.findElementsByAndroidUIAutomator("new UiScrollable(new UiSelector().className(\"android.view.View\")).getChildCount("
+//    	+ "new UiSelector().className(\"android.widget.TextView\"), \"merchantText\")");
+    	
+    	//List<AndroidElement> a2 = driver.findElementsByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).className(\"android.widget.TextView\"), \"merchantText\")).getChildCount()");
+    	
+    	//List<AndroidElement> a2 = driver.findElementsByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).className(\"android.widget.TextView\"), \"merchantText\").childSelector(new UiSelector())");
+    	List<AndroidElement> a2 = driver.findElementsByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).getChildCount(new UiSelector().className(\"android.widget.TextView\").description(\"merchantText\"))");
+    	System.out.println(a2);
+    	
+//    	new UiScrollable(new UiSelector().scrollable(true)).getChildCount(new UiSelector().className("android.widget.TextView").description("merchantText"));
+
+//    	UiDevice mDevice = UiDevice.getInstance
+  //  	mDevice.pressKeyCode(66);
+    
+//    	Instrumentation instr = Instrumentation.getInstrumentation();
+//    	UiDevice device = UiDevice.getInstance();
+    	
+//    	new UiScrollable(SettingsHelper.LIST_VIEW).getChildByText(SettingsHelper.LIST_VIEW_ITEM, name).click();
+//        UiObject obj = appsSettingsList.getChildByText(SettingsHelper.LIST_VIEW_ITEM, name);
+//        obj.click();
+//    	
+//        new UiScrollable(new UiSelector().scrollable(true).textContains("")).click();
+//        
+//        new UiScrollable(new UiSelector().scrollable(true)).click();
+//        
+//        new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().textContains("text"));
+//        
+//        new BySelector().clazz(className);
+    	
+    		WebElement element = driver.findElement(By.id(getSelector()));
+//    		if (element == null) element = driver.findElement(By.name(getSelector()); 
+//    		return element; 
+    		}
+    	
+    	findObject(By.text("foo"));
+    	//findObject(new BySelector().text("foo"));
+//        
+        //.getChildCount(new UiSelector().className("android.widget.TextView").description("merchantText"))
+        
+//    	new UiDevice().pressKeyCode("Enter");
+//    	int settingsList = new UiScrollable(new UiSelector().scrollable(true)).getChildCount(new UiSelector().className("android.widget.TextView").description("merchantText"));
+//    	boolean aaa = new UiScrollable(new UiSelector()).flingToBeginning(10);
+    	
+    	/*
+    	 java.lang.Object
+   			↳	android.support.test.uiautomator.UiDevice
+    	 
+    	 java.lang.Object
+    	   	↳	android.support.test.uiautomator.UiSelector
+    	
+   		java.lang.Object
+   			↳	android.support.test.uiautomator.UiObject
+ 	   			↳	android.support.test.uiautomator.UiCollection
+ 	 	   			↳	android.support.test.uiautomator.UiScrollable
+    		
+    		
+    		*/
+    			//.description("merchantText")).getChildCount();
+//    	UiObject btItem = settingsList.getChildByText(new UiSelector().className(LinearLayout.class.getName()),"Bluetooth", true);
+    	
+//  MobileElement element = driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().resourceId(\"com.android.vending:id/tab_recycler_view\")).getChildByText("
+//				+ "new UiSelector().className(\"android.widget.TextView\"), \"Games We Are Playing\")"));
+//    	System.out.println(a);
+//    	//return a;
+    	
+    	  //Created UI Object for list view
+    	//int a1 = driver.findElementsByAndroidUIAutomator("new UiScrollable(new UiSelector().className("\android.widget.ListView\")");
+
+
+    	//Printing the number of child ements present in the List View by using getchildCount() method
+    	//System.out.println("List view elements : "+listview_elements.getChildCount());*
+    }
+    
+    public boolean scrollForObject(String text) {
+    	    	
+    	driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().textContains(\""+ text +"\"))");
+    	return true;
+    }
+    
+    public boolean scrollTotop(){
+
+    	boolean fling = driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).flingToBeginning(3)") != null;
+		if (fling==true) {
+			System.out.println("scroll to top");
+		}
+		else
+		{
+			System.out.println("not able to reach top");
+		}
+    	return true;
     }
     
     //Get the Size of element

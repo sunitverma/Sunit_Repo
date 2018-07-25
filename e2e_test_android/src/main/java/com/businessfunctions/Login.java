@@ -95,27 +95,29 @@ public class Login {
 		try {
 			browser.verifyElementPresent("accessibilityId", "logoutButton");
 			
-			browser.verifyText("accessibilityId", "logoutButton", "Log Out");
+			//browser.verifyText("accessibilityId", "logoutButton", "Log Out");
 			
 			browser.click("accessibilityId", "logoutButton");
+			browser.waitUntilElementPresent("//*[@content-desc='LogoutModalHeader']");
+			browser.verifyText("accessibilityId", "LogoutModalHeader", "Leaving already?");
+			browser.verifyText("accessibilityId", "LogoutModalBody", "Are you sure you want to log out?");
+			browser.verifyText("accessibilityId", "LogoutModalReturnButton", "Cancel");
+			browser.verifyText("accessibilityId", "LogoutModalAcceptButton", "Log out");        
 			
-			browser.verifyText("accessibilityId", "logoutModalFirstTextField", "Leaving already?");
-			browser.verifyText("accessibilityId", "logoutModalSecondTextField", "Are you sure you want to log out?");
-			browser.verifyText("accessibilityId", "logoutModalCancelButton", "Cancel");
-			browser.verifyText("accessibilityId", "logoutModalLogoutButton", "Log out");        
-			
-			browser.verifyElementPresent("accessibilityId", "logoutModalCancelButton");
-			browser.verifyElementPresent("accessibilityId", "logoutModalLogoutButton");
+			browser.verifyElementPresent("accessibilityId", "LogoutModalReturnButton");
+			browser.verifyElementPresent("accessibilityId", "LogoutModalAcceptButton");
 			browser.screenShot();
       
-			browser.click("accessibilityId", "logoutModalCancelButton");
+			browser.click("accessibilityId", "LogoutModalReturnButton");
+			browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
 			browser.verifyText("accessibilityId", "welcomeName", browser.getText("xpath", "//*[@text[starts-with(.,'Good')]]"));
 			browser.screenShot();
 			System.out.println("Cancel button working fine on Log out pop up");
 			
 			browser.click("accessibilityId", "logoutButton");
-			
-			browser.click("accessibilityId", "logoutModalLogoutButton");
+			browser.waitUntilElementPresent("//*[@content-desc='LogoutModalHeader']");
+			browser.click("accessibilityId", "LogoutModalAcceptButton");
+			browser.waitUntilElementPresent("//*[@content-desc='logo']");
 			browser.verifyElementPresent("accessibilityId", "logo");
 			browser.screenShot();
 			System.out.println("Log out button working fine on Log out pop up");
@@ -171,6 +173,7 @@ public class Login {
 			}
 			else if(browser.getSize("accessibilityId", "scrollToEndButton") != 0) {
 				browser.click("accessibilityId", "scrollToEndButton");
+				browser.waitUntilElementPresent("//*[@content-desc='declineButton']");
 				browser.verifyElementPresent("accessibilityId", "declineButton");
 				browser.click("accessibilityId", "declineButton");
 				
@@ -188,7 +191,7 @@ public class Login {
 					browser.screenShot();
 					
 					browser.click("accessibilityId", "scrollToEndButton");
-					
+					browser.waitUntilElementPresent("//*[@content-desc='acceptButton']");
 					browser.verifyElementPresent("accessibilityId", "acceptButton");
 					browser.screenShot();
           

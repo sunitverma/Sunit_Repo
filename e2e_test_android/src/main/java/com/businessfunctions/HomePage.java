@@ -17,15 +17,15 @@ public class HomePage {
     	
     	try {
     		if((browser.getSize("accessibilityId", "accountCard") != 0)) {
-    			if(browser.getSize("xpath", "//*[@content-desc='accountCardType'][@text='SAVINGS']") != 0) {
+    			if(browser.getSize("androidUIAutomator", "new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().textContains(\"SAVINGS\"))") != 0) {
     				System.out.println("Savings account is available");
     			}
-    			if(browser.getSize("xpath", "//*[@content-desc='accountCardType'][@text='CHEQUING']") != 0) {
-    				System.out.println("Chequing account is available");
-    			}
-    			if(browser.getSize("xpath", "//*[@content-desc='accountCardType'][@text='LOAN']") != 0) {
-    				System.out.println("Loan account is available");
-    			}
+				if(browser.getSize("androidUIAutomator", "new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().textContains(\"CHEQUING\"))") != 0) {
+					System.out.println("Chequing account is available");
+				}
+				if(browser.getSize("androidUIAutomator", "new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().textContains(\"LOAN\"))") != 0) {
+					System.out.println("Loan account is available");
+				}
     		}
     		else {
     			System.out.println("Neither Savings or Chequing nor Loan account is available. Please use another user for automation testing which have all accounts.");
@@ -57,8 +57,8 @@ public class HomePage {
     public void quickActionsButtonNotForLoan() {
     	
     	try {
-    		if(browser.getSize("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='LOAN']]]") != 0) {
-    			if (browser.getSize("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='LOAN']]]//*[@content-desc='moreButton']")!=0) {
+    		if(browser.getSize("androidUIAutomator", "new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().textContains(\"LOAN\"))") != 0) {
+    			if (browser.getSize("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='LOAN']]]//*[@content-desc='QUICK ACTIONS Button']")!=0) {
     				System.out.println("Quick Actions - Make A Transfer/ Pay A Bill options are available for Loan account.");
     				}
     			else {
@@ -75,36 +75,21 @@ public class HomePage {
     	browser.screenShot();
     }
     
-    // S - Method - To use in transferButtonOnLandingPage method
-    public void transferButtonFlow(String accounttype) {
-    	
-    	browser.click("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='" + accounttype + "']]][1]//*[@content-desc='moreButton']");  
-    	browser.click("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='" + accounttype + "']]]//*[@content-desc='MAKE A TRANSFER BUTTON']");
-    	browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
-    	browser.screenShot();
-    	browser.verifyText("accessibilityId", "TransferHeader", "To whom would you like to transfer?");
-    	browser.verifyElementPresent("accessibilityId", "backButton");
-    	browser.click("accessibilityId", "backButton");
-    	browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
-    	browser.verifyText("accessibilityId", "welcomeName", browser.getText("xpath", "//*[@text[starts-with(.,'Good')]]"));
-    }
-    
     // S - Method - to verify transfer button working for saving and Chequing accounts on landing page and back button working
     public void transferButtonOnListPage(String accounttype) {
     	
     	try {
-    		if(browser.getSize("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='" + accounttype + "']]]")!= 0) {
-    			if(browser.getSize("accessibilityId", "MAKE A TRANSFER BUTTON") != 0) {
-    				browser.click("xpath", "//*[@content-desc='moreButton' and ./following-sibling::*[@content-desc='MAKE A TRANSFER BUTTON']]");
-    				browser.screenShot();
-    				transferButtonFlow(accounttype);
-    				System.out.println("Transfer and back button are working on Landing page for " + accounttype + " account.");
-    			}
-    			else {
-    				browser.screenShot();
-    				transferButtonFlow(accounttype);
-    				System.out.println("Transfer and back button are working on Landing page for " + accounttype + " account.");
-    			}
+    		if(browser.getSize("androidUIAutomator", "new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().textContains(\"" + accounttype + "\"))") != 0) {
+    			browser.click("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='" + accounttype + "']]][1]//*[@content-desc='QUICK ACTIONS Button']");
+    			browser.waitUntilElementPresent("//*[@content-desc='MAKE A TRANSFER BUTTON']");
+    	    	browser.click("accessibilityId", "MAKE A TRANSFER BUTTON");
+    	    	browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
+    	    	browser.screenShot();
+    	    	browser.verifyText("accessibilityId", "TransferHeader", "To whom would you like to transfer?");
+    	    	browser.verifyElementPresent("accessibilityId", "backButton");
+    	    	browser.click("accessibilityId", "backButton");
+    	    	browser.waitUntilElementPresent("//*[@content-desc='MAKE A TRANSFER BUTTON']");
+    	    	System.out.println("Transfer and back button are working on Landing page for " + accounttype + " account.");
     		}
     		else {
     			System.out.println("No " + accounttype + " account is avaliable for this user. Please use another user for automation testing which have " + accounttype + " account.");

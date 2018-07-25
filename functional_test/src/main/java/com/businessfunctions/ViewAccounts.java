@@ -163,4 +163,107 @@ public class ViewAccounts {
     		e.printStackTrace();
     	}
     }
+
+	// Aditya - Verify payment due date, Minimum payment due, Statement Balance, Statement Date, Total Credit Limit, Current Balance
+	public void viewCardAccount() {
+		
+		if ((browser.getSize("accessibilityId", "creditCard") != 0)) {
+			
+			boolean stmBal;
+			boolean minBal;
+			boolean pmtDueDate;
+			boolean StmtDate;
+			boolean ttlCreditLimitValue;
+			boolean availableBalanceValue;
+			boolean currentBal;
+
+			browser.click("xpath", "//*[@content-desc='creditCard']");
+			browser.waitUntilElementPresent("//*[@content-desc='ccName']");
+			
+			try {
+				if ((browser.getSize("accessibilityId", "ccName") != 0)) {
+					if (browser.getSize("xpath", "//*[@content-desc='balance']") != 0) {
+						System.out.println("Balance is shown");
+					}
+					if (browser.getSize("xpath", "//*[@content-desc='ccLogo']") != 0) {
+						System.out.println("Card Logo is shown");
+					}
+					if (browser.getSize("xpath", "//*[@content-desc='ccNumber']") != 0) {
+						System.out.println("Card Number is shown");
+					}
+
+					stmBal = browser.verifyElementPresent("accessibilityId", "Statement Balance: Value");
+					if (stmBal) {
+						String available = browser.getText("xpath", "//*[@content-desc='Statement Balance: Value']");
+						browser.verifyText("xpath", "//*[@content-desc='Statement Balance: Label']",
+								"Statement Balance:");
+						System.out.println("Statement balance shown " + available);
+					}
+
+					minBal = browser.verifyElementPresent("accessibilityId", "Minimum Payment Due: Value");
+					if (minBal) {
+						String minBalVal = browser.getText("accessibilityId", "Minimum Payment Due: Value");
+						browser.verifyText("xpath", "//*[@content-desc='Minimum Payment Due: Label']",
+								"Minimum Payment Due:");
+						System.out.println("Minimum Payment Due for card is shown " + minBalVal);
+					}
+
+					pmtDueDate = browser.verifyElementPresent("accessibilityId", "Payment Due Date: Value");
+					if (pmtDueDate) {
+						String minDueDtValue = browser.getText("accessibilityId", "Payment Due Date: Value");
+						browser.verifyText("xpath", "//*[@content-desc='Payment Due Date: Label']",
+								"Payment Due Date:");
+						System.out.println("Payment Due Date is shown " + minDueDtValue);
+					}
+
+					browser.click("xpath", "//*[@content-desc='MORE DETAILS Button']");
+					browser.waitUntilElementPresent("//*[@content-desc='Statement Date: Value']");
+					StmtDate = browser.verifyElementPresent("accessibilityId", "Statement Date: Value");
+					if (StmtDate) {
+						String statmentDate = browser.getText("accessibilityId", "Statement Date: Value");
+						browser.verifyText("xpath", "//*[@content-desc='Statement Date: Label']", "Statement Date:");
+						System.out.println("Statement Date is shown " + statmentDate);
+					}
+
+					ttlCreditLimitValue = browser.verifyElementPresent("accessibilityId", "Total Credit Limit: Value");
+					if (ttlCreditLimitValue) {
+						String cardBrand = browser.getText("xpath", "//*[@content-desc='Total Credit Limit: Value']");
+						browser.verifyText("xpath", "//*[@content-desc='Total Credit Limit: Label']",
+								"Total Credit Limit:");
+						System.out.println("Total credit card Limit " + cardBrand);
+						// System.out.println(cardBrand);
+					}
+
+					availableBalanceValue = browser.verifyElementPresent("accessibilityId", "Available Balance: Value");
+					if (availableBalanceValue) {
+						String availableBalanceValueb = browser.getText("xpath",
+								"//*[@content-desc='Available Balance: Value']");
+						browser.verifyText("xpath", "//*[@content-desc='Available Balance: Label']",
+								"Available Balance:");
+						System.out.println("Available Balance is :" + availableBalanceValueb);
+
+					}
+					currentBal = browser.verifyElementPresent("accessibilityId", "Current Balance: Value");
+					if (currentBal) {
+						String currentBala = browser.getText("xpath", "//*[@content-desc='Current Balance: Value']");
+						browser.verifyText("xpath", "//*[@content-desc='Current Balance: Label']", "Current Balance:");
+						System.out.println("Current Balance is :" + currentBala);
+
+					}
+					browser.screenShot();
+					browser.click("xpath", "//*[@content-desc='backButton']");
+					browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
+					if (browser.getSize("xpath", "//*[@content-desc='welcomeName']") != 0) {
+						System.out.println("Back button press navigates user to accounts listing page");
+					}
+				} else {
+					System.out.println("Back button press functionality failed");
+				}
+
+			} catch (NoSuchElementException e) {
+				System.out.println("Element Not Found");
+				e.printStackTrace();
+			}
+		}
+	}
 }

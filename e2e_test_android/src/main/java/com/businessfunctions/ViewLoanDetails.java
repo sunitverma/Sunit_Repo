@@ -16,27 +16,26 @@ public class ViewLoanDetails {
     public void viewLoanDetail() {
     	
     	try {
-    		if(browser.getSize("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='LOAN']]]") != 0) {
+    		if(browser.getSize("androidUIAutomator", "new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().textContains(\"LOAN\"))") != 0) {
     			
-    			String accountNo = browser.getText("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='LOAN']]][1]//*[@content-desc='accountCardNumber']");
-    			String accountBal = browser.getText("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='LOAN']]][1]//*[@content-desc='accountCardBalanceAmount']");
-    			String currencySign = browser.getText("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='LOAN']]][1]//*[@content-desc='accountCardBalanceNegative']");
-    			String currency = browser.getText("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='LOAN']]][1]//*[@content-desc='accountCardBalanceCurrency']");
+    			String accountNo = browser.getText("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='LOAN']]]//*[@content-desc='accountCardBalanceAmount'][not(@text='0.00')]/..//*[@content-desc='accountCardNumber']");
+    			String accountBal = browser.getText("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='LOAN']]]//*[@content-desc='accountCardBalanceAmount'][not(@text='0.00')]/..//*[@content-desc='accountCardBalanceAmount']");
+    			String currencySign = browser.getText("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='LOAN']]]//*[@content-desc='accountCardBalanceAmount'][not(@text='0.00')]/..//*[@content-desc='accountCardBalanceNegative']");
+    			String currency = browser.getText("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='LOAN']]]//*[@content-desc='accountCardBalanceAmount'][not(@text='0.00')]/..//*[@content-desc='accountCardBalanceCurrency']");
     			String subAccountNo = browser.subString(accountNo, 3, 7);
           
-    			browser.click("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='LOAN']]][1]");
-    			browser.waitUntilElementPresent("//*[@content-desc='logoutButton']");
+    			browser.click("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='LOAN']]]//*[@content-desc='accountCardBalanceAmount'][not(@text='0.00')]/..");
+    			browser.waitUntilElementPresent("//*[@content-desc='backButton']");
     			
     			//Verify the details on Loan account details page
     			browser.verifyText("accessibilityId", "accountType", "LOAN");
-    			browser.verifyText("accessibilityId", "balanceTypeTitle", browser.getText("xpath", "(//*[@text[contains(., " + "'" + subAccountNo + "'" + ")]][1])[2]"));
-    			browser.verifyText("accessibilityId", "balanceAmount", currencySign + accountBal);
-    			browser.verifyText("accessibilityId", "accountCurrency", " " + currency);
-          
+    			browser.verifyText("accessibilityId", "accountNumber", browser.getText("xpath", "(//*[@text[contains(., " + "'" + subAccountNo + "'" + ")]][1])[2]"));
+    			browser.verifyText("accessibilityId", "availableBalance", currencySign + accountBal+ " " + currency);
+    			          
     			browser.verifyText("accessibilityId", "Next Payment", "Next Payment");
     			browser.verifyElementPresent("accessibilityId", "nextPaymentDueDate");
     			browser.verifyElementPresent("accessibilityId", "installmentAmount");
-    			browser.verifyText("xpath", "(//*[@class='android.widget.TextView'])[86]", " JMD");
+    			browser.verifyText("xpath", "(//*[@class='android.widget.TextView'])[29]", " JMD");
               
     			browser.verifyText("accessibilityId", "Loan Period", "Loan Period");
     			browser.verifyElementPresent("xpath", "//*[@content-desc='loanPeriod'][1]");
@@ -46,38 +45,53 @@ public class ViewLoanDetails {
     			System.out.println("No Loan account is avaliable for this user. Please use another user for automation testing which have Loan account.");
     		}
     	} catch (NoSuchElementException e) {
+    		browser.screenShot();
     		System.out.println("Element Not Found");
     		e.printStackTrace();
     	}
     }
         
     // S - Verify the details on paid loan account Details page
-    public void zeroLoanBalance(String accountno) {
+    public void zeroLoanBalance() {
     	
     	try {
-    		browser.click("xpath", "//*[@content-desc='accountCard' and *[@text='" + accountno + "']]");
-    		browser.waitUntilElementPresent("//*[@content-desc='logoutButton']");
-    		browser.verifyText("xpath", "//*[@text='My Accounts']", "My Accounts");
-    		
-    		browser.verifyText("accessibilityId", "accountNumber", " " + accountno);
-    		
-    		browser.verifyText("accessibilityId", "balanceTypeTitle", "Loan Balance");
-    		browser.verifyText("accessibilityId", "balanceAmount", "0.00");
-    		browser.verifyText("accessibilityId", "accountCurrency", "JMD");
-            
-    		browser.verifyText("accessibilityId", "Next Payment", "Next Payment");
-    		browser.verifyText("accessibilityId", "nextPaymentDueDate", "Jan 28, 2018");
-    		browser.verifyText("accessibilityId", "installmentAmount", "$0.00");
-    		browser.verifyText("xpath", "(//*[@class='android.widget.TextView'])[71]", " N/A");
-            
-    		browser.verifyText("accessibilityId", "Loan Period", "Loan Period");
-    		browser.verifyText("xpath", "(//*[@content-desc='loanPeriod'])[1]", "0 months");
-    		browser.verifyText("xpath", "(//*[@content-desc='loanPeriod'])[2]", "31/Dec/99 - 32/Dec/99");
-            
-    		browser.click("accessibilityId", "backButton");
-    		
-    		browser.verifyText("accessibilityId", "welcomeName", browser.getText("xpath", "//*[@text[starts-with(.,'Good')]]"));
-    		System.out.println("Account summary page displayed after click on back arrow on loan account details");
+    		if(browser.getSize("androidUIAutomator", "new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().textContains(\"LOAN\"))") != 0) {
+    			
+    			String accountNo = browser.getText("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='LOAN']]]//*[@content-desc='accountCardBalanceAmount'][@text='0.00']/..//*[@content-desc='accountCardNumber']");
+    			String accountBal = browser.getText("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='LOAN']]]//*[@content-desc='accountCardBalanceAmount'][@text='0.00']/..//*[@content-desc='accountCardBalanceAmount']");
+    			String currencySign = browser.getText("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='LOAN']]]//*[@content-desc='accountCardBalanceAmount'][@text='0.00']/..//*[@content-desc='accountCardBalanceNegative']");
+    			String currency = browser.getText("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='LOAN']]]//*[@content-desc='accountCardBalanceAmount'][@text='0.00']/..//*[@content-desc='accountCardBalanceCurrency']");
+    			String subAccountNo = browser.subString(accountNo, 3, 6);
+          
+    			browser.click("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='LOAN']]]//*[@content-desc='accountCardBalanceAmount'][@text='0.00']/..");
+    			browser.waitUntilElementPresent("//*[@content-desc='backButton']");
+    			
+    			//Verify the details on Loan account details page
+    			browser.verifyText("accessibilityId", "accountType", "LOAN");
+    			browser.verifyText("accessibilityId", "accountNumber", browser.getText("xpath", "(//*[@text[contains(., " + "'" + subAccountNo + "'" + ")]][1])[2]"));
+    			browser.verifyText("accessibilityId", "availableBalance", currencySign + accountBal+ " " + currency);
+    			          
+    			browser.verifyText("accessibilityId", "Next Payment", "Next Payment");
+    			browser.verifyText("accessibilityId", "nextPaymentDueDate", "Jan 28, 2018");
+    			browser.verifyText("accessibilityId", "installmentAmount", "$63,382.03");
+    			browser.verifyText("xpath", "(//*[@class='android.widget.TextView'])[29]", "JMD");
+    			
+    			browser.verifyText("accessibilityId", "Loan Period", "Loan Period");
+    			browser.verifyText("xpath", "//*[@content-desc='loanPeriod'][1]", "90 months");
+    			browser.verifyText("xpath", "//*[@content-desc='loanPeriod'][2]", "1/Mar/11 - 28/Sep/18");
+        		browser.click("accessibilityId", "backButton");
+        		browser.waitUntilElementPresent("//*[@content-desc='tabBarLogo']");
+        		
+        		if (browser.verifyElementPresent("accessibilityId", "tabBarLogo")== true) {
+        			System.out.println("Account summary page displayed after click on back arrow on loan account details");
+        		}
+        		else {
+        			System.out.println("Account summary page not displayed after click on back arrow on loan account details");
+        		}
+    		}
+    		else {
+    			System.out.println("No Loan account is avaliable for this user. Please use another user for automation testing which have Loan account.");
+    		}
     	} catch (NoSuchElementException e) {
     		System.out.println("Element Not Found");
     		e.printStackTrace();
