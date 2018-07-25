@@ -213,20 +213,19 @@ public class Common {
     }
         
     //Verify Text // sunit change on 20/11/2017
-    public void verifyText(String identifier,String locator,String text) {
+    public boolean verifyText(String identifier,String locator,String text) {
     	
     	AndroidElement e=AndroidElementId(identifier, locator);
     	if (e.getText().trim().equals(text)) {
     		System.out.println(text+" text displayed");
     		//test.log(Status.INFO, text+" text displayed");
-    		//return true;
-    		Assert.assertTrue(true);
+    		return true;
     	}
     	else {
     		System.out.println(text+" text did not displayed");
     		//test.log(Status.INFO, text+" text did not displayed");
-    		//return false;
-    		Assert.assertTrue(false);
+    		return false;
+    		//Assert.assertTrue(false);
     	}
     }
         
@@ -331,8 +330,7 @@ public class Common {
     	//List<AndroidElement> a2 = driver.findElementsByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).className(\"android.widget.TextView\"), \"merchantText\").childSelector(new UiSelector())");
     	List<AndroidElement> a2 = driver.findElementsByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).getChildCount(new UiSelector().className(\"android.widget.TextView\").description(\"merchantText\"))");
     	System.out.println(a2);
-	
-	
+    		
 //    	int settingsList = new UiScrollable(new UiSelector().scrollable(true)).getChildCount(new UiSelector().className("android.widget.TextView").description("merchantText"));
 //    	boolean aaa = new UiScrollable(new UiSelector()).flingToBeginning(10);
     	

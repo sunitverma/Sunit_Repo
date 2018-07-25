@@ -25,30 +25,24 @@ public class ViewSavingsDetails {
     			String subAccountNo = browser.subString(accountNo, 3, 7);
           
 			    browser.click("xpath", "(//*[@content-desc='accountCardType'][@text='SAVINGS'])[1]");
-			    browser.waitUntilElementPresent("//*[@content-desc='logoutButton']");
+			    browser.waitUntilElementPresent("//*[@content-desc='backButton']");
 			          
 			    //Verify the details on Savings account details page
 			    browser.verifyText("accessibilityId", "accountType", "SAVINGS");
-			    browser.verifyText("accessibilityId", "balanceTypeTitle", browser.getText("xpath", "(//*[@text[contains(., " + "'" + subAccountNo + "'" + ")]][1])[2]"));
-			    browser.verifyText("accessibilityId", "balanceAmount", currencySign + accountBal);
-			    browser.verifyText("accessibilityId", "accountCurrency", " " + currency);
-			          
-			    browser.verifyText("accessibilityId", "availableBalance", "Available:");
-		        browser.verifyElementPresent("accessibilityId", "availableBalanceBalanceAmount");
-		        browser.verifyText("accessibilityId", "availableBalanceCurrency", " " + currency);
-		          
-		        browser.verifyText("accessibilityId", "lienBalance", "Lien:");
-		        browser.verifyElementPresent("accessibilityId", "lienBalanceBalanceAmount");
-		        browser.verifyText("accessibilityId", "lienBalanceCurrency", " " + currency);
-		        
-		        browser.verifyText("accessibilityId", "unclearBalance", "Uncleared:");
-		        browser.verifyElementPresent("accessibilityId", "unclearBalanceBalanceAmount");
-		        browser.verifyText("accessibilityId", "unclearBalanceCurrency", " " + currency);
-		        
-		        browser.verifyText("accessibilityId", "transactionHeader", "TRANSACTIONS HISTORY");
-		        browser.verifyText("accessibilityId", "transactionHeaderCurrency", currency);
-          
-		        browser.scroll("Down", 200, 3500);
+			    browser.verifyText("accessibilityId", "accountNumber", browser.getText("xpath", "(//*[@text[contains(., " + "'" + subAccountNo + "'" + ")]][1])[2]"));
+			    browser.verifyText("xpath", "(//*[@content-desc='availableBalance'])[3]", currencySign + accountBal +" " + currency);
+			    			    			          
+			    browser.verifyText("accessibilityId", "Available: Label", "Available:");
+		        browser.verifyElementPresent("accessibilityId", "Available: Value");
+		        		          
+		        browser.verifyText("accessibilityId", "Lien: Label", "Lien:");
+		        browser.verifyElementPresent("accessibilityId", "Lien: Value");
+		        		        
+		        browser.verifyText("accessibilityId", "Uncleared: Label", "Uncleared:");
+		        browser.verifyElementPresent("accessibilityId", "Uncleared: Value");
+		        		        
+		        browser.verifyText("accessibilityId", "transactionHeader", "TRANSACTIONS (USD)");
+		        browser.verifyElementPresent("accessibilityId", "transactionDate");
     		}
     		else {
     			System.out.println("No Savings account is avaliable for this user. Please use another user for automation testing which have Savings account.");

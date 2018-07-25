@@ -172,7 +172,7 @@ public class TestCases extends RootTest {
     	brow.reset();
     	login.loginToApp("yandisud", "Password1##");
     	login.acceptTermAndConditions();
-    	viewloandetails.zeroLoanBalance("431108844");
+    	viewloandetails.zeroLoanBalance();
     	brow.screenShot();
     	System.out.println("Testcase 11 - Successfully Completed");
     }

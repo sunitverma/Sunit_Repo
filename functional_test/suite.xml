@@ -4,12 +4,12 @@
 		<classes>
 			<class name="com.testscripts.TestCases" >
 				<methods>
-			        <exclude name="loginWithEmptyData" />
-					<exclude name="loginWithValidTestData" />
-					<exclude name="loginWithInvalidUsername" />
-					<exclude name="loginWithInvalidPassword" />
-					<exclude name="passwordRetry" />
-					<include name="verifyHomepageAllAccounts" />
+			        <include name="loginWithEmptyData" />
+					<include name="loginWithValidTestData" />
+					<include name="loginWithInvalidUsername" />
+					<include name="loginWithInvalidPassword" />
+					<include name="passwordRetry" />
+					<exclude name="verifyHomepageAllAccounts" />
 					<exclude name="verifyHomepageOneAccount" />
 					<exclude name="verifyHomepageNoAccounts" />
 					<exclude name="showFiftyTransaction" />
@@ -56,6 +56,13 @@
 					<exclude name="meToyouErrSavings" />
 					<exclude name="meToyouErrChequing" />
 					<exclude name="creditCardonHome" />
+					<exclude name="creditCarddetails" />
+					<exclude name="billPaymentaddPayee" />
+					<exclude name="billPaymentaddPayeeCancel" />
+					<exclude name="ErrHandlingbillPaymentaddPayee" />
+					<exclude name="payBillsCreditCard" />
+					<exclude name="payBillsCreditCardCancelModal" />
+					<exclude name="creditCardRestrictedPayee" />	
             	</methods>
         	</class>
     	</classes>
