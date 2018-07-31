@@ -1,7 +1,6 @@
 package com.businessfunctions;
 
 import com.library.Common;
-
 import org.openqa.selenium.NoSuchElementException;
 
 public class Login {
@@ -20,11 +19,11 @@ public class Login {
 			browser.waitUntilElementPresent("//*[@content-desc='tabBarLogo']");
 						
 			browser.sendKeys("accessibilityId", "usernameInput", username);
-			browser.keyboardKey(66);
-						
+			browser.keyboardKey();
 			browser.sendKeys("accessibilityId", "passwordInput", password);
-			browser.keyboardKey(66);
-						
+			browser.keyboardKey();
+			
+			browser.waitUntilElementPresent("//*[@content-desc='loginButtonText']");
 			browser.click("accessibilityId", "loginButtonText");
 		} catch (NoSuchElementException e) {
 			System.out.println("Element Not Found");
@@ -180,10 +179,10 @@ public class Login {
 				if(browser.verifyElementPresent("accessibilityId", "usernameInput")) {
 					browser.waitUntilElementPresent("//*[@content-desc='usernameInput']");
 					browser.sendKeys("accessibilityId", "usernameInput", username);
-					browser.keyboardKey(66);
+					browser.keyboardKey();
 					
 					browser.sendKeys("accessibilityId", "passwordInput", password);
-					browser.keyboardKey(66);
+					browser.keyboardKey();
 					
 					browser.click("accessibilityId", "loginButtonText");
 					

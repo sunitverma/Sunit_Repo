@@ -5,7 +5,7 @@
 			<class name="com.testscripts.TestCases" >
 				<methods>
 			        <exclude name="loginWithEmptyData" />
-					<include name="loginWithValidTestData" />
+					<exclude name="loginWithValidTestData" />
 					<exclude name="loginWithInvalidUsername" />
 					<exclude name="loginWithInvalidPassword" />
 					<exclude name="passwordRetry" />
@@ -20,7 +20,7 @@
 					<exclude name="feedBackButton" />
 					<exclude name="termsAndConditions" />
 					<exclude name="animation" />
-					<exclude name="transfers" />
+					<include name="transfers" />
 					<exclude name="meToMeTransferFromSavingsListPage" />
 					<exclude name="meToMeTransferFromSavingsSummaryPage" />
 					<exclude name="meToMeTransferFromChequingsListPage" />
@@ -62,7 +62,9 @@
 					<exclude name="ErrHandlingbillPaymentaddPayee" />
 					<exclude name="payBillsCreditCard" />
 					<exclude name="payBillsCreditCardCancelModal" />
-					<exclude name="creditCardRestrictedPayee" />	
+					<exclude name="creditCardRestrictedPayee" />
+					<exclude name="homeMenuDisplay" />		
+					<exclude name="homeProfileDisplay" />		
             	</methods>
         	</class>
     	</classes>

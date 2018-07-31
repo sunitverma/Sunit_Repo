@@ -747,4 +747,26 @@ public class TestCases extends RootTest {
         billpayment.creditCardRestrictedPay();
         System.out.println("Testcase 59 - Restricted Payee Message Treatment from Credit Cards test Successfully Completed");
     }
+    
+    // Test case 60 Menu Display HomePage--A
+    @Test
+    public void homeMenuDisplay() {
+        System.out.println("Running Testcase 60 - Home Page Menu Display");
+        brow.reset();
+        login.loginToApp("darkelor", "Password1##");
+        login.acceptTermAndConditions();
+        homepage.homeMenuShow();
+        System.out.println("Testcase 60 - Home Page Menu Display Executed");
+    }
+    
+    // Test case 61 Profile Display HomePage--A
+    @Test
+    public void homeProfileDisplay() {
+        System.out.println("Running Testcase 61 - Home Page Profile Display");
+        brow.reset();
+        login.loginToApp("darkelor", "Password1##");
+        login.acceptTermAndConditions();
+        homepage.homeProfileShow();
+        System.out.println("Testcase 61 - Home Page Profile Display Executed");
+    }
 }

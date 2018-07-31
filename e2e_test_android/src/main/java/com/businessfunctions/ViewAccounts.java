@@ -90,12 +90,12 @@ public class ViewAccounts {
     	browser.click("accessibilityId", "backButton");
     	browser.waitUntilElementPresent("//*[@content-desc='QUICK ACTIONS Button']");
     }
-            
+        
     // S - Method - to verify transfer button working on saving and Chequing account details page and back button working
     public void transferButtonOnAccountDetailsPage(String accounttype) {
     	
     	try {
-    		if(browser.getSize("androidUIAutomator", "new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().textContains(\""+ accounttype +"\"))") != 0) {
+    		if (browser.getSize("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='" + accounttype + "']]]")!= 0) {
     			if (browser.getSize("accessibilityId", "MAKE A TRANSFER BUTTON") != 0) {
     				browser.click("xpath", "//*[@content-desc='QUICK ACTIONS Button' and ./following-sibling::*[@content-desc='MAKE A TRANSFER BUTTON']]");
     				browser.screenShot();
@@ -157,7 +157,6 @@ public class ViewAccounts {
     }
     
 	// Aditya - Verify payment due date, Minimum payment due, Statement Balance, Statement Date, Total Credit Limit, Current Balance
-	
 	public void viewCardAccount() {
 		if ((browser.getSize("accessibilityId", "creditCard") != 0)) {
 			boolean stmBal;

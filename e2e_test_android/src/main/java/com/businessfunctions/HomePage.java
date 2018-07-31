@@ -88,7 +88,7 @@ public class HomePage {
     	    	browser.verifyText("accessibilityId", "TransferHeader", "To whom would you like to transfer?");
     	    	browser.verifyElementPresent("accessibilityId", "backButton");
     	    	browser.click("accessibilityId", "backButton");
-    	    	browser.waitUntilElementPresent("//*[@content-desc='MAKE A TRANSFER BUTTON']");
+    	    	browser.waitUntilElementPresent("//*[@content-desc='logo']");
     	    	System.out.println("Transfer and back button are working on Landing page for " + accounttype + " account.");
     		}
     		else {
@@ -267,5 +267,70 @@ public class HomePage {
  			e.printStackTrace();
  		}
  	}
-}
+
+ 	// A - Menu Display on Homepage - A 12-07-28
+ 	public void  homeMenuShow() {
+ 		
+ 		try { 
+ 			if((browser.getSize("accessibilityId", "leftNavIcon") != 0)) {
+ 				browser.click("xpath", "//*[@content-desc='leftNavIcon']");
+ 				browser.waitUntilElementPresent("//*[@content-desc='SectionHeader:Transfers']");
+ 				browser.verifyText("xpath", "//*[@content-desc='SectionHeader:Transfers']","Transfers");
+ 				browser.verifyText("xpath", "//*[@content-desc='MenuItem:Between My Accounts']", "Between My Accounts");
+ 				browser.verifyText("xpath", "//*[@content-desc='MenuItem:To Other NCB Accounts']", "To Other NCB Accounts");
+ 				browser.verifyText("xpath", "//*[@content-desc='MenuItem:Add Beneficiaries']", "Add Beneficiaries");
+
+ 				browser.verifyText("xpath", "//*[@content-desc='SectionHeader:Bill Pay']", "Bill Pay");
+ 				browser.verifyText("xpath", "//*[@content-desc='MenuItem:Pay a Bill']", "Pay a Bill");
+ 				browser.verifyText("xpath", "//*[@content-desc='MenuItem:Add Payees']", "Add Payees");
+ 			
+ 				browser.screenShot();
+ 				browser.click("xpath", "//*[@content-desc='rightNavIcon']");
+ 				browser.screenShot();
+ 			}
+ 			else {
+ 				System.out.println("No Menu shown");
+ 			}
+ 		} catch (NoSuchElementException e) {
+ 			System.out.println("Element Not Found");
+ 			e.printStackTrace();
+ 		}
+ 	}
  	
+ 	// A- Profile Icon items Validation 12-07-18
+ 	public void  homeProfileShow() {
+ 		
+ 		try {
+ 			if((browser.getSize("accessibilityId", "rightNavIcon") != 0)) {
+ 				browser.click("xpath", "//*[@content-desc='rightNavIcon']");
+ 				browser.waitUntilElementPresent("//*[@content-desc='SectionHeader:Support']");
+ 				browser.verifyElementPresent("xpath", "//*[@content-desc='rightNavIcon']");
+ 				browser.verifyText("xpath", "//*[@content-desc='SectionHeader:Support']","Support");
+ 				browser.verifyText("xpath", "//*[@content-desc='MenuItem:FAQ']", "FAQ");
+ 				browser.verifyText("xpath", "//*[@content-desc='MenuItem:Rate the App']", "Rate the App");
+ 				browser.verifyText("xpath", "//*[@content-desc='MenuItem:Report a Bug']", "Report a Bug");
+ 				browser.verifyText("xpath", "//*[@content-desc='MenuItem:Give Us Feedback']", "Give Us Feedback");
+
+ 				browser.verifyText("xpath", "//*[@content-desc='MenuItem:LOG OUT']", "LOG OUT");
+ 				browser.screenShot();
+ 				browser.click("xpath", "//*[@content-desc='leftNavIcon']");
+ 				browser.click("xpath", "//*[@content-desc='accountCard'][1]");
+ 				browser.waitUntilElementPresent("//*[@content-desc='transactionHeader']");
+ 				
+ 				browser.verifyElementPresent("xpath", "//*[@content-desc='rightNavIcon']");
+ 				browser.click("xpath", "//*[@content-desc='rightNavIcon']");
+ 				browser.waitUntilElementPresent("//*[@content-desc='MenuItem:LOG OUT']");
+ 				browser.click("xpath", "//*[@content-desc='MenuItem:LOG OUT']");
+ 				
+ 				browser.waitUntilElementPresent("//*[@content-desc='LogoutModalAcceptButton']");
+ 				browser.click("xpath", "//*[@content-desc='LogoutModalAcceptButton']");
+ 			}
+ 			else {
+ 				System.out.println("No Profile Menu shown");
+ 			}
+ 		} catch (NoSuchElementException e) {
+ 			System.out.println("Element Not Found");
+ 			e.printStackTrace();
+ 		}
+ 	}
+}

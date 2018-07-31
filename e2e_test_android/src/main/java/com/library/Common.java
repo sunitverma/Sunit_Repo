@@ -2,35 +2,21 @@ package com.library;
 
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
-import io.appium.java_client.touch.TapOptions;
-import io.appium.java_client.touch.offset.ElementOption;
-import io.appium.java_client.touch.offset.PointOption;
-
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.MultiTouchAction;
-import io.appium.java_client.Setting;
-import io.appium.java_client.TouchAction;
-import io.appium.java_client.android.Activity;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.WordUtils;
 
@@ -39,19 +25,17 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
 
-import com.android.uiautomator.core.UiDevice;
-import com.android.uiautomator.core.UiObject;
-import com.android.uiautomator.core.UiObjectNotFoundException;
-import com.android.uiautomator.core.UiScrollable;
-import com.android.uiautomator.core.UiSelector;
-
-
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+
+import android.inputmethodservice.Keyboard.Key;
+import android.support.test.uiautomator.BySelector;
+import android.support.test.uiautomator.UiDevice;
+import android.support.test.uiautomator.UiScrollable;
+import android.support.test.uiautomator.UiSelector;
 
 public class Common {
 
@@ -60,7 +44,7 @@ public class Common {
   
     public static WebDriverWait wait = null;
    
-    protected AndroidDriver<AndroidElement> driver = null;
+    protected static AndroidDriver<AndroidElement> driver = null;
      
     DesiredCapabilities dc = new DesiredCapabilities();
               
@@ -201,7 +185,7 @@ public class Common {
     	AndroidElement e=AndroidElementId(identifier, locator); 
     	e.click();
     }
-        
+     
     //Wait until the Element is present
     public void waitUntilElementPresent(String elementpath) {
     	
@@ -284,9 +268,14 @@ public class Common {
     }
         
     //send the keyboard key
-    public void keyboardKey(int key) {
+    public void keyboardKey() {
     	
-    	driver.findElementsByAndroidUIAutomator("new UiDevice().pressKeyCode("+key+")");
+    	if (driver.isKeyboardShown()==true) {
+    		driver.hideKeyboard();
+    	}
+    	else {
+    		//nothing to do
+    	}
     }
     
     //reset the count for a user, use this when want to unlock the password
@@ -323,16 +312,23 @@ public class Common {
 //    	List<AndroidElement> a = driver.findElementsByAndroidUIAutomator("new UiScrollable(new UiSelector().className(\"android.view.View\")).getChildCount("
 //    	+ "new UiSelector().className(\"android.widget.TextView\"), \"merchantText\")");
     	
+    	UiDevice device = UiDevice.getInstance();
+    	device.pressKeyCode(y);
+    	
     	//List<AndroidElement> a2 = driver.findElementsByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).className(\"android.widget.TextView\"), \"merchantText\")).getChildCount()");
     	
     	//List<AndroidElement> a2 = driver.findElementsByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).className(\"android.widget.TextView\"), \"merchantText\").childSelector(new UiSelector())");
     	List<AndroidElement> a2 = driver.findElementsByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).getChildCount(new UiSelector().className(\"android.widget.TextView\").description(\"merchantText\"))");
     	System.out.println(a2);
     	
+    	//new UiScrollable(new BySelector().text("hello").focused(true));	
+    	BySelector selector = android.support.test.uiautomator.By.text("foo");
+    	new UiScrollable(new UiSelector().scrollable(true)).getChildCount(new UiSelector().className("android.widget.TextView").description("merchantText"));
+    	
 //    	new UiScrollable(new UiSelector().scrollable(true)).getChildCount(new UiSelector().className("android.widget.TextView").description("merchantText"));
 
-//    	UiDevice mDevice = UiDevice.getInstance
-  //  	mDevice.pressKeyCode(66);
+    	UiDevice mDevice = UiDevice.getInstance();
+    	mDevice.pressEnter();
     
 //    	Instrumentation instr = Instrumentation.getInstrumentation();
 //    	UiDevice device = UiDevice.getInstance();
@@ -349,12 +345,13 @@ public class Common {
 //        
 //        new BySelector().clazz(className);
     	
-    		WebElement element = driver.findElement(By.id(getSelector()));
+    		//WebElement element = driver.findElement(By.id(getSelector()));
 //    		if (element == null) element = driver.findElement(By.name(getSelector()); 
 //    		return element; 
-    		}
+    		
+
     	
-    	findObject(By.text("foo"));
+    	
     	//findObject(new BySelector().text("foo"));
 //        
         //.getChildCount(new UiSelector().className("android.widget.TextView").description("merchantText"))
@@ -363,21 +360,7 @@ public class Common {
 //    	int settingsList = new UiScrollable(new UiSelector().scrollable(true)).getChildCount(new UiSelector().className("android.widget.TextView").description("merchantText"));
 //    	boolean aaa = new UiScrollable(new UiSelector()).flingToBeginning(10);
     	
-    	/*
-    	 java.lang.Object
-   			↳	android.support.test.uiautomator.UiDevice
-    	 
-    	 java.lang.Object
-    	   	↳	android.support.test.uiautomator.UiSelector
-    	
-   		java.lang.Object
-   			↳	android.support.test.uiautomator.UiObject
- 	   			↳	android.support.test.uiautomator.UiCollection
- 	 	   			↳	android.support.test.uiautomator.UiScrollable
-    		
-    		
-    		*/
-    			//.description("merchantText")).getChildCount();
+   			//.description("merchantText")).getChildCount();
 //    	UiObject btItem = settingsList.getChildByText(new UiSelector().className(LinearLayout.class.getName()),"Bluetooth", true);
     	
 //  MobileElement element = driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().resourceId(\"com.android.vending:id/tab_recycler_view\")).getChildByText("

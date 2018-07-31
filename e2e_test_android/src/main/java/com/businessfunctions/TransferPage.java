@@ -29,7 +29,7 @@ public class TransferPage {
     	browser.verifyElementPresent("accessibilityId", "backButton");
     	browser.click("accessibilityId", "MY ACCOUNTS");
     	browser.click("xpath", "(//*[@content-desc='accountCard']//*[@content-desc='accountCardBalanceCurrency'][@text=' JMD'])[1]");
-    	//browser.sleepThread(100000);
+    	
     	browser.waitUntilElementPresent("//*[@content-desc='Next Button Enabled']");
     	browser.click("accessibilityId", "Next Button Enabled");
     	
@@ -520,18 +520,18 @@ public class TransferPage {
     		browser.click("accessibilityId", "Retail");
     		
     		browser.click("accessibilityId", "firstname");
-    		browser.keyboardKey(66);
-    		
+    		browser.keyboardKey();
+    		    		
     		browser.click("accessibilityId", "lastname");
-    		browser.keyboardKey(66);
+    		browser.keyboardKey();
     		
     		browser.click("accessibilityId", "accountnumber");
-    		browser.keyboardKey(66);
+    		browser.keyboardKey();
     		
     		browser.scroll("Down", 200, 400);
     		
     		browser.click("accessibilityId", "nickname");
-    		browser.keyboardKey(66);
+    		browser.keyboardKey();
     		
     		//browser.scroll("Down", 200, 400);
     		
@@ -544,17 +544,17 @@ public class TransferPage {
     		
     		//Verify error message for duplicate nick accessibilityId
     		browser.sendKeys("accessibilityId", "nickname", duplicatenickname); //update nickname value with existing nickname
-    		browser.keyboardKey(66);
+    		browser.keyboardKey();
     		
     		browser.click("accessibilityId", "accountnumber");
-    		browser.keyboardKey(66);
+    		browser.keyboardKey();
         
 	        browser.verifyText("accessibilityId", "nickname-error", "The nickname is already in use please try another");
 	        browser.screenShot();
 	        
 	        //Verify the field length for text fields
 	        browser.sendKeys("accessibilityId", "firstname", "RFirst Name Pneumonoultramicroscopicsilicovolcanoconiosis");
-	        browser.keyboardKey(66);
+	        browser.keyboardKey();
 	        
 	        int fNameChar = browser.getCharCount("accessibilityId", "firstname");
 	        if (fNameChar == 40) {
@@ -565,7 +565,7 @@ public class TransferPage {
 	        }
 	        
 	        browser.sendKeys("accessibilityId", "lastname", "RLast Name Pneumonoultramicroscopicsilicovolcanoconiosis");
-	        browser.keyboardKey(66);
+	        browser.keyboardKey();
 	        
 	        int lNameChar = browser.getCharCount("accessibilityId", "lastname");
 	        if (lNameChar == 40) {
@@ -576,7 +576,7 @@ public class TransferPage {
 	        }
 	        
 	        browser.sendKeys("accessibilityId", "accountnumber", "1234567890");
-	        browser.keyboardKey(66);
+	        browser.keyboardKey();
 	        
 	        int aNumberCount = browser.getCharCount("accessibilityId", "accountnumber");
 	        if (aNumberCount == 9) {
@@ -587,7 +587,7 @@ public class TransferPage {
 	        }
 	         
 	        browser.sendKeys("accessibilityId", "nickname","RNick Name Pneumonoultramicroscopicsilicovolcanoconiosis");        
-	        browser.keyboardKey(66);
+	        browser.keyboardKey();
 	        
 	        int nNameChar = browser.getCharCount("accessibilityId", "nickname");
 	        if (nNameChar == 17) {
@@ -664,16 +664,16 @@ public class TransferPage {
 	        String aNumber = "304510080";
 	                       
 	        browser.sendKeys("accessibilityId", "firstname", fName);
-	        browser.keyboardKey(66);
+	        browser.keyboardKey();
 	        
 	        browser.sendKeys ("accessibilityId", "lastname", lName);
-	        browser.keyboardKey(66);
+	        browser.keyboardKey();
 	        
 	        browser.sendKeys ("accessibilityId", "accountnumber", aNumber);
-	        browser.keyboardKey(66);
+	        browser.keyboardKey();
 	        
 	        browser.sendKeys ("accessibilityId", "nickname", nickname);
-	        browser.keyboardKey(66);
+	        browser.keyboardKey();
 	        
 	        String aNumberChange = browser.subString(aNumber, 5, 9); 
 	        String aNumberChange1 = "  ��" + aNumberChange;
@@ -682,13 +682,11 @@ public class TransferPage {
 	        
 	        browser.verifyElementPresent("xpath", "//*[@content-desc='saveBeneficiary']");
 	        browser.click("xpath", "//*[@content-desc='saveBeneficiary']");
-	        //browser.sleepThread(1000);
-	        browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
 	        
+	        browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
 	        browser.scroll("Down", 200, 400);
 	        browser.verifyText("xpath", "//*[@content-desc='accountCard' and *[@text='"+ nickname +"']]", nickname);
 	        browser.verifyText("xpath", "//*[@content-desc='accountCard' and *[@text='" + "  ��" + aNumberChange + "']]", aNumberChange1);
-	        //browser.sleepThread(2000);
     	} catch (NoSuchElementException e) {
     		System.out.println("Element Not Found");
     		e.printStackTrace();
@@ -704,13 +702,13 @@ public class TransferPage {
 	        browser.click("accessibilityId", "Corporate");
 	        
 	        browser.click("accessibilityId", "companyname");
-	        browser.keyboardKey(66);
+	        browser.keyboardKey();
 	        
 	        browser.click("accessibilityId", "accountname");
-	        browser.keyboardKey(66);
+	        browser.keyboardKey();
 	        
 	        browser.click("accessibilityId", "nickname");
-	        browser.keyboardKey(66);
+	        browser.keyboardKey();
 	        
 	        browser.scroll("Down", 200, 400);
 	        
@@ -723,10 +721,10 @@ public class TransferPage {
 	        
 	        //Verify error message for duplicate nick accessibilityId
 	        browser.sendKeys("accessibilityId", "nickname","Auto1");
-	        browser.keyboardKey(66);
+	        browser.keyboardKey();
 	        
 	        browser.click("accessibilityId", "accountnumber");
-	        browser.keyboardKey(66);
+	        browser.keyboardKey();
 	        
 	        browser.verifyText("accessibilityId", "nickname-error", "The nickname is already in use please try another");
 	        browser.screenShot();
@@ -743,7 +741,7 @@ public class TransferPage {
 	        }
 	        
 	        browser.sendKeys("accessibilityId", "accountnumber", "1234567890");
-	        browser.keyboardKey(66);
+	        browser.keyboardKey();
 	        
 	        int aNumberCount = browser.getCharCount("accessibilityId", "accountnumber");
 	        if (aNumberCount == 9) {
@@ -754,7 +752,7 @@ public class TransferPage {
 	        }
                   
 	        browser.sendKeys("accessibilityId", "nickname","RNick Name Pneumonoultramicroscopicsilicovolcanoconiosis");        
-	        browser.keyboardKey(66);
+	        browser.keyboardKey();
 	        
 	        int nNameChar = browser.getCharCount("accessibilityId", "nickname");
 	        if (nNameChar == 17) {
@@ -824,11 +822,13 @@ public class TransferPage {
 	        String aNumber = "304510080";
 	                
 	        browser.sendKeys("accessibilityId", "companyname", cName);
-	        browser.keyboardKey(66);
+	        browser.keyboardKey();
+	        
 	        browser.sendKeys ("accessibilityId", "accountname", aNumber);
-	        browser.keyboardKey(66);
+	        browser.keyboardKey();
+	        
 	        browser.sendKeys ("accessibilityId", "nickname", nickname);
-	        browser.keyboardKey(66);
+	        browser.keyboardKey();
 	        
 	        String aNumberChange = browser.subString(aNumber, 5, 9); 
 	        String aNumberChange1 = "  ��" + aNumberChange;
@@ -866,7 +866,7 @@ public class TransferPage {
     	browser.verifyText("xpath", "(//*[@content-desc='TransferHeader'][2])[2]", "Your available balance is " + accountBalanceFrom + " " + accountCurrencyTypeFrom + ".");
     	
     	browser.sendKeys("accessibilityId", "MoneyInput", accountBalanceFrom + 1);
-    	browser.keyboardKey(66);
+    	browser.keyboardKey();
     	
     	//browser.verifyText("accessibilityId", "Snackbar Message", "Amount exceeds available balance. Please reduce the amount.");
     }
@@ -918,7 +918,7 @@ public class TransferPage {
     	browser.verifyText("xpath", "(//*[@content-desc='TransferHeader'][2])[2]", "Your available balance is " + accountBalanceFrom + " " + accountCurrencyTypeFrom + ".");
     	
     	browser.sendKeys("accessibilityId", "MoneyInput", accountBalanceFrom + 1);
-    	browser.keyboardKey(66);
+    	browser.keyboardKey();
     	
     	browser.click("xpath", "(//*[@content-desc='Next Button Enabled'][1])[3]");
     	browser.waitUntilElementPresent("//*[@content-desc='sourceAccountTitle']");
@@ -1000,7 +1000,8 @@ public class TransferPage {
 	        browser.verifyText("xpath", "(//*[@content-desc='TransferHeader'][2])[2]", "Your current balance is $" + balance + " "+ currency +".");
 	        browser.screenShot();
 	        browser.sendKeys("accessibilityId", "MoneyInput", "100000");
-	        browser.keyboardKey(66);
+	        browser.keyboardKey();
+	        
 	        browser.click("xpath", "(//*[@content-desc='Next Button Enabled'])[3]");
 	        browser.waitUntilElementPresent("//*[@content-desc='sourceAccountTitle']");
 	        browser.click("accessibilityId", "submitTransferButton");
@@ -1027,7 +1028,8 @@ public class TransferPage {
 	        browser.click("xpath", "(//*[@content-desc='Next Button Enabled'][1])[2]");
 	        browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
 	        browser.sendKeys("accessibilityId", "MoneyInput", "10");
-	        browser.keyboardKey(66);
+	        browser.keyboardKey();
+	        
 	        browser.click("xpath", "(//*[@content-desc='Next Button Enabled'])[3]");
 	        browser.waitUntilElementPresent("//*[@content-desc='sourceAccountTitle']");
 	        browser.click("accessibilityId", "submitTransferButton");
@@ -1055,7 +1057,8 @@ public class TransferPage {
 	        browser.click("accessibilityId", "Next Button Enabled");
 	        browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
 	        browser.sendKeys("accessibilityId", "MoneyInput", "10");
-	        browser.keyboardKey(66);
+	        browser.keyboardKey();
+	        
 	        browser.click("accessibilityId", "Next Button Enabled");
 	        browser.waitUntilElementPresent("//*[@content-desc='sourceAccountTitle']");
 	        browser.click("accessibilityId", "submitTransferButton");
@@ -1098,7 +1101,8 @@ public class TransferPage {
     	browser.click("xpath", "(//*[@contentDescription='Next Button Enabled'])[1]");
     	browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
     	browser.sendKeys("accessibilityId", "MoneyInput", amount);
-    	browser.keyboardKey(66);
+    	browser.keyboardKey();
+    	
     	browser.click("xpath", "(//*[@contentDescription='Next Button Enabled'])[3]");
     	
     	browser.waitUntilElementPresent("//*[@content-desc='sourceAccountTitle']");
@@ -1141,7 +1145,8 @@ public class TransferPage {
     	browser.click("xpath", "(//*[@contentDescription='Next Button Enabled'])[2]");
     	browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
     	browser.sendKeys("accessibilityId", "MoneyInput", amount);
-    	browser.keyboardKey(66);
+    	browser.keyboardKey();
+    	
     	browser.click("xpath", "(//*[@contentDescription='Next Button Enabled'])[3]");
     	
     	browser.waitUntilElementPresent("//*[@content-desc='sourceAccountTitle']");
@@ -1195,7 +1200,8 @@ public class TransferPage {
         			
         			browser.waitUntilElementPresent("//*[@content-desc='TransferHeader']");
         			browser.sendKeys("accessibilityId", "MoneyInput", amount);
-        			browser.keyboardKey(66);  
+        			browser.keyboardKey();
+        			
         			browser.click("accessibilityId", "Next Button Enabled");
         			
         			browser.waitUntilElementPresent("//*[@content-desc='ReviewTitle']");
@@ -1251,7 +1257,8 @@ public class TransferPage {
         			
         			browser.click("accessibilityId", "Next Button Enabled");
         			browser.sendKeys("accessibilityId", "MoneyInput", amount);
-        			browser.keyboardKey(66);  
+        			browser.keyboardKey();
+        			
         			browser.click("accessibilityId", "Next Button Enabled");
         			
         			browser.waitUntilElementPresent("//*[@content-desc='ReviewTitle']");

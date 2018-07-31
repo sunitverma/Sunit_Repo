@@ -35,7 +35,7 @@ public class ViewLoanDetails {
     			browser.verifyText("accessibilityId", "Next Payment", "Next Payment");
     			browser.verifyElementPresent("accessibilityId", "nextPaymentDueDate");
     			browser.verifyElementPresent("accessibilityId", "installmentAmount");
-    			browser.verifyText("xpath", "(//*[@class='android.widget.TextView'])[29]", " JMD");
+    			browser.verifyText("xpath", "//*[./preceding-sibling::*[@content-desc='installmentAmount']][1]", "JMD");
               
     			browser.verifyText("accessibilityId", "Loan Period", "Loan Period");
     			browser.verifyElementPresent("xpath", "//*[@content-desc='loanPeriod'][1]");
@@ -74,7 +74,7 @@ public class ViewLoanDetails {
     			browser.verifyText("accessibilityId", "Next Payment", "Next Payment");
     			browser.verifyText("accessibilityId", "nextPaymentDueDate", "Jan 28, 2018");
     			browser.verifyText("accessibilityId", "installmentAmount", "$63,382.03");
-    			browser.verifyText("xpath", "(//*[@class='android.widget.TextView'])[29]", "JMD");
+    			browser.verifyText("xpath", "//*[./preceding-sibling::*[@content-desc='installmentAmount']][1]", "JMD");
     			
     			browser.verifyText("accessibilityId", "Loan Period", "Loan Period");
     			browser.verifyText("xpath", "//*[@content-desc='loanPeriod'][1]", "90 months");
