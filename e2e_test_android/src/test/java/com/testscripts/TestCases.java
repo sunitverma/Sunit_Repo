@@ -253,10 +253,10 @@ public class TestCases extends RootTest {
       	login.loginToApp("stonepj", "Password1##");
       	login.acceptTermAndConditions();
       	homepage.quickActionsButtonNotForLoan();
-      	homepage.transferButtonOnListPage("SAVINGS");
-      	viewaccounts.transferButtonOnAccountDetailsPage("SAVINGS");
-      	homepage.transferButtonOnListPage("CHEQUING");
-      	viewaccounts.transferButtonOnAccountDetailsPage("CHEQUING");
+//      	homepage.transferButtonOnListPage("SAVINGS");
+//      	viewaccounts.transferButtonOnAccountDetailsPage("SAVINGS");
+//      	homepage.transferButtonOnListPage("CHEQUING");
+//      	viewaccounts.transferButtonOnAccountDetailsPage("CHEQUING");
       	System.out.println("Testcase 17 - Successsfully Completed");
     }
     

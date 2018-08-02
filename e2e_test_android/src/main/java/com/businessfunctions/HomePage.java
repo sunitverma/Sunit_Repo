@@ -57,7 +57,8 @@ public class HomePage {
     public void quickActionsButtonNotForLoan() {
     	
     	try {
-    		if(browser.getSize("androidUIAutomator", "new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().textContains(\"LOAN\"))") != 0) {
+    		//if(browser.getSize("androidUIAutomator", "new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().textContains(\"LOAN\"))") != 0) {
+    		if(browser.scrollForObject("LOAN") == true) {
     			if (browser.getSize("xpath", "//*[@content-desc='accountCard' and ./*[./*[@text='LOAN']]]//*[@content-desc='QUICK ACTIONS Button']")!=0) {
     				System.out.println("Quick Actions - Make A Transfer/ Pay A Bill options are available for Loan account.");
     				}
