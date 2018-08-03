@@ -329,7 +329,7 @@ public class Common {
 
     	UiDevice mDevice = UiDevice.getInstance();
     	mDevice.pressEnter();
-    
+    	
 //    	Instrumentation instr = Instrumentation.getInstrumentation();
 //    	UiDevice device = UiDevice.getInstance();
     	
@@ -348,7 +348,7 @@ public class Common {
     		//WebElement element = driver.findElement(By.id(getSelector()));
 //    		if (element == null) element = driver.findElement(By.name(getSelector()); 
 //    		return element; 
-    		
+    	new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().description("cont_desc").childSelector(new UiSelector().text("")));
 
     	
     	

@@ -92,19 +92,17 @@ public class Login {
 	public void logOutButtonFunction() {
 		
 		try {
-			browser.verifyElementPresent("accessibilityId", "logoutButton");
+			browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
+			browser.verifyElementPresent("accessibilityId", "rightNavIcon");
+			browser.click("accessibilityId", "rightNavIcon");
 			
-			//browser.verifyText("accessibilityId", "logoutButton", "Log Out");
-			
-			browser.click("accessibilityId", "logoutButton");
+			browser.waitUntilElementPresent("//*[@content-desc='MenuItem:LOG OUT']");
+			browser.click("accessibilityId", "MenuItem:LOG OUT");
 			browser.waitUntilElementPresent("//*[@content-desc='LogoutModalHeader']");
 			browser.verifyText("accessibilityId", "LogoutModalHeader", "Leaving already?");
 			browser.verifyText("accessibilityId", "LogoutModalBody", "Are you sure you want to log out?");
 			browser.verifyText("accessibilityId", "LogoutModalReturnButton", "Cancel");
 			browser.verifyText("accessibilityId", "LogoutModalAcceptButton", "Log out");        
-			
-			browser.verifyElementPresent("accessibilityId", "LogoutModalReturnButton");
-			browser.verifyElementPresent("accessibilityId", "LogoutModalAcceptButton");
 			browser.screenShot();
       
 			browser.click("accessibilityId", "LogoutModalReturnButton");
@@ -113,7 +111,9 @@ public class Login {
 			browser.screenShot();
 			System.out.println("Cancel button working fine on Log out pop up");
 			
-			browser.click("accessibilityId", "logoutButton");
+			browser.click("accessibilityId", "rightNavIcon");
+			browser.waitUntilElementPresent("//*[@content-desc='MenuItem:LOG OUT']");
+			browser.click("accessibilityId", "MenuItem:LOG OUT");
 			browser.waitUntilElementPresent("//*[@content-desc='LogoutModalHeader']");
 			browser.click("accessibilityId", "LogoutModalAcceptButton");
 			browser.waitUntilElementPresent("//*[@content-desc='logo']");
@@ -167,38 +167,37 @@ public class Login {
 	public void termsAndConditionsExists(String username, String password) {
 		
 		try {
+			browser.waitUntilElementPresent("//*[@content-desc='welcomeName'] | //*[@content-desc='scrollToEndButton']");
 			if(browser.getSize("accessibilityId", "welcomeName") != 0) {
 				System.out.println("The user has already accepted Terms and Conditions");
 			}
-			else if(browser.getSize("accessibilityId", "scrollToEndButton") != 0) {
+			else {
 				browser.click("accessibilityId", "scrollToEndButton");
 				browser.waitUntilElementPresent("//*[@content-desc='declineButton']");
 				browser.verifyElementPresent("accessibilityId", "declineButton");
 				browser.click("accessibilityId", "declineButton");
 				
-				if(browser.verifyElementPresent("accessibilityId", "usernameInput")) {
-					browser.waitUntilElementPresent("//*[@content-desc='usernameInput']");
-					browser.sendKeys("accessibilityId", "usernameInput", username);
-					browser.keyboardKey();
+				browser.waitUntilElementPresent("//*[@content-desc='tabBarLogo']");
+				browser.sendKeys("accessibilityId", "usernameInput", username);
+				browser.keyboardKey();
 					
-					browser.sendKeys("accessibilityId", "passwordInput", password);
-					browser.keyboardKey();
+				browser.sendKeys("accessibilityId", "passwordInput", password);
+				browser.keyboardKey();
 					
-					browser.click("accessibilityId", "loginButtonText");
+				browser.click("accessibilityId", "loginButtonText");
 					
-					browser.waitUntilElementPresent("//*[@content-desc='scrollToEndButton']");
-					browser.screenShot();
+				browser.waitUntilElementPresent("//*[@content-desc='scrollToEndButton']");
+				browser.screenShot();
 					
-					browser.click("accessibilityId", "scrollToEndButton");
-					browser.waitUntilElementPresent("//*[@content-desc='acceptButton']");
-					browser.verifyElementPresent("accessibilityId", "acceptButton");
-					browser.screenShot();
+				browser.click("accessibilityId", "scrollToEndButton");
+				browser.waitUntilElementPresent("//*[@content-desc='acceptButton']");
+				browser.verifyElementPresent("accessibilityId", "acceptButton");
+				browser.screenShot();
           
-					browser.click("accessibilityId", "acceptButton");
-					
-					System.out.println("The user accepts Terms and Conditions");
-					browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
-				}
+				browser.click("accessibilityId", "acceptButton");
+				
+				System.out.println("The user accepts Terms and Conditions");
+				browser.waitUntilElementPresent("//*[@content-desc='welcomeName']");
 			}
 		} catch (NoSuchElementException e) {
 			System.out.println("Element Not Found");

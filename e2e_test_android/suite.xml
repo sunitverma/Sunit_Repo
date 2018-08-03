@@ -20,7 +20,7 @@
 					<exclude name="feedBackButton" />
 					<exclude name="termsAndConditions" />
 					<exclude name="animation" />
-					<include name="transfers" />
+					<exclude name="transfers" />
 					<exclude name="meToMeTransferFromSavingsListPage" />
 					<exclude name="meToMeTransferFromSavingsSummaryPage" />
 					<exclude name="meToMeTransferFromChequingsListPage" />
